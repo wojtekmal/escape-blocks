@@ -1,4 +1,4 @@
-extends Sprite
+dextends Sprite
 
 
 var acceleration = 75
