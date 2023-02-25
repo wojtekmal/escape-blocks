@@ -95,7 +95,6 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 [sub_resource type="GDScript" id=6]
 script/source = "extends TileMap
 
-export var keep_speed_after_rotation = false
 var screen_size : Vector2
 var center_of_screen : Vector2
 
@@ -106,15 +105,16 @@ func _ready():
 	Player.connect(\"rotate_gravity\", self, \"_on_Player_rotate_gravity\")
 
 func _on_Player_rotate_gravity(rotations_to_perform) -> void:
-	change_gravity(rotations_to_perform, keep_speed_after_rotation)
+	change_gravity(rotations_to_perform)
 
 func rotate_90_degrees_CCW(vec : Vector2) -> Vector2:
 	vec = Vector2(vec.y, -vec.x)
 	return vec
 	
-func change_gravity(rotations: int, keep_speed: bool):
-	rotation_degrees += 90
-	position = position.rotated(deg2rad(90))
+func change_gravity(rotations: int):
+	for i in range(rotations):
+		rotation_degrees += 90
+		position = position.rotated(deg2rad(90))
 "
 
 [node name="TestLevel" type="Node2D"]
@@ -133,10 +133,7 @@ script = SubResource( 6 )
 current = true
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 223, 135 )
+position = Vector2( 104, 160 )
 
-[node name="Block" parent="." instance=ExtResource( 4 )]
-position = Vector2( 464, 496 )
-
-[node name="Block2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 431, 103 )
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 104, 105 )
