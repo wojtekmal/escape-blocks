@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player.png-ce289a19efa81f268b1bb13630e9f80b.stex"
+path="res://.import/stworus_walk_3.png-2b3b58afb0704699f3e4f161d4fe0b0d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/player.png"
-dest_files=[ "res://.import/player.png-ce289a19efa81f268b1bb13630e9f80b.stex" ]
+source_file="res://textures/player/stworus_walk_3.png"
+dest_files=[ "res://.import/stworus_walk_3.png-2b3b58afb0704699f3e4f161d4fe0b0d.stex" ]
 
 [params]
 
