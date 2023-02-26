@@ -9,18 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
-"class": "default",
-"language": "GDScript",
-"path": "res://scripts/Default.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "entity",
 "language": "GDScript",
 "path": "res://scripts/Entity.gd"
 } ]
 _global_script_class_icons={
-"default": "",
 "entity": ""
 }
 
@@ -32,9 +26,6 @@ config/icon="res://textures/icon.png"
 
 [display]
 
-window/size/width=128
-window/size/height=128
-window/size/fullscreen=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
