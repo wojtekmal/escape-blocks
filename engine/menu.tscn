@@ -1,0 +1,193 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://textures/icon.png" type="Texture" id=1]
+
+[node name="Control" type="Control"]
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_pivot_offset = Vector2( -239.6, -532.535 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/AspectRatioContainer"]
+margin_left = 212.0
+margin_right = 772.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/AspectRatioContainer/MarginContainer"]
+margin_right = 560.0
+margin_bottom = 560.0
+color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer"]
+margin_right = 560.0
+margin_bottom = 560.0
+custom_constants/margin_right = 31
+custom_constants/margin_top = 31
+custom_constants/margin_left = 31
+custom_constants/margin_bottom = 31
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer"]
+margin_left = 31.0
+margin_top = 31.0
+margin_right = 529.0
+margin_bottom = 529.0
+color = Color( 0.329412, 0.329412, 0.329412, 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer"]
+margin_left = 31.0
+margin_top = 31.0
+margin_right = 529.0
+margin_bottom = 529.0
+custom_constants/separation = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer"]
+margin_right = 166.0
+margin_bottom = 498.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 166.0
+margin_bottom = 166.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2/AspectRatioContainer"]
+margin_right = 166.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 166.0
+margin_right = 166.0
+margin_bottom = 332.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2/AspectRatioContainer2"]
+margin_right = 166.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 332.0
+margin_right = 166.0
+margin_bottom = 498.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2/AspectRatioContainer3"]
+margin_right = 166.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer"]
+margin_left = 166.0
+margin_right = 332.0
+margin_bottom = 498.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
+margin_right = 166.0
+margin_bottom = 166.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3/AspectRatioContainer"]
+margin_right = 166.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
+margin_top = 166.0
+margin_right = 166.0
+margin_bottom = 332.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3/AspectRatioContainer2"]
+margin_right = 166.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
+margin_top = 332.0
+margin_right = 166.0
+margin_bottom = 498.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3/AspectRatioContainer3"]
+margin_right = 166.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer"]
+margin_left = 332.0
+margin_right = 498.0
+margin_bottom = 498.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4"]
+margin_right = 166.0
+margin_bottom = 166.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4/AspectRatioContainer"]
+margin_right = 166.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4"]
+margin_top = 166.0
+margin_right = 166.0
+margin_bottom = 332.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4/AspectRatioContainer2"]
+margin_right = 166.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4"]
+margin_top = 332.0
+margin_right = 166.0
+margin_bottom = 498.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4/AspectRatioContainer3"]
+margin_right = 166.0
+margin_bottom = 166.0
+texture_normal = ExtResource( 1 )
+expand = true
