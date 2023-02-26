@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://textures/icon.png" type="Texture" id=1]
-[ext_resource path="res://someCode.gd" type="Script" id=2]
-
-[node name="Sprite" type="Sprite"]
-position = Vector2( 490, 273 )
-texture = ExtResource( 1 )
-script = ExtResource( 2 )
