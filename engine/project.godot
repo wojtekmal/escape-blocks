@@ -15,8 +15,17 @@ _global_script_class_icons={
 [application]
 
 config/name="Escape blocks"
-run/main_scene="res://label.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://menu.tscn"
+config/icon="res://textures/icon.png"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
+[global]
+
+main=false
 
 [rendering]
 
