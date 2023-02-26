@@ -3,7 +3,7 @@ class_name entity
 
 export var air_friction := 0.93
 export var floor_friction := 0.75
-export var gravity := Vector2(0.0, 50.0)
+export var gravity := Vector2(0.0, 8.0)
 export var keep_speed_after_rotation = false
 export var rotation_speed := 1.0
 var isOnFloor := false
@@ -34,18 +34,15 @@ func default_phisics(delta: float, acceleration: Vector2 = Vector2(0, 0)) -> voi
 		_velocity.x = 0;
 	if abs(_velocity.y) < 0.1:
 		_velocity.y = 0;
-	#print(_velocity)
-	_velocity = move(_velocity)
-	#print(_velocity)
-	print(isOnFloor)
-	#print(delta)
-
 	
-func move(velocity : Vector2, steps : int = 0) -> Vector2:
-	var colision1 = move_and_collide(Vector2.ZERO, true, true, true)
-	if colision1:
-		print("jup")
+	_velocity = move(_velocity)
+	#unstuck()
 
+func is_colliding() -> bool:
+	var colision = move_and_collide(Vector2.ZERO, true, true, true)
+	return false 
+
+func move(velocity : Vector2, steps : int = 0) -> Vector2:
 	for i in range(abs(velocity.y)):
 		if velocity.y > 0:
 			var colision = move_and_collide(Vector2.DOWN, true, true, true)
@@ -80,7 +77,6 @@ func move(velocity : Vector2, steps : int = 0) -> Vector2:
 	
 	return velocity
 
-
 func calculate_when_character_was_on_floor():
 	if isOnFloor:
 		on_floor = 0
@@ -97,3 +93,16 @@ func change_gravity(rotations: int, keep_speed: bool):
 func rotate_90_degrees_CCW(vec : Vector2) -> Vector2:
 	vec = Vector2(vec.y, -vec.x)
 	return vec
+
+func unstuck(force : int = 3) -> bool: # returns true if is still coliding
+	var x := 1
+	var startPos = position
+	while is_colliding() and x <= force:
+		position.y += x;
+		x += sign(x)
+		x = -x
+	if is_colliding():
+		position = startPos
+		return true
+	else:
+		return false
