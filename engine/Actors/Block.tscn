@@ -4,16 +4,16 @@
 [ext_resource path="res://scripts/Block.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 33.5, 33.5 )
+extents = Vector2( 32, 31.875 )
 
 [node name="Block" type="KinematicBody2D"]
 collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -0.125 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 4.76837e-07, -4.76837e-07 )
-scale = Vector2( 1.06667, 1.06667 )
 texture = ExtResource( 1 )
