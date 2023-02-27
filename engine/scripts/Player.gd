@@ -1,7 +1,7 @@
 extends entity
 signal rotate_gravity(rotations_to_perform)
-export var walk_speed = 12
-export var jump_speed = 60
+export var walk_speed = 60
+export var jump_speed = 300
 export var coyote_time = 0.1
 export var jump_time = 0.1 
 var offset = 10;
@@ -18,9 +18,9 @@ func _physics_process(delta: float) -> void:
 	change_sprite_rotation(direction)
 	default_phisics(delta, acceleration)
 	if is_colliding():
-		if unstuck(200):
+		if unstuck(20000):
 			start_crawling()
-			unstuck(200)
+			unstuck(20000)
 	if is_colliding():
 		print("no nie")
 

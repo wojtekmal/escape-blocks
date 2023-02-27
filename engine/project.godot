@@ -32,11 +32,11 @@ config/icon="res://textures/icon.png"
 
 [display]
 
-window/size/width=128
-window/size/height=128
+window/size/height=1024
 window/size/fullscreen=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+Updatedupstreamwindow/size/height=128
 
 [global]
 
