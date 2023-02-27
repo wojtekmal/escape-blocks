@@ -16,7 +16,7 @@
 extents = Vector2( 5.5, 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 5.5, 8 )
+extents = Vector2( 4, 7 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -73,7 +73,6 @@ shape = SubResource( 4 )
 disabled = true
 
 [node name="StandingHitBox" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -1 )
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

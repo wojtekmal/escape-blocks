@@ -35,47 +35,17 @@ func default_phisics(delta: float, acceleration: Vector2 = Vector2(0, 0)) -> voi
 	if abs(_velocity.y) < 0.1:
 		_velocity.y = 0;
 	
-	_velocity = move(_velocity)
+	_velocity = move_and_slide(_velocity, FLOOR_NORMAL, false, 4, PI/4, false)
+	
+	if is_on_floor():
+		isOnFloor = true
+	else:
+		isOnFloor = false
 	#unstuck()
 
 func is_colliding() -> bool:
 	var colision = move_and_collide(Vector2.ZERO, true, true, true)
 	return false 
-
-func move(velocity : Vector2, steps : int = 0) -> Vector2:
-	for i in range(abs(velocity.y)):
-		if velocity.y > 0:
-			var colision = move_and_collide(Vector2.DOWN, true, true, true)
-			if colision:
-				isOnFloor = true
-				velocity.y = 0
-				break
-			else:
-				isOnFloor = false
-		elif velocity.y < 0:
-			var colision = move_and_collide(Vector2.UP, true, true, true)
-			isOnFloor = false
-			if colision:
-				velocity.y = 0
-				break
-		
-		position.y += sign(velocity.y)  * get_physics_process_delta_time()
-	
-	for i in range(abs(velocity.x)):
-		if velocity.x > 0:
-			var colision = move_and_collide(Vector2.RIGHT, true, true, true)
-			if colision:
-				velocity.x = 0
-				break
-		elif velocity.x < 0:
-			var colision = move_and_collide(Vector2.LEFT, true, true, true)
-			if colision:
-				velocity.x = 0
-				break
-
-		position.x += sign(velocity.x) * get_physics_process_delta_time()
-	
-	return velocity
 
 func calculate_when_character_was_on_floor():
 	if isOnFloor:

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enchanting_table_top.png-3ec2986dac61dfeafee13e6abaa0aa21.stex"
+path="res://.import/door_closed.png-9db8be88c1177b25b48626b34b1abe00.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/enchanting_table_top.png"
-dest_files=[ "res://.import/enchanting_table_top.png-3ec2986dac61dfeafee13e6abaa0aa21.stex" ]
+source_file="res://textures/door/door_closed.png"
+dest_files=[ "res://.import/door_closed.png-9db8be88c1177b25b48626b34b1abe00.stex" ]
 
 [params]
 
