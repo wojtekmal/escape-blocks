@@ -13,10 +13,10 @@
 [ext_resource path="res://textures/player/stworus_crawl_3.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 5.25, 7.5 )
+extents = Vector2( 5.5, 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 5.25, 7 )
+extents = Vector2( 5.5, 8 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -67,12 +67,13 @@ collision_mask = 6
 script = ExtResource( 2 )
 
 [node name="CrawlingHitBox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 5.75 )
 shape = SubResource( 4 )
+disabled = true
 
 [node name="StandingHitBox" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
-
-[node name="StandingHitBox2" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
