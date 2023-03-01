@@ -32,7 +32,10 @@ config/icon="res://textures/icon.png"
 
 [display]
 
-window/size/height=1024
+window/size/width=640
+window/size/height=360
+window/size/test_width=1280
+window/size/test_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 Updatedupstreamwindow/size/height=128
