@@ -4,7 +4,7 @@
 [ext_resource path="res://scripts/Block.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 31.875 )
+extents = Vector2( 33.5, 33.5 )
 
 [node name="Block" type="KinematicBody2D"]
 collision_mask = 7

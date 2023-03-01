@@ -18,45 +18,46 @@ custom_constants/margin_bottom = 19
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer"]
 margin_left = 19.0
 margin_top = 19.0
-margin_right = 1005.0
-margin_bottom = 1005.0
+margin_right = 621.0
+margin_bottom = 341.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/AspectRatioContainer"]
-margin_right = 986.0
-margin_bottom = 986.0
+margin_left = 140.0
+margin_right = 462.0
+margin_bottom = 322.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/AspectRatioContainer/MarginContainer"]
-margin_right = 986.0
-margin_bottom = 986.0
+margin_right = 322.0
+margin_bottom = 322.0
 color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer"]
-margin_right = 986.0
-margin_bottom = 986.0
-custom_constants/margin_right = 31
-custom_constants/margin_top = 31
-custom_constants/margin_left = 31
-custom_constants/margin_bottom = 31
+margin_right = 322.0
+margin_bottom = 322.0
+custom_constants/margin_right = 14
+custom_constants/margin_top = 14
+custom_constants/margin_left = 14
+custom_constants/margin_bottom = 14
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer"]
-margin_left = 31.0
-margin_top = 31.0
-margin_right = 955.0
-margin_bottom = 955.0
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 308.0
+margin_bottom = 308.0
 color = Color( 0.329412, 0.329412, 0.329412, 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer"]
-margin_left = 31.0
-margin_top = 31.0
-margin_right = 955.0
-margin_bottom = 955.0
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 308.0
+margin_bottom = 308.0
 custom_constants/separation = 0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer"]
-margin_right = 308.0
-margin_bottom = 924.0
+margin_right = 98.0
+margin_bottom = 294.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
@@ -64,28 +65,28 @@ custom_constants/separation = 0
 [node name="MenuButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 308.0
-margin_bottom = 308.0
+margin_right = 98.0
+margin_bottom = 98.0
 
 [node name="MenuButton2" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 308.0
-margin_right = 308.0
-margin_bottom = 616.0
+margin_top = 98.0
+margin_right = 98.0
+margin_bottom = 196.0
 
 [node name="MenuButton3" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 616.0
-margin_right = 308.0
-margin_bottom = 924.0
+margin_top = 196.0
+margin_right = 98.0
+margin_bottom = 294.0
 buttonText = "Settings"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer"]
-margin_left = 308.0
-margin_right = 616.0
-margin_bottom = 924.0
+margin_left = 98.0
+margin_right = 196.0
+margin_bottom = 294.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
@@ -93,33 +94,33 @@ custom_constants/separation = 0
 [node name="MenuButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 308.0
-margin_bottom = 308.0
+margin_right = 98.0
+margin_bottom = 98.0
 buttonText = "Level
 map"
 
 [node name="MenuButton2" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 308.0
-margin_right = 308.0
-margin_bottom = 616.0
+margin_top = 98.0
+margin_right = 98.0
+margin_bottom = 196.0
 buttonText = "New
 game"
 
 [node name="MenuButton3" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 616.0
-margin_right = 308.0
-margin_bottom = 924.0
+margin_top = 196.0
+margin_right = 98.0
+margin_bottom = 294.0
 buttonText = "Continue
 game"
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer"]
-margin_left = 616.0
-margin_right = 924.0
-margin_bottom = 924.0
+margin_left = 196.0
+margin_right = 294.0
+margin_bottom = 294.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
@@ -127,21 +128,21 @@ custom_constants/separation = 0
 [node name="MenuButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 308.0
-margin_bottom = 308.0
+margin_right = 98.0
+margin_bottom = 98.0
 
 [node name="MenuButton2" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 308.0
-margin_right = 308.0
-margin_bottom = 616.0
+margin_top = 98.0
+margin_right = 98.0
+margin_bottom = 196.0
 buttonText = "Creddits"
 
 [node name="MenuButton3" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 616.0
-margin_right = 308.0
-margin_bottom = 924.0
+margin_top = 196.0
+margin_right = 98.0
+margin_bottom = 294.0
 buttonText = "Exit"

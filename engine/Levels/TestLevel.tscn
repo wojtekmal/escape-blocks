@@ -43,7 +43,6 @@ scale = Vector2( 0.347184, 0.347184 )
 position = Vector2( -87, -23 )
 
 [node name="Block" parent="." instance=ExtResource( 4 )]
-
 position = Vector2( -32, -96 )
 
 [node name="Block2" parent="." instance=ExtResource( 4 )]
