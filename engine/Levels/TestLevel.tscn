@@ -43,28 +43,28 @@ scale = Vector2( 0.347184, 0.347184 )
 position = Vector2( -62, 110 )
 
 [node name="Block" parent="." instance=ExtResource( 4 )]
-position = Vector2( 114, 151 )
+position = Vector2( 114, 150 )
 
 [node name="Block2" parent="." instance=ExtResource( 4 )]
-position = Vector2( -22, 151 )
+position = Vector2( -22, 150 )
 
 [node name="Block8" parent="." instance=ExtResource( 4 )]
-position = Vector2( -22, 83 )
+position = Vector2( -22, 82 )
 
 [node name="Block7" parent="." instance=ExtResource( 4 )]
-position = Vector2( 46, 151 )
+position = Vector2( 46, 150 )
 
 [node name="Block3" parent="." instance=ExtResource( 4 )]
-position = Vector2( -22, 15 )
+position = Vector2( -22, 14 )
 
 [node name="Block4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 46, 83 )
+position = Vector2( 46, 82 )
 
 [node name="Block5" parent="." instance=ExtResource( 4 )]
-position = Vector2( -90, 151 )
+position = Vector2( -90, 150 )
 
 [node name="Block6" parent="." instance=ExtResource( 4 )]
-position = Vector2( -22, -53 )
+position = Vector2( -22, -54 )
 
 [node name="Map" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
