@@ -1,7 +1,8 @@
+tool
 extends KinematicBody2D
 class_name entity
 
-export var air_friction := 0.93
+export var air_friction := 0
 export var floor_friction := 0.75
 export var gravity := Vector2(0.0, 60.0)
 export var keep_speed_after_rotation = false
