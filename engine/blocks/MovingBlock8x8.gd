@@ -15,12 +15,10 @@ func _ready():
 func update_board_dimensions(newValue):
 	board_dimensions = newValue
 	update_board_cords(board_cords)
-	print_debug(board_dimensions)
 
 func update_board_cords(newValue):
 	board_cords = newValue
-	set_position(Vector2(-(board_dimensions.x / 2 - board_cords.x - 1) * 64 + 32, -(board_dimensions.y / 2 - board_cords.y - 1) * 64 + 32))
-	print_debug(board_dimensions)
+	set_position(Vector2(-(board_dimensions.x / 2 - board_cords.x) * 64 + 32, -(board_dimensions.y / 2 - board_cords.y) * 64 + 32))
 
 func get_class():
 	return "MovingBlock8x8"

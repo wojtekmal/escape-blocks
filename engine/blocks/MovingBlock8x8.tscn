@@ -7,7 +7,7 @@
 extents = Vector2( 32, 32 )
 
 [node name="MovingBlock8x8" type="KinematicBody2D"]
-position = Vector2( 96, 96 )
+position = Vector2( 32, 32 )
 collision_mask = 2
 script = ExtResource( 2 )
 
