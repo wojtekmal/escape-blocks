@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://textures/meta.png" type="Texture" id=1]
+[ext_resource path="res://textures/meta.png" type="Texture2D" id=1]
 [ext_resource path="res://scripts/Meta.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 24 )
+size = Vector2( 8, 24 )
 
 [node name="Meta" type="RigidBody2D"]
 script = ExtResource( 2 )
@@ -12,7 +12,7 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2( 1, 0.4 )
 texture = ExtResource( 1 )
 offset = Vector2( 54.5, -16.5 )
