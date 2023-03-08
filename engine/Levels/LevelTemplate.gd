@@ -1,16 +1,16 @@
-tool
+@tool
 extends Node2D
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-#export(int) var boardWidth := 1 setget update_board_width
-#export(int) var boardHeight := 1 setget update_board_height
-export(Vector2) var board_dimensions := Vector2(8, 5) setget update_board_dimensions
-onready var tilemap := $TileMap
-export var total_rotations := 0
-onready var player := $Player
+#export var boardWidth: int := 1 : set = update_board_width
+#export var boardHeight: int := 1 : set = update_board_height
+@export var board_dimensions: Vector2 := Vector2(8, 5) : set = update_board_dimensions
+@onready var tilemap := $TileMap
+@export var total_rotations := 0
+@onready var player := $Player
 var moving_blocks = []
 var column_block_heights = []
 var fall_speed = 500
@@ -29,8 +29,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var player := $Player
-	var extents = $Player/StandingHitBox.shape.extents
-	#var extents = hitbox_shape.extents
+	var size = $Player/StandingHitBox.shape.size
+	#var size = hitbox_shape.size
 	column_block_heights.clear()
 	
 	for i in range(0, board_dimensions.x + 1):
@@ -39,8 +39,8 @@ func _process(delta):
 		column_block_heights[moving_block.board_cords.x].push_back(moving_block.position.y)
 		
 	var left_wall = -board_dimensions.x * 32
-	var player_left_column = (player.position.x - extents.x - left_wall) / 64
-	var player_right_column = (player.position.x + extents.x - left_wall) / 64
+	var player_left_column = (player.position.x - size.x - left_wall) / 64
+	var player_right_column = (player.position.x + size.x - left_wall) / 64
 	
 	if player_left_column == player_right_column:
 		column_block_heights[player_left_column].push_back(player.position.y)

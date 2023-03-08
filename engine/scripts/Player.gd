@@ -1,14 +1,14 @@
-extends KinematicBody2D
-export var walk_speed = 60
-export var jump_speed = 300
-export var coyote_time = 0.1
-export var jump_time = 0.1 
+extends CharacterBody2D
+@export var walk_speed = 60
+@export var jump_speed = 300
+@export var coyote_time = 0.1
+@export var jump_time = 0.1 
 var offset = 10;
 var crawling := false
 
-onready var _animated_sprite = $AnimatedSprite
-onready var StandingHitBox = $StandingHitBox
-onready var CrawlingHitBox = $CrawlingHitBox
+@onready var _animated_sprite = $AnimatedSprite2D
+@onready var StandingHitBox = $StandingHitBox
+@onready var CrawlingHitBox = $CrawlingHitBox
 
 func _physics_process(delta: float) -> void:
 	pass

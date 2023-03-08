@@ -1,11 +1,11 @@
-tool
-class_name MovingBlock8x8 extends KinematicBody2D
+@tool
+class_name MovingBlock8x8 extends CharacterBody2D
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-export(Vector2) var board_cords setget update_board_cords
-export(Vector2) var board_dimensions setget update_board_dimensions
+@export var board_cords: Vector2 : set = update_board_cords
+@export var board_dimensions: Vector2 : set = update_board_dimensions
 
 
 # Called when the node enters the scene tree for the first time.
