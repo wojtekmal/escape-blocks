@@ -7,23 +7,19 @@ extends Node2D
 # var b = "text"
 #export(int) var boardWidth := 1 setget update_board_width
 #export(int) var boardHeight := 1 setget update_board_height
-export(Vector2) var board_dimensions setget update_board_dimensions
+export(Vector2) var board_dimensions := Vector2(8, 5) setget update_board_dimensions
 onready var tilemap := $TileMap
 export var total_rotations := 0
 onready var player := $Player
+onready var moving_blocks = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-#	for i in range(-boardWidth * 4 - 1, boardWidth * 4 + 1):
-#		tilemap.set_cell(i, boardHeight * 4, 0)
-#		tilemap.set_cell(i, -boardHeight * 4 - 1, 0)
-#	
-#	for i in range(-boardHeight * 4 - 1, boardHeight * 4 + 1):
-#		tilemap.set_cell(-boardWidth * 4 - 1, i, 0)
-#		tilemap.set_cell(boardWidth * 4, i, 0)
+	for child in self.get_children():
+		print_debug(child.get_class())
+		if child.get_class() == "MovingBlock8x8":
+			moving_blocks.push_back(child)
 #	 # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -41,22 +37,6 @@ func manage_changing_gravity():
 		total_rotations += rotations
 		if Input.is_action_just_pressed("debug1"):
 			total_rotations += 1
-
-#func update_board_width(newValue):
-#	tilemap = $TileMap
-#	if Engine.editor_hint:
-#		for i in range(-newValue * 4 - 1, newValue * 4 + 1):
-#			tilemap.set_cell(i, boardHeight * 4, 0)
-#			tilemap.set_cell(i, -boardHeight * 4 - 1, 0)
-#	boardWidth = newValue
-	
-#func update_board_height(newValue):
-#	tilemap = $TileMap
-#	if Engine.editor_hint:
-#		for i in range(-newValue * 4 - 1, newValue * 4 + 1):
-#			tilemap.set_cell(-boardWidth * 4 - 1, i, 0)
-#			tilemap.set_cell(boardWidth * 4, i, 0)
-#	boardHeight = newValue
 
 func update_board_dimensions(newValue):
 	tilemap = $TileMap
@@ -78,5 +58,10 @@ func update_board_dimensions(newValue):
 			tilemap.set_cell(-newValue.x * 4 - 1, i, 0)
 			tilemap.set_cell(newValue.x * 4, i, 0)
 	
-	board_dimensions.x = newValue.x
-	board_dimensions.y = newValue.y
+	board_dimensions = newValue
+	
+	for child in self.get_children():
+		if child.get_class() == "MovingBlock8x8":
+			child.update_board_dimensions(board_dimensions)
+			
+	print_debug(board_dimensions)
