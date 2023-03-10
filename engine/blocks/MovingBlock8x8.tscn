@@ -1,18 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://p3vwjet8rxgn"]
 
-[ext_resource path="res://textures/block.png" type="Texture2D" id=1]
-[ext_resource path="res://blocks/MovingBlock8x8.gd" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/block.png" id="1"]
+[ext_resource type="Script" path="res://blocks/MovingBlock8x8.gd" id="2"]
 
-[sub_resource type="RectangleShape2D" id=1]
-size = Vector2( 32, 32 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(32, 32)
 
 [node name="MovingBlock8x8" type="CharacterBody2D"]
-position = Vector2( 32, 32 )
-collision_mask = 2
-script = ExtResource( 2 )
+position = Vector2(32, 32)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2")
+is_falling = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource( 1 )
+texture = ExtResource("1")
