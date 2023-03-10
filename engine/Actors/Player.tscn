@@ -1,80 +1,133 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=15 format=3 uid="uid://ow2x5epfg1v2"]
 
-[ext_resource path="res://textures/player/stworus.png" type="Texture2D" id=1]
-[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
-[ext_resource path="res://textures/player/stworus_walk_0.png" type="Texture2D" id=3]
-[ext_resource path="res://textures/player/stworus_walk_2.png" type="Texture2D" id=4]
-[ext_resource path="res://textures/player/stworus_walk_3.png" type="Texture2D" id=5]
-[ext_resource path="res://textures/player/stworus_walk_1.png" type="Texture2D" id=6]
-[ext_resource path="res://textures/player/stworus_crawl_0.png" type="Texture2D" id=7]
-[ext_resource path="res://textures/player/stworus_crawl_1.png" type="Texture2D" id=8]
-[ext_resource path="res://textures/player/stworus_crawl_2.png" type="Texture2D" id=9]
-[ext_resource path="res://textures/player/stworus_crawl.png" type="Texture2D" id=10]
-[ext_resource path="res://textures/player/stworus_crawl_3.png" type="Texture2D" id=11]
+[ext_resource type="Texture2D" uid="uid://dlu8o1g61geft" path="res://textures/player/stworus.png" id="1"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bcqeg3b4oi01o" path="res://textures/player/stworus_walk_0.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bxt1tvoj5m57k" path="res://textures/player/stworus_walk_2.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cntpmx3iifbau" path="res://textures/player/stworus_walk_3.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://dow0fgikrvhxh" path="res://textures/player/stworus_walk_1.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://4sc8o0q3xi1" path="res://textures/player/stworus_crawl_0.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cmnjxhnqkncfk" path="res://textures/player/stworus_crawl_1.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://blmx7skb3p6ue" path="res://textures/player/stworus_crawl_2.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://ctm70qp0l50t6" path="res://textures/player/stworus_crawl.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://cgkdeep31bi6v" path="res://textures/player/stworus_crawl_3.png" id="11"]
 
-[sub_resource type="RectangleShape2D" id=4]
-size = Vector2( 5.5, 4 )
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(4, 6)
 
-[sub_resource type="RectangleShape2D" id=2]
-size = Vector2( 5.5, 8 )
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(5, 8)
 
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 10 ) ],
+[sub_resource type="SpriteFrames" id="3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10")
+}],
 "loop": true,
-"name": "craw fallingUp",
+"name": &"craw fallingUp",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
+}],
 "loop": true,
-"name": "crawl default",
+"name": &"crawl default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10")
+}],
 "loop": true,
-"name": "crawl fallingDown",
+"name": &"crawl fallingDown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 11 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}],
 "loop": true,
-"name": "crawl walking",
+"name": &"crawl walking",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
 "loop": true,
-"name": "default",
+"name": &"default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
 "loop": true,
-"name": "fallingDown",
+"name": &"fallingDown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6")
+}],
 "loop": true,
-"name": "fallingUp",
+"name": &"fallingUp",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
 "loop": true,
-"name": "walking",
+"name": &"walking",
 "speed": 5.0
-} ]
+}]
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2( 0, -7 )
-collision_mask = 6
-script = ExtResource( 2 )
+position = Vector2(0, -7)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2")
+board_cords = null
+board_dimensions = null
+is_falling = null
+is_rotating = null
+total_rotations = null
+now_rotations = null
 
 [node name="CrawlingHitBox" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 0, 5.75 )
-shape = SubResource( 4 )
+position = Vector2(0, 5.75)
+shape = SubResource("4")
 disabled = true
 
 [node name="StandingHitBox" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -1 )
-shape = SubResource( 2 )
+position = Vector2(0, -1)
+shape = SubResource("2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-frames = SubResource( 3 )
+sprite_frames = SubResource("3")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
