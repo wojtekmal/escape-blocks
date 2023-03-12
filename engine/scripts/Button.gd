@@ -1,8 +1,8 @@
 extends default
 
-onready var _hitbox := $hitbox
-onready var _pressed_sprite := $pressed
-onready var _released_sprite := $released
+@onready var _hitbox := $hitbox
+@onready var _pressed_sprite := $pressed
+@onready var _released_sprite := $released
 signal pressed
 signal released
 var bodies := 0
