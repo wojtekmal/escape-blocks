@@ -111,9 +111,6 @@ script = ExtResource("2")
 board_cords = null
 board_dimensions = null
 is_falling = null
-is_rotating = null
-total_rotations = null
-now_rotations = null
 
 [node name="CrawlingHitBox" type="CollisionShape2D" parent="."]
 visible = false
@@ -128,6 +125,5 @@ shape = SubResource("2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("3")
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
