@@ -1,11 +1,12 @@
-extends KinematicBody2D
+@tool
+extends CharacterBody2D
 class_name entity
 
-export var air_friction := 0.93
-export var floor_friction := 0.75
-export var gravity := Vector2(0.0, 60.0)
-export var keep_speed_after_rotation = false
-export var rotation_speed := 1.0
+@export var air_friction := 0
+@export var floor_friction := 0.75
+@export var gravity := Vector2(0.0, 60.0)
+@export var keep_speed_after_rotation = false
+@export var rotation_speed := 1.0
 var isOnFloor := false
 var isOnRoof := false
 var isOnWall := false
@@ -86,7 +87,7 @@ func calculate_when_character_was_on_floor():
 
 func change_gravity(rotations: int, keep_speed: bool):
 	for i in range(rotations):
-		position = position.rotated(deg2rad(90))
+		position = position.rotated(deg_to_rad(90))
 		_velocity = Vector2.ZERO
 		rotation_degrees += 90
 
