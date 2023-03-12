@@ -8,21 +8,24 @@ extends CharacterBody2D
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var is_falling : bool : set = set_is_falling
-@export var is_rotating : bool : set = set_is_rotating
-@export var total_rotations : int
-@export var now_rotations : int
+#@export var is_rotating : bool : set = set_is_rotating
 var offset = 10;
 var crawling := false
 
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var StandingHitBox = $StandingHitBox
 @onready var CrawlingHitBox = $CrawlingHitBox
+#@onready var rotation_timer = $RotationTimer
+
+func _ready():
+	pass
+	#rotation_timer.timeout.connect(_end_of_rotation)
 
 func _physics_process(delta: float) -> void:
 	pass
 
 func _process(delta: float) -> void:
-	manage_changing_gravity(delta)
+	#manage_changing_gravity(delta)
 	animations()
 
 func get_direction() -> Vector2:
@@ -47,36 +50,39 @@ func calculate_move_acceleration(
 	var new_velocity := direction * speed
 	return new_velocity
 
-func manage_changing_gravity(delta):
-	#var dirs := [0, 1, 0, -1] #gives a multiplier for x and y gravity
-	#var rotations = get_parent().total_rotations
-	#rotation_degrees = rotations * 90
-	if !Engine.is_editor_hint():
-		var rotations = 0
-		if(Input.is_action_just_pressed("gravity_right")):
-			rotations += 1
-		if(Input.is_action_just_pressed("gravity_up")):
-			rotations += 2
-		if(Input.is_action_just_pressed("gravity_left")):
-			rotations += 3
-			
-		if !is_rotating and rotations != 0:
-			total_rotations += rotations
-			now_rotations = rotations
-			is_rotating = true
-			
+func rotate_player(delta, now_rotations, total_rotations, time_left):
+
+	
+	#var rotations = 0
+	#if(Input.is_action_just_pressed("gravity_right")):
+	#	rotations += 1
+	#if(Input.is_action_just_pressed("gravity_up")):
+	#	rotations += 2
+	#if(Input.is_action_just_pressed("gravity_left")):
+	#	rotations += 3
+	#	
+	#if rotation_timer.is_stopped() and rotations != 0:
+	#	total_rotations += rotations
+	#	now_rotations = rotations
+	#	rotation_timer.start(0.5)
+		
+	#if !rotation_timer.is_stopped():
+	rotation = (total_rotations - now_rotations) * PI/ 2 + now_rotations * (0.5 - time_left) * PI
 
 func animations():
-	if !Engine.is_editor_hint():
-		var crawlAnimation := ""
-		if crawling:
-			crawlAnimation = "crawl "
-		elif Input.is_action_pressed("move_right"):
-			_animated_sprite.play(crawlAnimation + "walking")
-		elif Input.is_action_pressed("move_left"):
-			_animated_sprite.play(crawlAnimation + "walking")
-		else:
-			_animated_sprite.play(crawlAnimation + "default")
+	if Engine.is_editor_hint():
+		# We won't be loading frames in the editor.
+		return
+	
+	var crawlAnimation := ""
+	if crawling:
+		crawlAnimation = "crawl "
+	elif Input.is_action_pressed("move_right"):
+		_animated_sprite.play(crawlAnimation + "walking")
+	elif Input.is_action_pressed("move_left"):
+		_animated_sprite.play(crawlAnimation + "walking")
+	else:
+		_animated_sprite.play(crawlAnimation + "default")
 
 func change_sprite_rotation(direction: Vector2):
 	if direction.x > 0:
@@ -89,10 +95,7 @@ func get_real_class():
 	
 func set_board_cords(newValue):
 	board_cords = newValue
-	#print_debug(board_dimensions)
-	#print_debug(board_cords)
-	#print_debug("\n")
-	set_position(Vector2i(position.x, board_cords.y * 64 + 32 - board_dimensions.y * 32))
+	set_position(Vector2(position.x, board_cords.y * 64 + 32 - board_dimensions.y * 32))
 	
 func set_board_dimensions(newValue):
 	board_dimensions = newValue
@@ -100,6 +103,6 @@ func set_board_dimensions(newValue):
 
 func set_is_falling(new_value):
 	is_falling = new_value
-
-func set_is_rotating(new_value):
-	is_rotating = new_value
+	
+#func _end_of_rotation():
+#	rotation = total_rotations * PI / 2
