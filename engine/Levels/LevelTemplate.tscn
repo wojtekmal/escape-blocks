@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3oe72nibs0yb"]
+[gd_scene load_steps=10 format=3 uid="uid://c3oe72nibs0yb"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://Actors/Player.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://p3vwjet8rxgn" path="res://blocks/MovingBlock8x8.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
 [ext_resource type="Script" path="res://Levels/LevelTemplate.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/TileMap.gd" id="4_gvo1y"]
+[ext_resource type="PackedScene" uid="uid://3vsop7p20fe0" path="res://Levels/StaticBlock8x8.tscn" id="6_cw7oa"]
 [ext_resource type="Script" path="res://scripts/RotationTimer.gd" id="6_lnp4p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
@@ -120,6 +121,16 @@ board_dimensions = Vector2i(8, 5)
 [node name="MovingBlock8x13" parent="." instance=ExtResource("2")]
 position = Vector2(160, 128)
 board_cords = Vector2i(6, 4)
+board_dimensions = Vector2i(8, 5)
+
+[node name="StaticBlock8x8" parent="." instance=ExtResource("6_cw7oa")]
+position = Vector2(-160, -64)
+board_cords = Vector2i(1, 1)
+board_dimensions = Vector2i(8, 5)
+
+[node name="StaticBlock8x9" parent="." instance=ExtResource("6_cw7oa")]
+position = Vector2(96, 64)
+board_cords = Vector2i(5, 3)
 board_dimensions = Vector2i(8, 5)
 
 [node name="RotationTimer" type="Timer" parent="."]
