@@ -1,2 +1,4 @@
+CollisionShape2D
+Area2D
 Camera2D
 Timer

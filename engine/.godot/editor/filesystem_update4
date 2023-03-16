@@ -1,8 +1,5 @@
 res://default_env.tres
-res://Levels/LevelTemplate.tscn
-res://Levels/LevelTemplate.gd
 res://blocks/MovingBlock8x8.tscn
-res://blocks/MovingBlock8x8.gd
+res://Levels/LevelTemplate.tscn
 res://Actors/Player.tscn
-res://scripts/Player.gd
-res://scripts/RotationTimer.gd
+res://Levels/LevelTemplate.gd
