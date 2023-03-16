@@ -14,7 +14,7 @@ extends Node2D
 @onready var rotation_timer = $RotationTimer
 var moving_entities = []
 var column_top_still_blocks = []
-var fall_speed = 300
+var fall_speed = 200
 var first_frame = true
 var frame_count = 0
 var left_wall = -board_dimensions.x * 32
@@ -24,6 +24,8 @@ var positions_before_rotations = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rotation_timer.timeout.connect(rotation_ended)
+	board_dimensions = board_dimensions
+	#calls the setter function
 	pass
 	#for moving_block in moving_blocks:
 	#	print_debug("check")
@@ -37,7 +39,13 @@ func _process(delta):
 		return
 		
 	manage_changing_gravity()
-	
+	manage_falling_entities(delta)
+		
+	first_frame = false
+	frame_count += 1
+
+
+func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
 		return
 	
@@ -47,7 +55,7 @@ func _process(delta):
 	for child in self.get_children():
 		if child.get_real_class() == "MovingBlock8x8" or child.get_real_class() == "Player":
 			moving_entities.push_back(child)
-	
+
 	moving_entities.sort_custom(compare_entity_heights)
 	
 	for i in range(0, board_dimensions.x):
@@ -58,10 +66,8 @@ func _process(delta):
 			move_block(delta, entity)
 		elif entity.get_real_class() == "Player":
 			move_player(delta)
-	
-	first_frame = false
-	frame_count += 1
-	
+
+
 func compare_entity_heights(a, b):
 	return a.position.y > b.position.y
 	# Sorts the entities in decreasing order according to their height.
@@ -151,7 +157,7 @@ func manage_changing_gravity():
 		return
 	
 	var change_angle = PI * now_rotations * (rotation_timer.wait_time - rotation_timer.time_left) / rotation_timer.wait_time / 2
-	tilemap.rotation = change_angle
+	tilemap.rotation = (total_rotations - now_rotations) * PI / 2 + change_angle
 	#print_debug((total_rotations - now_rotations) * PI / 2 + change_angle)
 	
 	for i in range(0, moving_entities.size()):
@@ -197,7 +203,7 @@ func all_not_falling():
 	return true
 
 func rotation_ended():
-	tilemap.rotation = 0
+	tilemap.rotation = total_rotations * PI / 2
 	
 	if now_rotations % 2:
 		board_dimensions = Vector2i(board_dimensions.y, board_dimensions.x)
@@ -222,21 +228,22 @@ func rotation_ended():
 		#print_debug(top_wall)
 
 func set_board_dimensions(newValue):
-	for i in range(-board_dimensions.x * 4 - 1, board_dimensions.x * 4 + 1):
-		tilemap.set_cell(0, Vector2i(i, board_dimensions.y * 4), -1, Vector2i(0, 0))
-		tilemap.set_cell(0, Vector2i(i, -board_dimensions.y * 4 - 1), -1, Vector2i(0, 0))
-	
-	for i in range(-board_dimensions.y * 4 - 1, board_dimensions.y * 4 + 1):
-		tilemap.set_cell(0, Vector2i(-board_dimensions.x * 4 - 1, i), -1, Vector2i(0, 0))
-		tilemap.set_cell(0, Vector2i(board_dimensions.x * 4, i), -1, Vector2i(0, 0))
+	if Engine.is_editor_hint():
+		for i in range(-board_dimensions.x * 4 - 1, board_dimensions.x * 4 + 1):
+			tilemap.set_cell(0, Vector2i(i, board_dimensions.y * 4), -1, Vector2i(0, 0))
+			tilemap.set_cell(0, Vector2i(i, -board_dimensions.y * 4 - 1), -1, Vector2i(0, 0))
 		
-	for i in range(-newValue.x * 4 - 1, newValue.x * 4 + 1):
-		tilemap.set_cell(0, Vector2i(i, newValue.y * 4), 0, Vector2i(0, 0))
-		tilemap.set_cell(0, Vector2i(i, -newValue.y * 4 - 1), 0, Vector2i(0, 0))
-
-	for i in range(-newValue.y * 4 - 1, newValue.y * 4 + 1):
-		tilemap.set_cell(0, Vector2i(-newValue.x * 4 - 1, i), 0, Vector2i(0, 0))
-		tilemap.set_cell(0, Vector2i(newValue.x * 4, i), 0, Vector2i(0, 0))
+		for i in range(-board_dimensions.y * 4 - 1, board_dimensions.y * 4 + 1):
+			tilemap.set_cell(0, Vector2i(-board_dimensions.x * 4 - 1, i), -1, Vector2i(0, 0))
+			tilemap.set_cell(0, Vector2i(board_dimensions.x * 4, i), -1, Vector2i(0, 0))
+			
+		for i in range(-newValue.x * 4 - 1, newValue.x * 4 + 1):
+			tilemap.set_cell(0, Vector2i(i, newValue.y * 4), 0, Vector2i(0, 0))
+			tilemap.set_cell(0, Vector2i(i, -newValue.y * 4 - 1), 0, Vector2i(0, 0))
+	
+		for i in range(-newValue.y * 4 - 1, newValue.y * 4 + 1):
+			tilemap.set_cell(0, Vector2i(-newValue.x * 4 - 1, i), 0, Vector2i(0, 0))
+			tilemap.set_cell(0, Vector2i(newValue.x * 4, i), 0, Vector2i(0, 0))
 	
 	board_dimensions = newValue
 	left_wall = -board_dimensions.x * 32
