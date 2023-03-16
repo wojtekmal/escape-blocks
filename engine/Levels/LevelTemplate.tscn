@@ -99,8 +99,8 @@ board_cords = Vector2i(3, 0)
 board_dimensions = Vector2i(8, 5)
 
 [node name="MovingBlock8x9" parent="." instance=ExtResource("2")]
-position = Vector2(-160, -64)
-board_cords = Vector2i(1, 1)
+position = Vector2(-224, -64)
+board_cords = Vector2i(0, 1)
 board_dimensions = Vector2i(8, 5)
 
 [node name="MovingBlock8x10" parent="." instance=ExtResource("2")]
