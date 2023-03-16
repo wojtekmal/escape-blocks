@@ -53,7 +53,7 @@ func manage_falling_entities(delta):
 	moving_entities.clear()
 	
 	for child in self.get_children():
-		if child.get_real_class() == "MovingBlock8x8" or child.get_real_class() == "Player":
+		if child.get_real_class() in ["MovingBlock8x8", "Player", "StaticBlock8x8"]:
 			moving_entities.push_back(child)
 
 	moving_entities.sort_custom(compare_entity_heights)
@@ -66,6 +66,8 @@ func manage_falling_entities(delta):
 			move_block(delta, entity)
 		elif entity.get_real_class() == "Player":
 			move_player(delta)
+		elif entity.get_real_class() == "StaticBlock8x8":
+			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
 
 
 func compare_entity_heights(a, b):
@@ -251,7 +253,7 @@ func set_board_dimensions(newValue):
 	
 	for child in get_children():
 		#print_debug(child.get_name())
-		if child.get_real_class() == "MovingBlock8x8" or child.get_real_class() == "Player":
+		if child.get_real_class() in ["MovingBlock8x8", "Player", "StaticBlock8x8"]:
 			#print_debug("check")
 			child.board_dimensions = board_dimensions
 	
