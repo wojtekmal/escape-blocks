@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://6foi5yndkxbu"]
+
+[ext_resource type="Script" path="res://test/entity.gd" id="1_fhkt1"]
+
+[node name="entity" type="Node2D"]
+script = ExtResource("1_fhkt1")
+metadata/_edit_group_ = true

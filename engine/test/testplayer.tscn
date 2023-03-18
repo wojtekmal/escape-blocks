@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwi2bay2c3mcm"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_lsbl8"]
+[ext_resource type="PackedScene" uid="uid://6foi5yndkxbu" path="res://test/entity.tscn" id="2_8037x"]
+
+[node name="player" type="Node2D"]
+script = ExtResource("1_lsbl8")
+
+[node name="block" parent="." instance=ExtResource("2_8037x")]
+debug = true

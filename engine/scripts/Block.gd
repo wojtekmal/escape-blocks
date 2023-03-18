@@ -1,4 +1,4 @@
-extends entity
+extends Entity
 
 func _physics_process(delta: float) -> void:
 	default_phisics(delta)

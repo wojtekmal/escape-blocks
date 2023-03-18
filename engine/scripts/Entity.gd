@@ -1,6 +1,6 @@
 @tool
 extends CharacterBody2D
-class_name entity
+class_name Entity
 
 @export var air_friction := 0
 @export var floor_friction := 0.75

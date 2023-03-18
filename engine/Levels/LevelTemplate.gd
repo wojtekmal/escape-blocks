@@ -1,9 +1,6 @@
 @tool
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 #export var boardWidth: int := 1 : set = update_board_width
 #export var boardHeight: int := 1 : set = update_board_height
 @export var board_dimensions := Vector2i(8, 5) : set = set_board_dimensions
@@ -14,14 +11,13 @@ extends Node2D
 @onready var rotation_timer = $RotationTimer
 var moving_entities = []
 var column_top_still_blocks = []
-var fall_speed = 300
+var fall_speed = 20
 var first_frame = true
 var frame_count = 0
 var left_wall = -board_dimensions.x * 32
 var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	rotation_timer.timeout.connect(rotation_ended)
 	pass
@@ -30,7 +26,6 @@ func _ready():
 	#for moving_block in moving_blocks:
 	#	column_block_heights[moving_block.board_cords.x].push_back(moving_block.position.y)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Engine.is_editor_hint():
 		# We won't be loading frames in the editor.

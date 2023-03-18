@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlvef8mpyrrrn"]
+
+[ext_resource type="Script" path="res://test/testCamera.gd" id="1_1mbyj"]
+
+[node name="Camera2D" type="Camera2D"]
+ignore_rotation = false
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+script = ExtResource("1_1mbyj")

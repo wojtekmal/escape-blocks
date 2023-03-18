@@ -1,19 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://dg373xp8d3kom"]
 
-[ext_resource path="res://textures/block.png" type="Texture2D" id=1]
-[ext_resource path="res://scripts/Block.gd" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/block.png" id="1"]
+[ext_resource type="Script" path="res://scripts/Block.gd" id="2"]
 
-[sub_resource type="RectangleShape2D" id=1]
-size = Vector2( 33.5, 33.5 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(33.5, 33.5)
 
 [node name="Block" type="CharacterBody2D"]
 collision_mask = 7
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -0.125 )
-shape = SubResource( 1 )
+position = Vector2(0, -0.125)
+shape = SubResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2( 4.76837e-07, -4.76837e-07 )
-texture = ExtResource( 1 )
+position = Vector2(4.76837e-07, -4.76837e-07)
+texture = ExtResource("1")

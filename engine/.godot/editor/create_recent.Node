@@ -1,2 +1,15 @@
+Marker2D
+hitbox
+Panel
+ReferenceRect
+ColorRect
+CameraZoom
 Camera2D
+Sprite2D
+TileMap
+Area2D
+MovingBlock8x8
+CharacterBody2D
+CollisionShape2D
+Polygon2D
 Timer

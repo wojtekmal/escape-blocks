@@ -8,24 +8,25 @@ extends CharacterBody2D
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var is_falling : bool : set = set_is_falling
-#@export var is_rotating : bool : set = set_is_rotating
 var offset = 10;
 var crawling := false
 
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var StandingHitBox = $StandingHitBox
 @onready var CrawlingHitBox = $CrawlingHitBox
-#@onready var rotation_timer = $RotationTimer
 
 func _ready():
 	pass
-	#rotation_timer.timeout.connect(_end_of_rotation)
 
 func _physics_process(delta: float) -> void:
 	pass
 
+func debuguj():
+	if bool(Input.get_action_strength("ui_accept")):
+		position = get_global_mouse_position()
+
 func _process(delta: float) -> void:
-	#manage_changing_gravity(delta)
+	debuguj()
 	animations()
 
 func get_direction() -> Vector2:
@@ -51,22 +52,6 @@ func calculate_move_acceleration(
 	return new_velocity
 
 func rotate_player(delta, now_rotations, total_rotations, time_left):
-
-	
-	#var rotations = 0
-	#if(Input.is_action_just_pressed("gravity_right")):
-	#	rotations += 1
-	#if(Input.is_action_just_pressed("gravity_up")):
-	#	rotations += 2
-	#if(Input.is_action_just_pressed("gravity_left")):
-	#	rotations += 3
-	#	
-	#if rotation_timer.is_stopped() and rotations != 0:
-	#	total_rotations += rotations
-	#	now_rotations = rotations
-	#	rotation_timer.start(0.5)
-		
-	#if !rotation_timer.is_stopped():
 	rotation = (total_rotations - now_rotations) * PI/ 2 + now_rotations * (0.5 - time_left) * PI
 
 func animations():

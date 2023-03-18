@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c3oe72nibs0yb"]
 
-[ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://Actors/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dcr4p8e1xecfn" path="res://Actors/Player.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://p3vwjet8rxgn" path="res://blocks/MovingBlock8x8.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
 [ext_resource type="Script" path="res://Levels/LevelTemplate.gd" id="4"]
@@ -81,12 +81,11 @@ sources/0 = SubResource("TileSetAtlasSource_ja7cw")
 script = ExtResource("4")
 
 [node name="Player" parent="." instance=ExtResource("1")]
-position = Vector2(0, 0)
+position = Vector2(321.594, 490.806)
 collision_layer = 2
 collision_mask = 1
 board_cords = Vector2i(3, 2)
 board_dimensions = Vector2i(8, 5)
-is_falling = false
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("2")

@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://735dv07fnuh7"]
+
+[ext_resource type="PackedScene" uid="uid://c3tl4c7ybbvgq" path="res://test/block.tscn" id="1_5ggtm"]
+[ext_resource type="Script" path="res://test/rotation.gd" id="1_cahk0"]
+[ext_resource type="PackedScene" uid="uid://s25fja8d6v57" path="res://test/tile_map.tscn" id="1_ftt4o"]
+[ext_resource type="PackedScene" uid="uid://bblv881w82arb" path="res://test/testplayer2.tscn" id="3_6pwcs"]
+[ext_resource type="Script" path="res://test/testCamera.gd" id="4_rmrc3"]
+
+[node name="testlvl" type="Node2D"]
+script = ExtResource("1_cahk0")
+
+[node name="map" parent="." instance=ExtResource("1_ftt4o")]
+
+[node name="testplayer" parent="." instance=ExtResource("3_6pwcs")]
+position = Vector2(351, 308)
+metadata/_edit_group_ = true
+
+[node name="CameraZoom" type="Camera2D" parent="testplayer"]
+ignore_rotation = false
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+script = ExtResource("4_rmrc3")
+
+[node name="block3" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(369, 542)
+
+[node name="block7" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(600, 371)
+
+[node name="block8" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(451, 392)
+
+[node name="block9" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(535, 490)
+
+[node name="block10" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(667, 487)
+
+[node name="block4" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(260, 536)
+
+[node name="block5" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(331, 400)
+
+[node name="block6" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(252, 341)
+
+[node name="block11" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(392, 175)
+
+[node name="block12" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(646, 215)
+
+[node name="block13" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(746, 398)
+
+[node name="block14" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(714, 295)
+
+[node name="block15" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(449, 277)
+
+[node name="block16" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(270, 247)
+
+[node name="block17" parent="." instance=ExtResource("1_5ggtm")]
+position = Vector2(555, 276)
