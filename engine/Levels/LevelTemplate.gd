@@ -104,8 +104,43 @@ func move_player(delta):
 	var delta_height = delta * fall_speed
 	var new_player_cord_y = int(player.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
 	var size = $Player/StandingHitBox.shape.size
-	var player_left_column = int(player.position.x - size.x - left_wall) / 64
-	var player_right_column = int(player.position.x + size.x - left_wall) / 64
+	
+	# First I move the player left/right.
+	var x_speed = 0
+	
+	if Input.is_action_pressed("move_left"):
+		x_speed -= 50
+	if Input.is_action_pressed("move_right"):
+		x_speed += 50
+	
+	# The furthest to the left that the player can go.
+	var min_left = left_wall + (size.x / 2)
+	var max_right = -left_wall - (size.x / 2)
+	var player_left_column = int(player.position.x - (size.x / 2) - left_wall) / 64
+	var player_right_column = int(player.position.x + (size.x / 2) - left_wall - 1) / 64
+	
+	for entity in moving_entities:
+		if entity.get_real_class() == "Player":
+			continue
+		var to_the_left_or_right = entity.board_cords.y != player_left_column and entity.board_cords.y != player_right_column
+		
+		if abs(entity.position.y - player.position.y) < 64 and to_the_left_or_right:
+			if entity.position.x < player.position.x:
+				min_left = max(min_left, entity.position.x + 32 + (size.x / 2))
+			else:
+				max_right = min(max_right, entity.position.x - 32 - (size.x / 2))
+	
+	var delta_x = delta * x_speed
+	
+	if player.position.x + delta_x < min_left:
+		player.position.x = min_left
+	elif player.position.x + delta_x >= max_right:
+		player.position.x = max_right
+	else:
+		player.position.x += delta_x
+	
+	player_left_column = int(player.position.x - (size.x / 2) - left_wall) / 64
+	player_right_column = int(player.position.x + (size.x / 2) - left_wall - 1) / 64
 	var max_height_1 = column_top_still_blocks[player_left_column] - 1
 	var max_height_2 = column_top_still_blocks[player_right_column] - 1
 	var max_height = min(max_height_1, max_height_2)
