@@ -75,7 +75,11 @@ func compare_entity_heights(a, b):
 	# Sorts the entities in decreasing order according to their height.
 
 func move_block(delta, block):
-	var delta_height = delta * fall_speed
+	if block.is_falling:
+		block.y_speed += 10
+	else:
+		block.y_speed = 0
+	var delta_height = delta * block.y_speed
 	var new_block_cord_y = int(block.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
 	# Ceiling division.
 	var max_height = column_top_still_blocks[block.board_cords.x] - 1
@@ -101,7 +105,11 @@ func move_block(delta, block):
 		return
 
 func move_player(delta):
-	var delta_height = delta * fall_speed
+	if player.is_falling:
+		player.y_speed += 10
+	else:
+		player.y_speed = 0
+	var delta_height = delta * player.y_speed
 	var new_player_cord_y = int(player.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
 	var size = $Player/StandingHitBox.shape.size
 	
