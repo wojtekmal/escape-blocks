@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
 [ext_resource type="Script" path="res://Levels/LevelTemplate.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/TileMap.gd" id="4_gvo1y"]
-[ext_resource type="PackedScene" uid="uid://3vsop7p20fe0" path="res://Levels/StaticBlock8x8.tscn" id="6_cw7oa"]
+[ext_resource type="PackedScene" uid="uid://lmhwvo85yine" path="res://Levels/StaticBlock8x8.tscn" id="6_cw7oa"]
 [ext_resource type="Script" path="res://scripts/RotationTimer.gd" id="6_lnp4p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]

@@ -14,7 +14,7 @@ extends Node2D
 @onready var rotation_timer = $RotationTimer
 var moving_entities = []
 var column_top_still_blocks = []
-var fall_speed = 200
+var fall_speed = 100
 var first_frame = true
 var frame_count = 0
 var left_wall = -board_dimensions.x * 32
@@ -122,7 +122,7 @@ func move_player(delta):
 	for entity in moving_entities:
 		if entity.get_real_class() == "Player":
 			continue
-		var to_the_left_or_right = entity.board_cords.y != player_left_column and entity.board_cords.y != player_right_column
+		var to_the_left_or_right = entity.board_cords.x != player_left_column and entity.board_cords.x != player_right_column
 		
 		if abs(entity.position.y - player.position.y) < 64 and to_the_left_or_right:
 			if entity.position.x < player.position.x:
@@ -144,6 +144,30 @@ func move_player(delta):
 	var max_height_1 = column_top_still_blocks[player_left_column] - 1
 	var max_height_2 = column_top_still_blocks[player_right_column] - 1
 	var max_height = min(max_height_1, max_height_2)
+	var min_pos_y = top_wall + size.y / 2
+	
+	for entity in moving_entities:
+		if (entity.get_real_class() == "Player" or
+			(entity.board_cords.x != player_left_column and 
+			entity.board_cords.x != player_right_column) or 
+			entity.position.y > player.position.y):
+			continue
+		
+		min_pos_y = max(min_pos_y, (player.position.y - size.y / 2 + entity.position.y + 32) / 2 + size.y / 2)
+	
+	var rise_timer = $Player/RiseTimer
+	
+	if rise_timer.is_stopped() and Input.is_action_just_pressed("jump") and !player.is_falling:
+		rise_timer.start(rise_timer.wait_time)
+	
+	#print_debug(rise_timer.time_left)
+	
+	if !rise_timer.is_stopped():
+		if player.position.y - delta_height <= min_pos_y:
+			rise_timer.stop()
+		else:
+			player.position.y -= delta_height
+			return
 	
 	if player.position.y == top_wall + max_height * 64 + 32:
 		column_top_still_blocks[player_left_column] = max_height
