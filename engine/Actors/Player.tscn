@@ -122,3 +122,6 @@ sprite_frames = SubResource("3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
+
+[node name="RiseTimer" type="Timer" parent="."]
+one_shot = true

@@ -5,3 +5,5 @@ res://Actors/Player.tscn
 res://Levels/LevelTemplate.gd
 res://Levels/StaticBlock8x8.tscn
 res://blocks/StaticBlock8x8.gd
+res://test/testlvl.tscn
+res://scripts/Player.gd
