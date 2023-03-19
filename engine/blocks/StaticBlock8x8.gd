@@ -9,7 +9,7 @@ class_name StaticBlock8x8 extends StaticBody2D
 # Always false.
 @export var is_falling := false : set = set_is_falling
 # Doesn't actually change.
-@export var y_speed = 0
+@export var y_speed := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

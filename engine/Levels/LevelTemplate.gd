@@ -76,7 +76,7 @@ func compare_entity_heights(a, b):
 
 func move_block(delta, block):
 	if block.is_falling:
-		block.y_speed += 10
+		block.y_speed += 1000 * delta
 	else:
 		block.y_speed = 0
 	var delta_height = delta * block.y_speed
@@ -106,20 +106,18 @@ func move_block(delta, block):
 
 func move_player(delta):
 	if player.is_falling:
-		player.y_speed += 10
+		player.y_speed += 1000 * delta
 	else:
 		player.y_speed = 0
-	var delta_height = delta * player.y_speed
-	var new_player_cord_y = int(player.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
 	var size = $Player/StandingHitBox.shape.size
 	
 	# First I move the player left/right.
 	var x_speed = 0
 	
 	if Input.is_action_pressed("move_left"):
-		x_speed -= 50
+		x_speed -= 100
 	if Input.is_action_pressed("move_right"):
-		x_speed += 50
+		x_speed += 100
 	
 	# The furthest to the left that the player can go.
 	var min_left = left_wall + (size.x / 2)
@@ -153,6 +151,7 @@ func move_player(delta):
 	var max_height_2 = column_top_still_blocks[player_right_column] - 1
 	var max_height = min(max_height_1, max_height_2)
 	var min_pos_y = top_wall + size.y / 2
+	var speed_of_ceiling := 0
 	
 	for entity in moving_entities:
 		if (entity.get_real_class() == "Player" or
@@ -161,20 +160,27 @@ func move_player(delta):
 			entity.position.y > player.position.y):
 			continue
 		
-		min_pos_y = max(min_pos_y, (player.position.y - size.y / 2 + entity.position.y + 32) / 2 + size.y / 2)
+		if (player.position.y - size.y / 2 + entity.position.y + 32) / 2 + size.y / 2 >= min_pos_y:
+			min_pos_y = (player.position.y - size.y / 2 + entity.position.y + 32) / 2 + size.y / 2
+			speed_of_ceiling = entity.y_speed
 	
 	var rise_timer = $Player/RiseTimer
 	
-	if rise_timer.is_stopped() and Input.is_action_just_pressed("jump") and !player.is_falling:
-		rise_timer.start(rise_timer.wait_time)
+	if Input.is_action_just_pressed("jump") and !player.is_falling:
+		player.y_speed = -400
+		#rise_timer.start(rise_timer.wait_time)
 	
 	#print_debug(rise_timer.time_left)
+	var delta_height = delta * player.y_speed
+	var new_player_cord_y = int(player.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
 	
-	if !rise_timer.is_stopped():
-		if player.position.y - delta_height <= min_pos_y:
-			rise_timer.stop()
+	if player.y_speed < 0:
+		if player.position.y + delta_height <= min_pos_y:
+			#rise_timer.stop()
+			player.y_speed = speed_of_ceiling
 		else:
-			player.position.y -= delta_height
+			player.position.y += delta_height
+			player.is_falling = true
 			return
 	
 	if player.position.y == top_wall + max_height * 64 + 32:
