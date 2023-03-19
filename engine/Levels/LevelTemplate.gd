@@ -6,7 +6,7 @@ extends Node2D
 # var b = "text"
 #export var boardWidth: int := 1 : set = update_board_width
 #export var boardHeight: int := 1 : set = update_board_height
-@export var board_dimensions := Vector2i(8, 5) : set = set_board_dimensions
+@export var board_dimensions := Vector2i(10, 12) : set = set_board_dimensions
 @export var total_rotations : int = 0
 @export var now_rotations : int
 @onready var tilemap := $TileMap
