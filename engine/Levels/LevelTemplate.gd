@@ -152,6 +152,7 @@ func move_player(delta):
 	var max_height = min(max_height_1, max_height_2)
 	var min_pos_y = top_wall + size.y / 2
 	var speed_of_ceiling := 0
+	var ceiling_y_pos = top_wall
 	
 	for entity in moving_entities:
 		if (entity.get_real_class() == "Player" or
@@ -164,9 +165,9 @@ func move_player(delta):
 			min_pos_y = (player.position.y - size.y / 2 + entity.position.y + 32) / 2 + size.y / 2
 			speed_of_ceiling = entity.y_speed
 	
-	var rise_timer = $Player/RiseTimer
+	var coyote_timer = $Player/CoyoteTimer
 	
-	if Input.is_action_just_pressed("jump") and !player.is_falling:
+	if Input.is_action_just_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0):
 		player.y_speed = -400
 		#rise_timer.start(rise_timer.wait_time)
 	
@@ -174,26 +175,27 @@ func move_player(delta):
 	var delta_height = delta * player.y_speed
 	var new_player_cord_y = int(player.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
 	
-	if player.y_speed < 0:
-		if player.position.y + delta_height <= min_pos_y:
-			#rise_timer.stop()
-			player.y_speed = speed_of_ceiling
-		else:
-			player.position.y += delta_height
-			player.is_falling = true
-			return
+	if player.position.y + delta_height <= min_pos_y:
+		#rise_timer.stop()
+		player.y_speed = speed_of_ceiling	
+	elif player.y_speed < 0:
+		player.position.y += delta_height
+		player.is_falling = true
+		return
 	
 	if player.position.y == top_wall + max_height * 64 + 32:
 		column_top_still_blocks[player_left_column] = max_height
 		column_top_still_blocks[player_right_column] = max_height
 		player.board_cords.y = max_height
 		player.is_falling = false
+		coyote_timer.start(coyote_timer.wait_time)
 		return
 	
 	if new_player_cord_y > max_height:
 		player.is_falling = false
 		#here the height of the block is set so that it lands on something else
 		player.board_cords.y = max_height
+		coyote_timer.start(coyote_timer.wait_time)
 	else:
 		player.is_falling = true
 		player.position.y += delta_height
@@ -203,6 +205,7 @@ func move_player(delta):
 		column_top_still_blocks[player_right_column] = max_height
 		player.board_cords.y = max_height
 		player.is_falling = false
+		coyote_timer.start(coyote_timer.wait_time)
 		return
 
 func manage_changing_gravity():
