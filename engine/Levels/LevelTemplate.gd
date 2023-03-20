@@ -10,9 +10,10 @@ extends Node2D
 @export var board_dimensions : Vector2i : set = set_board_dimensions
 @export var total_rotations : int = 0
 @export var now_rotations : int
-@onready var tilemap := $TileMap
+@onready var tilemap := $BoardLimits
 @onready var player := $Player
 @onready var rotation_timer = $RotationTimer
+@onready var walls := $Walls
 var moving_entities = []
 var column_top_still_blocks = []
 var fall_speed = 100
@@ -26,8 +27,9 @@ var positions_before_rotations = []
 func _ready():
 	rotation_timer.timeout.connect(rotation_ended)
 	board_dimensions = board_dimensions
+	tilemap.board_dimensions = board_dimensions
 	#calls the setter function
-	pass
+	
 	#for moving_block in moving_blocks:
 	#	print_debug("check")
 	#for moving_block in moving_blocks:
@@ -329,6 +331,7 @@ func set_board_dimensions(newValue):
 	board_dimensions = newValue
 	left_wall = -board_dimensions.x * 32
 	top_wall = -board_dimensions.y * 32
+	#walls.position = Vector2(left_wall, top_wall)
 	
 	for child in get_children():
 		#print_debug(child.get_name())
