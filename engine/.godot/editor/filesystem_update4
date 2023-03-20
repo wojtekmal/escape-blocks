@@ -1,10 +1,7 @@
 res://default_env.tres
-res://blocks/MovingBlock8x8.tscn
 res://Levels/LevelTemplate.tscn
+res://blocks/MovingBlock8x8.tscn
 res://Actors/Player.tscn
+res://Levels/test_level_template_3.tscn
 res://Levels/LevelTemplate.gd
-res://Levels/StaticBlock8x8.tscn
-res://blocks/StaticBlock8x8.gd
-res://test/testlvl.tscn
-res://scripts/Player.gd
-res://blocks/MovingBlock8x8.gd
+res://scripts/TileMap.gd

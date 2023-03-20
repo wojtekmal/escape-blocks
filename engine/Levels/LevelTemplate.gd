@@ -1,4 +1,5 @@
 @tool
+class_name LevelTemplate
 extends Node2D
 
 # Declare member variables here. Examples:
@@ -6,7 +7,7 @@ extends Node2D
 # var b = "text"
 #export var boardWidth: int := 1 : set = update_board_width
 #export var boardHeight: int := 1 : set = update_board_height
-@export var board_dimensions := Vector2i(8, 5) : set = set_board_dimensions
+@export var board_dimensions : Vector2i : set = set_board_dimensions
 @export var total_rotations : int = 0
 @export var now_rotations : int
 @onready var tilemap := $TileMap
@@ -115,9 +116,9 @@ func move_player(delta):
 	var x_speed = 0
 	
 	if Input.is_action_pressed("move_left"):
-		x_speed -= 100
+		x_speed -= 200
 	if Input.is_action_pressed("move_right"):
-		x_speed += 100
+		x_speed += 200
 	
 	# The furthest to the left that the player can go.
 	var min_left = left_wall + (size.x / 2)
@@ -169,6 +170,7 @@ func move_player(delta):
 	
 	if Input.is_action_just_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0):
 		player.y_speed = -400
+		coyote_timer.stop()
 		#rise_timer.start(rise_timer.wait_time)
 	
 	#print_debug(rise_timer.time_left)
@@ -177,7 +179,7 @@ func move_player(delta):
 	
 	if player.position.y + delta_height <= min_pos_y:
 		#rise_timer.stop()
-		player.y_speed = speed_of_ceiling	
+		player.y_speed = speed_of_ceiling
 	elif player.y_speed < 0:
 		player.position.y += delta_height
 		player.is_falling = true
@@ -306,23 +308,24 @@ func rotation_ended():
 		#print_debug(top_wall)
 
 func set_board_dimensions(newValue):
-	if Engine.is_editor_hint():
-		for i in range(-board_dimensions.x * 4 - 1, board_dimensions.x * 4 + 1):
-			tilemap.set_cell(0, Vector2i(i, board_dimensions.y * 4), -1, Vector2i(0, 0))
-			tilemap.set_cell(0, Vector2i(i, -board_dimensions.y * 4 - 1), -1, Vector2i(0, 0))
-		
-		for i in range(-board_dimensions.y * 4 - 1, board_dimensions.y * 4 + 1):
-			tilemap.set_cell(0, Vector2i(-board_dimensions.x * 4 - 1, i), -1, Vector2i(0, 0))
-			tilemap.set_cell(0, Vector2i(board_dimensions.x * 4, i), -1, Vector2i(0, 0))
-			
-		for i in range(-newValue.x * 4 - 1, newValue.x * 4 + 1):
-			tilemap.set_cell(0, Vector2i(i, newValue.y * 4), 0, Vector2i(0, 0))
-			tilemap.set_cell(0, Vector2i(i, -newValue.y * 4 - 1), 0, Vector2i(0, 0))
-	
-		for i in range(-newValue.y * 4 - 1, newValue.y * 4 + 1):
-			tilemap.set_cell(0, Vector2i(-newValue.x * 4 - 1, i), 0, Vector2i(0, 0))
-			tilemap.set_cell(0, Vector2i(newValue.x * 4, i), 0, Vector2i(0, 0))
-	
+#	board_dimensions = newValue
+#	if Engine.is_editor_hint():
+#		for i in range(-board_dimensions.x * 4 - 1, board_dimensions.x * 4 + 1):
+#			tilemap.set_cell(0, Vector2i(i, board_dimensions.y * 4), -1, Vector2i(0, 0))
+#			tilemap.set_cell(0, Vector2i(i, -board_dimensions.y * 4 - 1), -1, Vector2i(0, 0))
+#		
+#		for i in range(-board_dimensions.y * 4 - 1, board_dimensions.y * 4 + 1):
+#			tilemap.set_cell(0, Vector2i(-board_dimensions.x * 4 - 1, i), -1, Vector2i(0, 0))
+#			tilemap.set_cell(0, Vector2i(board_dimensions.x * 4, i), -1, Vector2i(0, 0))
+#			
+#		for i in range(-newValue.x * 4 - 1, newValue.x * 4 + 1):
+#			tilemap.set_cell(0, Vector2i(i, newValue.y * 4), 0, Vector2i(0, 0))
+#			tilemap.set_cell(0, Vector2i(i, -newValue.y * 4 - 1), 0, Vector2i(0, 0))
+#	
+#		for i in range(-newValue.y * 4 - 1, newValue.y * 4 + 1):
+#			tilemap.set_cell(0, Vector2i(-newValue.x * 4 - 1, i), 0, Vector2i(0, 0))
+#			tilemap.set_cell(0, Vector2i(newValue.x * 4, i), 0, Vector2i(0, 0))
+#	
 	board_dimensions = newValue
 	left_wall = -board_dimensions.x * 32
 	top_wall = -board_dimensions.y * 32
@@ -333,4 +336,4 @@ func set_board_dimensions(newValue):
 			#print_debug("check")
 			child.board_dimensions = board_dimensions
 	
-	return board_dimensions
+	#return board_dimensions

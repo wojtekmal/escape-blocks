@@ -16,7 +16,7 @@
 size = Vector2(4, 6)
 
 [sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(16, 64)
+size = Vector2(16, 60)
 
 [sub_resource type="SpriteFrames" id="3"]
 animations = [{
@@ -125,3 +125,4 @@ ignore_rotation = false
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
