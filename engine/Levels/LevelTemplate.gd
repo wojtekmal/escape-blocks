@@ -357,18 +357,16 @@ func load_blocks_from_tilemap():
 		new_static_block_8x8.board_dimensions = board_dimensions
 		new_static_block_8x8.visible = false
 		add_child(new_static_block_8x8)
-		walls.set_cell(0, wall_tile) # removes tile from tile_map
 
 	for wall_tile in moving_block_tiles:
 		var new_moving_block_8x8 = moving_block.instantiate()
 		new_moving_block_8x8.board_cords = wall_tile
 		new_moving_block_8x8.board_dimensions = board_dimensions
 		add_child(new_moving_block_8x8)
-		walls.set_cell(0, wall_tile) # removes tile from tile_map
 
 	for wall_tile in static_block_tiles:
 		var new_static_block_8x8 = static_block.instantiate()
 		new_static_block_8x8.board_cords = wall_tile
 		new_static_block_8x8.board_dimensions = board_dimensions
 		add_child(new_static_block_8x8)
-		walls.set_cell(0, wall_tile) # removes tile from tile_map
+	walls.visible = false

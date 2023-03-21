@@ -15,3 +15,4 @@ board_dimensions = Vector2i(9, 8)
 
 [node name="Walls" parent="." index="3"]
 position = Vector2(-288, -256)
+layer_0/tile_data = PackedInt32Array()
