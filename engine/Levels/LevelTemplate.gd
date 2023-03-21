@@ -22,8 +22,8 @@ var frame_count = 0
 var left_wall = -board_dimensions.x * 32
 var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
-var static_block = load("res://blocks/StaticBlock8x8.tscn")
-var moving_block = load("res://blocks/MovingBlock8x8.tscn")
+var static_block = preload("res://blocks/StaticBlock8x8.tscn")
+var moving_block = preload("res://blocks/MovingBlock8x8.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
