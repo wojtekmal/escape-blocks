@@ -22,7 +22,8 @@ var frame_count = 0
 var left_wall = -board_dimensions.x * 32
 var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
-var static_block = load("res://Levels/StaticBlock8x8.tscn")
+var static_block = load("res://blocks/StaticBlock8x8.tscn")
+var moving_block = load("res://blocks/MovingBlock8x8.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,16 +31,7 @@ func _ready():
 	board_dimensions = board_dimensions
 	tilemap.board_dimensions = board_dimensions
 	#calls the setter function
-	
-	var wall_tiles = walls.get_used_cells_by_id(0, 0, Vector2i(0,0), -1)
-	
-	for wall_tile in wall_tiles:
-		print_debug("check")
-		var new_static_block_8x8 = static_block.instantiate()
-		new_static_block_8x8.board_cords = wall_tile
-		new_static_block_8x8.board_dimensions = board_dimensions
-		add_child(new_static_block_8x8)
-	
+	load_blocks_from_tilemap()
 	#for moving_block in moving_blocks:
 	#	print_debug("check")
 	#for moving_block in moving_blocks:
@@ -353,3 +345,30 @@ func set_board_dimensions(newValue):
 			child.position = Vector2(left_wall, top_wall)
 	
 	#return board_dimensions
+
+func load_blocks_from_tilemap():
+	var wall_tiles = walls.get_used_cells_by_id(0, 0, Vector2i(0,0), -1)
+	var moving_block_tiles = walls.get_used_cells_by_id(0, 1, Vector2i(0,0), -1)
+	var static_block_tiles = walls.get_used_cells_by_id(0, 2, Vector2i(0,0), -1)
+	
+	for wall_tile in wall_tiles:
+		var new_static_block_8x8 = static_block.instantiate()
+		new_static_block_8x8.board_cords = wall_tile
+		new_static_block_8x8.board_dimensions = board_dimensions
+		new_static_block_8x8.visible = false
+		add_child(new_static_block_8x8)
+		walls.set_cell(0, wall_tile) # removes tile from tile_map
+
+	for wall_tile in moving_block_tiles:
+		var new_moving_block_8x8 = moving_block.instantiate()
+		new_moving_block_8x8.board_cords = wall_tile
+		new_moving_block_8x8.board_dimensions = board_dimensions
+		add_child(new_moving_block_8x8)
+		walls.set_cell(0, wall_tile) # removes tile from tile_map
+
+	for wall_tile in static_block_tiles:
+		var new_static_block_8x8 = static_block.instantiate()
+		new_static_block_8x8.board_cords = wall_tile
+		new_static_block_8x8.board_dimensions = board_dimensions
+		add_child(new_static_block_8x8)
+		walls.set_cell(0, wall_tile) # removes tile from tile_map
