@@ -22,6 +22,7 @@ var frame_count = 0
 var left_wall = -board_dimensions.x * 32
 var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
+var static_block = load("res://Levels/StaticBlock8x8.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +30,15 @@ func _ready():
 	board_dimensions = board_dimensions
 	tilemap.board_dimensions = board_dimensions
 	#calls the setter function
+	
+	var wall_tiles = walls.get_used_cells_by_id(0, 0, Vector2i(0,0), -1)
+	
+	for wall_tile in wall_tiles:
+		print_debug("check")
+		var new_static_block_8x8 = static_block.instantiate()
+		new_static_block_8x8.board_cords = wall_tile
+		new_static_block_8x8.board_dimensions = board_dimensions
+		add_child(new_static_block_8x8)
 	
 	#for moving_block in moving_blocks:
 	#	print_debug("check")
@@ -56,7 +66,7 @@ func manage_falling_entities(delta):
 	moving_entities.clear()
 	
 	for child in self.get_children():
-		if child.get_real_class() in ["MovingBlock8x8", "Player", "StaticBlock8x8"]:
+		if child.is_in_group("interacting_entities"):
 			moving_entities.push_back(child)
 
 	moving_entities.sort_custom(compare_entity_heights)
@@ -331,12 +341,15 @@ func set_board_dimensions(newValue):
 	board_dimensions = newValue
 	left_wall = -board_dimensions.x * 32
 	top_wall = -board_dimensions.y * 32
+	#walls = get_node("Walls")
 	#walls.position = Vector2(left_wall, top_wall)
 	
 	for child in get_children():
 		#print_debug(child.get_name())
-		if child.get_real_class() in ["MovingBlock8x8", "Player", "StaticBlock8x8"]:
+		if child.is_in_group("interacting_entities"):
 			#print_debug("check")
 			child.board_dimensions = board_dimensions
+		elif child.is_in_group("walls"):
+			child.position = Vector2(left_wall, top_wall)
 	
 	#return board_dimensions
