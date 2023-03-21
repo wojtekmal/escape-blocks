@@ -124,4 +124,4 @@ position = Vector2(-256, -160)
 tile_set = SubResource("TileSet_srb8s")
 cell_quadrant_size = 64
 format = 2
-layer_0/tile_data = PackedInt32Array(65536, 1, 0, 1, 1, 0, 65537, 2, 0, 196608, 2, 0, 196613, 2, 0, 65542, 2, 0, 4, 1, 0, 196612, 1, 0, 262150, 1, 0, 3, 1, 0)
+layer_0/tile_data = PackedInt32Array(65536, 1, 0, 1, 1, 0, 4, 1, 0, 3, 1, 0, 196612, 1, 0, 262150, 1, 0, 196613, 2, 0, 65542, 2, 0, 196608, 2, 0, 65537, 2, 0)
