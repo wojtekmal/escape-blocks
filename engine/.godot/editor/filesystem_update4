@@ -4,3 +4,5 @@ res://Actors/Player.tscn
 res://Levels/test_level_template_3.tscn
 res://Levels/LevelTemplate.tscn
 res://Levels/LevelTemplate.gd
+res://Actors/finish_area.tscn
+res://scripts/finish_area.gd

@@ -14,6 +14,7 @@ extends Node2D
 @onready var player := $Player
 @onready var rotation_timer = $RotationTimer
 @onready var walls := $Walls
+@onready var finish_area := $FinishArea
 var moving_entities = []
 var column_top_still_blocks = []
 var fall_speed = 100
@@ -23,22 +24,28 @@ var left_wall = -board_dimensions.x * 32
 var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
 var static_block = load("res://Levels/StaticBlock8x8.tscn")
+var finish_area_position_before_rotation
+var finish_area_start_rotation
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rotation_timer.timeout.connect(rotation_ended)
 	board_dimensions = board_dimensions
 	tilemap.board_dimensions = board_dimensions
+	finish_area_start_rotation = finish_area.rotation
 	#calls the setter function
+	finish_area.player_reached_finish.connect(maybe_end_game)
 	
 	var wall_tiles = walls.get_used_cells_by_id(0, 0, Vector2i(0,0), -1)
 	
 	for wall_tile in wall_tiles:
-		print_debug("check")
+		#print_debug("check")
 		var new_static_block_8x8 = static_block.instantiate()
 		new_static_block_8x8.board_cords = wall_tile
 		new_static_block_8x8.board_dimensions = board_dimensions
 		add_child(new_static_block_8x8)
+	
+	walls.visible = false
 	
 	#for moving_block in moving_blocks:
 	#	print_debug("check")
@@ -56,6 +63,13 @@ func _process(delta):
 		
 	first_frame = false
 	frame_count += 1
+
+
+func maybe_end_game():
+	#print_debug(player.rotation)
+	print_debug(finish_area.rotation)
+	if player.rotation == finish_area.rotation:
+		print_debug("End game.")
 
 
 func manage_falling_entities(delta):
@@ -239,6 +253,7 @@ func manage_changing_gravity():
 		now_rotations = rotations
 		total_rotations += now_rotations
 		rotation_timer.start(rotation_timer.wait_time)
+		finish_area_position_before_rotation = finish_area.position
 		positions_before_rotations.clear()
 		
 		for entity in moving_entities:
@@ -251,6 +266,9 @@ func manage_changing_gravity():
 	var change_angle = PI * now_rotations * (rotation_timer.wait_time - rotation_timer.time_left) / rotation_timer.wait_time / 2
 	tilemap.rotation = (total_rotations - now_rotations) * PI / 2 + change_angle
 	#print_debug((total_rotations - now_rotations) * PI / 2 + change_angle)
+	
+	finish_area.position = finish_area_position_before_rotation.rotated(change_angle)
+	finish_area.rotation = finish_area_start_rotation -(total_rotations - now_rotations) * PI / 2 + change_angle
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
@@ -301,6 +319,10 @@ func rotation_ended():
 		board_dimensions = Vector2i(board_dimensions.y, board_dimensions.x)
 	else:
 		board_dimensions = board_dimensions
+	
+	finish_area.rotation = finish_area_start_rotation + total_rotations * PI / 2
+	print_debug(finish_area.rotation)
+	finish_area.position = finish_area_position_before_rotation.rotated(now_rotations * PI / 2)
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
