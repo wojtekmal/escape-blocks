@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3oe72nibs0yb"]
+[gd_scene load_steps=14 format=3 uid="uid://c3oe72nibs0yb"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://Actors/Player.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://p3vwjet8rxgn" path="res://blocks/MovingBlock8x8.tscn" id="2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://3vsop7p20fe0" path="res://Levels/StaticBlock8x8.tscn" id="6_cw7oa"]
 [ext_resource type="Script" path="res://scripts/RotationTimer.gd" id="6_lnp4p"]
 [ext_resource type="Texture2D" uid="uid://5y23edqo0olg" path="res://textures/wall_block.png" id="8_pagpe"]
+[ext_resource type="PackedScene" uid="uid://jarihgxmrxw1" path="res://Actors/finish_area.tscn" id="9_oddy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -90,7 +91,7 @@ script = ExtResource("4")
 board_dimensions = Vector2i(8, 5)
 
 [node name="Player" parent="." instance=ExtResource("1")]
-collision_layer = 2
+collision_layer = 10
 collision_mask = 1
 board_cords = Vector2i(3, 2)
 board_dimensions = Vector2i(8, 5)
@@ -152,3 +153,7 @@ tile_set = SubResource("TileSet_srb8s")
 cell_quadrant_size = 64
 format = 2
 layer_0/tile_data = PackedInt32Array(65542, 0, 0, 196608, 0, 0)
+
+[node name="FinishArea" parent="." instance=ExtResource("9_oddy4")]
+position = Vector2(-254, -132)
+rotation = 1.5708
