@@ -2,9 +2,6 @@
 class_name LevelTemplate
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 #export var boardWidth: int := 1 : set = update_board_width
 #export var boardHeight: int := 1 : set = update_board_height
 @export var board_dimensions : Vector2i : set = set_board_dimensions
