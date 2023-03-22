@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3oe72nibs0yb"]
+[gd_scene load_steps=16 format=3 uid="uid://c3oe72nibs0yb"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://Actors/Player.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://p3vwjet8rxgn" path="res://blocks/MovingBlock8x8.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
 [ext_resource type="Script" path="res://Levels/LevelTemplate.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/TileMap.gd" id="4_gvo1y"]
-[ext_resource type="PackedScene" uid="uid://3vsop7p20fe0" path="res://Levels/StaticBlock8x8.tscn" id="6_cw7oa"]
 [ext_resource type="Script" path="res://scripts/RotationTimer.gd" id="6_lnp4p"]
+[ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/block.png" id="7_oxuh3"]
+[ext_resource type="Texture2D" uid="uid://bgq60xm1ldmss" path="res://textures/static_block.png" id="8_emeda"]
 [ext_resource type="Texture2D" uid="uid://5y23edqo0olg" path="res://textures/wall_block.png" id="8_pagpe"]
+[ext_resource type="PackedScene" uid="uid://bbfxt5tqpp2n4" path="res://counter.tscn" id="9_pbxjo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -81,19 +82,26 @@ texture = ExtResource("8_pagpe")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_voqr5"]
+texture = ExtResource("7_oxuh3")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7h21e"]
+texture = ExtResource("8_emeda")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_srb8s"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_id2jv")
+sources/1 = SubResource("TileSetAtlasSource_voqr5")
+sources/2 = SubResource("TileSetAtlasSource_7h21e")
 
 [node name="LevelTemplate" type="Node2D"]
 script = ExtResource("4")
 board_dimensions = Vector2i(8, 5)
-
-[node name="Player" parent="." instance=ExtResource("1")]
-collision_layer = 2
-collision_mask = 1
-board_cords = Vector2i(3, 2)
-board_dimensions = Vector2i(8, 5)
+metadata/_edit_horizontal_guides_ = []
 
 [node name="BoardLimits" type="TileMap" parent="."]
 tile_set = SubResource("2")
@@ -102,53 +110,22 @@ layer_0/tile_data = PackedInt32Array(1376223, 0, 0, -1310753, 0, 0, 1376224, 0, 
 script = ExtResource("4_gvo1y")
 board_dimensions = Vector2i(8, 5)
 
-[node name="MovingBlock8x8" parent="." instance=ExtResource("2")]
-position = Vector2(-32, -128)
-board_cords = Vector2i(3, 0)
-board_dimensions = Vector2i(8, 5)
-
-[node name="MovingBlock8x9" parent="." instance=ExtResource("2")]
-position = Vector2(-224, -64)
-board_cords = Vector2i(0, 1)
-board_dimensions = Vector2i(8, 5)
-
-[node name="MovingBlock8x10" parent="." instance=ExtResource("2")]
-position = Vector2(-160, -128)
-board_cords = Vector2i(1, 0)
-board_dimensions = Vector2i(8, 5)
-
-[node name="MovingBlock8x11" parent="." instance=ExtResource("2")]
-position = Vector2(32, 64)
-board_cords = Vector2i(4, 3)
-board_dimensions = Vector2i(8, 5)
-
-[node name="MovingBlock8x12" parent="." instance=ExtResource("2")]
-position = Vector2(32, -128)
-board_cords = Vector2i(4, 0)
-board_dimensions = Vector2i(8, 5)
-
-[node name="MovingBlock8x13" parent="." instance=ExtResource("2")]
-position = Vector2(160, 128)
-board_cords = Vector2i(6, 4)
-board_dimensions = Vector2i(8, 5)
-
-[node name="StaticBlock8x8" parent="." instance=ExtResource("6_cw7oa")]
-position = Vector2(-160, -64)
-board_cords = Vector2i(1, 1)
-board_dimensions = Vector2i(8, 5)
-
-[node name="StaticBlock8x9" parent="." instance=ExtResource("6_cw7oa")]
-position = Vector2(96, 64)
-board_cords = Vector2i(5, 3)
-board_dimensions = Vector2i(8, 5)
-
 [node name="RotationTimer" type="Timer" parent="."]
 one_shot = true
 script = ExtResource("6_lnp4p")
 
 [node name="Walls" type="TileMap" parent="." groups=["walls"]]
+visible = false
 position = Vector2(-256, -160)
 tile_set = SubResource("TileSet_srb8s")
 cell_quadrant_size = 64
 format = 2
-layer_0/tile_data = PackedInt32Array(65542, 0, 0, 196608, 0, 0)
+layer_0/tile_data = PackedInt32Array(262147, 2, 0, 196608, 2, 0, 196611, 2, 0, 131072, 2, 0, 262151, 2, 0, 262148, 2, 0)
+
+[node name="Player" parent="." instance=ExtResource("1")]
+collision_layer = 2
+collision_mask = 1
+board_cords = Vector2i(3, 2)
+board_dimensions = Vector2i(8, 5)
+
+[node name="Counter" parent="." instance=ExtResource("9_pbxjo")]
