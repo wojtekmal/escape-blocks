@@ -159,7 +159,7 @@ func move_player(delta):
 			continue
 		var to_the_left_or_right = entity.board_cords.x != player_left_column and entity.board_cords.x != player_right_column
 		
-		if abs(entity.position.y - player.position.y) < 64 and to_the_left_or_right:
+		if abs(entity.position.y - player.position.y) < 32 + size.y / 2 and to_the_left_or_right:
 			if entity.position.x < player.position.x:
 				min_left = max(min_left, entity.position.x + 32 + (size.x / 2))
 			else:
