@@ -8,6 +8,8 @@ extends CharacterBody2D
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var is_falling : bool : set = set_is_falling
+# How fast the player is falling down.
+@export var y_speed := 0
 #@export var is_rotating : bool : set = set_is_rotating
 var offset = 10;
 var crawling := false
@@ -15,17 +17,8 @@ var crawling := false
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var StandingHitBox = $StandingHitBox
 @onready var CrawlingHitBox = $CrawlingHitBox
-#@onready var rotation_timer = $RotationTimer
-
-func _ready():
-	pass
-	#rotation_timer.timeout.connect(_end_of_rotation)
-
-func _physics_process(delta: float) -> void:
-	pass
 
 func _process(delta: float) -> void:
-	#manage_changing_gravity(delta)
 	animations()
 
 func get_direction() -> Vector2:

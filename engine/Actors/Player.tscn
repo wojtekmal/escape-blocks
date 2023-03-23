@@ -16,7 +16,7 @@
 size = Vector2(4, 6)
 
 [sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(16, 64)
+size = Vector2(16, 50)
 
 [sub_resource type="SpriteFrames" id="3"]
 animations = [{
@@ -103,13 +103,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
-collision_layer = 0
+[node name="Player" type="CharacterBody2D" groups=["interacting_entities"]]
+collision_layer = 8
 collision_mask = 0
 script = ExtResource("2")
 
 [node name="CrawlingHitBox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 5.75)
 shape = SubResource("4")
 disabled = true
@@ -122,3 +121,7 @@ sprite_frames = SubResource("3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
