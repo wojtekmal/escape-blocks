@@ -16,7 +16,7 @@
 size = Vector2(4, 6)
 
 [sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(16, 60)
+size = Vector2(16, 50)
 
 [sub_resource type="SpriteFrames" id="3"]
 animations = [{
