@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c3oe72nibs0yb"]
+[gd_scene load_steps=17 format=3 uid="uid://c3oe72nibs0yb"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://Actors/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/block.png" id="7_oxuh3"]
 [ext_resource type="Texture2D" uid="uid://bgq60xm1ldmss" path="res://textures/static_block.png" id="8_emeda"]
 [ext_resource type="Texture2D" uid="uid://5y23edqo0olg" path="res://textures/wall_block.png" id="8_pagpe"]
-[ext_resource type="PackedScene" uid="uid://jarihgxmrxw1" path="res://Actors/finish_area.tscn" id="9_oddy4"]
-[ext_resource type="PackedScene" uid="uid://bbfxt5tqpp2n4" path="res://counter.tscn" id="9_pbxjo"]
+[ext_resource type="PackedScene" uid="uid://dhtdnlr71dqin" path="res://Actors/finish_area.tscn" id="9_oddy4"]
+[ext_resource type="PackedScene" path="res://counter.tscn" id="9_pbxjo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -132,6 +132,5 @@ format = 2
 position = Vector2(-256, -129)
 rotation = 1.5708
 initial_rotations = 1
-layer_0/tile_data = PackedInt32Array(262147, 2, 0, 196608, 2, 0, 196611, 2, 0, 131072, 2, 0, 262151, 2, 0, 262148, 2, 0)
 
 [node name="Counter" parent="." instance=ExtResource("9_pbxjo")]

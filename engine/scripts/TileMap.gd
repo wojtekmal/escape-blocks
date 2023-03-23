@@ -16,6 +16,9 @@ func get_real_class():
 	return "TileMap"
 
 func set_board_dimensions(newValue):
+	if !Engine.is_editor_hint():
+		return
+	
 	for i in range(-board_dimensions.x * 4 - 1, board_dimensions.x * 4 + 1):
 		set_cell(0, Vector2i(i, board_dimensions.y * 4), -1, Vector2i(0, 0))
 		set_cell(0, Vector2i(i, -board_dimensions.y * 4 - 1), -1, Vector2i(0, 0))
