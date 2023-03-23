@@ -1,7 +1,8 @@
 @tool
+class_name FinishArea
 extends Area2D
 signal player_reached_finish
-@export var intitial_rotations : int
+@export var initial_rotations : int : set = set_intitial_rotations
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,3 +17,7 @@ func _process(delta):
 		if entity.get_name() == "Player":
 			emit_signal("player_reached_finish")
 			#print_debug("player_reached_finish")
+
+func set_intitial_rotations(newValue):
+	initial_rotations = newValue
+	rotation = initial_rotations * PI / 2

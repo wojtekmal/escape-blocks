@@ -47,3 +47,6 @@ board_dimensions = Vector2i(9, 8)
 
 [node name="Walls" parent="." index="11"]
 position = Vector2(-288, -256)
+
+[node name="FinishArea" parent="." index="12"]
+initial_rotations = 0
