@@ -8,3 +8,5 @@ res://scripts/Player.gd
 res://counter.tscn
 res://Levels/LevelTemplate.tscn
 res://Levels/LevelTemplate.gd
+res://Actors/finish_area.tscn
+res://scripts/finish_area.gd
