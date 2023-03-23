@@ -365,6 +365,7 @@ func set_board_dimensions(newValue):
 	board_dimensions = newValue
 	left_wall = -board_dimensions.x * 32
 	top_wall = -board_dimensions.y * 32
+	#tilemap.set_board_dimensions(board_dimensions)
 	#walls = get_node("Walls")
 	#walls.position = Vector2(left_wall, top_wall)
 	
@@ -375,6 +376,8 @@ func set_board_dimensions(newValue):
 			child.board_dimensions = board_dimensions
 		elif child.is_in_group("walls"):
 			child.position = Vector2(left_wall, top_wall)
+		elif child.is_in_group("board limits"):
+			child.board_dimensions = board_dimensions
 	
 	#return board_dimensions
 
