@@ -155,5 +155,6 @@ format = 2
 layer_0/tile_data = PackedInt32Array(65542, 0, 0, 196608, 0, 0)
 
 [node name="FinishArea" parent="." instance=ExtResource("9_oddy4")]
-position = Vector2(-254, -132)
+position = Vector2(-256, -129)
 rotation = 1.5708
+initial_rotations = 1

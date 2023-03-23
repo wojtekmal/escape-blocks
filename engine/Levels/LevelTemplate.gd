@@ -25,18 +25,21 @@ var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
 var static_block = load("res://Levels/StaticBlock8x8.tscn")
 var finish_area_position_before_rotation
-var finish_area_start_rotation
+#var finish_area_start_rotation
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rotation_timer.timeout.connect(rotation_ended)
 	board_dimensions = board_dimensions
 	tilemap.board_dimensions = board_dimensions
-	finish_area_start_rotation = finish_area.rotation
+	#finish_area_start_rotation = finish_area.rotation
 	#calls the setter function
 	finish_area.player_reached_finish.connect(maybe_end_game)
 	
 	var wall_tiles = walls.get_used_cells_by_id(0, 0, Vector2i(0,0), -1)
+	
+	if Engine.is_editor_hint():
+		return
 	
 	for wall_tile in wall_tiles:
 		#print_debug("check")
@@ -67,8 +70,8 @@ func _process(delta):
 
 func maybe_end_game():
 	#print_debug(player.rotation)
-	print_debug(finish_area.rotation)
-	if player.rotation == finish_area.rotation:
+	#print_debug(finish_area.rotation)
+	if (finish_area.initial_rotations + total_rotations) % 4 == 0:
 		print_debug("End game.")
 
 
@@ -268,7 +271,7 @@ func manage_changing_gravity():
 	#print_debug((total_rotations - now_rotations) * PI / 2 + change_angle)
 	
 	finish_area.position = finish_area_position_before_rotation.rotated(change_angle)
-	finish_area.rotation = finish_area_start_rotation -(total_rotations - now_rotations) * PI / 2 + change_angle
+	finish_area.rotation = (finish_area.initial_rotations + total_rotations - now_rotations) * PI / 2 + change_angle
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
@@ -320,8 +323,8 @@ func rotation_ended():
 	else:
 		board_dimensions = board_dimensions
 	
-	finish_area.rotation = finish_area_start_rotation + total_rotations * PI / 2
-	print_debug(finish_area.rotation)
+	finish_area.rotation = (finish_area.initial_rotations + total_rotations) * PI / 2
+	#print_debug(finish_area.rotation)
 	finish_area.position = finish_area_position_before_rotation.rotated(now_rotations * PI / 2)
 	
 	for i in range(0, moving_entities.size()):
