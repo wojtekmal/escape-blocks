@@ -17,17 +17,8 @@ var crawling := false
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var StandingHitBox = $StandingHitBox
 @onready var CrawlingHitBox = $CrawlingHitBox
-#@onready var rotation_timer = $RotationTimer
-
-func _ready():
-	pass
-	#rotation_timer.timeout.connect(_end_of_rotation)
-
-func _physics_process(delta: float) -> void:
-	pass
 
 func _process(delta: float) -> void:
-	#manage_changing_gravity(delta)
 	animations()
 
 func get_direction() -> Vector2:

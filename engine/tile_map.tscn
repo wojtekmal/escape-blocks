@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dga5fkrshncbo"]
+
+[ext_resource type="Texture2D" uid="uid://bapeivwadt1o7" path="res://textures/tile_map.png" id="1_px8g4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e8ku5"]
+texture = ExtResource("1_px8g4")
+margins = Vector2i(10, 10)
+texture_region_size = Vector2i(12, 12)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+2:2/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_tv43x"]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetAtlasSource_e8ku5")
+
+[node name="TileMap" type="TileMap"]
+tile_set = SubResource("TileSet_tv43x")
+format = 2
+layer_0/tile_data = PackedInt32Array(458755, 0, 1, 458756, 0, 1, 458757, 0, 1, 458758, 0, 1, 458759, 0, 1, 458760, 0, 1, 393225, 0, 0, 327689, 0, 0, 262153, 0, 0, 393218, 0, 0, 327682, 0, 0, 262146, 0, 0, 196610, 0, 0, 131075, 0, 1, 131076, 0, 1, 131077, 0, 1, 131078, 0, 1, 131079, 0, 1, 131074, 0, 2)
+layer_1/name = ""
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(393226, 65536, 0, 327690, 65536, 0, 262154, 65536, 0, 393218, 65536, 0, 327682, 65536, 0, 262146, 65536, 0, 196610, 65536, 0, 131075, 65536, 1, 131076, 65536, 1, 131077, 65536, 1, 131078, 65536, 1, 131079, 65536, 1, 524291, 65536, 1, 524292, 65536, 1, 524293, 65536, 1, 524294, 65536, 1, 524295, 65536, 1, 524296, 65536, 1, 131074, 65536, 2)
