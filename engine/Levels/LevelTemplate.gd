@@ -70,7 +70,7 @@ func _process(delta):
 func maybe_end_game():
 	#print_debug(player.rotation)
 	#print_debug(finish_area.rotation)
-	if (finish_area.initial_rotations + total_rotations) % 4 == 0:
+	if (finish_area.initial_rotations + total_rotations) % 4 == 0 and rotation_timer.is_stopped():
 		print_debug("End game.")
 
 

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bgq60xm1ldmss" path="res://textures/static_block.png" id="8_emeda"]
 [ext_resource type="Texture2D" uid="uid://5y23edqo0olg" path="res://textures/wall_block.png" id="8_pagpe"]
 [ext_resource type="PackedScene" uid="uid://dhtdnlr71dqin" path="res://Actors/finish_area.tscn" id="9_oddy4"]
-[ext_resource type="PackedScene" path="res://counter.tscn" id="9_pbxjo"]
+[ext_resource type="PackedScene" uid="uid://bbfxt5tqpp2n4" path="res://counter.tscn" id="9_pbxjo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -99,7 +99,7 @@ sources/0 = SubResource("TileSetAtlasSource_id2jv")
 sources/1 = SubResource("TileSetAtlasSource_voqr5")
 sources/2 = SubResource("TileSetAtlasSource_7h21e")
 
-[node name="LevelTemplate" type="Node2D"]
+[node name="LevelTemplate2" type="Node2D"]
 script = ExtResource("4")
 board_dimensions = Vector2i(8, 5)
 
