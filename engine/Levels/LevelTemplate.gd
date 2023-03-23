@@ -159,7 +159,7 @@ func move_player(delta):
 			continue
 		var to_the_left_or_right = entity.board_cords.x != player_left_column and entity.board_cords.x != player_right_column
 		
-		if abs(entity.position.y - player.position.y) < 64 and to_the_left_or_right:
+		if abs(entity.position.y - player.position.y) < 32 + size.y / 2 and to_the_left_or_right:
 			if entity.position.x < player.position.x:
 				min_left = max(min_left, entity.position.x + 32 + (size.x / 2))
 			else:
@@ -365,6 +365,7 @@ func set_board_dimensions(newValue):
 	board_dimensions = newValue
 	left_wall = -board_dimensions.x * 32
 	top_wall = -board_dimensions.y * 32
+	#tilemap.set_board_dimensions(board_dimensions)
 	#walls = get_node("Walls")
 	#walls.position = Vector2(left_wall, top_wall)
 	
@@ -375,6 +376,8 @@ func set_board_dimensions(newValue):
 			child.board_dimensions = board_dimensions
 		elif child.is_in_group("walls"):
 			child.position = Vector2(left_wall, top_wall)
+		elif child.is_in_group("board limits"):
+			child.board_dimensions = board_dimensions
 	
 	#return board_dimensions
 
