@@ -5,7 +5,7 @@ extends Control
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-@export var buttonText := "" setget UpdateLabel # (String, MULTILINE)
+@export var buttonText := "" : set = UpdateLabel # (String, MULTILINE)
 @onready var label := $CenterContainer/ButtonLabel
 
 
@@ -18,6 +18,6 @@ func _ready():
 
 func UpdateLabel(newName):
 	label = $CenterContainer/ButtonLabel
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		label.set_text(newName)
 	buttonText = newName
