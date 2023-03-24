@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c3oe72nibs0yb"]
+[gd_scene load_steps=18 format=3 uid="uid://c3oe72nibs0yb"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://Actors/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/block.png" id="7_oxuh3"]
 [ext_resource type="Texture2D" uid="uid://bgq60xm1ldmss" path="res://textures/static_block.png" id="8_emeda"]
 [ext_resource type="Texture2D" uid="uid://5y23edqo0olg" path="res://textures/wall_block.png" id="8_pagpe"]
-[ext_resource type="PackedScene" path="res://Actors/finish_area.tscn" id="9_oddy4"]
+[ext_resource type="Texture2D" uid="uid://dhx3mdga63otx" path="res://textures/finish.png" id="9_5yrg8"]
 [ext_resource type="PackedScene" uid="uid://bbfxt5tqpp2n4" path="res://counter.tscn" id="9_pbxjo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
@@ -93,11 +93,18 @@ texture = ExtResource("8_emeda")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21381"]
+resource_name = "Finish"
+texture = ExtResource("9_5yrg8")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_srb8s"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_id2jv")
 sources/1 = SubResource("TileSetAtlasSource_voqr5")
 sources/2 = SubResource("TileSetAtlasSource_7h21e")
+sources/3 = SubResource("TileSetAtlasSource_21381")
 
 [node name="LevelTemplate" type="Node2D"]
 script = ExtResource("4")
@@ -128,9 +135,6 @@ tile_set = SubResource("TileSet_srb8s")
 cell_quadrant_size = 64
 format = 2
 
-[node name="FinishArea" parent="." instance=ExtResource("9_oddy4")]
-position = Vector2(-256, -129)
-rotation = 1.5708
-initial_rotations = 1
-
 [node name="Counter" parent="." instance=ExtResource("9_pbxjo")]
+
+[connection signal="finished" from="Player" to="." method="_on_player_finished"]
