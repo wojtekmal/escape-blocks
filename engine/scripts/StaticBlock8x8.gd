@@ -31,8 +31,6 @@ func set_board_cords(newValue):
 
 func get_real_class():
 	return "StaticBlock8x8"
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
 
 func set_is_falling(new_value):
 	push_error("You are changing StaticBlock8x8's is_falling, which is always false.")
