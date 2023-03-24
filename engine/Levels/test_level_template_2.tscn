@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://rhw0miok3f0v"]
-
-[ext_resource type="PackedScene" uid="uid://c3oe72nibs0yb" path="res://Levels/LevelTemplate.tscn" id="1_jek1o"]
-
-[node name="Node2D" type="Node2D"]
-
-[node name="LevelTemplate" parent="." instance=ExtResource("1_jek1o")]
-board_dimensions = Vector2i(8, 5)
