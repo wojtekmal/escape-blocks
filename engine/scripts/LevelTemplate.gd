@@ -22,8 +22,8 @@ var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
 var finish_area_position_before_rotation
 #var finish_area_start_rotation
-var static_block = preload("res://blocks/StaticBlock8x8.tscn")
-var moving_block = preload("res://blocks/MovingBlock8x8.tscn")
+var static_block = preload("res://board_stuff/StaticBlock8x8.tscn")
+var moving_block = preload("res://board_stuff/MovingBlock8x8.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -70,7 +70,7 @@ func _process(delta):
 func maybe_end_game():
 	#print_debug(player.rotation)
 	#print_debug(finish_area.rotation)
-	if (finish_area.initial_rotations + total_rotations) % 4 == 0:
+	if (finish_area.initial_rotations + total_rotations) % 4 == 0 and rotation_timer.is_stopped():
 		print_debug("End game.")
 
 
@@ -376,7 +376,7 @@ func set_board_dimensions(newValue):
 			child.board_dimensions = board_dimensions
 		elif child.is_in_group("walls"):
 			child.position = Vector2(left_wall, top_wall)
-		elif child.is_in_group("board limits"):
+		elif child.is_in_group("board_limits"):
 			child.board_dimensions = board_dimensions
 	
 	#return board_dimensions
