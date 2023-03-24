@@ -1,6 +1,8 @@
 @tool
 class_name Player
 extends CharacterBody2D
+signal finished
+
 @export var walk_speed = 60
 @export var jump_speed = 300
 @export var coyote_time = 0.1
@@ -8,15 +10,16 @@ extends CharacterBody2D
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var is_falling : bool : set = set_is_falling
+
 # How fast the player is falling down.
 @export var y_speed := 0
+
 #@export var is_rotating : bool : set = set_is_rotating
 var offset = 10;
 var crawling := false
 
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var StandingHitBox = $StandingHitBox
-@onready var CrawlingHitBox = $CrawlingHitBox
 
 func _process(delta: float) -> void:
 	animations()
@@ -99,3 +102,7 @@ func set_is_falling(new_value):
 	
 #func _end_of_rotation():
 #	rotation = total_rotations * PI / 2
+
+func _on_finish_detection_area_entered(area):
+	print("finish!")
+	emit_signal("finished")

@@ -13,7 +13,6 @@ extends Node2D
 @onready var player := $Player
 @onready var rotation_timer = $RotationTimer
 @onready var walls := $Walls
-@onready var finish_area := $FinishArea
 @onready var counter := $Counter
 
 
@@ -29,31 +28,45 @@ var positions_before_rotations = []
 var finish_area_position_before_rotation
 #var finish_area_start_rotation
 
-var static_block = preload("res://blocks/StaticBlock8x8.tscn")
-var moving_block = preload("res://blocks/MovingBlock8x8.tscn")
+# BLOCKS LIBRARY 👍
+var tile_blocks := {
+	"static" : {
+		"resource" : preload("res://blocks/MovingBlock8x8.tscn"),
+		"adress" : Vector2i(0, 0),
+		"layer" : 0,
+		"id" : 1,
+	},
+	"finish" : {
+		"resource" : preload("res://blocks/Finish8x8.tscn"),
+		"adress" : Vector2i(0, 0),
+		"layer" : 0,
+		"id" : 1,
+	},
+	"moving" : {
+		"resource" : preload("res://blocks/StaticBlock8x8.tscn"),
+		"adress" : Vector2i(0, 0),
+		"layer" : 0,
+		"id" : 2,
+	},
+	"barrier" : {
+		"resource" : preload("res://blocks/Barrier8x8.tscn"),
+		"adress" : Vector2i(0, 0),
+		"layer" : 0,
+		"id" : 3,
+	},
+}
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	rotation_timer.timeout.connect(rotation_ended)
 	board_dimensions = board_dimensions
 	tilemap.board_dimensions = board_dimensions
 	#finish_area_start_rotation = finish_area.rotation
 	#calls the setter function
-	finish_area.player_reached_finish.connect(maybe_end_game)
-	
+
 	var wall_tiles = walls.get_used_cells_by_id(0, 0, Vector2i(0,0), -1)
 	
 	if Engine.is_editor_hint():
 		return
-	
-	for wall_tile in wall_tiles:
-		#print_debug("check")
-		var new_static_block_8x8 = static_block.instantiate()
-		new_static_block_8x8.board_cords = wall_tile
-		new_static_block_8x8.board_dimensions = board_dimensions
-		add_child(new_static_block_8x8)
-	
-	walls.visible = false
 	
 	load_blocks_from_tilemap()
 	#for moving_block in moving_blocks:
@@ -72,13 +85,8 @@ func _process(delta):
 	first_frame = false
 	frame_count += 1
 
-
 func maybe_end_game():
-	#print_debug(player.rotation)
-	#print_debug(finish_area.rotation)
-	if (finish_area.initial_rotations + total_rotations) % 4 == 0:
-		print_debug("End game.")
-
+	print("End game. Total rotations: " + str(rotations_number))
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -103,7 +111,6 @@ func manage_falling_entities(delta):
 			move_player(delta)
 		elif entity.get_real_class() == "StaticBlock8x8":
 			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
-
 
 func compare_entity_heights(a, b):
 	return a.position.y > b.position.y
@@ -263,7 +270,6 @@ func manage_changing_gravity():
 		now_rotations = rotations
 		total_rotations += now_rotations
 		rotation_timer.start(rotation_timer.wait_time)
-		finish_area_position_before_rotation = finish_area.position
 		positions_before_rotations.clear()
 		
 		for entity in moving_entities:
@@ -276,9 +282,6 @@ func manage_changing_gravity():
 	var change_angle = PI * now_rotations * (rotation_timer.wait_time - rotation_timer.time_left) / rotation_timer.wait_time / 2
 	tilemap.rotation = (total_rotations - now_rotations) * PI / 2 + change_angle
 	#print_debug((total_rotations - now_rotations) * PI / 2 + change_angle)
-	
-	finish_area.position = finish_area_position_before_rotation.rotated(change_angle)
-	finish_area.rotation = (finish_area.initial_rotations + total_rotations - now_rotations) * PI / 2 + change_angle
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
@@ -334,9 +337,7 @@ func rotation_ended():
 	else:
 		board_dimensions = board_dimensions
 	
-	finish_area.rotation = (finish_area.initial_rotations + total_rotations) * PI / 2
 	#print_debug(finish_area.rotation)
-	finish_area.position = finish_area_position_before_rotation.rotated(now_rotations * PI / 2)
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
@@ -394,26 +395,22 @@ func set_board_dimensions(newValue):
 	#return board_dimensions
 
 func load_blocks_from_tilemap():
-	var wall_tiles = walls.get_used_cells_by_id(0, 0, Vector2i(0,0), -1)
-	var moving_block_tiles = walls.get_used_cells_by_id(0, 1, Vector2i(0,0), -1)
-	var static_block_tiles = walls.get_used_cells_by_id(0, 2, Vector2i(0,0), -1)
-	
-	for wall_tile in wall_tiles:
-		var new_static_block_8x8 = static_block.instantiate()
-		new_static_block_8x8.board_cords = wall_tile
-		new_static_block_8x8.board_dimensions = board_dimensions
-		new_static_block_8x8.visible = false
-		add_child(new_static_block_8x8)
-
-	for wall_tile in moving_block_tiles:
-		var new_moving_block_8x8 = moving_block.instantiate()
-		new_moving_block_8x8.board_cords = wall_tile
-		new_moving_block_8x8.board_dimensions = board_dimensions
-		add_child(new_moving_block_8x8)
-
-	for wall_tile in static_block_tiles:
-		var new_static_block_8x8 = static_block.instantiate()
-		new_static_block_8x8.board_cords = wall_tile
-		new_static_block_8x8.board_dimensions = board_dimensions
-		add_child(new_static_block_8x8)
+	for block_type in tile_blocks.values():
+		var block_resource = block_type["resource"]
+		var wall_tiles = walls.get_used_cells_by_id(
+			block_type["layer"],
+			block_type["id"],
+			block_type["adress"],
+			-1,
+		)
+		
+		for wall_tile in wall_tiles:
+			var new_block = block_resource.instantiate()
+			new_block.board_cords = wall_tile
+			new_block.board_dimensions = board_dimensions
+			add_child(new_block)
 	walls.visible = false
+
+func _on_player_finished():
+	print("finished signal recived")
+	maybe_end_game()

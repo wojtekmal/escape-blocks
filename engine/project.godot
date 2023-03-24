@@ -75,6 +75,7 @@ debug1={
 2d_physics/layer_1="player"
 2d_physics/layer_2="blocks"
 2d_physics/layer_3="world"
+2d_physics/layer_4="finish"
 
 [rendering]
 
