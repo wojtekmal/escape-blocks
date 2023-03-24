@@ -40,7 +40,7 @@ var tile_blocks := {
 		"resource" : preload("res://blocks/Finish8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
-		"id" : 1,
+		"id" : 3,
 	},
 	"moving" : {
 		"resource" : preload("res://blocks/StaticBlock8x8.tscn"),
@@ -52,7 +52,7 @@ var tile_blocks := {
 		"resource" : preload("res://blocks/Barrier8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
-		"id" : 3,
+		"id" : 0,
 	},
 }
 
@@ -112,9 +112,8 @@ func manage_falling_entities(delta):
 		elif entity.get_real_class() == "StaticBlock8x8":
 			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
 
-func compare_entity_heights(a, b):
+func compare_entity_heights(a, b): # Sorts the entities in decreasing order according to their height.
 	return a.position.y > b.position.y
-	# Sorts the entities in decreasing order according to their height.
 
 func move_block(delta, block):
 	if block.is_falling:
@@ -202,7 +201,7 @@ func move_player(delta):
 			entity.board_cords.x != player_right_column) or 
 			entity.position.y > player.position.y):
 			continue
-		
+	
 		if (player.position.y - size.y / 2 + entity.position.y + 32) / 2 + size.y / 2 >= min_pos_y:
 			min_pos_y = (player.position.y - size.y / 2 + entity.position.y + entity.y_speed * delta + 32) / 2 + size.y / 2
 			speed_of_ceiling = entity.y_speed
@@ -403,7 +402,6 @@ func load_blocks_from_tilemap():
 			block_type["adress"],
 			-1,
 		)
-		
 		for wall_tile in wall_tiles:
 			var new_block = block_resource.instantiate()
 			new_block.board_cords = wall_tile
