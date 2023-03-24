@@ -4,14 +4,20 @@ extends Node2D
 
 #export var boardWidth: int := 1 : set = update_board_width
 #export var boardHeight: int := 1 : set = update_board_height
+#Export
 @export var board_dimensions : Vector2i : set = set_board_dimensions
 @export var total_rotations : int = 0
 @export var now_rotations : int
+#Childs
 @onready var tilemap := $BoardLimits
 @onready var player := $Player
 @onready var rotation_timer = $RotationTimer
 @onready var walls := $Walls
 @onready var finish_area := $FinishArea
+@onready var counter := $Counter
+
+
+var rotations_number : int : set = update_counter
 var moving_entities = []
 var column_top_still_blocks = []
 var fall_speed = 100
@@ -22,6 +28,7 @@ var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
 var finish_area_position_before_rotation
 #var finish_area_start_rotation
+
 var static_block = preload("res://blocks/StaticBlock8x8.tscn")
 var moving_block = preload("res://blocks/MovingBlock8x8.tscn")
 
@@ -54,7 +61,6 @@ func _ready():
 	#for moving_block in moving_blocks:
 	#	column_block_heights[moving_block.board_cords.x].push_back(moving_block.position.y)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Engine.is_editor_hint():
 		# We won't be loading frames in the editor.
@@ -252,6 +258,8 @@ func manage_changing_gravity():
 		rotations += 3
 		
 	if all_not_falling() and rotation_timer.is_stopped() and rotations != 0:
+		rotations_number += 1
+		counter.update(rotations_number)
 		now_rotations = rotations
 		total_rotations += now_rotations
 		rotation_timer.start(rotation_timer.wait_time)
@@ -306,6 +314,10 @@ func manage_changing_gravity():
 	#		print_debug(entity.board_cords)
 	#		entity.position = Vector2(-entity.position.y, entity.position.x)
 	#		print_debug(entity.position)
+
+func update_counter(x):
+	rotations_number = x
+	counter.update(rotations_number)
 
 func all_not_falling():
 	for entity in moving_entities:

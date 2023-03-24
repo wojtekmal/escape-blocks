@@ -16,7 +16,7 @@
 size = Vector2(4, 6)
 
 [sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(16, 50)
+size = Vector2(16, 60)
 
 [sub_resource type="SpriteFrames" id="3"]
 animations = [{
@@ -104,11 +104,12 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["interacting_entities"]]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 0
 script = ExtResource("2")
 
 [node name="CrawlingHitBox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 5.75)
 shape = SubResource("4")
 disabled = true
