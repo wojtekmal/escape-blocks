@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource path="res://textures/block.png" type="Texture2D" id=1]
-[ext_resource path="res://fonts/conthrax/conthrax-sb.otf" type="FontFile" id=2]
-[ext_resource path="res://menu_stuff/MenuButton.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/block.png" id="1"]
+[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="2"]
+[ext_resource type="Script" path="res://scripts/MenuButton.gd" id="3"]
 
 [sub_resource type="FontFile" id=1]
 size = 10
