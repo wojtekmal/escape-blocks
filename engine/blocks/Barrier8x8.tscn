@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw5t5rrj0ghfd"]
+
+[ext_resource type="Script" path="res://blocks/StaticBlock8x8.gd" id="1_v3toh"]
+[ext_resource type="Texture2D" uid="uid://bgq60xm1ldmss" path="res://textures/static_block.png" id="2_cd3e8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eto6a"]
+size = Vector2(64, 64)
+
+[node name="barrier" type="StaticBody2D" groups=["interacting_entities"]]
+visible = false
+position = Vector2(32, 32)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_v3toh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cd3e8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_eto6a")

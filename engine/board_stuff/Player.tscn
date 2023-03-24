@@ -12,11 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://ctm70qp0l50t6" path="res://textures/player/stworus_crawl.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://cgkdeep31bi6v" path="res://textures/player/stworus_crawl_3.png" id="11"]
 
-[sub_resource type="RectangleShape2D" id="4"]
-size = Vector2(4, 6)
-
 [sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(16, 50)
+size = Vector2(16, 60)
 
 [sub_resource type="SpriteFrames" id="3"]
 animations = [{
@@ -103,15 +100,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_waxpy"]
+
 [node name="Player" type="CharacterBody2D" groups=["interacting_entities"]]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 0
 script = ExtResource("2")
-
-[node name="CrawlingHitBox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5.75)
-shape = SubResource("4")
-disabled = true
 
 [node name="StandingHitBox" type="CollisionShape2D" parent="."]
 shape = SubResource("2")
@@ -125,3 +119,13 @@ ignore_rotation = false
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="FinishDetection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishDetection"]
+position = Vector2(0, 21)
+shape = SubResource("RectangleShape2D_waxpy")
+
+[connection signal="area_entered" from="FinishDetection" to="." method="_on_finish_detection_area_entered"]
