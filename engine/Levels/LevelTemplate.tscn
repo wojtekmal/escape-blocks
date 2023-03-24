@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/block.png" id="7_oxuh3"]
 [ext_resource type="Texture2D" uid="uid://bgq60xm1ldmss" path="res://textures/static_block.png" id="8_emeda"]
 [ext_resource type="Texture2D" uid="uid://5y23edqo0olg" path="res://textures/wall_block.png" id="8_pagpe"]
-[ext_resource type="PackedScene" uid="uid://dhtdnlr71dqin" path="res://Actors/finish_area.tscn" id="9_oddy4"]
-[ext_resource type="PackedScene" path="res://counter.tscn" id="9_pbxjo"]
+[ext_resource type="PackedScene" path="res://Actors/finish_area.tscn" id="9_oddy4"]
+[ext_resource type="PackedScene" uid="uid://bbfxt5tqpp2n4" path="res://counter.tscn" id="9_pbxjo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
