@@ -33,4 +33,5 @@ func get_real_class():
 	return "StaticBlock8x8"
 
 func set_is_falling(new_value):
-	push_error("You are changing StaticBlock8x8's is_falling, which is always false.")
+	if new_value == true:
+		push_error("You are changing StaticBlock8x8's is_falling, which is always false.")

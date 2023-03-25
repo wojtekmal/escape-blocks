@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://dnnpl12gw24v"]
 
-[ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/block.png" id="1"]
 [ext_resource type="Script" path="res://scripts/MovingBlock8x8.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/blocks/block.png" id="2_k45q2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eto6a"]
 size = Vector2(64, 64)
@@ -13,7 +13,7 @@ collision_mask = 0
 script = ExtResource("2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1")
+texture = ExtResource("2_k45q2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_eto6a")

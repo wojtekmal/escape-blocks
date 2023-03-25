@@ -4,17 +4,16 @@ extends Node2D
 
 #export var boardWidth: int := 1 : set = update_board_width
 #export var boardHeight: int := 1 : set = update_board_height
-#Export
+#export
 @export var board_dimensions : Vector2i : set = set_board_dimensions
 @export var total_rotations : int = 0
 @export var now_rotations : int
-#Childs
+#children
 @onready var tilemap := $BoardLimits
 @onready var player := $Player
 @onready var rotation_timer = $RotationTimer
 @onready var walls := $Walls
 @onready var counter := $Counter
-
 
 var rotations_number : int : set = update_counter
 var moving_entities = []
@@ -27,8 +26,6 @@ var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
 var finish_area_position_before_rotation
 #var finish_area_start_rotation
-var static_block = preload("res://board_stuff/StaticBlock8x8.tscn")
-var moving_block = preload("res://board_stuff/MovingBlock8x8.tscn")
 
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
@@ -39,7 +36,7 @@ var tile_blocks := {
 		"id" : 1,
 	},
 	"finish" : {
-		"resource" : preload("res://blocks/Finish8x8.tscn"),
+		"resource" : preload("res://board_stuff/Finish8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
 		"id" : 3,
@@ -51,7 +48,7 @@ var tile_blocks := {
 		"id" : 2,
 	},
 	"barrier" : {
-		"resource" : preload("res://blocks/Barrier8x8.tscn"),
+		"resource" : preload("res://board_stuff/Barrier8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
 		"id" : 0,
@@ -65,10 +62,7 @@ func _ready():
 	#finish_area_start_rotation = finish_area.rotation
 	#calls the setter function
 
-	var wall_tiles = walls.get_used_cells_by_id(0, 0, Vector2i(0,0), -1)
-	
-	if Engine.is_editor_hint():
-		return
+	if Engine.is_editor_hint(): return
 	
 	load_blocks_from_tilemap()
 	#for moving_block in moving_blocks:
@@ -77,9 +71,8 @@ func _ready():
 	#	column_block_heights[moving_block.board_cords.x].push_back(moving_block.position.y)
 
 func _process(delta):
-	if Engine.is_editor_hint():
-		# We won't be loading frames in the editor.
-		return
+	# We won't be loading frames in the editor.
+	if Engine.is_editor_hint(): return 
 		
 	manage_changing_gravity()
 	manage_falling_entities(delta)
@@ -93,7 +86,6 @@ func maybe_end_game():
 	#print_debug(finish_area.rotation)
 	#if (finish_area.initial_rotations + total_rotations) % 4 == 0 and rotation_timer.is_stopped():
 	#	print_debug("End game.")
-
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -258,9 +250,8 @@ func move_player(delta):
 		return
 
 func manage_changing_gravity():
-	if Engine.is_editor_hint():
-		# We won't be loading frames in the editor.
-		return
+	# We won't be loading frames in the editor.
+	if Engine.is_editor_hint(): return
 	
 	var rotations = 0
 	if(Input.is_action_just_pressed("gravity_right")):
