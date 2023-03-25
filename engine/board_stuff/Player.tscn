@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ow2x5epfg1v2"]
+[gd_scene load_steps=16 format=3 uid="uid://ow2x5epfg1v2"]
 
 [ext_resource type="Texture2D" uid="uid://dlu8o1g61geft" path="res://textures/player/stworus.png" id="1"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://blmx7skb3p6ue" path="res://textures/player/stworus_crawl_2.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://ctm70qp0l50t6" path="res://textures/player/stworus_crawl.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://cgkdeep31bi6v" path="res://textures/player/stworus_crawl_3.png" id="11"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="12_f6lvu"]
 
 [sub_resource type="RectangleShape2D" id="2"]
 size = Vector2(16, 60)
@@ -115,6 +116,7 @@ sprite_frames = SubResource("3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
+script = ExtResource("12_f6lvu")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
