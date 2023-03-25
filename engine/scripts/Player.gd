@@ -6,7 +6,7 @@ signal finished
 @export var walk_speed = 60
 @export var jump_speed = 300
 @export var coyote_time = 0.1
-@export var jump_time = 0.1 
+@export var jump_time = 0.1
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var is_falling : bool : set = set_is_falling

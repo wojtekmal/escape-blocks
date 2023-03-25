@@ -4,9 +4,13 @@ extends Node2D
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var is_falling := true : set = set_is_falling
 
-func set_is_falling(new_value):
-	push_error("You are changing Finish's is_falling, which is always false.")
+func _ready():
+	add_to_group("wasd")
 
+func set_is_falling(new_value):
+	if new_value == true:
+		push_error("You are changing Finish's is_falling, which is always false.")
+	
 func set_board_dimensions(newValue):
 	board_dimensions = newValue
 	set_board_cords(board_cords)
