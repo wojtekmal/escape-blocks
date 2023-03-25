@@ -33,25 +33,25 @@ var moving_block = preload("res://board_stuff/MovingBlock8x8.tscn")
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
 	"static" : {
-		"resource" : preload("res://blocks/MovingBlock8x8.tscn"),
+		"resource" : preload("res://board_stuff/MovingBlock8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
 		"id" : 1,
 	},
 	"finish" : {
-		"resource" : preload("res://blocks/Finish8x8.tscn"),
+		"resource" : preload("res://board_stuff/Finish8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
 		"id" : 3,
 	},
 	"moving" : {
-		"resource" : preload("res://blocks/StaticBlock8x8.tscn"),
+		"resource" : preload("res://board_stuff/StaticBlock8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
 		"id" : 2,
 	},
 	"barrier" : {
-		"resource" : preload("res://blocks/Barrier8x8.tscn"),
+		"resource" : preload("res://board_stuff/Barrier8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
 		"id" : 0,
