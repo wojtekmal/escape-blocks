@@ -39,7 +39,7 @@ var tile_blocks := {
 		"id" : 1,
 	},
 	"finish" : {
-		"resource" : preload("res://board_stuff/Finish8x8.tscn"),
+		"resource" : preload("res://blocks/Finish8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
 		"id" : 3,
@@ -51,7 +51,7 @@ var tile_blocks := {
 		"id" : 2,
 	},
 	"barrier" : {
-		"resource" : preload("res://board_stuff/Barrier8x8.tscn"),
+		"resource" : preload("res://blocks/Barrier8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
 		"id" : 0,
@@ -91,8 +91,8 @@ func maybe_end_game():
 	print("End game. Total rotations: " + str(rotations_number))
 	#print_debug(player.rotation)
 	#print_debug(finish_area.rotation)
-	if (finish_area.initial_rotations + total_rotations) % 4 == 0 and rotation_timer.is_stopped():
-		print_debug("End game.")
+	#if (finish_area.initial_rotations + total_rotations) % 4 == 0 and rotation_timer.is_stopped():
+	#	print_debug("End game.")
 
 
 func manage_falling_entities(delta):
