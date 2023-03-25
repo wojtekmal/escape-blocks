@@ -1,15 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://coqo24whlgs14"]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
 [ext_resource type="Script" path="res://scripts/LevelTemplate.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/TileMap.gd" id="4_gvo1y"]
 [ext_resource type="Script" path="res://scripts/RotationTimer.gd" id="6_lnp4p"]
-[ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/block.png" id="7_oxuh3"]
-[ext_resource type="Texture2D" uid="uid://bgq60xm1ldmss" path="res://textures/static_block.png" id="8_emeda"]
-[ext_resource type="Texture2D" uid="uid://5y23edqo0olg" path="res://textures/wall_block.png" id="8_pagpe"]
-[ext_resource type="Texture2D" uid="uid://dhx3mdga63otx" path="res://textures/finish.png" id="9_5yrg8"]
-[ext_resource type="PackedScene" uid="uid://bbfxt5tqpp2n4" path="res://hud_stuff/counter.tscn" id="9_pbxjo"]
+[ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/blocks/block.png" id="7_oxuh3"]
+[ext_resource type="Texture2D" uid="uid://bgq60xm1ldmss" path="res://textures/blocks/static_block.png" id="8_emeda"]
+[ext_resource type="Texture2D" uid="uid://5y23edqo0olg" path="res://textures/blocks/wall_block.png" id="8_pagpe"]
+[ext_resource type="Texture2D" uid="uid://dhx3mdga63otx" path="res://textures/blocks/finish.png" id="9_5yrg8"]
+[ext_resource type="PackedScene" path="res://hud_stuff/counter.tscn" id="9_pbxjo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")

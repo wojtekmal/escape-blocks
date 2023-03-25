@@ -3,15 +3,6 @@ class_name MyTileMap
 extends TileMap
 @export var board_dimensions : Vector2i : set = set_board_dimensions
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func get_real_class():
 	return "TileMap"
 

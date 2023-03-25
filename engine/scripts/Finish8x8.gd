@@ -15,8 +15,5 @@ func set_board_cords(newValue):
 	board_cords = newValue
 	set_position(Vector2i(board_cords.x * 64 + 32 - board_dimensions.x * 32, board_cords.y * 64 + 32 - board_dimensions.y * 32))
 
-func _process(delta):
-	pass
-
 func get_real_class():
 	return "Finish"
