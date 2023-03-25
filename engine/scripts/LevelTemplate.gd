@@ -24,8 +24,8 @@ var frame_count = 0
 var left_wall = -board_dimensions.x * 32
 var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
-var positions_before_rotations_wasd = []
 var finish_area_position_before_rotation
+var size : Vector2
 #var finish_area_start_rotation
 
 # BLOCKS LIBRARY 👍
@@ -62,6 +62,7 @@ func _ready():
 	tilemap.board_dimensions = board_dimensions
 	#finish_area_start_rotation = finish_area.rotation
 	#calls the setter function
+	size = $Player/StandingHitBox.shape.size
 
 	if Engine.is_editor_hint(): return
 	
@@ -83,9 +84,6 @@ func _process(delta):
 
 func maybe_end_game():
 	print("End game. Total rotations: " + str(rotations_number))
-	$CanvasLayer/RichTextLabel.visible = true
-	$CanvasLayer/RichTextLabel.text = "End game. Total Rotations: " + str(rotations_number)
-	
 	#print_debug(player.rotation)
 	#print_debug(finish_area.rotation)
 	#if (finish_area.initial_rotations + total_rotations) % 4 == 0 and rotation_timer.is_stopped():
@@ -101,7 +99,7 @@ func manage_falling_entities(delta):
 	for child in self.get_children():
 		if child.is_in_group("interacting_entities"):
 			moving_entities.push_back(child)
-	
+
 	moving_entities.sort_custom(compare_entity_heights)
 	
 	for i in range(0, board_dimensions.x):
@@ -153,7 +151,6 @@ func move_player(delta):
 		player.y_speed += 1000 * delta
 	else:
 		player.y_speed = 0
-	var size = $Player/StandingHitBox.shape.size
 	
 	# First I move the player left/right.
 	var x_speed = 0
@@ -265,23 +262,16 @@ func manage_changing_gravity():
 	if(Input.is_action_just_pressed("gravity_left")):
 		rotations += 3
 		
-	var wasd := get_tree().get_nodes_in_group("wasd")
-	
 	if all_not_falling() and rotation_timer.is_stopped() and rotations != 0:
 		rotations_number += 1
 		counter.update(rotations_number)
 		now_rotations = rotations
 		total_rotations += now_rotations
 		rotation_timer.start(rotation_timer.wait_time)
-		
 		positions_before_rotations.clear()
+		
 		for entity in moving_entities:
 			positions_before_rotations.push_back(entity.position)
-
-		
-		positions_before_rotations_wasd.clear()
-		for w in wasd:
-			positions_before_rotations_wasd.push_back(w.position)
 	
 	if rotation_timer.is_stopped():
 		# If there is no rotation now, skip the rest.
@@ -290,6 +280,7 @@ func manage_changing_gravity():
 	var change_angle = PI * now_rotations * (rotation_timer.wait_time - rotation_timer.time_left) / rotation_timer.wait_time / 2
 	tilemap.rotation = (total_rotations - now_rotations) * PI / 2 + change_angle
 	#print_debug((total_rotations - now_rotations) * PI / 2 + change_angle)
+	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
 		var position_before_rotation = positions_before_rotations[i]
@@ -297,11 +288,6 @@ func manage_changing_gravity():
 		if entity.get_real_class() != "Player":
 			entity.rotation = -(total_rotations - now_rotations) * PI / 2 + change_angle
 	
-	for i in range(0, wasd.size()):
-		var w = wasd[i]
-		var position_before_rotation_w = positions_before_rotations_wasd[i]
-		w.position = position_before_rotation_w.rotated(change_angle)
-		w.rotation = -(total_rotations - now_rotations) * PI / 2 + change_angle
 	#rotation = PI / 2 * total_rotations
 	
 	# Now we rotate the whole board along with the player, walls and blocks.
@@ -343,33 +329,50 @@ func all_not_falling():
 
 func rotation_ended():
 	tilemap.rotation = total_rotations * PI / 2
-	var wasd := get_tree().get_nodes_in_group("wasd")
+	
 	if now_rotations % 2:
 		board_dimensions = Vector2i(board_dimensions.y, board_dimensions.x)
 	else:
 		board_dimensions = board_dimensions
-		
+	
+	#print_debug(finish_area.rotation)
+	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
 		entity.rotation = 0
 		var position_before_rotation = positions_before_rotations[i]
 		entity.position = Vector2(position_before_rotation.x, position_before_rotation.y).rotated(now_rotations * PI / 2)
 		
+		#if entity.get_real_class() == "MovingBlock8x8":
 		entity.board_cords = Vector2i(
 			round((entity.position.x - left_wall - 32) / 64),
 			round((entity.position.y - top_wall - 32) / 64)
 		)
+		#print_debug("entity board_cords and position and left_wall and top_wall")
+		#print_debug(entity.board_cords)
+		#print_debug(entity.position)
+		#print_debug(left_wall)
+		#print_debug(top_wall)
 	
-	for i in range(0, wasd.size()):
-		var w = wasd[i]
-		w.rotation = 0
-		var position_before_rotation_w = positions_before_rotations_wasd[i]
-		w.position = Vector2(position_before_rotation_w.x, position_before_rotation_w.y).rotated(now_rotations * PI / 2)
-		w.board_cords = Vector2i(
-			round((w.position.x - left_wall - 32) / 64),
-			round((w.position.y - top_wall - 32) / 64)
-		)
-
+	var min_left = left_wall + (size.x / 2)
+	var max_right = -left_wall - (size.x / 2)
+	var player_left_column = int(player.position.x - (size.x / 2) - left_wall) / 64
+	var player_right_column = int(player.position.x + (size.x / 2) - left_wall - 1) / 64
+	
+	for entity in moving_entities:
+		if entity.get_real_class() == "Player":
+			continue
+		var to_the_left_or_right = abs(entity.position.x - player.position.x) < 32 + size.x / 2
+		
+		if abs(entity.position.y - player.position.y) < 32 + size.y / 2 and to_the_left_or_right:
+			if entity.position.x < player.position.x:
+				min_left = max(min_left, entity.position.x + 32 + (size.x / 2))
+			else:
+				max_right = min(max_right, entity.position.x - 32 - (size.x / 2))
+	
+	player.position.x = min(player.position.x, max_right)
+	player.position.x = max(player.position.x, min_left)
+	
 func set_board_dimensions(newValue):
 #	board_dimensions = newValue
 #	if Engine.is_editor_hint():
@@ -399,9 +402,6 @@ func set_board_dimensions(newValue):
 	for child in get_children():
 		#print_debug(child.get_name())
 		if child.is_in_group("interacting_entities"):
-			#print_debug("check")
-			child.board_dimensions = board_dimensions
-		elif child.is_in_group("wasd"):
 			#print_debug("check")
 			child.board_dimensions = board_dimensions
 		elif child.is_in_group("walls"):
