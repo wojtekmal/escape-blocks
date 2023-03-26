@@ -80,5 +80,6 @@ debug1={
 [rendering]
 
 environment/defaults/default_environment="res://default_env.tres"
+textures/canvas_textures/default_texture_filter=0
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true

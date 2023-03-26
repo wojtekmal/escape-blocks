@@ -418,7 +418,8 @@ func set_board_dimensions(newValue):
 	#return board_dimensions
 
 func load_blocks_from_tilemap():
-	for block_type in tile_blocks.values():
+	for block_key in tile_blocks:
+		var block_type = tile_blocks[block_key]
 		var block_resource = block_type["resource"]
 		var wall_tiles = walls.get_used_cells_by_id(
 			block_type["layer"],
@@ -427,12 +428,13 @@ func load_blocks_from_tilemap():
 			-1,
 		)
 		
-		if block_type["id"] == 6:
+		if block_key == "player":
 			if wall_tiles.size() != 1:
-				push_error("There has to be one player in the tilemap.")
-			player.board_cords.y = wall_tiles[0].y
-			player.position.x = left_wall + wall_tiles[0].x * 64 + 32
-			player.visible = true
+				assert(false, "There has to be one player in the tilemap. There is: " + str(wall_tiles.size()) + " Players")
+			else:
+				player.board_cords.y = wall_tiles[0].y
+				player.position.x = left_wall + wall_tiles[0].x * 64 + 32
+				player.visible = true
 			continue
 		
 		for wall_tile in wall_tiles:
