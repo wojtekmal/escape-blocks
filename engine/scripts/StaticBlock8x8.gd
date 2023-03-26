@@ -1,9 +1,6 @@
 @tool
 class_name StaticBlock8x8 extends StaticBody2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 # Always false.

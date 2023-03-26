@@ -1,16 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://ow2x5epfg1v2"]
+[gd_scene load_steps=7 format=3 uid="uid://ow2x5epfg1v2"]
 
-[ext_resource type="Texture2D" uid="uid://dlu8o1g61geft" path="res://textures/player/stworus.png" id="1"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://bcqeg3b4oi01o" path="res://textures/player/stworus_walk_0.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://bxt1tvoj5m57k" path="res://textures/player/stworus_walk_2.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://cntpmx3iifbau" path="res://textures/player/stworus_walk_3.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://dow0fgikrvhxh" path="res://textures/player/stworus_walk_1.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://4sc8o0q3xi1" path="res://textures/player/stworus_crawl_0.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://cmnjxhnqkncfk" path="res://textures/player/stworus_crawl_1.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://blmx7skb3p6ue" path="res://textures/player/stworus_crawl_2.png" id="9"]
-[ext_resource type="Texture2D" uid="uid://ctm70qp0l50t6" path="res://textures/player/stworus_crawl.png" id="10"]
-[ext_resource type="Texture2D" uid="uid://cgkdeep31bi6v" path="res://textures/player/stworus_crawl_3.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://c00o4ibdjkbef" path="res://textures/player/player.png" id="2_50npn"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="12_x6ppo"]
 
 [sub_resource type="RectangleShape2D" id="2"]
 size = Vector2(16, 50)
@@ -19,48 +11,7 @@ size = Vector2(16, 50)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10")
-}],
-"loop": true,
-"name": &"craw fallingUp",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7")
-}],
-"loop": true,
-"name": &"crawl default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10")
-}],
-"loop": true,
-"name": &"crawl fallingDown",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11")
-}],
-"loop": true,
-"name": &"crawl walking",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1")
+"texture": ExtResource("2_50npn")
 }],
 "loop": true,
 "name": &"default",
@@ -68,7 +19,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5")
+"texture": ExtResource("2_50npn")
 }],
 "loop": true,
 "name": &"fallingDown",
@@ -76,7 +27,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6")
+"texture": ExtResource("2_50npn")
 }],
 "loop": true,
 "name": &"fallingUp",
@@ -84,16 +35,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3")
+"texture": ExtResource("2_50npn")
 }],
 "loop": true,
 "name": &"walking",
@@ -111,10 +53,13 @@ script = ExtResource("2")
 shape = SubResource("2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("3")
+animation = &"fallingDown"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
+script = ExtResource("12_x6ppo")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.1
