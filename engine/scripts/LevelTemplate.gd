@@ -21,8 +21,9 @@ var frame_count = 0
 var left_wall = -board_dimensions.x * 32
 var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
-var finish_area_position_before_rotation
 var size : Vector2
+var positions_before_rotations_wasd = []
+var finish_area_position_before_rotation
 
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
@@ -245,6 +246,8 @@ func manage_changing_gravity():
 		rotations += 2
 	if(Input.is_action_just_pressed("gravity_left")):
 		rotations += 3
+	
+	var wasd := get_tree().get_nodes_in_group("wasd")
 		
 	if all_not_falling() and rotation_timer.is_stopped() and rotations != 0:
 		rotations_number += 1
@@ -256,6 +259,10 @@ func manage_changing_gravity():
 		
 		for entity in moving_entities:
 			positions_before_rotations.push_back(entity.position)
+		
+		positions_before_rotations_wasd.clear()
+		for w in wasd:
+			positions_before_rotations_wasd.push_back(w.position)
 	
 	if rotation_timer.is_stopped():
 		# If there is no rotation now, skip the rest.
@@ -270,6 +277,12 @@ func manage_changing_gravity():
 		entity.position = position_before_rotation.rotated(change_angle)
 		if entity.get_real_class() != "Player":
 			entity.rotation = -(total_rotations - now_rotations) * PI / 2 + change_angle
+	
+	for i in range(0, wasd.size()):
+		var w = wasd[i]
+		var position_before_rotation_w = positions_before_rotations_wasd[i]
+		w.position = position_before_rotation_w.rotated(change_angle)
+		w.rotation = -(total_rotations - now_rotations) * PI / 2 + change_angle
 
 func update_counter(x):
 	rotations_number = x
@@ -284,6 +297,7 @@ func all_not_falling():
 
 func rotation_ended():
 	tilemap.rotation = total_rotations * PI / 2
+	var wasd := get_tree().get_nodes_in_group("wasd")
 	
 	if now_rotations % 2:
 		board_dimensions = Vector2i(board_dimensions.y, board_dimensions.x)
@@ -299,6 +313,16 @@ func rotation_ended():
 		entity.board_cords = Vector2i(
 			round((entity.position.x - left_wall - 32) / 64),
 			round((entity.position.y - top_wall - 32) / 64)
+		)
+	
+	for i in range(0, wasd.size()):
+		var w = wasd[i]
+		w.rotation = 0
+		var position_before_rotation_w = positions_before_rotations_wasd[i]
+		w.position = Vector2(position_before_rotation_w.x, position_before_rotation_w.y).rotated(now_rotations * PI / 2)
+		w.board_cords = Vector2i(
+			round((w.position.x - left_wall - 32) / 64),
+			round((w.position.y - top_wall - 32) / 64)
 		)
 	
 	var min_left = left_wall + (size.x / 2)
@@ -329,6 +353,8 @@ func set_board_dimensions(newValue):
 		#print_debug(child.get_name())
 		if child.is_in_group("interacting_entities"):
 			#print_debug("check")
+			child.board_dimensions = board_dimensions
+		elif child.is_in_group("wasd"):
 			child.board_dimensions = board_dimensions
 		elif child.is_in_group("walls"):
 			child.position = Vector2(left_wall, top_wall)
