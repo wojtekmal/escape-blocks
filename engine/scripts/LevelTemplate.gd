@@ -54,6 +54,12 @@ var tile_blocks := {
 		"layer" : 0,
 		"id" : 0,
 	},
+	"player" : {
+		"resource" : preload("res://board_stuff/Player.tscn"),
+		"adress" : Vector2i(0, 0),
+		"layer" : 0,
+		"id" : 6
+	},
 }
 
 func _ready():
@@ -420,6 +426,15 @@ func load_blocks_from_tilemap():
 			block_type["adress"],
 			-1,
 		)
+		
+		if block_type["id"] == 6:
+			if wall_tiles.size() != 1:
+				push_error("There has to be one player in the tilemap.")
+			player.board_cords.y = wall_tiles[0].y
+			player.position.x = left_wall + wall_tiles[0].x * 64 + 32
+			player.visible = true
+			continue
+		
 		for wall_tile in wall_tiles:
 			var new_block = block_resource.instantiate()
 			new_block.board_cords = wall_tile
