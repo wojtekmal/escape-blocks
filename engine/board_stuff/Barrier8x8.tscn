@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://cqh668rmnorka"]
 
-[ext_resource type="Script" path="res://blocks/StaticBlock8x8.gd" id="1_v3toh"]
+[ext_resource type="Script" path="res://scripts/StaticBlock8x8.gd" id="1_pt68n"]
 [ext_resource type="Texture2D" uid="uid://bgq60xm1ldmss" path="res://textures/blocks/static_block.png" id="2_cd3e8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eto6a"]
@@ -11,7 +11,7 @@ visible = false
 position = Vector2(32, 32)
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_v3toh")
+script = ExtResource("1_pt68n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cd3e8")

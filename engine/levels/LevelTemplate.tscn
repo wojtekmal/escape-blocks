@@ -5,12 +5,12 @@
 [ext_resource type="Script" path="res://scripts/LevelTemplate.gd" id="4"]
 [ext_resource type="Script" path="res://scripts/TileMap.gd" id="4_gvo1y"]
 [ext_resource type="Script" path="res://scripts/RotationTimer.gd" id="6_lnp4p"]
+[ext_resource type="Texture2D" uid="uid://i7xh45ciueey" path="res://textures/blocks/barrier.png" id="6_r6h1s"]
 [ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/blocks/block.png" id="7_oxuh3"]
-[ext_resource type="Texture2D" uid="uid://bgq60xm1ldmss" path="res://textures/blocks/static_block.png" id="8_emeda"]
-[ext_resource type="Texture2D" uid="uid://5y23edqo0olg" path="res://textures/blocks/wall_block.png" id="8_pagpe"]
+[ext_resource type="Texture2D" uid="uid://drv87tnvat6t1" path="res://textures/blocks/static.png" id="8_22un6"]
 [ext_resource type="Texture2D" uid="uid://dhx3mdga63otx" path="res://textures/blocks/finish.png" id="9_5yrg8"]
-[ext_resource type="PackedScene" uid="uid://bbfxt5tqpp2n4" path="res://hud_stuff/counter.tscn" id="9_pbxjo"]
-[ext_resource type="Texture2D" uid="uid://m21ob1ja32p5" path="res://textures/player/player_front.png" id="10_25ou1"]
+[ext_resource type="PackedScene" path="res://hud_stuff/counter.tscn" id="9_pbxjo"]
+[ext_resource type="Texture2D" uid="uid://c00o4ibdjkbef" path="res://textures/player/player.png" id="10_enmjg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -80,33 +80,33 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ja7cw")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_id2jv"]
-texture = ExtResource("8_pagpe")
-texture_region_size = Vector2i(64, 64)
+texture = ExtResource("6_r6h1s")
+texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_voqr5"]
 texture = ExtResource("7_oxuh3")
-texture_region_size = Vector2i(64, 64)
+texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7h21e"]
-texture = ExtResource("8_emeda")
-texture_region_size = Vector2i(64, 64)
+texture = ExtResource("8_22un6")
+texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21381"]
 resource_name = "Finish"
 texture = ExtResource("9_5yrg8")
-texture_region_size = Vector2i(64, 64)
+texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ejgp5"]
-texture = ExtResource("10_25ou1")
-texture_region_size = Vector2i(64, 64)
+texture = ExtResource("10_enmjg")
+texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_srb8s"]
-tile_size = Vector2i(64, 64)
+tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_id2jv")
 sources/1 = SubResource("TileSetAtlasSource_voqr5")
 sources/2 = SubResource("TileSetAtlasSource_7h21e")
@@ -138,8 +138,9 @@ script = ExtResource("6_lnp4p")
 
 [node name="Walls" type="TileMap" parent="." groups=["walls"]]
 position = Vector2(-256, -160)
+scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_srb8s")
-cell_quadrant_size = 64
+cell_quadrant_size = 32
 format = 2
 
 [node name="Counter" parent="." instance=ExtResource("9_pbxjo")]
