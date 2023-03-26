@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=20 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://5y23edqo0olg" path="res://textures/blocks/wall_block.png" id="8_pagpe"]
 [ext_resource type="Texture2D" uid="uid://dhx3mdga63otx" path="res://textures/blocks/finish.png" id="9_5yrg8"]
 [ext_resource type="PackedScene" uid="uid://bbfxt5tqpp2n4" path="res://hud_stuff/counter.tscn" id="9_pbxjo"]
+[ext_resource type="Texture2D" uid="uid://m21ob1ja32p5" path="res://textures/player/player_front.png" id="10_25ou1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -99,18 +100,25 @@ texture = ExtResource("9_5yrg8")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ejgp5"]
+texture = ExtResource("10_25ou1")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_srb8s"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_id2jv")
 sources/1 = SubResource("TileSetAtlasSource_voqr5")
 sources/2 = SubResource("TileSetAtlasSource_7h21e")
 sources/3 = SubResource("TileSetAtlasSource_21381")
+sources/6 = SubResource("TileSetAtlasSource_ejgp5")
 
 [node name="LevelTemplate3" type="Node2D"]
 script = ExtResource("4")
 board_dimensions = Vector2i(8, 5)
 
 [node name="Player" parent="." instance=ExtResource("1")]
+visible = false
 collision_layer = 10
 collision_mask = 1
 board_cords = Vector2i(3, 2)
