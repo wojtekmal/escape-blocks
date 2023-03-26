@@ -58,6 +58,7 @@ sprite_frames = SubResource("3")
 animation = &"fallingDown"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -19)
 ignore_rotation = false
 script = ExtResource("12_x6ppo")
 
