@@ -7,6 +7,7 @@ extends Node2D
 @export var now_rotations : int
 #children
 @onready var tilemap := $BoardLimits
+@onready var overlay := $Overlay
 @onready var player := $Player
 @onready var rotation_timer = $RotationTimer
 @onready var walls := $Walls
@@ -63,6 +64,7 @@ func _ready():
 	rotation_timer.timeout.connect(rotation_ended)
 	board_dimensions = board_dimensions
 	tilemap.board_dimensions = board_dimensions
+	overlay.board_dimensions = board_dimensions
 	#calls the setter function
 	size = $Player/StandingHitBox.shape.size
 
@@ -276,6 +278,7 @@ func manage_changing_gravity():
 	
 	var change_angle = PI * now_rotations * (rotation_timer.wait_time - rotation_timer.time_left) / rotation_timer.wait_time / 2
 	tilemap.rotation = (total_rotations - now_rotations) * PI / 2 + change_angle
+	overlay.rotation = (total_rotations - now_rotations) * PI / 2 + change_angle
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
@@ -303,6 +306,7 @@ func all_not_falling():
 
 func rotation_ended():
 	tilemap.rotation = total_rotations * PI / 2
+	overlay.rotation = total_rotations * PI / 2
 	var wasd := get_tree().get_nodes_in_group("wasd")
 	
 	if now_rotations % 2:
@@ -323,7 +327,7 @@ func rotation_ended():
 	
 	for i in range(0, wasd.size()):
 		var w = wasd[i]
-		w.rotation = 0
+		w.rotation = PI / 2 * (total_rotations % 4)
 		var position_before_rotation_w = positions_before_rotations_wasd[i]
 		w.position = Vector2(position_before_rotation_w.x, position_before_rotation_w.y).rotated(now_rotations * PI / 2)
 		w.board_cords = Vector2i(
