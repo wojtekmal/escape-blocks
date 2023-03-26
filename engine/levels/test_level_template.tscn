@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://o5wwgygxb364"]
 
-[ext_resource type="PackedScene" path="res://levels/LevelTemplate.tscn" id="1_abf3c"]
-[ext_resource type="PackedScene" uid="uid://dnnpl12gw24v" path="res://board_stuff/MovingBlock8x8.tscn" id="2_w7lo1"]
+[ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_abf3c"]
+[ext_resource type="PackedScene" path="res://board_stuff/MovingBlock8x8.tscn" id="2_w7lo1"]
 
 [node name="LevelTemplate" instance=ExtResource("1_abf3c")]
 
