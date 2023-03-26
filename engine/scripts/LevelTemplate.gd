@@ -2,9 +2,6 @@
 class_name LevelTemplate
 extends Node2D
 
-#export var boardWidth: int := 1 : set = update_board_width
-#export var boardHeight: int := 1 : set = update_board_height
-#export
 @export var board_dimensions : Vector2i : set = set_board_dimensions
 @export var total_rotations : int = 0
 @export var now_rotations : int
@@ -24,9 +21,9 @@ var frame_count = 0
 var left_wall = -board_dimensions.x * 32
 var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
-var finish_area_position_before_rotation
 var size : Vector2
-#var finish_area_start_rotation
+var positions_before_rotations_wasd = []
+var finish_area_position_before_rotation
 
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
@@ -66,17 +63,12 @@ func _ready():
 	rotation_timer.timeout.connect(rotation_ended)
 	board_dimensions = board_dimensions
 	tilemap.board_dimensions = board_dimensions
-	#finish_area_start_rotation = finish_area.rotation
 	#calls the setter function
 	size = $Player/StandingHitBox.shape.size
 
 	if Engine.is_editor_hint(): return
 	
 	load_blocks_from_tilemap()
-	#for moving_block in moving_blocks:
-	#	print_debug("check")
-	#for moving_block in moving_blocks:
-	#	column_block_heights[moving_block.board_cords.x].push_back(moving_block.position.y)
 
 func _process(delta):
 	# We won't be loading frames in the editor.
@@ -90,10 +82,6 @@ func _process(delta):
 
 func maybe_end_game():
 	print("End game. Total rotations: " + str(rotations_number))
-	#print_debug(player.rotation)
-	#print_debug(finish_area.rotation)
-	#if (finish_area.initial_rotations + total_rotations) % 4 == 0 and rotation_timer.is_stopped():
-	#	print_debug("End game.")
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -217,14 +205,11 @@ func move_player(delta):
 	if Input.is_action_just_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0):
 		player.y_speed = -400
 		coyote_timer.stop()
-		#rise_timer.start(rise_timer.wait_time)
 	
-	#print_debug(rise_timer.time_left)
 	var delta_height = delta * player.y_speed
 	var new_player_cord_y = int(player.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
 	
 	if player.position.y + delta_height <= min_pos_y:
-		#rise_timer.stop()
 		player.y_speed = speed_of_ceiling
 	elif player.y_speed < 0:
 		player.position.y += delta_height
@@ -241,7 +226,7 @@ func move_player(delta):
 	
 	if new_player_cord_y > max_height:
 		player.is_falling = false
-		#here the height of the block is set so that it lands on something else
+		# Here the height of the block is set so that it lands on something else.
 		player.board_cords.y = max_height
 		coyote_timer.start(coyote_timer.wait_time)
 	else:
@@ -267,6 +252,8 @@ func manage_changing_gravity():
 		rotations += 2
 	if(Input.is_action_just_pressed("gravity_left")):
 		rotations += 3
+	
+	var wasd := get_tree().get_nodes_in_group("wasd")
 		
 	if all_not_falling() and rotation_timer.is_stopped() and rotations != 0:
 		rotations_number += 1
@@ -278,6 +265,10 @@ func manage_changing_gravity():
 		
 		for entity in moving_entities:
 			positions_before_rotations.push_back(entity.position)
+		
+		positions_before_rotations_wasd.clear()
+		for w in wasd:
+			positions_before_rotations_wasd.push_back(w.position)
 	
 	if rotation_timer.is_stopped():
 		# If there is no rotation now, skip the rest.
@@ -285,7 +276,6 @@ func manage_changing_gravity():
 	
 	var change_angle = PI * now_rotations * (rotation_timer.wait_time - rotation_timer.time_left) / rotation_timer.wait_time / 2
 	tilemap.rotation = (total_rotations - now_rotations) * PI / 2 + change_angle
-	#print_debug((total_rotations - now_rotations) * PI / 2 + change_angle)
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
@@ -294,33 +284,11 @@ func manage_changing_gravity():
 		if entity.get_real_class() != "Player":
 			entity.rotation = -(total_rotations - now_rotations) * PI / 2 + change_angle
 	
-	#rotation = PI / 2 * total_rotations
-	
-	# Now we rotate the whole board along with the player, walls and blocks.
-	# We rotate the board around its center in the direction opposite to the way
-	# the player is rotated. 
-	
-	#if now_rotations % 2:
-	#	board_dimensions = Vector2i(board_dimensions.y, board_dimensions.x)
-	#
-	#for i in range(0, now_rotations):
-	#	# I'm rotating everything 90 degrees counterclockwise 'now_rotations' times.
-	#	for entity in moving_entities:
-	#		pass
-	#		# For the blocks I'm changing the positions and board coordinates 
-	#		# and for the player I'm changing only the position.
-	#		if entity.get_real_class() == "Player":
-	#			entity.position = Vector2(-entity.position.y, entity.position.x)
-	#			print_debug(entity.position)
-	#			continue
-	#		
-	#		entity.board_cords = Vector2i(
-	#			-entity.board_cords.y,
-	#			board_dimensions.x - entity.board_cords.x - 1
-	#		)
-	#		print_debug(entity.board_cords)
-	#		entity.position = Vector2(-entity.position.y, entity.position.x)
-	#		print_debug(entity.position)
+	for i in range(0, wasd.size()):
+		var w = wasd[i]
+		var position_before_rotation_w = positions_before_rotations_wasd[i]
+		w.position = position_before_rotation_w.rotated(change_angle)
+		w.rotation = -(total_rotations - now_rotations) * PI / 2 + change_angle
 
 func update_counter(x):
 	rotations_number = x
@@ -335,13 +303,12 @@ func all_not_falling():
 
 func rotation_ended():
 	tilemap.rotation = total_rotations * PI / 2
+	var wasd := get_tree().get_nodes_in_group("wasd")
 	
 	if now_rotations % 2:
 		board_dimensions = Vector2i(board_dimensions.y, board_dimensions.x)
 	else:
 		board_dimensions = board_dimensions
-	
-	#print_debug(finish_area.rotation)
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
@@ -349,16 +316,20 @@ func rotation_ended():
 		var position_before_rotation = positions_before_rotations[i]
 		entity.position = Vector2(position_before_rotation.x, position_before_rotation.y).rotated(now_rotations * PI / 2)
 		
-		#if entity.get_real_class() == "MovingBlock8x8":
 		entity.board_cords = Vector2i(
 			round((entity.position.x - left_wall - 32) / 64),
 			round((entity.position.y - top_wall - 32) / 64)
 		)
-		#print_debug("entity board_cords and position and left_wall and top_wall")
-		#print_debug(entity.board_cords)
-		#print_debug(entity.position)
-		#print_debug(left_wall)
-		#print_debug(top_wall)
+	
+	for i in range(0, wasd.size()):
+		var w = wasd[i]
+		w.rotation = 0
+		var position_before_rotation_w = positions_before_rotations_wasd[i]
+		w.position = Vector2(position_before_rotation_w.x, position_before_rotation_w.y).rotated(now_rotations * PI / 2)
+		w.board_cords = Vector2i(
+			round((w.position.x - left_wall - 32) / 64),
+			round((w.position.y - top_wall - 32) / 64)
+		)
 	
 	var min_left = left_wall + (size.x / 2)
 	var max_right = -left_wall - (size.x / 2)
@@ -380,42 +351,21 @@ func rotation_ended():
 	player.position.x = max(player.position.x, min_left)
 	
 func set_board_dimensions(newValue):
-#	board_dimensions = newValue
-#	if Engine.is_editor_hint():
-#		for i in range(-board_dimensions.x * 4 - 1, board_dimensions.x * 4 + 1):
-#			tilemap.set_cell(0, Vector2i(i, board_dimensions.y * 4), -1, Vector2i(0, 0))
-#			tilemap.set_cell(0, Vector2i(i, -board_dimensions.y * 4 - 1), -1, Vector2i(0, 0))
-#		
-#		for i in range(-board_dimensions.y * 4 - 1, board_dimensions.y * 4 + 1):
-#			tilemap.set_cell(0, Vector2i(-board_dimensions.x * 4 - 1, i), -1, Vector2i(0, 0))
-#			tilemap.set_cell(0, Vector2i(board_dimensions.x * 4, i), -1, Vector2i(0, 0))
-#			
-#		for i in range(-newValue.x * 4 - 1, newValue.x * 4 + 1):
-#			tilemap.set_cell(0, Vector2i(i, newValue.y * 4), 0, Vector2i(0, 0))
-#			tilemap.set_cell(0, Vector2i(i, -newValue.y * 4 - 1), 0, Vector2i(0, 0))
-#	
-#		for i in range(-newValue.y * 4 - 1, newValue.y * 4 + 1):
-#			tilemap.set_cell(0, Vector2i(-newValue.x * 4 - 1, i), 0, Vector2i(0, 0))
-#			tilemap.set_cell(0, Vector2i(newValue.x * 4, i), 0, Vector2i(0, 0))
-#	
 	board_dimensions = newValue
 	left_wall = -board_dimensions.x * 32
 	top_wall = -board_dimensions.y * 32
-	#tilemap.set_board_dimensions(board_dimensions)
-	#walls = get_node("Walls")
-	#walls.position = Vector2(left_wall, top_wall)
 	
 	for child in get_children():
 		#print_debug(child.get_name())
 		if child.is_in_group("interacting_entities"):
 			#print_debug("check")
 			child.board_dimensions = board_dimensions
+		elif child.is_in_group("wasd"):
+			child.board_dimensions = board_dimensions
 		elif child.is_in_group("walls"):
 			child.position = Vector2(left_wall, top_wall)
 		elif child.is_in_group("board_limits"):
 			child.board_dimensions = board_dimensions
-	
-	#return board_dimensions
 
 func load_blocks_from_tilemap():
 	for block_key in tile_blocks:
