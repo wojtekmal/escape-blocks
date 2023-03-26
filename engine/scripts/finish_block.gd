@@ -1,5 +1,5 @@
 @tool
-class_name StaticBlock8x8 extends StaticBody2D
+class_name FinishBlock extends StaticBody2D
 
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
