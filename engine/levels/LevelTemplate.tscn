@@ -125,6 +125,7 @@ separation = Vector2i(2, 2)
 2:0/2 = 2
 2:0/2/flip_v = true
 2:0/3 = 3
+2:0/3/flip_h = true
 2:0/4 = 4
 2:0/4/flip_h = true
 2:0/4/flip_v = true
@@ -183,11 +184,12 @@ layer_0/tile_data = PackedInt32Array(262144, 6, 0, 262145, 3, 0, 262146, 2, 0, 2
 
 [node name="Counter" parent="." instance=ExtResource("9_pbxjo")]
 
-[node name="Overlay" type="TileMap" parent="."]
-position = Vector2(-256, -160)
+[node name="Overlay" type="TileMap" parent="." groups=["board_limits"]]
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_7fwbe")
 cell_quadrant_size = 32
 format = 2
+layer_0/tile_data = PackedInt32Array(262144, 131072, 131072, 196609, 131072, 196608, 196608, 131072, 65536, 262145, 131072, 262144)
+script = ExtResource("4_gvo1y")
 
 [connection signal="finished" from="Player" to="." method="_on_player_finished"]
