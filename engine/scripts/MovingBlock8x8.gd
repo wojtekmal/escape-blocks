@@ -9,6 +9,7 @@ class_name MovingBlock8x8 extends CharacterBody2D
 @export var is_falling : bool : set = set_is_falling
 # How fast the block is falling down.
 @export var y_speed := 0
+@export var start_rotations : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

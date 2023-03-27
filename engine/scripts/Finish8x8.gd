@@ -1,11 +1,17 @@
-extends Node2D
+extends Area2D
+signal player_reached_finish_area
 
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var is_falling := true : set = set_is_falling
+@export var start_rotations : int = 0
 
 func _ready():
 	add_to_group("wasd")
+
+func _process(delta):
+	if has_overlapping_bodies():
+		emit_signal("player_reached_finish_area", start_rotations)
 
 func set_is_falling(new_value):
 	if new_value == true:
