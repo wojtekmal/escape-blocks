@@ -45,7 +45,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_waxpy"]
 
 [node name="Player" type="CharacterBody2D" groups=["interacting_entities"]]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 0
 script = ExtResource("2")
 
