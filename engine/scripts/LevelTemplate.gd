@@ -24,7 +24,7 @@ var top_wall = -board_dimensions.y * 32
 var positions_before_rotations = []
 var size : Vector2
 var positions_before_rotations_wasd = []
-var finish_area_position_before_rotation
+var game_ended := false
 
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
@@ -38,7 +38,7 @@ var tile_blocks := {
 		"resource" : preload("res://board_stuff/Finish8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
-		"id" : 3,
+		"id" : 4,
 	},
 	"moving" : {
 		"resource" : preload("res://board_stuff/StaticBlock8x8.tscn"),
@@ -62,11 +62,12 @@ var tile_blocks := {
 
 func _ready():
 	rotation_timer.timeout.connect(rotation_ended)
+	#calls the setter function
 	board_dimensions = board_dimensions
 	tilemap.board_dimensions = board_dimensions
 	overlay.board_dimensions = board_dimensions
-	#calls the setter function
 	size = $Player/StandingHitBox.shape.size
+	game_ended = false
 
 	if Engine.is_editor_hint(): return
 	
@@ -81,9 +82,6 @@ func _process(delta):
 		
 	first_frame = false
 	frame_count += 1
-
-func maybe_end_game():
-	print("End game. Total rotations: " + str(rotations_number))
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -277,21 +275,21 @@ func manage_changing_gravity():
 		return
 	
 	var change_angle = PI * now_rotations * (rotation_timer.wait_time - rotation_timer.time_left) / rotation_timer.wait_time / 2
-	tilemap.rotation = (total_rotations - now_rotations) * PI / 2 + change_angle
-	overlay.rotation = (total_rotations - now_rotations) * PI / 2 + change_angle
+	tilemap.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
+	overlay.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
 		var position_before_rotation = positions_before_rotations[i]
 		entity.position = position_before_rotation.rotated(change_angle)
-		if entity.get_real_class() != "Player":
-			entity.rotation = -(total_rotations - now_rotations) * PI / 2 + change_angle
+		if !entity.is_in_group("player"):
+			entity.rotation = (entity.start_rotations + total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	
 	for i in range(0, wasd.size()):
 		var w = wasd[i]
 		var position_before_rotation_w = positions_before_rotations_wasd[i]
 		w.position = position_before_rotation_w.rotated(change_angle)
-		w.rotation = -(total_rotations - now_rotations) * PI / 2 + change_angle
+		w.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 
 func update_counter(x):
 	rotations_number = x
@@ -316,7 +314,10 @@ func rotation_ended():
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
-		entity.rotation = 0
+		if entity.is_in_group("player"):
+			entity.rotation = 0
+		else:
+			entity.rotation = (entity.start_rotations + total_rotations) * PI / 2
 		var position_before_rotation = positions_before_rotations[i]
 		entity.position = Vector2(position_before_rotation.x, position_before_rotation.y).rotated(now_rotations * PI / 2)
 		
@@ -372,32 +373,50 @@ func set_board_dimensions(newValue):
 			child.board_dimensions = board_dimensions
 
 func load_blocks_from_tilemap():
+	var block_type = tile_blocks["player"]
+	var block_resource = block_type["resource"]
+	var wall_tiles = walls.get_used_cells_by_id(
+		block_type["layer"],
+		block_type["id"],
+		block_type["adress"],
+		-1,
+	)
+	
+	if wall_tiles.size() != 1:
+		assert(false, "There has to be one player in the tilemap. There is: " + str(wall_tiles.size()) + " Players")
+	
 	for block_key in tile_blocks:
-		var block_type = tile_blocks[block_key]
-		var block_resource = block_type["resource"]
-		var wall_tiles = walls.get_used_cells_by_id(
-			block_type["layer"],
-			block_type["id"],
-			block_type["adress"],
-			-1,
-		)
-		
-		if block_key == "player":
-			if wall_tiles.size() != 1:
-				assert(false, "There has to be one player in the tilemap. There is: " + str(wall_tiles.size()) + " Players")
-			else:
+		for start_rotations in range(0, 4):
+			block_type = tile_blocks[block_key]
+			block_resource = block_type["resource"]
+			wall_tiles = walls.get_used_cells_by_id(
+				block_type["layer"],
+				block_type["id"],
+				block_type["adress"],
+				start_rotations,
+			)
+			
+			if block_key == "player" && wall_tiles.size() > 0:
 				player.board_cords.y = wall_tiles[0].y
 				player.position.x = left_wall + wall_tiles[0].x * 64 + 32
 				player.visible = true
-			continue
-		
-		for wall_tile in wall_tiles:
-			var new_block = block_resource.instantiate()
-			new_block.board_cords = wall_tile
-			new_block.board_dimensions = board_dimensions
-			add_child(new_block)
+				continue
+			
+			for wall_tile in wall_tiles:
+				var new_block = block_resource.instantiate()
+				new_block.board_cords = wall_tile
+				new_block.board_dimensions = board_dimensions
+				new_block.start_rotations = start_rotations
+				
+				if block_key == "finish":
+					new_block.player_reached_finish_area.connect(_on_player_finished)
+				
+				add_child(new_block)
+	
 	walls.visible = false
 
-func _on_player_finished():
-	print("finished signal recived")
-	maybe_end_game()
+func _on_player_finished(start_rotations):
+	#print("finished signal recived")
+	if (total_rotations + start_rotations) % 4 == 0 && !game_ended:
+		game_ended = true
+		print("End game. Total rotations: " + str(rotations_number))

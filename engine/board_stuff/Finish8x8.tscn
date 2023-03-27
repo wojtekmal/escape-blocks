@@ -23,8 +23,8 @@ gradient = SubResource("Gradient_4h20i")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fqwwo"]
 emission_shape = 1
 emission_sphere_radius = 10.0
-direction = Vector3(0, 0, 0)
-spread = 180.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 20.0
 initial_velocity_max = 26.0
@@ -37,19 +37,17 @@ scale_max = 5.0
 color_ramp = SubResource("GradientTexture1D_bnb8c")
 color_initial_ramp = SubResource("GradientTexture1D_c1fip")
 
-[node name="Finish" type="Node2D"]
+[node name="Finish8x8" type="Area2D"]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("1_d6rvf")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_iblkr")
-
-[node name="Finish" type="Sprite2D" parent="."]
+[node name="Texture" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_lrwi6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iblkr")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 64

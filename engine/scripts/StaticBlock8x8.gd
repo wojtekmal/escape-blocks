@@ -7,6 +7,7 @@ class_name StaticBlock8x8 extends StaticBody2D
 @export var is_falling := false : set = set_is_falling
 # Doesn't actually change.
 @export var y_speed := 0
+@export var start_rotations : int = 0
 
 func _ready():
 	pass # Replace with function body.
