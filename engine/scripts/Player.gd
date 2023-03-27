@@ -1,7 +1,6 @@
 @tool
 class_name Player
 extends CharacterBody2D
-signal finished
 
 @export var walk_speed = 60
 @export var jump_speed = 300
@@ -10,11 +9,10 @@ signal finished
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var is_falling : bool : set = set_is_falling
-
+@export var start_rotations : int = 0
 # How fast the player is falling down.
 @export var y_speed := 0
 
-#@export var is_rotating : bool : set = set_is_rotating
 var offset = 10;
 var crawling := false
 
@@ -47,22 +45,6 @@ func calculate_move_acceleration(
 	return new_velocity
 
 func rotate_player(delta, now_rotations, total_rotations, time_left):
-
-	
-	#var rotations = 0
-	#if(Input.is_action_just_pressed("gravity_right")):
-	#	rotations += 1
-	#if(Input.is_action_just_pressed("gravity_up")):
-	#	rotations += 2
-	#if(Input.is_action_just_pressed("gravity_left")):
-	#	rotations += 3
-	#	
-	#if rotation_timer.is_stopped() and rotations != 0:
-	#	total_rotations += rotations
-	#	now_rotations = rotations
-	#	rotation_timer.start(0.5)
-		
-	#if !rotation_timer.is_stopped():
 	rotation = (total_rotations - now_rotations) * PI/ 2 + now_rotations * (0.5 - time_left) * PI
 
 func animations():
@@ -99,10 +81,3 @@ func set_board_dimensions(newValue):
 
 func set_is_falling(new_value):
 	is_falling = new_value
-	
-#func _end_of_rotation():
-#	rotation = total_rotations * PI / 2
-
-func _on_finish_detection_area_entered(area):
-	print("finish!")
-	emit_signal("finished")
