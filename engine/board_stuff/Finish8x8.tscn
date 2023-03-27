@@ -1,30 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://2dkql7fm7wva"]
+[gd_scene load_steps=8 format=3 uid="uid://2dkql7fm7wva"]
 
 [ext_resource type="Script" path="res://scripts/Finish8x8.gd" id="1_d6rvf"]
 [ext_resource type="Texture2D" uid="uid://dhx3mdga63otx" path="res://textures/blocks/finish.png" id="2_lrwi6"]
+[ext_resource type="Texture2D" uid="uid://c1b1kvyaj2575" path="res://textures/blocks/emergency_escape_sign.png" id="3_reobm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iblkr"]
 radius = 19.0263
 
-[sub_resource type="Gradient" id="Gradient_jqikb"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.514793)
+[sub_resource type="Gradient" id="Gradient_f1wcw"]
+offsets = PackedFloat32Array(0, 0.0740741, 0.909465, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_c1fip"]
-gradient = SubResource("Gradient_jqikb")
-
-[sub_resource type="Gradient" id="Gradient_4h20i"]
-offsets = PackedFloat32Array(0.905325, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_bnb8c"]
-gradient = SubResource("Gradient_4h20i")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h4lti"]
+gradient = SubResource("Gradient_f1wcw")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fqwwo"]
 emission_shape = 1
 emission_sphere_radius = 10.0
-direction = Vector3(0, -1, 0)
-spread = 0.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 20.0
 initial_velocity_max = 26.0
@@ -32,10 +26,10 @@ angular_velocity_min = -45.0
 angular_velocity_max = 45.0
 angle_min = -90.0
 angle_max = 90.0
-scale_min = 4.0
-scale_max = 5.0
-color_ramp = SubResource("GradientTexture1D_bnb8c")
-color_initial_ramp = SubResource("GradientTexture1D_c1fip")
+scale_min = 0.2
+scale_max = 0.3
+color = Color(1, 1, 1, 0.219608)
+color_ramp = SubResource("GradientTexture1D_h4lti")
 
 [node name="Finish8x8" type="Area2D"]
 collision_layer = 8
@@ -49,7 +43,14 @@ texture = ExtResource("2_lrwi6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_iblkr")
 
+[node name="EmergencyEscapeSign" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(2, 2)
+texture = ExtResource("3_reobm")
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 64
+z_index = 2
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_fqwwo")
+texture = ExtResource("3_reobm")
 local_coords = true

@@ -420,3 +420,6 @@ func _on_player_finished(start_rotations):
 	if (total_rotations + start_rotations) % 4 == 0 && !game_ended:
 		game_ended = true
 		print("End game. Total rotations: " + str(rotations_number))
+	if $CanvasLayer/RichTextLabel != null:
+		$CanvasLayer/RichTextLabel.text = "End game. Total rotations: " + str(rotations_number)
+		$CanvasLayer/RichTextLabel.visible = true
