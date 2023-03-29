@@ -104,12 +104,18 @@ func manage_falling_entities(delta):
 		return
 	
 	column_top_still_blocks.clear()
-	moving_entities.clear()
-	
-	for child in self.get_children():
-		if child.is_in_group("interacting_entities"):
-			moving_entities.push_back(child)
 
+	
+# Czy można to zamienić
+#	moving_entities.clear()
+#	for child in self.get_children():
+#		if child.is_in_group("interacting_entities"):
+#			moving_entities.push_back(child)
+#			|
+#			V
+# Na to?
+
+	moving_entities = get_tree().get_nodes_in_group("interacting_entities")
 	moving_entities.sort_custom(compare_entity_heights)
 	
 	for i in range(0, board_dimensions.x):
@@ -176,6 +182,7 @@ func move_player(delta):
 	var player_left_column = int(player.position.x - (size.x / 2) - left_wall) / 64
 	var player_right_column = int(player.position.x + (size.x / 2) - left_wall - 1) / 64
 	
+	moving_entities = get_tree().get_nodes_in_group("interacting_entities")
 	for entity in moving_entities:
 		if entity.get_real_class() == "Player":
 			continue
@@ -278,7 +285,7 @@ func manage_changing_gravity():
 		total_rotations += now_rotations
 		rotation_timer.start(rotation_timer.wait_time)
 		positions_before_rotations.clear()
-		
+			
 		for entity in moving_entities:
 			positions_before_rotations.push_back(entity.position)
 		
@@ -443,6 +450,7 @@ func _on_player_finished(start_rotations):
 		if $Control/CanvasLayer/RichTextLabel != null:
 			$Control/CanvasLayer/RichTextLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
 			$Control/CanvasLayer/RichTextLabel.visible = true
+			$Control/CanvasLayer/ColorRect.visible = true
 
 func _on_door_spawn(door : Object, value):
 	if not value:
@@ -454,7 +462,6 @@ func _on_door_spawn(door : Object, value):
 		door_blocks[door] = new_block 
 		call_deferred("add_child", new_block)
 	else:
-		print(door, " ", door_blocks[door])
 		door_blocks[door].call_deferred("queue_free")
 		door_blocks.erase(door)
 	pass
