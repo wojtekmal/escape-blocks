@@ -319,10 +319,7 @@ func update_counter(x):
 	counter.update(rotations_number)
 
 func all_not_falling():
-	moving_entities.clear()
-	for child in self.get_children():
-		if child.is_in_group("interacting_entities"):
-			moving_entities.push_back(child)
+	moving_entities = get_tree().get_nodes_in_group("interacting_entities")
 	for entity in moving_entities:
 		if entity.is_falling:
 			return false
@@ -454,7 +451,7 @@ func _on_player_finished(start_rotations):
 
 func _on_door_spawn(door : Object, value):
 	if not value:
-		var block = tile_blocks["static"];
+		var block = tile_blocks["barrier"];
 		var new_block = block["resource"].instantiate()
 		new_block.board_cords = door.board_cords
 		new_block.board_dimensions = board_dimensions
