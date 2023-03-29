@@ -51,6 +51,7 @@ func _ready():
 	connect("open_door", Callable(get_parent(), "_on_door_spawn"));
 	emit_signal("open_door", self, false)
 
+#cloud chasing
 func opened(value := true):
 	if value:
 		emit_signal("open_door", self, value)
