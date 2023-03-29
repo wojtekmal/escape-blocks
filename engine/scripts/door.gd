@@ -26,11 +26,11 @@ func set_board_cords(newValue):
 	set_position(Vector2i(board_cords.x * 64 + 32 - board_dimensions.x * 32, board_cords.y * 64 + 32 - board_dimensions.y * 32))
 
 func _process(delta):
-	var can_close = $Area2D.get_overlapping_bodies().size() <= 1
-	if open == false && pressed_buttons == buttons_number && can_close:
+	var can_close : bool = $Area2D.get_overlapping_bodies().size() == 0
+	if open == false && pressed_buttons == buttons_number: #opening
 		open = true
 		opened(true)
-	elif open == true && pressed_buttons != buttons_number && can_close:
+	elif open == true && pressed_buttons != buttons_number && can_close: #closing
 		open = false
 		opened(false)
 
