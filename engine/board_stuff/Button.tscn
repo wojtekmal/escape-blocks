@@ -1,30 +1,98 @@
-[gd_scene load_steps=5 format=3 uid="uid://vntb00nxrmwy"]
+[gd_scene load_steps=12 format=3 uid="uid://vntb00nxrmwy"]
 
 [ext_resource type="Script" path="res://scripts/Button.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://nad2rlg6hbq1" path="res://textures/button_pressed.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://cjx0a76ytk6lp" path="res://textures/button.png" id="3"]
+[ext_resource type="Shader" path="res://shaders/button.gdshader" id="2_2rqvq"]
+[ext_resource type="Texture2D" uid="uid://ddo0kuo1nd0xw" path="res://textures/blocks/button.png" id="3_y85x6"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(3, 1.5)
+size = Vector2(16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nbn8s"]
+resource_local_to_scene = true
+shader = ExtResource("2_2rqvq")
+shader_parameter/u_color = Color(0, 1, 0, 1)
+shader_parameter/rgb = false
+shader_parameter/strength = 0.461
+shader_parameter/speed = 0.1
+shader_parameter/angle = 45.0
+
+[sub_resource type="Gradient" id="Gradient_y6ae1"]
+offsets = PackedFloat32Array(0, 0.331104, 0.638796, 1)
+colors = PackedColorArray(0.729412, 0.792157, 1, 0, 0.701961, 0.811765, 1, 0.521569, 0.439216, 0.988235, 1, 0.556863, 0.423529, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rdi78"]
+gradient = SubResource("Gradient_y6ae1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rltyq"]
+resource_local_to_scene = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+scale_min = 2.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_rdi78")
+hue_variation_min = -0.5
+hue_variation_max = 0.5
+
+[sub_resource type="Gradient" id="Gradient_yv4jc"]
+offsets = PackedFloat32Array(0, 0.311037, 0.648829, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.470588, 1, 1, 1, 0.52549, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nr5yp"]
+gradient = SubResource("Gradient_yv4jc")
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pucb7"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_nr5yp")
 
 [node name="Button" type="Node2D"]
+position = Vector2(303, 148)
 script = ExtResource("1")
+metadata/_edit_group_ = true
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(8, -1.5)
 shape = SubResource("1")
 
-[node name="released" type="Sprite2D" parent="."]
-position = Vector2(8, -8)
-texture = ExtResource("3")
+[node name="Shaded" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_nbn8s")
 
-[node name="pressed" type="Sprite2D" parent="."]
-position = Vector2(8, -8)
-texture = ExtResource("2")
+[node name="Button" type="Sprite2D" parent="Shaded"]
+use_parent_material = true
+scale = Vector2(2, 2)
+texture = ExtResource("3_y85x6")
+
+[node name="RainbowParticles" type="GPUParticles2D" parent="Shaded"]
+visible = false
+z_index = 5
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_rltyq")
+local_coords = true
+
+[node name="Normal" type="GPUParticles2D" parent="Shaded"]
+z_index = 1
+use_parent_material = true
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_pucb7")
+local_coords = true
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

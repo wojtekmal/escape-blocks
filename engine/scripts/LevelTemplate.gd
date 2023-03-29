@@ -1,10 +1,12 @@
 @tool
 class_name LevelTemplate
 extends Node2D
+@warning_ignore("integer_division")
 
 @export var board_dimensions : Vector2i : set = set_board_dimensions
 @export var total_rotations : int = 0
 @export var now_rotations : int
+
 #children
 @onready var tilemap := $BoardLimits
 @onready var overlay := $Overlay
@@ -28,7 +30,7 @@ var game_ended := false
 
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
-	"static" : {
+	"moving" : {
 		"resource" : preload("res://board_stuff/MovingBlock8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
@@ -40,7 +42,7 @@ var tile_blocks := {
 		"layer" : 0,
 		"id" : 4,
 	},
-	"moving" : {
+	"static" : {
 		"resource" : preload("res://board_stuff/StaticBlock8x8.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
@@ -58,7 +60,21 @@ var tile_blocks := {
 		"layer" : 0,
 		"id" : 6
 	},
+	"button" : {
+		"resource" : preload("res://board_stuff/Button.tscn"),
+		"adress" : Vector2i(0, 0),
+		"layer" : 0,
+		"id" : 7
+	},
+	"door" : { #must be below buttons
+		"resource" : preload("res://board_stuff/Door.tscn"),
+		"adress" : Vector2i(0, 0),
+		"layer" : 0,
+		"id" : 9
+	},
 }
+
+var door_blocks := {}
 
 func _ready():
 	rotation_timer.timeout.connect(rotation_ended)
@@ -296,6 +312,10 @@ func update_counter(x):
 	counter.update(rotations_number)
 
 func all_not_falling():
+	moving_entities.clear()
+	for child in self.get_children():
+		if child.is_in_group("interacting_entities"):
+			moving_entities.push_back(child)
 	for entity in moving_entities:
 		if entity.is_falling:
 			return false
@@ -419,7 +439,22 @@ func _on_player_finished(start_rotations):
 	#print("finished signal recived")
 	if (total_rotations + start_rotations) % 4 == 0 && !game_ended:
 		game_ended = true
-		print("End game. Total rotations: " + str(rotations_number))
-	if $CanvasLayer/RichTextLabel != null:
-		$CanvasLayer/RichTextLabel.text = "End game. Total rotations: " + str(rotations_number)
-		$CanvasLayer/RichTextLabel.visible = true
+		print("End game.\nTotal rotations: " + str(rotations_number))
+		if $Control/CanvasLayer/RichTextLabel != null:
+			$Control/CanvasLayer/RichTextLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
+			$Control/CanvasLayer/RichTextLabel.visible = true
+
+func _on_door_spawn(door : Object, value):
+	if not value:
+		var block = tile_blocks["static"];
+		var new_block = block["resource"].instantiate()
+		new_block.board_cords = door.board_cords
+		new_block.board_dimensions = board_dimensions
+		new_block.start_rotations = 0
+		door_blocks[door] = new_block 
+		call_deferred("add_child", new_block)
+	else:
+		print(door, " ", door_blocks[door])
+		door_blocks[door].call_deferred("queue_free")
+		door_blocks.erase(door)
+	pass

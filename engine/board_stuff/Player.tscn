@@ -53,6 +53,7 @@ script = ExtResource("2")
 shape = SubResource("2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("3")
 animation = &"fallingDown"

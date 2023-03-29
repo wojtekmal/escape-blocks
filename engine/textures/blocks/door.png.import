@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dygx5gxpor2t8"
-path="res://.godot/imported/enchanting_table_top.png-3ec2986dac61dfeafee13e6abaa0aa21.ctex"
+uid="uid://dwm0i4f3lr28f"
+path="res://.godot/imported/door.png-073265691cdb2c969aa5da377b47c4fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/enchanting_table_top.png"
-dest_files=["res://.godot/imported/enchanting_table_top.png-3ec2986dac61dfeafee13e6abaa0aa21.ctex"]
+source_file="res://textures/blocks/door.png"
+dest_files=["res://.godot/imported/door.png-073265691cdb2c969aa5da377b47c4fb.ctex"]
 
 [params]
 
