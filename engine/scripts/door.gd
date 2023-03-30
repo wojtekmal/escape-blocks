@@ -1,4 +1,3 @@
-@tool
 extends Node2D
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
@@ -49,7 +48,7 @@ func _ready():
 		button.connect("released", Callable(self, "button_released"));
 	buttons_number = buttons.size()
 	connect("open_door", Callable(get_parent(), "_on_door_spawn"));
-	emit_signal("open_door", self, false)
+	opened(false)
 
 func opened(value := true):
 	if value:
