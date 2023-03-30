@@ -28,6 +28,8 @@ var size : Vector2
 var positions_before_rotations_wasd = []
 var game_ended := false
 
+var to_remove := []
+
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
 	"moving" : {
@@ -98,6 +100,7 @@ func _process(delta):
 		
 	first_frame = false
 	frame_count += 1
+	remove()
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -161,6 +164,12 @@ func move_block(delta, block):
 		block.board_cords.y = max_height
 		block.is_falling = false
 		return
+
+func remove():
+	for to in to_remove:
+		if to != null:
+			to.queue_free()
+	to_remove.clear()
 
 func move_player(delta):
 	if player.is_falling:
@@ -451,14 +460,23 @@ func _on_player_finished(start_rotations):
 
 func _on_door_spawn(door : Object, value):
 	if not value:
-		var block = tile_blocks["barrier"];
-		var new_block = block["resource"].instantiate()
+		var new_block
+		if door in door_blocks.keys():
+			new_block = door_blocks[door]
+		else:
+			var block = tile_blocks["barrier"];
+			new_block = block["resource"].instantiate()
 		new_block.board_cords = door.board_cords
 		new_block.board_dimensions = board_dimensions
 		new_block.start_rotations = 0
-		door_blocks[door] = new_block 
-		call_deferred("add_child", new_block)
+		if door in door_blocks.keys():
+			door_blocks
+		else:
+			door_blocks[door] = new_block 
+			call_deferred("add_child", new_block)
 	else:
-		door_blocks[door].call_deferred("queue_free")
-		door_blocks.erase(door)
+#		door_blocks[door].call_deferred("queue_free")
+#		to_remove.push_back(door_blocks[door])
+#		door_blocks.erase(door)
+		door_blocks[door].board_cords = board_dimensions - Vector2i(1, 1)
 	pass
