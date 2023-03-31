@@ -16,6 +16,8 @@ var colors := {
 	3 : Color.BLUE,
 }
 var color
+var delay := 0.2
+var pressed_for := 0.2
 
 func set_board_dimensions(newValue):
 	board_dimensions = newValue
@@ -46,12 +48,12 @@ func on_release():
 func show_particles(value := true):
 	$Shaded/Normal.emitting = value
 
-func _on_hitbox_body_entered(body: Node) -> void:
-	if bodies == 0:
-		on_press()
-	bodies += 1
-
-func _on_hitbox_body_exited(body: Node) -> void:
-	bodies -= 1
-	if bodies == 0:
-		on_release()
+func _process(delta):
+	if $hitbox.has_overlapping_bodies():
+		if pressed_for > 0 and pressed_for - delta < 0:
+			on_press()
+		pressed_for -= delta
+	else:
+		if pressed_for < 0:
+			on_release()
+		pressed_for = delay

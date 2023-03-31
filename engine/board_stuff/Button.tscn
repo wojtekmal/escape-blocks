@@ -93,7 +93,3 @@ emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_pucb7")
 local_coords = true
-
-[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
