@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://i7xh45ciueey" path="res://textures/blocks/barrier.png" id="6_r6h1s"]
 [ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/blocks/block.png" id="7_oxuh3"]
 [ext_resource type="Texture2D" uid="uid://drv87tnvat6t1" path="res://textures/blocks/static.png" id="8_22un6"]
-[ext_resource type="PackedScene" path="res://hud_stuff/counter.tscn" id="9_pbxjo"]
+[ext_resource type="PackedScene" uid="uid://dl47nov66utcv" path="res://hud_stuff/counter.tscn" id="9_pbxjo"]
 [ext_resource type="Texture2D" uid="uid://c1b1kvyaj2575" path="res://textures/blocks/emergency_escape_sign.png" id="10_16j8b"]
 [ext_resource type="Texture2D" uid="uid://c00o4ibdjkbef" path="res://textures/player/player.png" id="10_enmjg"]
 [ext_resource type="Shader" path="res://shaders/button.gdshader" id="11_psw4b"]
