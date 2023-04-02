@@ -16,8 +16,8 @@ var colors := {
 	3 : Color.BLUE,
 }
 var color
-var delay := 0.2
-var pressed_for := 0.2
+var delay := 0.6
+var pressed_for := 0.6
 
 func set_board_dimensions(newValue):
 	board_dimensions = newValue
@@ -49,11 +49,14 @@ func show_particles(value := true):
 	$Shaded/Normal.emitting = value
 
 func _process(delta):
+	var overlapping = $hitbox.get_overlapping_bodies()
 	if $hitbox.has_overlapping_bodies():
+		$Shaded/TextureProgressBar.value = 1.0 - (pressed_for) / delay
 		if pressed_for > 0 and pressed_for - delta < 0:
 			on_press()
 		pressed_for -= delta
 	else:
+		$Shaded/TextureProgressBar.value = 0.0
 		if pressed_for < 0:
 			on_release()
 		pressed_for = delay
