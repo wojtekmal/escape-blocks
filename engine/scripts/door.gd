@@ -2,9 +2,9 @@ extends Node2D
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var start_rotations : int = 1
+@export var open := false
 signal open_door
 
-var open := false
 var buttons := []
 var pressed_buttons := 0;
 var buttons_number := 0;
@@ -28,10 +28,10 @@ func _process(delta):
 	var can_close : bool = $Area2D.get_overlapping_bodies().size() == 0
 	if open == false && pressed_buttons == buttons_number: #opening
 		open = true
-		opened(true)
+		$Shaded/Door.visible = false
 	elif open == true && pressed_buttons != buttons_number && can_close: #closing
 		open = false
-		opened(false)
+		$Shaded/Door.visible = true
 
 func _ready():
 	add_to_group("wasd")
@@ -47,16 +47,17 @@ func _ready():
 		button.connect("pressed", Callable(self, "button_pressed"));
 		button.connect("released", Callable(self, "button_released"));
 	buttons_number = buttons.size()
-	connect("open_door", Callable(get_parent(), "_on_door_spawn"));
-	opened(false)
+	#connect("open_door", Callable(get_parent(), "_on_door_spawn"));
+	open = false
+	$Shaded/Door.visible = false
 
-func opened(value := true):
-	if value:
-		emit_signal("open_door", self, value)
-		$Shaded/Door.visible = false
-	else:
-		emit_signal("open_door", self, value)
-		$Shaded/Door.visible = true
+#func opened(value := true):
+#	if value:
+#		#emit_signal("open_door", self, value)
+#		$Shaded/Door.visible = false
+#	else:
+#		#emit_signal("open_door", self, value)
+#		$Shaded/Door.visible = true
 
 func button_pressed():
 	pressed_buttons += 1

@@ -125,11 +125,20 @@ func manage_falling_entities(delta):
 		column_top_still_blocks.push_back(board_dimensions.y)
 	
 	for entity in moving_entities:
-		if entity.get_real_class() == "MovingBlock8x8":
+		if entity.is_in_group("moving_blocks"):
 			move_block(delta, entity)
-		elif entity.get_real_class() == "Player":
+		elif entity.is_in_group("player"):
 			move_player(delta)
-		elif entity.get_real_class() == "StaticBlock8x8":
+		elif entity.is_in_group("static_blocks"):
+			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
+	
+	var wasd := get_tree().get_nodes_in_group("wasd")
+	
+	for entity in wasd:
+		if entity.is_in_group("doors") && !entity.open:
+			if frame_count < 10:
+				print_debug(entity.board_cords)
+				
 			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
 
 func compare_entity_heights(a, b): # Sorts the entities in decreasing order according to their height.
@@ -193,7 +202,20 @@ func move_player(delta):
 	
 	moving_entities = get_tree().get_nodes_in_group("interacting_entities")
 	for entity in moving_entities:
-		if entity.get_real_class() == "Player":
+		if entity.is_in_group("player"):
+			continue
+		var to_the_left_or_right = entity.board_cords.x != player_left_column and entity.board_cords.x != player_right_column
+		
+		if abs(entity.position.y - player.position.y) < 32 + size.y / 2 and to_the_left_or_right:
+			if entity.position.x < player.position.x:
+				min_left = max(min_left, entity.position.x + 32 + (size.x / 2))
+			else:
+				max_right = min(max_right, entity.position.x - 32 - (size.x / 2))
+	
+	var wasd := get_tree().get_nodes_in_group("wasd")
+	
+	for entity in wasd:
+		if !entity.is_in_group("doors") || entity.open:
 			continue
 		var to_the_left_or_right = entity.board_cords.x != player_left_column and entity.board_cords.x != player_right_column
 		
@@ -222,7 +244,7 @@ func move_player(delta):
 	var ceiling_y_pos = top_wall
 	
 	for entity in moving_entities:
-		if (entity.get_real_class() == "Player" or
+		if (entity.is_in_group("player") or
 			(entity.board_cords.x != player_left_column and 
 			entity.board_cords.x != player_right_column) or 
 			entity.position.y > player.position.y):
@@ -368,6 +390,9 @@ func rotation_ended():
 			round((w.position.x - left_wall - 32) / 64),
 			round((w.position.y - top_wall - 32) / 64)
 		)
+		
+		if w.is_in_group("doors") && !w.open:
+			print(w.board_cords)
 	
 	var min_left = left_wall + (size.x / 2)
 	var max_right = -left_wall - (size.x / 2)
@@ -375,7 +400,7 @@ func rotation_ended():
 	var player_right_column = int(player.position.x + (size.x / 2) - left_wall - 1) / 64
 	
 	for entity in moving_entities:
-		if entity.get_real_class() == "Player":
+		if entity.is_in_group("player"):
 			continue
 		var to_the_left_or_right = abs(entity.position.x - player.position.x) < 32 + size.x / 2
 		
@@ -458,25 +483,25 @@ func _on_player_finished(start_rotations):
 			$Control/CanvasLayer/RichTextLabel.visible = true
 			$Control/CanvasLayer/ColorRect.visible = true
 
-func _on_door_spawn(door : Object, value):
-	if not value:
-		var new_block
-		if door in door_blocks.keys():
-			new_block = door_blocks[door]
-		else:
-			var block = tile_blocks["barrier"];
-			new_block = block["resource"].instantiate()
-		new_block.board_cords = door.board_cords
-		new_block.board_dimensions = board_dimensions
-		new_block.start_rotations = 0
-		if door in door_blocks.keys():
-			door_blocks
-		else:
-			door_blocks[door] = new_block 
-			call_deferred("add_child", new_block)
-	else:
+#func _on_door_spawn(door : Object, value):
+#	if not value:
+#		var new_block
+#		if door in door_blocks.keys():
+#			new_block = door_blocks[door]
+#		else:
+#			var block = tile_blocks["barrier"];
+#			new_block = block["resource"].instantiate()
+#		new_block.board_cords = door.board_cords
+#		new_block.board_dimensions = board_dimensions
+#		new_block.start_rotations = 0
+#		if door in door_blocks.keys():
+#			door_blocks
+#		else:
+#			door_blocks[door] = new_block 
+#			call_deferred("add_child", new_block)
+#	else:
 #		door_blocks[door].call_deferred("queue_free")
 #		to_remove.push_back(door_blocks[door])
 #		door_blocks.erase(door)
-		door_blocks[door].board_cords = board_dimensions - Vector2i(1, 1)
+#		door_blocks[door].board_cords = board_dimensions - Vector2i(1, 1)
 	pass
