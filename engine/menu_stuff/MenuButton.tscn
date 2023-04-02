@@ -1,42 +1,33 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://52tgw8e0ihah"]
 
 [ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/blocks/block.png" id="1"]
-[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="2"]
 [ext_resource type="Script" path="res://scripts/MenuButton.gd" id="3"]
 
-[sub_resource type="FontFile" id=1]
-size = 10
-font_data = ExtResource( 2 )
-
 [node name="MenuButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextureButton" type="TextureButton" parent="AspectRatioContainer"]
-offset_left = 140.0
-offset_right = 500.0
-offset_bottom = 360.0
-texture_normal = ExtResource( 1 )
-expand = true
+layout_mode = 2
+texture_normal = ExtResource("1")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="ButtonLabel" type="Label" parent="CenterContainer"]
-offset_left = 320.0
-offset_top = 173.0
-offset_right = 320.0
-offset_bottom = 186.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-align = 1
+layout_mode = 2

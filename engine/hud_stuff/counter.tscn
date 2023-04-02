@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://dl47nov66utcv"]
 
 [ext_resource type="FontFile" uid="uid://dlrlmq6vw5heb" path="res://fonts/comfortaa/static/Comfortaa-Regular.ttf" id="1_7ofo6"]
 [ext_resource type="Script" path="res://scripts/counter.gd" id="1_fmk3p"]
