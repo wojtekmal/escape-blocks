@@ -79,6 +79,7 @@ var tile_blocks := {
 var door_blocks := {}
 
 func _ready():
+	add_to_group("level")
 	rotation_timer.timeout.connect(rotation_ended)
 	#calls the setter function
 	board_dimensions = board_dimensions

@@ -37,8 +37,8 @@ hue_variation_min = -0.5
 hue_variation_max = 0.5
 
 [sub_resource type="Gradient" id="Gradient_yv4jc"]
-offsets = PackedFloat32Array(0, 0.311037, 0.648829, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.470588, 1, 1, 1, 0.52549, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0.5)
+colors = PackedColorArray(0.478431, 0.478431, 0.478431, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_nr5yp"]
 gradient = SubResource("Gradient_yv4jc")
@@ -46,6 +46,7 @@ use_hdr = true
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pucb7"]
 resource_local_to_scene = true
+lifetime_randomness = 0.2
 particle_flag_disable_z = true
 direction = Vector3(0, 0, 0)
 spread = 180.0
@@ -73,13 +74,25 @@ shape = SubResource("1")
 [node name="Shaded" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_nbn8s")
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Shaded"]
+z_index = 1
+use_parent_material = true
+offset_left = -41.0
+offset_top = -41.0
+offset_right = 41.0
+offset_bottom = 41.0
+max_value = 1.0
+step = 0.01
+fill_mode = 5
+nine_patch_stretch = true
+texture_progress = ExtResource("3_y85x6")
+
 [node name="Button" type="Sprite2D" parent="Shaded"]
 use_parent_material = true
 scale = Vector2(2, 2)
 texture = ExtResource("3_y85x6")
 
 [node name="RainbowParticles" type="GPUParticles2D" parent="Shaded"]
-visible = false
 z_index = 5
 emitting = false
 amount = 16
@@ -90,6 +103,7 @@ local_coords = true
 z_index = 1
 use_parent_material = true
 emitting = false
-amount = 16
+amount = 20
 process_material = SubResource("ParticleProcessMaterial_pucb7")
+lifetime = 1.5
 local_coords = true
