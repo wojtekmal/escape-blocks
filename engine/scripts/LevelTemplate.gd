@@ -503,6 +503,9 @@ func _on_player_finished(start_rotations):
 #		door_blocks[door].board_cords = board_dimensions - Vector2i(1, 1)
 
 func manage_doors():
+	if !rotation_timer.is_stopped():
+		return
+	
 	for door in moving_entities:
 		if !door.is_in_group("doors"):
 			continue
@@ -513,12 +516,12 @@ func manage_doors():
 			if entity.is_in_group("doors"):
 				continue
 			
-			var entity_size = Vector2(32, 32)
+			var entity_size = Vector2(64, 64)
 			
 			if entity.is_in_group("player"):
 				entity_size = $Player/StandingHitBox.shape.size
 			
-			if (abs(door.position.x - entity.position.x) < 32 + entity_size.x &&
-				abs(door.position.y - entity.position.y) < 32 + entity_size.y):
+			if (abs(door.position.x - entity.position.x) < 32 + entity_size.x / 2 &&
+				abs(door.position.y - entity.position.y) < 32 + entity_size.y / 2):
 					door.can_close = false
 					break
