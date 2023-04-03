@@ -8,6 +8,7 @@ var bodies := 0
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var start_rotations : int = 1
+@export var is_pressed : bool = false
 
 var colors := {
 	0 : Color.WHITE,

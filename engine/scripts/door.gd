@@ -3,6 +3,10 @@ extends Node2D
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var start_rotations : int = 1
 @export var open := false
+@export var is_falling := false : set = set_is_falling
+@export var y_speed := 0
+@export var can_close : bool
+# Doesn't actually change.
 signal open_door
 
 var buttons := []
@@ -25,7 +29,6 @@ func set_board_cords(newValue):
 	set_position(Vector2i(board_cords.x * 64 + 32 - board_dimensions.x * 32, board_cords.y * 64 + 32 - board_dimensions.y * 32))
 
 func _process(delta):
-	var can_close : bool = $Area2D.get_overlapping_bodies().size() == 0
 	if open == false && pressed_buttons == buttons_number: #opening
 		open = true
 		$Shaded/Door.visible = false
@@ -34,7 +37,6 @@ func _process(delta):
 		$Shaded/Door.visible = true
 
 func _ready():
-	add_to_group("wasd")
 	add_to_group("door " + str(start_rotations))
 	$Shaded.material.set_shader_parameter(
 		"u_color", 
@@ -49,7 +51,7 @@ func _ready():
 	buttons_number = buttons.size()
 	#connect("open_door", Callable(get_parent(), "_on_door_spawn"));
 	open = false
-	$Shaded/Door.visible = false
+	$Shaded/Door.visible = true
 
 #func opened(value := true):
 #	if value:
@@ -64,3 +66,7 @@ func button_pressed():
 
 func button_released():
 	pressed_buttons -= 1
+
+func set_is_falling(new_value):
+	if new_value == true:
+		push_error("You are changing StaticBlock8x8's is_falling, which is always false.")

@@ -16,7 +16,7 @@ shader_parameter/angle = 45.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xlvr"]
 size = Vector2(63, 63)
 
-[node name="Door" type="Node2D" groups=["doors"]]
+[node name="Door" type="Node2D" groups=["doors", "interacting_entities"]]
 script = ExtResource("1_lj0ds")
 
 [node name="Shaded" type="Node2D" parent="."]
@@ -31,7 +31,7 @@ texture = ExtResource("4_8c54u")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_1xlvr")
