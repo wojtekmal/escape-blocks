@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqh668rmnorka"]
+[gd_scene load_steps=4 format=3 uid="uid://du4kkphuhj0ou"]
 
 [ext_resource type="Script" path="res://scripts/StaticBlock8x8.gd" id="1_pt68n"]
 [ext_resource type="Texture2D" uid="uid://i7xh45ciueey" path="res://textures/blocks/barrier.png" id="2_s0bna"]
@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eto6a"]
 size = Vector2(64, 64)
 
-[node name="barrier" type="StaticBody2D" groups=["interacting_entities"]]
+[node name="barrier" type="StaticBody2D" groups=["interacting_entities", "static_blocks"]]
 z_index = 1
 position = Vector2(32, 32)
 collision_layer = 2
