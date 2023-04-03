@@ -147,7 +147,7 @@ func move_block(delta, block):
 	else:
 		block.y_speed = 0
 	var delta_height = delta * block.y_speed
-	var new_block_cord_y = int(block.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
+	var new_block_cord_y = floori(block.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
 	# Ceiling division.
 	var max_height = column_top_still_blocks[block.board_cords.x] - 1
 	
@@ -194,8 +194,8 @@ func move_player(delta):
 	# The furthest to the left that the player can go.
 	var min_left = left_wall + (size.x / 2)
 	var max_right = -left_wall - (size.x / 2)
-	var player_left_column = int(player.position.x - (size.x / 2) - left_wall) / 64
-	var player_right_column = int(player.position.x + (size.x / 2) - left_wall - 1) / 64
+	var player_left_column = floori(player.position.x - (size.x / 2) - left_wall) / 64
+	var player_right_column = my_floor(player.position.x + (size.x / 2) - left_wall) / 64
 	
 	moving_entities = get_tree().get_nodes_in_group("interacting_entities")
 	for entity in moving_entities:
@@ -222,8 +222,8 @@ func move_player(delta):
 	else:
 		player.position.x += delta_x
 	
-	player_left_column = int(player.position.x - (size.x / 2) - left_wall) / 64
-	player_right_column = int(player.position.x + (size.x / 2) - left_wall - 1) / 64
+	player_left_column = floori(player.position.x - (size.x / 2) - left_wall) / 64
+	player_right_column = my_floor(player.position.x + (size.x / 2) - left_wall) / 64
 	var max_height_1 = column_top_still_blocks[player_left_column] - 1
 	var max_height_2 = column_top_still_blocks[player_right_column] - 1
 	var max_height = min(max_height_1, max_height_2)
@@ -250,7 +250,7 @@ func move_player(delta):
 		coyote_timer.stop()
 	
 	var delta_height = delta * player.y_speed
-	var new_player_cord_y = int(player.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
+	var new_player_cord_y = floori(player.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
 	
 	if player.position.y + delta_height <= min_pos_y:
 		player.y_speed = speed_of_ceiling
@@ -392,8 +392,8 @@ func rotation_ended():
 	
 	var min_left = left_wall + (size.x / 2)
 	var max_right = -left_wall - (size.x / 2)
-	var player_left_column = int(player.position.x - (size.x / 2) - left_wall) / 64
-	var player_right_column = int(player.position.x + (size.x / 2) - left_wall - 1) / 64
+	var player_left_column = floori(player.position.x - (size.x / 2) - left_wall) / 64
+	var player_right_column = floori(player.position.x + (size.x / 2) - left_wall - 1) / 64
 	
 	for entity in moving_entities:
 		if (entity.is_in_group("player") ||
@@ -525,3 +525,9 @@ func manage_doors():
 				abs(door.position.y - entity.position.y) < 32 + entity_size.y / 2):
 					door.can_close = false
 					break
+
+func my_floor(value):
+	if floor(value) == value:
+		return value - 1
+	
+	return floor(value)
