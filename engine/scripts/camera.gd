@@ -5,7 +5,7 @@ class_name CameraZoom
 @export var ZOOM_SPEED = 2
 @export var ZOOM_MIN = 0.03
 @export var ZOOM_MAX = 3000
-var _zoom_factor = 2
+var _zoom_factor = 1
 
 func _process(_delta) -> void:
 	zoom_camera()
