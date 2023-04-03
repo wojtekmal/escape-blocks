@@ -98,6 +98,7 @@ func _process(delta):
 		
 	manage_changing_gravity()
 	manage_falling_entities(delta)
+	manage_doors()
 		
 	first_frame = false
 	frame_count += 1
@@ -126,11 +127,15 @@ func manage_falling_entities(delta):
 		column_top_still_blocks.push_back(board_dimensions.y)
 	
 	for entity in moving_entities:
-		if entity.get_real_class() == "MovingBlock8x8":
+		if entity.is_in_group("moving_blocks"):
 			move_block(delta, entity)
-		elif entity.get_real_class() == "Player":
+		elif entity.is_in_group("player"):
 			move_player(delta)
-		elif entity.get_real_class() == "StaticBlock8x8":
+		elif entity.is_in_group("static_blocks"):
+			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
+		elif entity.is_in_group("doors") && !entity.open:
+			if Input.is_action_just_pressed("debug1"):
+				print(entity.board_cords)
 			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
 
 func compare_entity_heights(a, b): # Sorts the entities in decreasing order according to their height.
@@ -194,8 +199,11 @@ func move_player(delta):
 	
 	moving_entities = get_tree().get_nodes_in_group("interacting_entities")
 	for entity in moving_entities:
-		if entity.get_real_class() == "Player":
+		if entity.is_in_group("player"):
 			continue
+		if entity.is_in_group("doors") && entity.open:
+			continue
+		
 		var to_the_left_or_right = entity.board_cords.x != player_left_column and entity.board_cords.x != player_right_column
 		
 		if abs(entity.position.y - player.position.y) < 32 + size.y / 2 and to_the_left_or_right:
@@ -204,6 +212,7 @@ func move_player(delta):
 			else:
 				max_right = min(max_right, entity.position.x - 32 - (size.x / 2))
 	
+	var wasd := get_tree().get_nodes_in_group("wasd")
 	var delta_x = delta * x_speed
 	
 	if player.position.x + delta_x < min_left:
@@ -223,10 +232,11 @@ func move_player(delta):
 	var ceiling_y_pos = top_wall
 	
 	for entity in moving_entities:
-		if (entity.get_real_class() == "Player" or
+		if (entity.is_in_group("player") or
 			(entity.board_cords.x != player_left_column and 
 			entity.board_cords.x != player_right_column) or 
-			entity.position.y > player.position.y):
+			entity.position.y > player.position.y or 
+			entity.is_in_group("doors") and entity.open):
 			continue
 	
 		if (player.position.y - size.y / 2 + entity.position.y + 32) / 2 + size.y / 2 >= min_pos_y:
@@ -248,6 +258,10 @@ func move_player(delta):
 		player.position.y += delta_height
 		player.is_falling = true
 		return
+	
+	#if Input.is_action_just_pressed("debug1"):
+	#	for column in column_top_still_blocks:
+	#		print(column)
 	
 	if player.position.y == top_wall + max_height * 64 + 32:
 		column_top_still_blocks[player_left_column] = max_height
@@ -359,6 +373,9 @@ func rotation_ended():
 			round((entity.position.x - left_wall - 32) / 64),
 			round((entity.position.y - top_wall - 32) / 64)
 		)
+		
+		#if entity.is_in_group("doors"):
+		#	print(entity.board_cords)
 	
 	for i in range(0, wasd.size()):
 		var w = wasd[i]
@@ -369,6 +386,9 @@ func rotation_ended():
 			round((w.position.x - left_wall - 32) / 64),
 			round((w.position.y - top_wall - 32) / 64)
 		)
+		
+		#if w.is_in_group("doors") && !w.open:
+		#	print(w.board_cords)
 	
 	var min_left = left_wall + (size.x / 2)
 	var max_right = -left_wall - (size.x / 2)
@@ -376,7 +396,8 @@ func rotation_ended():
 	var player_right_column = int(player.position.x + (size.x / 2) - left_wall - 1) / 64
 	
 	for entity in moving_entities:
-		if entity.get_real_class() == "Player":
+		if (entity.is_in_group("player") ||
+			entity.is_in_group("doors") && entity.open):
 			continue
 		var to_the_left_or_right = abs(entity.position.x - player.position.x) < 32 + size.x / 2
 		
@@ -459,25 +480,45 @@ func _on_player_finished(start_rotations):
 			$Control/CanvasLayer/RichTextLabel.visible = true
 			$Control/CanvasLayer/ColorRect.visible = true
 
-func _on_door_spawn(door : Object, value):
-	if not value:
-		var new_block
-		if door in door_blocks.keys():
-			new_block = door_blocks[door]
-		else:
-			var block = tile_blocks["barrier"];
-			new_block = block["resource"].instantiate()
-		new_block.board_cords = door.board_cords
-		new_block.board_dimensions = board_dimensions
-		new_block.start_rotations = 0
-		if door in door_blocks.keys():
-			door_blocks
-		else:
-			door_blocks[door] = new_block 
-			call_deferred("add_child", new_block)
-	else:
+#func _on_door_spawn(door : Object, value):
+#	if not value:
+#		var new_block
+#		if door in door_blocks.keys():
+#			new_block = door_blocks[door]
+#		else:
+#			var block = tile_blocks["barrier"];
+#			new_block = block["resource"].instantiate()
+#		new_block.board_cords = door.board_cords
+#		new_block.board_dimensions = board_dimensions
+#		new_block.start_rotations = 0
+#		if door in door_blocks.keys():
+#			door_blocks
+#		else:
+#			door_blocks[door] = new_block 
+#			call_deferred("add_child", new_block)
+#	else:
 #		door_blocks[door].call_deferred("queue_free")
 #		to_remove.push_back(door_blocks[door])
 #		door_blocks.erase(door)
-		door_blocks[door].board_cords = board_dimensions - Vector2i(1, 1)
-	pass
+#		door_blocks[door].board_cords = board_dimensions - Vector2i(1, 1)
+
+func manage_doors():
+	for door in moving_entities:
+		if !door.is_in_group("doors"):
+			continue
+		
+		door.can_close = true
+		
+		for entity in moving_entities:
+			if entity.is_in_group("doors"):
+				continue
+			
+			var entity_size = Vector2(32, 32)
+			
+			if entity.is_in_group("player"):
+				entity_size = $Player/StandingHitBox.shape.size
+			
+			if (abs(door.position.x - entity.position.x) < 32 + entity_size.x &&
+				abs(door.position.y - entity.position.y) < 32 + entity_size.y):
+					door.can_close = false
+					break
