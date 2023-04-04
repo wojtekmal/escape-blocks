@@ -6,9 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eto6a"]
 size = Vector2(64, 64)
 
-[node name="MovingBlock8x8" type="CharacterBody2D" groups=["interacting_entities"]]
+[node name="MovingBlock8x8" type="CharacterBody2D" groups=["interacting_entities", "moving_blocks"]]
+z_index = 1
 position = Vector2(32, 32)
-collision_layer = 0
+collision_layer = 2
 collision_mask = 0
 script = ExtResource("2")
 
