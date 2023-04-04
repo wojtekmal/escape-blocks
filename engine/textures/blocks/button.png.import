@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwh364l218mbs"
-path="res://.godot/imported/ESA_root_pillars.jpg-6423c8f30e82fd7790d233f709eea03b.ctex"
+uid="uid://ddo0kuo1nd0xw"
+path="res://.godot/imported/button.png-b0c06430c65557864cfb1c62ab4bc7be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ESA_root_pillars.jpg"
-dest_files=["res://.godot/imported/ESA_root_pillars.jpg-6423c8f30e82fd7790d233f709eea03b.ctex"]
+source_file="res://textures/blocks/button.png"
+dest_files=["res://.godot/imported/button.png-b0c06430c65557864cfb1c62ab4bc7be.ctex"]
 
 [params]
 

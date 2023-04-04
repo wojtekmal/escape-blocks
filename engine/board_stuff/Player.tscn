@@ -44,8 +44,8 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_waxpy"]
 
-[node name="Player" type="CharacterBody2D" groups=["interacting_entities"]]
-collision_layer = 0
+[node name="Player" type="CharacterBody2D" groups=["interacting_entities", "player"]]
+collision_layer = 4
 collision_mask = 0
 script = ExtResource("2")
 
@@ -53,6 +53,7 @@ script = ExtResource("2")
 shape = SubResource("2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("3")
 animation = &"fallingDown"
