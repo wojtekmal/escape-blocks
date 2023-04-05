@@ -3,8 +3,9 @@ extends Node2D
 var levels := {
 	"1" : preload("res://levels/test_level_template.tscn"),
 	"2" : preload("res://levels/level_2.tscn"),
+	"3" : preload("res://levels/wojtekmal_1.tscn"),
 }
-@export var current_level := "2"
+@export var current_level := "3"
 
 func start(level_name : String):
 	for level in get_tree().get_nodes_in_group("level"):
