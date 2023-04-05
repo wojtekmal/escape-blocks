@@ -3,7 +3,7 @@ extends Node2D
 # "level name" : preload("res://path/to/level")
 var levels := {
 	"1" : preload("res://levels/test_level_template.tscn"),
-	"2" : preload("res://levels/level_2.tscn"),
+	"hourglass" : preload("res://levels/level_2.tscn"),
 	"3" : preload("res://levels/wojtekmal_1.tscn"),
 }
 
