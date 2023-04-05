@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cylgj4bcajsr0"]
+
+[ext_resource type="Script" path="res://scripts/level_map.gd" id="1_gliqh"]
+[ext_resource type="PackedScene" uid="uid://ba4y62q3j4hcl" path="res://map_stuff/level_button.tscn" id="1_qu7sv"]
+
+[node name="LevelMap" type="Node2D"]
+script = ExtResource("1_gliqh")
+
+[node name="LevelButton" parent="." instance=ExtResource("1_qu7sv")]
+label_text = "12"
+
+[node name="LevelButton2" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(-123, -82)
+label_text = "3"
+
+[node name="LevelButton3" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(112, -33)
