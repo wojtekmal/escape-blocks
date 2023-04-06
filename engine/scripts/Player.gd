@@ -1,6 +1,6 @@
 @tool
 class_name Player
-extends CharacterBody2D
+extends Area2D
 
 @export var walk_speed = 60
 @export var jump_speed = 300
