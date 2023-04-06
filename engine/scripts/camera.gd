@@ -3,7 +3,7 @@ class_name CameraZoom
 
 #camera controll
 @export var ZOOM_SPEED = PI * 1.5
-@export var ZOOM_MIN = 0.5
+@export var ZOOM_MIN = 0.1
 @export var ZOOM_MAX = 20.0
 var _zoom_factor : float = 0.7
 
