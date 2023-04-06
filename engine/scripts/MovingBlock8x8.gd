@@ -1,5 +1,5 @@
 @tool
-class_name MovingBlock8x8 extends CharacterBody2D
+class_name MovingBlock8x8 extends Area2D
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -24,7 +24,7 @@ func set_board_cords(newValue):
 	#print_debug(board_dimensions)
 	#print_debug(board_cords)
 	#print_debug("\n")
-	set_position(Vector2i(board_cords.x * 64 + 32 - board_dimensions.x * 32, board_cords.y * 64 + 32 - board_dimensions.y * 32))
+	position = Vector2i(board_cords.x * 64 + 32 - board_dimensions.x * 32, board_cords.y * 64 + 32 - board_dimensions.y * 32)
 
 #func get_class():
 #	return "MovingBlock8x8"
