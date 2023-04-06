@@ -8,7 +8,11 @@ func _ready():
 	buttons = get_tree().get_nodes_in_group("level_buttons")
 	
 	for button in buttons:
-		for dependency in dependencies
+		for dependency in button.dependencies:
+			for button in buttons:
+				if 
+			var line = Line2D.new()
+			line.add_point()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
