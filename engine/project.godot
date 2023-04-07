@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Escape blocks"
-run/main_scene="res://menu_stuff/menu.tscn"
+run/main_scene="res://menu_stuff/menu_2.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://textures/icon.png"
+
+[autoload]
+
+global="*res://scripts/global.gd"
 
 [display]
 
