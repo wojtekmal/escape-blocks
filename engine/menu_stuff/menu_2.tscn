@@ -60,13 +60,12 @@ size_flags_vertical = 3
 
 [node name="MenuButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("1")]
 layout_mode = 2
-buttonText = "Level
-map"
 
 [node name="MenuButton2" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("1")]
 layout_mode = 2
 buttonText = "New
 game"
+path_to_scene = "res://map_stuff/level_map.tscn"
 
 [node name="MenuButton3" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("1")]
 layout_mode = 2
