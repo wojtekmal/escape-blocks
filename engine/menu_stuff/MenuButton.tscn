@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://52tgw8e0ihah"]
+[gd_scene load_steps=4 format=3 uid="uid://52tgw8e0ihah"]
 
 [ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/blocks/block.png" id="1"]
 [ext_resource type="Script" path="res://scripts/MenuButton.gd" id="3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2qcr6"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
 
 [node name="MenuButton" type="Control"]
 layout_mode = 3
@@ -27,11 +31,14 @@ size_flags_vertical = 3
 [node name="TextureButton" type="TextureButton" parent="AspectRatioContainer"]
 layout_mode = 2
 texture_normal = ExtResource("1")
+stretch_mode = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="ButtonLabel" type="Label" parent="CenterContainer"]
 layout_mode = 2
+label_settings = SubResource("LabelSettings_2qcr6")

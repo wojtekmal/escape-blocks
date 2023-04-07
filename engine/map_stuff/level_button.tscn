@@ -6,7 +6,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_3dvoa"]
 font_color = Color(0, 0, 0, 1)
 
-[node name="LevelButton" type="Node2D"]
+[node name="LevelButton" type="Node2D" groups=["level_buttons"]]
 script = ExtResource("1_oaoe2")
 
 [node name="TextureButton" type="TextureButton" parent="."]
@@ -16,7 +16,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 texture_normal = ExtResource("1_oklsy")
 
-[node name="Label" type="Label" parent="TextureButton" groups=["level_buttons"]]
+[node name="Label" type="Label" parent="TextureButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
