@@ -22,6 +22,7 @@ func start(level_name : String):
 	await new_level.ready
 
 func _ready():
+	current_level = global.current_level
 	start(current_level)
 
 func _process(delta):
