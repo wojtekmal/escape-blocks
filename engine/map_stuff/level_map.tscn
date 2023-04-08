@@ -9,12 +9,10 @@ script = ExtResource("1_gliqh")
 [node name="LevelButton" parent="." instance=ExtResource("1_qu7sv")]
 position = Vector2(388, 362)
 label_text = "2"
-dependencies = Array[String](["1"])
 
 [node name="LevelButton2" parent="." instance=ExtResource("1_qu7sv")]
 position = Vector2(267, 172)
 label_text = "3"
-dependencies = Array[String](["2"])
 
 [node name="LevelButton3" parent="." instance=ExtResource("1_qu7sv")]
 position = Vector2(675, 207)
