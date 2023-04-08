@@ -5,10 +5,10 @@ extends Node2D
 signal button_pressed
 
 @export var label_text : String : set = set_label_text
-@export var dependencies : Array[String] = []
+#@export var dependencies : Array[String] = []
 
 @onready var pressable_button := $TextureButton
-var is_unlocked : bool = false
+#var is_unlocked : bool = false
 
 
 # Called when the node enters the scene tree for the first time.
