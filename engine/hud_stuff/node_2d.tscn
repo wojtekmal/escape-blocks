@@ -29,6 +29,7 @@ noise = SubResource("FastNoiseLite_b4t4f")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bya0c"]
 shader = ExtResource("1_281o8")
 shader_parameter/speed = 0.2
+shader_parameter/amount = 1024
 shader_parameter/gradient = SubResource("GradientTexture1D_gf6dv")
 shader_parameter/noice1 = SubResource("NoiseTexture2D_vfruv")
 shader_parameter/noice2 = SubResource("NoiseTexture2D_ue7ew")
@@ -37,27 +38,36 @@ shader_parameter/stars = SubResource("ImageTexture_6y1mx")
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v3tto"]
 
 [sub_resource type="Gradient" id="Gradient_ymei3"]
-offsets = PackedFloat32Array(0.012987, 0.04329, 0.0909091, 0.220779, 0.316017, 0.497835, 1)
-colors = PackedColorArray(0.910684, 0, 0.0933433, 1, 0.910684, 0, 0.0933433, 1, 0.110614, 0.0475397, 0.000171406, 1, 0.835294, 0.00784314, 0.227451, 1, 0.432752, 0.0023308, 0.0635836, 1, 1, 0, 0, 1, 0.999327, 0.921904, 0.632373, 1)
+offsets = PackedFloat32Array(0, 0.186147, 0.424242, 0.515152, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.745098, 0, 1, 1, 0.270588, 0.137255, 1, 1, 0.347368, 0.131682, 1, 1, 1, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_5rf3x"]
 gradient = SubResource("Gradient_ymei3")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_o4wm6"]
+noise_type = 3
+fractal_type = 2
+fractal_octaves = 2
+fractal_gain = 2.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_avga4"]
+width = 256
+height = 256
 seamless = true
 noise = SubResource("FastNoiseLite_o4wm6")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_651pj"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gcauu"]
+width = 256
+height = 256
 seamless = true
 noise = SubResource("FastNoiseLite_651pj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2nu83"]
 shader = ExtResource("1_281o8")
 shader_parameter/speed = 0.3
+shader_parameter/amount = 16
 shader_parameter/gradient = SubResource("GradientTexture1D_5rf3x")
 shader_parameter/noice1 = SubResource("NoiseTexture2D_avga4")
 shader_parameter/noice2 = SubResource("NoiseTexture2D_gcauu")
