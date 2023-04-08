@@ -184,12 +184,13 @@ func move_player(delta):
 		player.y_speed = 0
 	
 	# First I move the player left/right.
-	var x_speed = 0
 	
 	if Input.is_action_pressed("move_left"):
-		x_speed -= 200
+		player.x_speed -= player.WALK_SPEED 
 	if Input.is_action_pressed("move_right"):
-		x_speed += 200
+		player.x_speed += player.WALK_SPEED
+	
+	player.x_speed *= player.friction
 	
 	# The furthest to the left that the player can go.
 	var min_left = left_wall + (size.x / 2)
@@ -213,7 +214,7 @@ func move_player(delta):
 				max_right = min(max_right, entity.position.x - 32 - (size.x / 2))
 	
 	var wasd := get_tree().get_nodes_in_group("wasd")
-	var delta_x = delta * x_speed
+	var delta_x = delta * player.x_speed
 	
 	if player.position.x + delta_x < min_left:
 		player.position.x = min_left
@@ -479,28 +480,6 @@ func _on_player_finished(start_rotations):
 			$Control/CanvasLayer/RichTextLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
 			$Control/CanvasLayer/RichTextLabel.visible = true
 			$Control/CanvasLayer/ColorRect.visible = true
-
-#func _on_door_spawn(door : Object, value):
-#	if not value:
-#		var new_block
-#		if door in door_blocks.keys():
-#			new_block = door_blocks[door]
-#		else:
-#			var block = tile_blocks["barrier"];
-#			new_block = block["resource"].instantiate()
-#		new_block.board_cords = door.board_cords
-#		new_block.board_dimensions = board_dimensions
-#		new_block.start_rotations = 0
-#		if door in door_blocks.keys():
-#			door_blocks
-#		else:
-#			door_blocks[door] = new_block 
-#			call_deferred("add_child", new_block)
-#	else:
-#		door_blocks[door].call_deferred("queue_free")
-#		to_remove.push_back(door_blocks[door])
-#		door_blocks.erase(door)
-#		door_blocks[door].board_cords = board_dimensions - Vector2i(1, 1)
 
 func manage_doors():
 	if !rotation_timer.is_stopped():
