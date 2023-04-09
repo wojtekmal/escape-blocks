@@ -231,18 +231,26 @@ func move_player(delta):
 	var min_pos_y = top_wall + size.y / 2
 	var speed_of_ceiling := 0
 	var ceiling_y_pos = top_wall
+	var max_pos_y = -top_wall - size.y / 2
+	var speed_of_floor := 0
+	var floor_y_pos = top_wall
 	
 	for entity in moving_entities:
 		if (entity.is_in_group("player") or
 			(entity.board_cords.x != player_left_column and 
 			entity.board_cords.x != player_right_column) or 
-			entity.position.y > player.position.y or 
+			#entity.position.y > player.position.y or 
 			entity.is_in_group("doors") and entity.open):
 			continue
-	
-		if (player.position.y - size.y / 2 + entity.position.y + 32) / 2 + size.y / 2 >= min_pos_y:
+		
+		if ((player.position.y - size.y / 2 + entity.position.y + 32) / 2 + size.y / 2 >= min_pos_y and
+			entity.position.y < player.position.y):
 			min_pos_y = (player.position.y - size.y / 2 + entity.position.y + entity.y_speed * delta + 32) / 2 + size.y / 2
 			speed_of_ceiling = entity.y_speed
+		elif ((player.position.y + size.y / 2 + entity.position.y - 32) / 2 - size.y / 2 <= max_pos_y and
+			entity.position.y > player.position.y):
+			max_pos_y = (player.position.y + size.y / 2 + entity.position.y + entity.y_speed * delta - 32) / 2 - size.y / 2
+			speed_of_floor = entity.y_speed
 	
 	var coyote_timer = $Player/CoyoteTimer
 	
