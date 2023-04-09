@@ -224,6 +224,7 @@ func move_player(delta):
 	
 	player_left_column = floori(player.position.x - (size.x / 2) - left_wall) / 64
 	player_right_column = my_floor(player.position.x + (size.x / 2) - left_wall) / 64
+	#print(player_right_column)
 	var max_height_1 = column_top_still_blocks[player_left_column] - 1
 	var max_height_2 = column_top_still_blocks[player_right_column] - 1
 	var max_height = min(max_height_1, max_height_2)
@@ -526,8 +527,8 @@ func manage_doors():
 					door.can_close = false
 					break
 
-func my_floor(value):
-	if floor(value) == value:
-		return value - 1
+func my_floor(value) -> int:
+	if floori(value) == value:
+		return floori(value - 1)
 	
-	return floor(value)
+	return floori(value)
