@@ -14,6 +14,7 @@ extends Node2D
 @onready var rotation_timer = $RotationTimer
 @onready var walls := $Walls
 @onready var counter := $Counter
+@onready var timer := $Control/Timer
 
 var rotations_number : int : set = update_counter
 var moving_entities = []
@@ -27,6 +28,7 @@ var positions_before_rotations = []
 var size : Vector2
 var positions_before_rotations_wasd = []
 var game_ended := false
+var game_started := false : set = set_started
 var column_top_entities = []
 
 var to_remove := []
@@ -106,6 +108,7 @@ func _process(delta):
 		
 	first_frame = false
 	frame_count += 1
+	
 	remove()
 
 func manage_falling_entities(delta):
@@ -202,8 +205,10 @@ func move_player(delta):
 	# First I move the player left/right.
 	
 	if Input.is_action_pressed("move_left"):
-		player.x_speed -= player.WALK_SPEED 
+		player.x_speed -= player.WALK_SPEED
+		game_started = true
 	if Input.is_action_pressed("move_right"):
+		game_started = true
 		player.x_speed += player.WALK_SPEED
 	
 	player.x_speed *= player.friction
@@ -248,6 +253,7 @@ func move_player(delta):
 	var coyote_timer = $Player/CoyoteTimer
 	
 	if Input.is_action_just_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0):
+		game_started = true
 		player.y_speed = -400
 		coyote_timer.stop()
 	
@@ -304,10 +310,13 @@ func manage_changing_gravity():
 	
 	var rotations = 0
 	if(Input.is_action_just_pressed("gravity_right")):
+		game_started = true
 		rotations += 1
 	if(Input.is_action_just_pressed("gravity_up")):
+		game_started = true
 		rotations += 2
 	if(Input.is_action_just_pressed("gravity_left")):
+		game_started = true
 		rotations += 3
 	
 	var wasd := get_tree().get_nodes_in_group("wasd")
@@ -508,8 +517,13 @@ func manage_doors():
 
 func my_floor(value) -> int:
 	if floori(value) == value:
-		return floori(value - 1)
-	
+		return floori(value - 1)	
+	return floor(value)
+
+func set_started(value : bool):
+	if game_started == false && value == true:
+		timer.stop(false)
+	game_started = value
 	return floori(value)
 
 func get_y_size(entity):

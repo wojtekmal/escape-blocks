@@ -10,7 +10,8 @@ var levels := {
 	"training_1" : preload("res://levels/roupiq_1.tscn"),
 }
 
-@export var current_level := "training_1"
+var paused = false
+@export var current_level : String
 
 func start(level_name : String):
 	for level in get_tree().get_nodes_in_group("level"):
@@ -26,5 +27,13 @@ func _ready():
 	start(current_level)
 
 func _process(delta):
+	if Input.is_action_just_pressed("pause"):
+		pause(not paused)
+	
 	if Input.is_action_just_pressed("restart"):
 		start(current_level)
+
+func pause(value := true):
+	paused = value
+	for level in get_tree().get_nodes_in_group("level"):
+		get_tree().paused = value
