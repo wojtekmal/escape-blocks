@@ -127,16 +127,16 @@ func manage_falling_entities(delta):
 		elif entity.is_in_group("static_blocks"):
 			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
 			var entity_below = column_top_entities[entity.board_cords.x]
+			entity.y_speed = 0
 	
 			if (entity_below != counter && (entity.y_speed - entity_below.y_speed) * delta >=
 				entity_below.position.y - entity.position.y - 32 - get_y_size(entity_below) / 2):
 				entity_below.y_speed = entity.y_speed
 			column_top_entities[entity.board_cords.x] = entity
 		elif entity.is_in_group("doors") && !entity.open:
-			#if Input.is_action_just_pressed("debug1"):
-			#	print(entity.board_cords)
 			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
 			var entity_below = column_top_entities[entity.board_cords.x]
+			entity.y_speed = 0
 	
 			if (entity_below != counter && (entity.y_speed - entity_below.y_speed) * delta >=
 				entity_below.position.y - entity.position.y - 32 - get_y_size(entity_below) / 2):
@@ -150,7 +150,6 @@ func move_block(delta, block):
 	if block.is_falling:
 		block.y_speed += 1000 * delta
 	else:
-		#print("entered else")
 		block.y_speed = 0
 	var delta_height = delta * block.y_speed
 	var new_block_cord_y = floori(block.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
@@ -197,7 +196,6 @@ func move_player(delta):
 	else:
 		player.y_speed = 0
 	
-	# First I move the player left/right.
 	var x_speed = 0
 	
 	if Input.is_action_pressed("move_left"):
@@ -238,25 +236,9 @@ func move_player(delta):
 	
 	player_left_column = floori(player.position.x - (size.x / 2) - left_wall) / 64
 	player_right_column = my_floor(player.position.x + (size.x / 2) - left_wall) / 64
-	#print(player_right_column)
 	var max_height_1 = column_top_still_blocks[player_left_column] - 1
 	var max_height_2 = column_top_still_blocks[player_right_column] - 1
 	var max_height = min(max_height_1, max_height_2)
-	#var min_pos_y = top_wall + size.y / 2
-	#var speed_of_ceiling := 0
-	#var ceiling_y_pos = top_wall
-	
-	#for entity in moving_entities:
-	#	if (entity.is_in_group("player") or
-	#		(entity.board_cords.x != player_left_column and 
-	#		entity.board_cords.x != player_right_column) or 
-	#		entity.position.y > player.position.y or 
-	#		entity.is_in_group("doors") and entity.open):
-	#		continue
-	#
-	#	if (player.position.y - size.y / 2 + entity.position.y + 32) / 2 + size.y / 2 >= min_pos_y:
-	#		min_pos_y = (player.position.y - size.y / 2 + entity.position.y + entity.y_speed * delta + 32) / 2 + size.y / 2
-	#		speed_of_ceiling = entity.y_speed
 	
 	var coyote_timer = $Player/CoyoteTimer
 	
@@ -281,16 +263,10 @@ func move_player(delta):
 	column_top_entities[player_left_column] = player
 	column_top_entities[player_right_column] = player
 	
-	#if player.position.y + delta_height <= min_pos_y:
-	#	player.y_speed = speed_of_ceiling
 	if player.y_speed < 0:
 		player.position.y += delta_height
 		player.is_falling = true
 		return
-	
-	#if Input.is_action_just_pressed("debug1"):
-	#	for column in column_top_still_blocks:
-	#		print(column)
 	
 	if player.position.y == top_wall + max_height * 64 + 32:
 		column_top_still_blocks[player_left_column] = max_height
@@ -402,9 +378,6 @@ func rotation_ended():
 			round((entity.position.x - left_wall - 32) / 64),
 			round((entity.position.y - top_wall - 32) / 64)
 		)
-		
-		#if entity.is_in_group("doors"):
-		#	print(entity.board_cords)
 	
 	for i in range(0, wasd.size()):
 		var w = wasd[i]
@@ -415,9 +388,6 @@ func rotation_ended():
 			round((w.position.x - left_wall - 32) / 64),
 			round((w.position.y - top_wall - 32) / 64)
 		)
-		
-		#if w.is_in_group("doors") && !w.open:
-		#	print(w.board_cords)
 	
 	var min_left = left_wall + (size.x / 2)
 	var max_right = -left_wall - (size.x / 2)
@@ -445,9 +415,7 @@ func set_board_dimensions(newValue):
 	top_wall = -board_dimensions.y * 32
 	
 	for child in get_children():
-		#print_debug(child.get_name())
 		if child.is_in_group("interacting_entities"):
-			#print_debug("check")
 			child.board_dimensions = board_dimensions
 		elif child.is_in_group("wasd"):
 			child.board_dimensions = board_dimensions
@@ -508,28 +476,6 @@ func _on_player_finished(start_rotations):
 			$Control/CanvasLayer/RichTextLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
 			$Control/CanvasLayer/RichTextLabel.visible = true
 			$Control/CanvasLayer/ColorRect.visible = true
-
-#func _on_door_spawn(door : Object, value):
-#	if not value:
-#		var new_block
-#		if door in door_blocks.keys():
-#			new_block = door_blocks[door]
-#		else:
-#			var block = tile_blocks["barrier"];
-#			new_block = block["resource"].instantiate()
-#		new_block.board_cords = door.board_cords
-#		new_block.board_dimensions = board_dimensions
-#		new_block.start_rotations = 0
-#		if door in door_blocks.keys():
-#			door_blocks
-#		else:
-#			door_blocks[door] = new_block 
-#			call_deferred("add_child", new_block)
-#	else:
-#		door_blocks[door].call_deferred("queue_free")
-#		to_remove.push_back(door_blocks[door])
-#		door_blocks.erase(door)
-#		door_blocks[door].board_cords = board_dimensions - Vector2i(1, 1)
 
 func manage_doors():
 	if !rotation_timer.is_stopped():
