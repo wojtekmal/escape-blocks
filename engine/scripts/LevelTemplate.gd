@@ -27,6 +27,7 @@ var positions_before_rotations = []
 var size : Vector2
 var positions_before_rotations_wasd = []
 var game_ended := false
+var column_top_entities = []
 
 var to_remove := []
 
@@ -109,22 +110,14 @@ func manage_falling_entities(delta):
 		return
 	
 	column_top_still_blocks.clear()
-
-	
-# Czy można to zamienić
-#	moving_entities.clear()
-#	for child in self.get_children():
-#		if child.is_in_group("interacting_entities"):
-#			moving_entities.push_back(child)
-#			|
-#			V
-# Na to?
-
+	column_top_entities.clear()
 	moving_entities = get_tree().get_nodes_in_group("interacting_entities")
 	moving_entities.sort_custom(compare_entity_heights)
 	
 	for i in range(0, board_dimensions.x):
 		column_top_still_blocks.push_back(board_dimensions.y)
+		# Counter is a placeholder for now.
+		column_top_entities.push_back(counter)
 	
 	for entity in moving_entities:
 		if entity.is_in_group("moving_blocks"):
@@ -133,10 +126,22 @@ func manage_falling_entities(delta):
 			move_player(delta)
 		elif entity.is_in_group("static_blocks"):
 			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
+			var entity_below = column_top_entities[entity.board_cords.x]
+	
+			if (entity_below != counter && (entity.y_speed - entity_below.y_speed) * delta >=
+				entity_below.position.y - entity.position.y - 32 - get_y_size(entity_below) / 2):
+				entity_below.y_speed = entity.y_speed
+			column_top_entities[entity.board_cords.x] = entity
 		elif entity.is_in_group("doors") && !entity.open:
-			if Input.is_action_just_pressed("debug1"):
-				print(entity.board_cords)
+			#if Input.is_action_just_pressed("debug1"):
+			#	print(entity.board_cords)
 			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
+			var entity_below = column_top_entities[entity.board_cords.x]
+	
+			if (entity_below != counter && (entity.y_speed - entity_below.y_speed) * delta >=
+				entity_below.position.y - entity.position.y - 32 - get_y_size(entity_below) / 2):
+				entity_below.y_speed = entity.y_speed
+			column_top_entities[entity.board_cords.x] = entity
 
 func compare_entity_heights(a, b): # Sorts the entities in decreasing order according to their height.
 	return a.position.y > b.position.y
@@ -145,11 +150,20 @@ func move_block(delta, block):
 	if block.is_falling:
 		block.y_speed += 1000 * delta
 	else:
+		#print("entered else")
 		block.y_speed = 0
 	var delta_height = delta * block.y_speed
 	var new_block_cord_y = floori(block.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
 	# Ceiling division.
 	var max_height = column_top_still_blocks[block.board_cords.x] - 1
+	
+	var entity_below = column_top_entities[block.board_cords.x]
+	
+	if (entity_below != counter && (block.y_speed - entity_below.y_speed) * delta >=
+		entity_below.position.y - block.position.y - 32 - get_y_size(entity_below) / 2):
+		entity_below.y_speed = block.y_speed
+	
+	column_top_entities[block.board_cords.x] = block
 	
 	if block.position.y == top_wall + max_height * 64 + 32:
 		column_top_still_blocks[block.board_cords.x] = max_height
@@ -228,29 +242,21 @@ func move_player(delta):
 	var max_height_1 = column_top_still_blocks[player_left_column] - 1
 	var max_height_2 = column_top_still_blocks[player_right_column] - 1
 	var max_height = min(max_height_1, max_height_2)
-	var min_pos_y = top_wall + size.y / 2
-	var speed_of_ceiling := 0
-	var ceiling_y_pos = top_wall
-	var max_pos_y = -top_wall - size.y / 2
-	var speed_of_floor := 0
-	var floor_y_pos = top_wall
+	#var min_pos_y = top_wall + size.y / 2
+	#var speed_of_ceiling := 0
+	#var ceiling_y_pos = top_wall
 	
-	for entity in moving_entities:
-		if (entity.is_in_group("player") or
-			(entity.board_cords.x != player_left_column and 
-			entity.board_cords.x != player_right_column) or 
-			#entity.position.y > player.position.y or 
-			entity.is_in_group("doors") and entity.open):
-			continue
-		
-		if ((player.position.y - size.y / 2 + entity.position.y + 32) / 2 + size.y / 2 >= min_pos_y and
-			entity.position.y < player.position.y):
-			min_pos_y = (player.position.y - size.y / 2 + entity.position.y + entity.y_speed * delta + 32) / 2 + size.y / 2
-			speed_of_ceiling = entity.y_speed
-		elif ((player.position.y + size.y / 2 + entity.position.y - 32) / 2 - size.y / 2 <= max_pos_y and
-			entity.position.y > player.position.y):
-			max_pos_y = (player.position.y + size.y / 2 + entity.position.y + entity.y_speed * delta - 32) / 2 - size.y / 2
-			speed_of_floor = entity.y_speed
+	#for entity in moving_entities:
+	#	if (entity.is_in_group("player") or
+	#		(entity.board_cords.x != player_left_column and 
+	#		entity.board_cords.x != player_right_column) or 
+	#		entity.position.y > player.position.y or 
+	#		entity.is_in_group("doors") and entity.open):
+	#		continue
+	#
+	#	if (player.position.y - size.y / 2 + entity.position.y + 32) / 2 + size.y / 2 >= min_pos_y:
+	#		min_pos_y = (player.position.y - size.y / 2 + entity.position.y + entity.y_speed * delta + 32) / 2 + size.y / 2
+	#		speed_of_ceiling = entity.y_speed
 	
 	var coyote_timer = $Player/CoyoteTimer
 	
@@ -261,9 +267,23 @@ func move_player(delta):
 	var delta_height = delta * player.y_speed
 	var new_player_cord_y = floori(player.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
 	
-	if player.position.y + delta_height <= min_pos_y:
-		player.y_speed = speed_of_ceiling
-	elif player.y_speed < 0:
+	var entity_below_left = column_top_entities[player_left_column]
+	var entity_below_right = column_top_entities[player_right_column]
+	
+	if (entity_below_left != counter && (player.y_speed - entity_below_left.y_speed) * delta >=
+		entity_below_left.position.y - player.position.y - 32 - get_y_size(entity_below_left) / 2):
+		entity_below_left.y_speed = player.y_speed
+	
+	if (entity_below_right != counter && (player.y_speed - entity_below_right.y_speed) * delta >=
+		entity_below_right.position.y - player.position.y - 32 - get_y_size(entity_below_right) / 2):
+		entity_below_right.y_speed = player.y_speed
+	
+	column_top_entities[player_left_column] = player
+	column_top_entities[player_right_column] = player
+	
+	#if player.position.y + delta_height <= min_pos_y:
+	#	player.y_speed = speed_of_ceiling
+	if player.y_speed < 0:
 		player.position.y += delta_height
 		player.is_falling = true
 		return
@@ -540,3 +560,9 @@ func my_floor(value) -> int:
 		return floori(value - 1)
 	
 	return floori(value)
+
+func get_y_size(entity):
+	if entity.is_in_group("player"):
+		return size.y
+	else:
+		return 64
