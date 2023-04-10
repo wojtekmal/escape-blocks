@@ -28,12 +28,9 @@ var positions_before_rotations = []
 var size : Vector2
 var positions_before_rotations_wasd = []
 var game_ended := false
-<<<<<<< HEAD
 var game_started := false : set = set_started
-=======
 var column_top_entities = []
 
->>>>>>> 6b86b444846cd737c84e8093863f41d939f28cb0
 var to_remove := []
 
 # BLOCKS LIBRARY 👍
@@ -100,8 +97,11 @@ func _ready():
 
 func _process(delta):
 	# We won't be loading frames in the editor.
-	if Engine.is_editor_hint(): return 
-		
+	if Engine.is_editor_hint(): return
+	
+	if Input.is_action_just_pressed("quick_finish"):
+		_on_player_finished(-total_rotations)
+	
 	manage_changing_gravity()
 	manage_falling_entities(delta)
 	manage_doors()
@@ -517,16 +517,13 @@ func manage_doors():
 
 func my_floor(value) -> int:
 	if floori(value) == value:
-		return floori(value - 1)
-	
-<<<<<<< HEAD
+		return floori(value - 1)	
 	return floor(value)
 
 func set_started(value : bool):
 	if game_started == false && value == true:
 		timer.stop(false)
 	game_started = value
-=======
 	return floori(value)
 
 func get_y_size(entity):
@@ -534,4 +531,3 @@ func get_y_size(entity):
 		return size.y
 	else:
 		return 64
->>>>>>> 6b86b444846cd737c84e8093863f41d939f28cb0
