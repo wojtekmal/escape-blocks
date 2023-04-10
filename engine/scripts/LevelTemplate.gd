@@ -196,12 +196,14 @@ func move_player(delta):
 	else:
 		player.y_speed = 0
 	
-	var x_speed = 0
+	# First I move the player left/right.
 	
 	if Input.is_action_pressed("move_left"):
-		x_speed -= 200
+		player.x_speed -= player.WALK_SPEED 
 	if Input.is_action_pressed("move_right"):
-		x_speed += 200
+		player.x_speed += player.WALK_SPEED
+	
+	player.x_speed *= player.friction
 	
 	# The furthest to the left that the player can go.
 	var min_left = left_wall + (size.x / 2)
@@ -225,7 +227,7 @@ func move_player(delta):
 				max_right = min(max_right, entity.position.x - 32 - (size.x / 2))
 	
 	var wasd := get_tree().get_nodes_in_group("wasd")
-	var delta_x = delta * x_speed
+	var delta_x = delta * player.x_speed
 	
 	if player.position.x + delta_x < min_left:
 		player.position.x = min_left
