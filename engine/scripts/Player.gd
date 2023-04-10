@@ -10,8 +10,13 @@ extends Area2D
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var is_falling : bool : set = set_is_falling
 @export var start_rotations : int = 0
-# How fast the player is falling down.
+
+# Player speed
 @export var y_speed := 0
+@export var x_speed := 0
+
+var WALK_SPEED := 150.0
+var friction := 0.65
 
 var offset = 10;
 var crawling := false
@@ -32,10 +37,7 @@ func get_direction() -> Vector2:
 	return Vector2(0,0)
 	
 func can_jump() -> bool:
-	if Input.is_action_pressed("jump"):
-		return true
-	else:
-		return false
+	return Input.is_action_pressed("jump")
 
 func calculate_move_acceleration(
 		direction: Vector2,

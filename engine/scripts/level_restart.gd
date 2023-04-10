@@ -3,11 +3,14 @@ extends Node2D
 # "level name" : preload("res://path/to/level")
 var levels := {
 	"1" : preload("res://levels/test_level_template.tscn"),
-	"2" : preload("res://levels/level_2.tscn"),
+	"hourglass" : preload("res://levels/level_2.tscn"),
+	"hourglass2" : preload("res://levels/level_2_v2.tscn"),
 	"3" : preload("res://levels/wojtekmal_1.tscn"),
+	"4" : preload("res://levels/test_level_template_2.tscn"),
+	"training_1" : preload("res://levels/roupiq_1.tscn"),
 }
 
-@export var current_level := "3"
+@export var current_level := "training_1"
 
 func start(level_name : String):
 	for level in get_tree().get_nodes_in_group("level"):

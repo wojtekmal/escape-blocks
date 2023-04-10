@@ -322,6 +322,7 @@ collision_layer = 10
 collision_mask = 1
 board_cords = Vector2i(3, 2)
 board_dimensions = Vector2i(8, 5)
+x_speed = null
 metadata/_edit_horizontal_guides_ = []
 
 [node name="BoardLimits" type="TileMap" parent="." groups=["board_limits"]]
