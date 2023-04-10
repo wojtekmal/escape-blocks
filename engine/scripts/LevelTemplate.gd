@@ -95,8 +95,11 @@ func _ready():
 
 func _process(delta):
 	# We won't be loading frames in the editor.
-	if Engine.is_editor_hint(): return 
-		
+	if Engine.is_editor_hint(): return
+	
+	if Input.is_action_just_pressed("quick_finish"):
+		_on_player_finished(-total_rotations)
+	
 	manage_changing_gravity()
 	manage_falling_entities(delta)
 	manage_doors()
