@@ -6,7 +6,7 @@ extends Control
 # var a = 2
 # var b = "text"
 @export_multiline var buttonText := "" : set = UpdateLabel # (String, MULTILINE)
-@export var path_to_scene : String
+@export var custom_method : String
 @onready var label := $CenterContainer/ButtonLabel
 @onready var pressable_button = $AspectRatioContainer/TextureButton
 
@@ -27,8 +27,36 @@ func UpdateLabel(newName):
 	buttonText = newName
 
 func on_button_press():
-	if !ResourceLoader.exists(path_to_scene):
-		print("The scene this button leads to doesn't exist.")
+	if !has_method(custom_method):
+		print("The method this button calls doesn't exist.")
 		return
-	print("check")
-	get_tree().change_scene_to_file(path_to_scene)
+	
+	call(custom_method)
+
+func new_game_press():
+	# This is a dictionary holding the default values for global.levels.
+	# When "New game" is pressed, levels is set to this. If "Continue game is chosen, 
+	# the saved version of levels is chosen (TODO).
+
+	global.levels = {
+		"1": {
+			"unlocked": true,
+			"finished_parts": 0,
+			"rotation_parts": 0,
+			"time_parts": 0,
+		},
+		"2": {
+			"unlocked": false,
+			"finished_parts": 0,
+			"rotation_parts": 0,
+			"time_parts": 0,
+		},
+		"3": {
+			"unlocked": false,
+			"finished_parts": 0,
+			"rotation_parts": 0,
+			"time_parts": 0,
+		},
+	}
+	
+	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
