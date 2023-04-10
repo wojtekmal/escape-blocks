@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var pause_screen := $Control/CanvasLayer
+
 # "level name" : preload("res://path/to/level")
 var levels := {
 	"1" : preload("res://levels/test_level_template.tscn"),
@@ -37,3 +39,4 @@ func pause(value := true):
 	paused = value
 	for level in get_tree().get_nodes_in_group("level"):
 		get_tree().paused = value
+	pause_screen.visible = paused
