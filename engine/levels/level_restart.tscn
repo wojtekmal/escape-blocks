@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://l6wakppfhspu"]
+[gd_scene load_steps=3 format=3 uid="uid://l6wakppfhspu"]
 
 [ext_resource type="Script" path="res://scripts/level_restart.gd" id="1_cj13w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_riwah"]
+font_size = 53
 
 [node name="LevelRestart" type="Node2D"]
 process_mode = 3
@@ -17,7 +20,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Control"]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Control/CanvasLayer"]
 anchors_preset = 15
@@ -32,12 +34,13 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -123.0
-offset_top = 42.0
-offset_right = -61.0
-offset_bottom = 42.0
+offset_left = -102.0
+offset_top = 4.0
+offset_right = 103.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(4, 4)
 size_flags_horizontal = 4
 text = "PAUSED"
+label_settings = SubResource("LabelSettings_riwah")
+horizontal_alignment = 1
