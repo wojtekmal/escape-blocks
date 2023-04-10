@@ -16,6 +16,7 @@ var paused = false
 @export var current_level : String
 
 func start(level_name : String):
+	pause(false)
 	for level in get_tree().get_nodes_in_group("level"):
 		level.queue_free()
 		level.hide()

@@ -45,16 +45,13 @@ size_flags_vertical = 3
 
 [node name="MenuButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("1")]
 layout_mode = 2
-custom_method = ""
 
 [node name="MenuButton2" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("1")]
 layout_mode = 2
-custom_method = ""
 
 [node name="MenuButton3" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("1")]
 layout_mode = 2
 buttonText = "Settings"
-custom_method = ""
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -63,7 +60,6 @@ size_flags_vertical = 3
 
 [node name="MenuButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("1")]
 layout_mode = 2
-custom_method = ""
 
 [node name="MenuButton2" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("1")]
 layout_mode = 2
@@ -75,7 +71,6 @@ custom_method = "new_game_press"
 layout_mode = 2
 buttonText = "Continue
 game"
-custom_method = ""
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -84,14 +79,11 @@ size_flags_vertical = 3
 
 [node name="MenuButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4" instance=ExtResource("1")]
 layout_mode = 2
-custom_method = ""
 
 [node name="MenuButton2" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4" instance=ExtResource("1")]
 layout_mode = 2
 buttonText = "Creddits"
-custom_method = ""
 
 [node name="MenuButton3" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4" instance=ExtResource("1")]
 layout_mode = 2
 buttonText = "Exit"
-custom_method = ""
