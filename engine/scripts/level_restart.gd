@@ -22,6 +22,10 @@ func start(level_name : String):
 		level.hide()
 		await level.tree_exited
 	var new_level = levels[level_name].instantiate()
+	# This can be removed when all levels get their final name.
+	new_level.level_name = level_name
+	new_level.retry_this_level.connect(start)
+	new_level.change_to_next_level.connect(change_to_next_level)
 	add_child(new_level)
 	await new_level.ready
 
@@ -35,6 +39,19 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("restart"):
 		start(current_level)
+
+func change_to_next_level(level_name: String):
+	var level_name_found : bool = false
+	
+	for level in levels.keys():
+		if level_name_found:
+			start(level)
+			return
+		
+		if level == level_name:
+			level_name_found = true
+	
+	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
 
 func pause(value := true):
 	paused = value
