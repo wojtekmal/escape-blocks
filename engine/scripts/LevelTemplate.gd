@@ -3,9 +3,17 @@ class_name LevelTemplate
 extends Node2D
 @warning_ignore("integer_division")
 
+signal retry_this_level
+signal change_to_next_level
+
 @export var board_dimensions : Vector2i : set = set_board_dimensions
 @export var total_rotations : int = 0
 @export var now_rotations : int
+@export var level_name : String
+@export var rotation_limit_1 : int
+@export var rotation_limit_2 : int
+@export var time_limit_1 : float
+@export var time_limit_2 : float
 
 #children
 @onready var tilemap := $BoardLimits
@@ -14,6 +22,9 @@ extends Node2D
 @onready var rotation_timer = $RotationTimer
 @onready var walls := $Walls
 @onready var counter := $Counter
+@onready var level_map_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/LevelMapBox/TextureButton
+@onready var next_level_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/NextLevelBox/TextureButton
+@onready var retry_level_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/RetryLevelBox/TextureButton
 
 var rotations_number : int : set = update_counter
 var moving_entities = []
@@ -82,6 +93,7 @@ var door_blocks := {}
 func _ready():
 	add_to_group("level")
 	rotation_timer.timeout.connect(rotation_ended)
+	
 	#calls the setter function
 	board_dimensions = board_dimensions
 	tilemap.board_dimensions = board_dimensions
@@ -477,10 +489,24 @@ func _on_player_finished(start_rotations):
 	if (total_rotations + start_rotations) % 4 == 0 && !game_ended:
 		game_ended = true
 		print("End game.\nTotal rotations: " + str(rotations_number))
-		if $Control/CanvasLayer/RichTextLabel != null:
-			$Control/CanvasLayer/RichTextLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
-			$Control/CanvasLayer/RichTextLabel.visible = true
-			$Control/CanvasLayer/ColorRect.visible = true
+		$Control/CanvasLayer/MarginContainer/VBoxContainer/FinishLabelBox/FinishLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
+		$Control/CanvasLayer.visible = true
+		
+		if !global.levels.has(level_name):
+			print("This level\'s name is\'nt in global.levels.")
+			return
+		
+		var time_parts = 0
+		var rotation_parts = 0
+		
+		if rotations_number <= rotation_limit_1:
+			rotation_parts = 2
+		elif rotations_number <= rotation_limit_2:
+			rotation_parts = 1
+		
+		level_map_button.pressed.connect(go_to_map)
+		retry_level_button.pressed.connect(retry_level)
+		next_level_button.pressed.connect(go_to_next_level)
 
 func manage_doors():
 	if !rotation_timer.is_stopped():
@@ -517,3 +543,12 @@ func get_y_size(entity):
 		return size.y
 	else:
 		return 64
+
+func go_to_map():
+	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+
+func retry_level():
+	emit_signal("retry_this_level", level_name)
+
+func go_to_next_level():
+	emit_signal("change_to_next_level", level_name)
