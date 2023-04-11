@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var pause_screen := $Control/CanvasLayer
+
 # "level name" : preload("res://path/to/level")
 var levels := {
 	"1" : preload("res://levels/test_level_template.tscn"),
@@ -10,9 +12,11 @@ var levels := {
 	"training_1" : preload("res://levels/roupiq_1.tscn"),
 }
 
-@export var current_level := "training_1"
+var paused = false
+@export var current_level : String
 
 func start(level_name : String):
+	pause(false)
 	for level in get_tree().get_nodes_in_group("level"):
 		level.queue_free()
 		level.hide()
@@ -30,6 +34,9 @@ func _ready():
 	start(current_level)
 
 func _process(delta):
+	if Input.is_action_just_pressed("pause"):
+		pause(not paused)
+	
 	if Input.is_action_just_pressed("restart"):
 		start(current_level)
 
@@ -45,3 +52,9 @@ func change_to_next_level(level_name: String):
 			level_name_found = true
 	
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+
+func pause(value := true):
+	paused = value
+	for level in get_tree().get_nodes_in_group("level"):
+		get_tree().paused = value
+	pause_screen.visible = paused

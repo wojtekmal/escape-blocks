@@ -1,6 +1,6 @@
 extends Node
 
-var current_level
+var current_level : String = "1"
 
 # This is a dictionary holding all levels by their numbers.
 # Here all important information about levels is held in this format:
