@@ -15,8 +15,8 @@ extends Area2D
 @export var y_speed := 0
 @export var x_speed := 0
 
-var WALK_SPEED := 150.0
-var friction := 0.65
+var WALK_SPEED := 120.0
+var friction := 0.75
 
 var offset = 10;
 var crawling := false
