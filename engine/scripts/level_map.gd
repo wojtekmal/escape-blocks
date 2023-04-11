@@ -33,7 +33,7 @@ func _ready():
 				"unlocked": true,
 				"finished_parts": 0,
 				"rotation_parts": 0,
-			"time_parts": 0,
+				"time_parts": 0,
 			},
 			"2": {
 				"unlocked": false,
