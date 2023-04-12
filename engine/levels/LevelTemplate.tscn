@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=38 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ddo0kuo1nd0xw" path="res://textures/blocks/button.png" id="12_gobi5"]
 [ext_resource type="Texture2D" uid="uid://dwm0i4f3lr28f" path="res://textures/blocks/door.png" id="13_lyb2i"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="14_wb3oo"]
+[ext_resource type="Script" path="res://scripts/stopwatch.gd" id="17_g1hll"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -322,7 +323,6 @@ collision_layer = 10
 collision_mask = 1
 board_cords = Vector2i(3, 2)
 board_dimensions = Vector2i(8, 5)
-x_speed = 0
 metadata/_edit_horizontal_guides_ = []
 
 [node name="BoardLimits" type="TileMap" parent="." groups=["board_limits"]]
@@ -333,6 +333,7 @@ script = ExtResource("4_gvo1y")
 board_dimensions = Vector2i(8, 5)
 
 [node name="RotationTimer" type="Timer" parent="."]
+wait_time = 0.3
 one_shot = true
 script = ExtResource("6_lnp4p")
 
@@ -394,3 +395,12 @@ theme_override_font_sizes/normal_font_size = 50
 text = "END GAME.
 TOTAL ROTATIONS : 7"
 context_menu_enabled = true
+
+[node name="Timer" type="CanvasLayer" parent="Control"]
+script = ExtResource("17_g1hll")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/Timer"]
+offset_left = 6.0
+offset_top = 26.0
+offset_right = 239.0
+offset_bottom = 89.0
