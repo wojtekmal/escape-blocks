@@ -3,6 +3,7 @@ extends MarginContainer
 
 @export_multiline var label_text := "" : set = set_label_text
 @export var part_visible : bool = false : set = set_part_visible
+@export var part_new : bool = false : set = set_part_new
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,3 +24,8 @@ func set_part_visible(new_value):
 	part_visible = new_value
 	var part_texture = $VBoxContainer/FrameBox/RatioPartBox/Part
 	part_texture.visible = new_value
+
+func set_part_new(new_value):
+	part_new = new_value
+	var part_texture = $VBoxContainer/FrameBox/RatioPartBox/Part
+	part_texture.flip_h = new_value
