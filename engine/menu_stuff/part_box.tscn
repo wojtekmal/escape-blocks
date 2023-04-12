@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8o4sicisqcs4"]
+
+[ext_resource type="Script" path="res://scripts/part_box.gd" id="1_etha7"]
+[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="2_15io6"]
+[ext_resource type="Texture2D" uid="uid://difqxscv2ep4s" path="res://textures/temporary_part_frame.png" id="2_r8xf4"]
+[ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="3_lbcbi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1njnc"]
+font = ExtResource("2_15io6")
+font_size = 24
+
+[node name="PartBox" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_etha7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="FrameBox" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="RatioFrameBox" type="AspectRatioContainer" parent="VBoxContainer/FrameBox"]
+layout_mode = 2
+
+[node name="PartFrame" type="TextureRect" parent="VBoxContainer/FrameBox/RatioFrameBox"]
+layout_mode = 2
+texture = ExtResource("2_r8xf4")
+expand_mode = 1
+
+[node name="RatioPartBox" type="AspectRatioContainer" parent="VBoxContainer/FrameBox"]
+layout_mode = 2
+
+[node name="Part" type="TextureRect" parent="VBoxContainer/FrameBox/RatioPartBox"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_lbcbi")
+expand_mode = 1
+
+[node name="LabelBox" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/LabelBox"]
+layout_mode = 2
+text = "text"
+label_settings = SubResource("LabelSettings_1njnc")
+horizontal_alignment = 1
