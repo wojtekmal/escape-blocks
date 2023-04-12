@@ -26,6 +26,11 @@ signal change_to_next_level
 @onready var next_level_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/NextLevelBox/TextureButton
 @onready var retry_level_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/RetryLevelBox/TextureButton
 @onready var timer := $Control/Timer
+@onready var part_box_1 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox1
+@onready var part_box_2 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox2
+@onready var part_box_3 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox3
+@onready var part_box_4 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox4
+@onready var part_box_5 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox5
 
 var rotations_number : int : set = update_counter
 var moving_entities = []
@@ -512,6 +517,42 @@ func _on_player_finished(start_rotations):
 			rotation_parts = 2
 		elif rotations_number <= rotation_limit_2:
 			rotation_parts = 1
+		
+		if timer._time <= time_limit_1:
+			time_parts = 2
+		elif timer._time <= time_limit_2:
+			time_parts = 1
+		
+		if global.levels[level_name]["finished_parts"] >= 1:
+			part_box_1.part_visible = true
+		if global.levels[level_name]["time_parts"] >= 1:
+			part_box_2.part_visible = true
+		if global.levels[level_name]["time_parts"] >= 2:
+			part_box_3.part_visible = true
+		if global.levels[level_name]["rotation_parts"] >= 1:
+			part_box_4.part_visible = true
+		if global.levels[level_name]["rotation_parts"] >= 2:
+			part_box_5.part_visible = true
+		
+		if !part_box_1.part_visible:
+			part_box_1.part_new = true
+			part_box_1.part_visible = true
+		if !part_box_2.part_visible && time_parts >= 1:
+			part_box_2.part_new = true
+			part_box_2.part_visible = true
+		if !part_box_3.part_visible && time_parts >= 2:
+			part_box_3.part_new = true
+			part_box_3.part_visible = true
+		if !part_box_4.part_visible && rotation_parts >= 1:
+			part_box_4.part_new = true
+			part_box_4.part_visible = true
+		if !part_box_5.part_visible && rotation_parts >= 2:
+			part_box_5.part_new = true
+			part_box_5.part_visible = true
+		
+		global.levels[level_name]["finished_parts"] = 1
+		global.levels[level_name]["time_parts"] = max(global.levels[level_name]["time_parts"], time_parts)
+		global.levels[level_name]["rotation_parts"] = max(global.levels[level_name]["rotation_parts"], rotation_parts)
 		
 		level_map_button.pressed.connect(go_to_map)
 		retry_level_button.pressed.connect(retry_level)
