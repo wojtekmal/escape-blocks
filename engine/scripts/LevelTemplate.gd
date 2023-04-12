@@ -269,7 +269,7 @@ func move_player(delta):
 	
 	var coyote_timer = $Player/CoyoteTimer
 	
-	if Input.is_action_just_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0):
+	if Input.is_action_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0):
 		game_started = true
 		player.y_speed = -400
 		coyote_timer.stop()
