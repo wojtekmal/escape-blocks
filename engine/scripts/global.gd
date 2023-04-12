@@ -22,22 +22,22 @@ var levels_data := {
 	},
 	"2a": {
 		"resource": preload("res://levels/level_2.tscn"),
-		"dependencies": [],
+		"dependencies": ["1"],
 	},
 	"2b": {
 		"resource": preload("res://levels/level_2_v2.tscn"),
-		"dependencies": [],
+		"dependencies": ["1"],
 	},
 	"3": {
 		"resource": preload("res://levels/wojtekmal_1.tscn"),
-		"dependencies": [],
+		"dependencies": ["2a"],
 	},
 	"4": {
 		"resource": preload("res://levels/test_level_template_2.tscn"),
-		"dependencies": [],
+		"dependencies": ["3"],
 	},
 	"5": {
 		"resource": preload("res://levels/roupiq_1.tscn"),
-		"dependencies": [],
+		"dependencies": ["4"],
 	},
 }
