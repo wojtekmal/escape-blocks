@@ -309,13 +309,13 @@ func manage_changing_gravity():
 	if Engine.is_editor_hint(): return
 	
 	var rotations = 0
-	if(Input.is_action_just_pressed("gravity_right")):
+	if(Input.is_action_pressed("gravity_right")):
 		game_started = true
 		rotations += 1
-	if(Input.is_action_just_pressed("gravity_up")):
+	if(Input.is_action_pressed("gravity_up")):
 		game_started = true
 		rotations += 2
-	if(Input.is_action_just_pressed("gravity_left")):
+	if(Input.is_action_pressed("gravity_left")):
 		game_started = true
 		rotations += 3
 	

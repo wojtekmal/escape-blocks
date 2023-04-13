@@ -7,8 +7,9 @@ class_name CameraZoom
 @export var ZOOM_MAX = 20.0
 var _zoom_factor : float = 0.7
 
-func _process(_delta) -> void:
+func _process(delta) -> void:
 	zoom_camera()
+	global_position = lerp(global_position, get_parent().global_position, delta * 0.1)
 
 func _input(event : InputEvent, delta = get_physics_process_delta_time()) -> void:
 	if event is InputEventMouseButton:
