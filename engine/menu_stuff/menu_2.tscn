@@ -71,6 +71,7 @@ custom_method = "new_game_press"
 layout_mode = 2
 buttonText = "Continue
 game"
+custom_method = "continue_game_press"
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
