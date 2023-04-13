@@ -49,3 +49,10 @@ func new_game_press():
 	global.levels["1"]["unlocked"] = true
 	
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+
+func continue_game_press():
+	if global.levels == {}:
+		new_game_press()
+		return
+	
+	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")

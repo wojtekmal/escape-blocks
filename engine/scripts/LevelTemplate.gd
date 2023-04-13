@@ -554,6 +554,14 @@ func _on_player_finished(start_rotations):
 		global.levels[level_name]["time_parts"] = max(global.levels[level_name]["time_parts"], time_parts)
 		global.levels[level_name]["rotation_parts"] = max(global.levels[level_name]["rotation_parts"], rotation_parts)
 		
+		for unlocked_level in global.levels_data[level_name]["unlocks"]:
+			print("level unlocked: " + unlocked_level)
+			global.levels[unlocked_level]["unlocked"] = true
+		
+		print(global.levels)
+		print("\n\n")
+		global.save()
+		
 		level_map_button.pressed.connect(go_to_map)
 		retry_level_button.pressed.connect(retry_level)
 		next_level_button.pressed.connect(go_to_next_level)
