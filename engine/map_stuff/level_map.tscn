@@ -8,7 +8,7 @@ script = ExtResource("1_gliqh")
 
 [node name="LevelButton" parent="." instance=ExtResource("1_qu7sv")]
 position = Vector2(388, 362)
-label_text = "2"
+label_text = "2a"
 
 [node name="LevelButton2" parent="." instance=ExtResource("1_qu7sv")]
 position = Vector2(267, 172)
