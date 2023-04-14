@@ -13,6 +13,9 @@ func start(level_name : String):
 		level.hide()
 		await level.tree_exited
 	var new_level = global.levels_data[level_name]["resource"].instantiate()
+	print(new_level)
+	print(level_name)
+	print(global.levels_data["2a"]["resource"].instantiate())
 	# This can be removed when all levels get their final name.
 	new_level.level_name = level_name
 	new_level.retry_this_level.connect(start)
