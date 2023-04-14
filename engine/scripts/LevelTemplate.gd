@@ -186,9 +186,9 @@ func move_block(delta, block):
 		entity_below.y_speed = block.y_speed
 	
 	column_top_entities[block.board_cords.x] = block
+	column_top_still_blocks[block.board_cords.x] = max_height
 	
 	if block.position.y == top_wall + max_height * 64 + 32:
-		column_top_still_blocks[block.board_cords.x] = max_height
 		block.board_cords.y = max_height
 		block.is_falling = false
 		return
@@ -202,7 +202,7 @@ func move_block(delta, block):
 		block.position.y += delta_height
 	
 	if block.position.y == top_wall + max_height * 64 + 32:
-		column_top_still_blocks[block.board_cords.x] = max_height
+		#column_top_still_blocks[block.board_cords.x] = max_height
 		block.board_cords.y = max_height
 		block.is_falling = false
 		return
@@ -266,6 +266,8 @@ func move_player(delta):
 	var max_height_1 = column_top_still_blocks[player_left_column] - 1
 	var max_height_2 = column_top_still_blocks[player_right_column] - 1
 	var max_height = min(max_height_1, max_height_2)
+	#print("max_height, new_player_cord_y:")
+	#print(max_height)
 	
 	var coyote_timer = $Player/CoyoteTimer
 	
@@ -275,7 +277,9 @@ func move_player(delta):
 		coyote_timer.stop()
 	
 	var delta_height = delta * player.y_speed
-	var new_player_cord_y = floori(player.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
+	var new_player_cord_y = floor_div(player.position.y - top_wall + delta_height - 32 - 1, 64) + 1
+	#print(new_player_cord_y)
+	#print((-1) / 64)
 	
 	var entity_below_left = column_top_entities[player_left_column]
 	var entity_below_right = column_top_entities[player_right_column]
@@ -290,21 +294,35 @@ func move_player(delta):
 	
 	column_top_entities[player_left_column] = player
 	column_top_entities[player_right_column] = player
+	column_top_still_blocks[player_left_column] = max_height
+	column_top_still_blocks[player_right_column] = max_height
+	
+	#print("framecount, player.position.y")
+	#print(frame_count)
+	#print(player.position.y)
+	#print(player.y_speed)
 	
 	if player.y_speed < 0:
+		if player.position.y + delta_height < top_wall + size.y / 2:
+			player.position.y = top_wall + size.y / 2
+			player.y_speed = 0
+			player.is_falling = true
+			print("ceiling stopped player")
+			print(player.position.y)
+			return
+		
 		player.position.y += delta_height
 		player.is_falling = true
 		return
 	
 	if player.position.y == top_wall + max_height * 64 + 32:
-		column_top_still_blocks[player_left_column] = max_height
-		column_top_still_blocks[player_right_column] = max_height
 		player.board_cords.y = max_height
 		player.is_falling = false
 		coyote_timer.start(coyote_timer.wait_time)
 		return
 	
 	if new_player_cord_y > max_height:
+		print("player teleported to floor")
 		player.is_falling = false
 		# Here the height of the block is set so that it lands on something else.
 		player.board_cords.y = max_height
@@ -314,8 +332,6 @@ func move_player(delta):
 		player.position.y += delta_height
 	
 	if player.position.y == top_wall + max_height * 64 + 32:
-		column_top_still_blocks[player_left_column] = max_height
-		column_top_still_blocks[player_right_column] = max_height
 		player.board_cords.y = max_height
 		player.is_falling = false
 		coyote_timer.start(coyote_timer.wait_time)
@@ -619,3 +635,9 @@ func retry_level():
 
 func go_to_next_level():
 	emit_signal("change_to_next_level", level_name)
+
+func floor_div(a, b):
+	if a >= 0 || a == floori(a) && floori(a) % floori(b) == 0:
+		return floori(a) / floori(b)
+	else:
+		return floori(a) / floori(b) - 1
