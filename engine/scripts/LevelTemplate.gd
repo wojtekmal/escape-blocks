@@ -307,8 +307,8 @@ func move_player(delta):
 			player.position.y = top_wall + size.y / 2
 			player.y_speed = 0
 			player.is_falling = true
-			print("ceiling stopped player")
-			print(player.position.y)
+			#print("ceiling stopped player")
+			#print(player.position.y)
 			return
 		
 		player.position.y += delta_height
@@ -322,7 +322,7 @@ func move_player(delta):
 		return
 	
 	if new_player_cord_y > max_height:
-		print("player teleported to floor")
+		#print("player teleported to floor")
 		player.is_falling = false
 		# Here the height of the block is set so that it lands on something else.
 		player.board_cords.y = max_height
@@ -425,6 +425,8 @@ func rotation_ended():
 			round((entity.position.x - left_wall - 32) / 64),
 			round((entity.position.y - top_wall - 32) / 64)
 		)
+	
+	player.is_falling = true
 	
 	for i in range(0, wasd.size()):
 		var w = wasd[i]
@@ -578,7 +580,7 @@ func _on_player_finished(start_rotations):
 			print("level unlocked: " + unlocked_level)
 			global.levels[unlocked_level]["unlocked"] = true
 		
-		print(global.levels)
+		#print(global.levels)
 		#print("\n\n")
 		global.save()
 		

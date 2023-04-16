@@ -72,12 +72,13 @@ size_flags_vertical = 3
 [node name="SwitchRotaion" parent="VBoxContainer/ScrollPanelBox/ScrollContainer/VBoxContainer" instance=ExtResource("2_or2vx")]
 layout_mode = 2
 label_text = "SWITCH ROTATION DIRECTION"
-custom_method = "switch_rotation"
+action = "switch_rotation"
+global_settings_key = "switch_rotation_direction"
 
 [node name="SettingsButton" parent="VBoxContainer/ScrollPanelBox/ScrollContainer/VBoxContainer" instance=ExtResource("3_b01vd")]
 layout_mode = 2
 label_text = "RESET PROGRESS"
-custom_method = "reset_progress_press"
+action = "reset_progress"
 
 [node name="ExternalButtonsBox" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
