@@ -52,6 +52,7 @@ layout_mode = 2
 [node name="MenuButton3" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("1")]
 layout_mode = 2
 buttonText = "Settings"
+custom_method = "settings_press"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
