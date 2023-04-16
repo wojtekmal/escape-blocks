@@ -58,3 +58,6 @@ func continue_game_press():
 		return
 	
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+
+func settings_press():
+	get_tree().change_scene_to_file("res://menu_stuff/settings.tscn")
