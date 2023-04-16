@@ -8,7 +8,7 @@ extends Area2D
 @export var jump_time = 0.1
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
-@export var is_falling : bool : set = set_is_falling
+@export var is_falling : bool = true : set = set_is_falling
 @export var start_rotations : int = 0
 
 # Player speed
