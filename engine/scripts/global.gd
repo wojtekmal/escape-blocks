@@ -20,10 +20,12 @@ func _ready():
 
 var levels := {}
 
-var saved_var := {
-	"levels" : levels,
-	"current_level" : current_level,
-}
+# Moved to save().
+#var saved_var := {
+#	"levels" : levels,
+#	"current_level" : current_level,
+#	"settings" : settings,
+#}
 
 func load_data():
 	var file = FileAccess.open(
@@ -40,11 +42,15 @@ func load_data():
 	
 	levels = content["levels"]
 	current_level = content["current_level"]
+	settings = content["settings"]
+	
+	manage_settings()
 
 func save():
-	saved_var = {
+	var saved_var = {
 		"levels" : levels,
 		"current_level" : current_level,
+		"settings" : settings
 	}
 	
 	print(saved_var)
@@ -90,3 +96,34 @@ var levels_data := {
 		"dependencies": ["4"],
 	},
 }
+
+var settings := {
+	"switch_rotation_direction": false,
+}
+
+func manage_settings():
+	switch_rotation(settings["switch_rotation_direction"])
+
+func switch_rotation(new_value: bool):
+	#if settings["switch_rotation_direction"] == new_value:
+	#	return
+	
+	settings["switch_rotation_direction"] = new_value
+	save()
+	InputMap.action_erase_events("gravity_left")
+	InputMap.action_erase_events("gravity_right")
+	
+	if new_value == false:
+		var key = InputEventKey.new()
+		key.physical_keycode = KEY_LEFT
+		InputMap.action_add_event("gravity_left", key)
+		var key2 = InputEventKey.new()
+		key2.physical_keycode = KEY_RIGHT
+		InputMap.action_add_event("gravity_right", key2)
+	else:
+		var key = InputEventKey.new()
+		key.physical_keycode = KEY_RIGHT
+		InputMap.action_add_event("gravity_left", key)
+		var key2 = InputEventKey.new()
+		key2.physical_keycode = KEY_LEFT
+		InputMap.action_add_event("gravity_right", key2)
