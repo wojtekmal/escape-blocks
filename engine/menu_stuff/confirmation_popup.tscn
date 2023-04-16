@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://65vyu0aiei0w"]
+
+[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="1_5jqbq"]
+[ext_resource type="Script" path="res://scripts/confirmation_popup.gd" id="1_g1w6i"]
+[ext_resource type="Texture2D" uid="uid://c8yym53ddmjaq" path="res://textures/end_panel_button.png" id="2_xa2il"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_inu6j"]
+font = ExtResource("1_5jqbq")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_jgp2b"]
+font = ExtResource("1_5jqbq")
+font_size = 48
+
+[node name="ConfirmationPopup" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 150
+script = ExtResource("1_g1w6i")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.207843, 0.207843, 0.207843, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "ARE YOU SURE YOU
+WANT TO DELETE
+PROGRESS? THIS
+CAN'T BE UNDONE."
+label_settings = SubResource("LabelSettings_inu6j")
+horizontal_alignment = 1
+
+[node name="ButtonsBox" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ButtonsBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="OkBox" type="MarginContainer" parent="VBoxContainer/ButtonsBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/ButtonsBox/HBoxContainer/OkBox"]
+layout_mode = 2
+texture_normal = ExtResource("2_xa2il")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/ButtonsBox/HBoxContainer/OkBox"]
+layout_mode = 2
+text = "OK"
+label_settings = SubResource("LabelSettings_jgp2b")
+horizontal_alignment = 1
+
+[node name="CancelBox" type="MarginContainer" parent="VBoxContainer/ButtonsBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/ButtonsBox/HBoxContainer/CancelBox"]
+layout_mode = 2
+texture_normal = ExtResource("2_xa2il")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/ButtonsBox/HBoxContainer/CancelBox"]
+layout_mode = 2
+text = "CANCEL"
+label_settings = SubResource("LabelSettings_jgp2b")
+horizontal_alignment = 1
