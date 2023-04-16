@@ -34,11 +34,11 @@ func switch_rotation(new_value: bool):
 		InputMap.action_add_event("gravity_left", key)
 		var key2 = InputEventKey.new()
 		key2.physical_keycode = KEY_RIGHT
-		InputMap.action_add_event("gravity_left", key2)
+		InputMap.action_add_event("gravity_right", key2)
 	else:
 		var key = InputEventKey.new()
 		key.physical_keycode = KEY_RIGHT
 		InputMap.action_add_event("gravity_left", key)
 		var key2 = InputEventKey.new()
 		key2.physical_keycode = KEY_LEFT
-		InputMap.action_add_event("gravity_left", key2)
+		InputMap.action_add_event("gravity_right", key2)
