@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/camera.gd" id="12_x6ppo"]
 
 [sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(16, 50)
+size = Vector2(30, 50)
 
 [sub_resource type="SpriteFrames" id="3"]
 animations = [{
