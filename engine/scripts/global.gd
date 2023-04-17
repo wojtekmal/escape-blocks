@@ -98,17 +98,17 @@ var levels_data := {
 }
 
 var settings := {
-	"switch_rotation_direction": false,
+	"switch_rotation": false,
 }
 
 func manage_settings():
-	switch_rotation(settings["switch_rotation_direction"])
+	switch_rotation(settings["switch_rotation"])
 
 func switch_rotation(new_value: bool):
 	#if settings["switch_rotation_direction"] == new_value:
 	#	return
 	
-	settings["switch_rotation_direction"] = new_value
+	settings["switch_rotation"] = new_value
 	save()
 	InputMap.action_erase_events("gravity_left")
 	InputMap.action_erase_events("gravity_right")

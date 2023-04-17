@@ -73,7 +73,6 @@ size_flags_vertical = 3
 layout_mode = 2
 label_text = "SWITCH ROTATION DIRECTION"
 action = "switch_rotation"
-global_settings_key = "switch_rotation_direction"
 
 [node name="SettingsButton" parent="VBoxContainer/ScrollPanelBox/ScrollContainer/VBoxContainer" instance=ExtResource("3_b01vd")]
 layout_mode = 2
