@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cylgj4bcajsr0"]
+[gd_scene load_steps=9 format=3 uid="uid://cylgj4bcajsr0"]
 
 [ext_resource type="Script" path="res://scripts/level_map.gd" id="1_gliqh"]
 [ext_resource type="PackedScene" uid="uid://ba4y62q3j4hcl" path="res://map_stuff/level_button.tscn" id="1_qu7sv"]
+[ext_resource type="Script" path="res://scripts/map_camera.gd" id="3_772qu"]
+[ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="4_y8sme"]
+[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="5_iu41y"]
+[ext_resource type="Texture2D" uid="uid://c8yym53ddmjaq" path="res://textures/end_panel_button.png" id="6_mdfpr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lnd47"]
+font = ExtResource("5_iu41y")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_t74uh"]
+font = ExtResource("5_iu41y")
+font_size = 48
 
 [node name="LevelMap" type="Node2D"]
 script = ExtResource("1_gliqh")
@@ -32,3 +44,76 @@ position = Vector2(604, 497)
 
 [node name="8" parent="." instance=ExtResource("1_qu7sv")]
 position = Vector2(398, 314)
+
+[node name="LevelButton3" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(675, 207)
+label_text = "1"
+
+[node name="MapCamera" type="Camera2D" parent="."]
+script = ExtResource("3_772qu")
+
+[node name="MapHUD" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="MapHUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MapHUD/MarginContainer"]
+layout_mode = 2
+
+[node name="Container" type="Container" parent="MapHUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MapHUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PartsBox" type="MarginContainer" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer/PartsBox"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer/PartsBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_y8sme")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer/PartsBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "12"
+label_settings = SubResource("LabelSettings_lnd47")
+
+[node name="Container" type="Container" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureButton" type="TextureButton" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("6_mdfpr")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+text = "MENU"
+label_settings = SubResource("LabelSettings_t74uh")
+horizontal_alignment = 1
