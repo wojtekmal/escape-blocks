@@ -5,6 +5,7 @@ var buttons := {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(preload("res://levels/level_2.tscn").instantiate())
 	for button_reference in get_tree().get_nodes_in_group("level_buttons"):
 		button_reference.button_pressed.connect(on_level_button_pressed)
 		buttons[button_reference.label_text] = button_reference

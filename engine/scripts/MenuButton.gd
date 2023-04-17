@@ -33,7 +33,7 @@ func on_button_press():
 	
 	call(custom_method)
 
-func new_game_press():
+func load_new_game():
 	# This is a dictionary holding the default values for global.levels.
 	# When "New game" is pressed, levels is set to this. If "Continue game is chosen, 
 	# the saved version of levels is chosen (TODO).
@@ -47,5 +47,17 @@ func new_game_press():
 		}
 	
 	global.levels["1"]["unlocked"] = true
+	global.current_level = "1"
 	
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+
+func continue_game_press():
+	if global.levels == {}:
+		load_new_game()
+		print("global.levels == {}")
+		return
+	
+	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+
+func settings_press():
+	get_tree().change_scene_to_file("res://menu_stuff/settings.tscn")
