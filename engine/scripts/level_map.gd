@@ -8,7 +8,7 @@ func _ready():
 	print(preload("res://levels/level_2.tscn").instantiate())
 	for button_reference in get_tree().get_nodes_in_group("level_buttons"):
 		button_reference.button_pressed.connect(on_level_button_pressed)
-		buttons[button_reference.label_text] = button_reference
+		buttons[button_reference.name] = button_reference
 		#print(button_reference.label_text)
 	
 	#if global.levels == {}:
@@ -41,6 +41,8 @@ func _ready():
 
 func init_graph():
 	for button_text in buttons:
+		if not global.levels_data.has(button_text):
+			button_text = "NULL"
 		for dependency in global.levels_data[button_text]["dependencies"]:
 			if global.levels[dependency]["finished_parts"] == 1:
 				global.levels[button_text]["unlocked"] = true
@@ -49,6 +51,8 @@ func init_graph():
 			buttons[button_text].pressable_button.disabled = false
 	
 	for button_text in buttons:
+		if not global.levels_data.has(button_text):
+			button_text = "NULL"
 		for dependency in global.levels_data[button_text]["dependencies"]:
 			
 			var line = Line2D.new()
