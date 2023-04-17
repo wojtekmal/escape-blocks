@@ -100,6 +100,11 @@ var levels_data := {
 		"unlocks": [],
 		"dependencies": ["5"],
 	},
+	"NULL": {
+		"resource": load("res://levels/NULL.tscn"),
+		"unlocks": [],
+		"dependencies": [],
+	},
 }
 
 var settings := {
