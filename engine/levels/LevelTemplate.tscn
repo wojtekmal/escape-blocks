@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ddo0kuo1nd0xw" path="res://textures/blocks/button.png" id="12_gobi5"]
 [ext_resource type="Texture2D" uid="uid://dwm0i4f3lr28f" path="res://textures/blocks/door.png" id="13_lyb2i"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="14_wb3oo"]
-[ext_resource type="PackedScene" path="res://menu_stuff/part_box.tscn" id="17_j8u3w"]
+[ext_resource type="PackedScene" uid="uid://csptwsrwupxko" path="res://menu_stuff/part_box.tscn" id="17_j8u3w"]
 [ext_resource type="Texture2D" uid="uid://c8yym53ddmjaq" path="res://textures/end_panel_button.png" id="18_e15eb"]
 [ext_resource type="Script" path="res://scripts/stopwatch.gd" id="19_nh8s2"]
 
