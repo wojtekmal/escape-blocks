@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cimdip5w7semr"]
+
+[ext_resource type="Script" path="res://scripts/settings_bool.gd" id="1_mxq2d"]
+[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="1_ykdjr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nekms"]
+font = ExtResource("1_ykdjr")
+font_size = 48
+
+[node name="SettingsBool" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mxq2d")
+global_settings_key = null
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.0
+label_settings = SubResource("LabelSettings_nekms")
+
+[node name="CheckBox" type="CheckBox" parent="HBoxContainer"]
+layout_mode = 2
+icon_alignment = 1
