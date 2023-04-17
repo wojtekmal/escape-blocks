@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8o4sicisqcs4"]
+[gd_scene load_steps=6 format=3 uid="uid://csptwsrwupxko"]
 
 [ext_resource type="Script" path="res://scripts/part_box.gd" id="1_etha7"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="2_15io6"]
