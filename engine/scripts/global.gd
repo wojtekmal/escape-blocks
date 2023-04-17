@@ -95,6 +95,11 @@ var levels_data := {
 		"unlocks": [],
 		"dependencies": ["4"],
 	},
+	"6": {
+		"resource": load("res://levels/frutlevel1.tscn"),
+		"unlocks": [],
+		"dependencies": ["5"],
+	},
 }
 
 var settings := {
