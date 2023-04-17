@@ -4,14 +4,15 @@ extends MarginContainer
 signal changed
 
 @export_multiline var label_text : String = "" : set = set_label_text
+# This has to be the same as the key in global.settings.
 @export var action : String = ""
-@export var global_settings_key : String
+#@export var global_settings_key : String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var checkbox = $HBoxContainer/CheckBox
-	if global.settings.has(global_settings_key):
-		checkbox.button_pressed = global.settings[global_settings_key]
+	if global.settings.has(action):
+		checkbox.button_pressed = global.settings[action]
 	
 	checkbox.toggled.connect(checkbox_toggled)
 
