@@ -11,31 +11,11 @@ func _ready():
 		buttons[button_reference.name] = button_reference
 		#print(button_reference.label_text)
 	
-	#if global.levels == {}:
-	#	# This is a dictionary holding the default values for global.levels.
-	#	# When "New game" is pressed, levels is set to this. If "Continue game is chosen, 
-	#	# the saved version of levels is chosen (TODO).
-	#
-	#	global.levels = {
-	#		"1": {
-#				"unlocked": true,
-#				"finished_parts": 0,
-#				"rotation_parts": 0,
-#				"time_parts": 0,
-#			},
-#			"2": {
-#				"unlocked": false,
-#				"finished_parts": 0,
-#				"rotation_parts": 0,
-#				"time_parts": 0,
-#			},
-#			"3": {
-#				"unlocked": false,
-#				"finished_parts": 0,
-#				"rotation_parts": 0,
-#				"time_parts": 0,
-#			},
-#		}
+	var back_to_menu_button := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/TextureButton
+	back_to_menu_button.pressed.connect(go_to_menu)
+	
+	var part_count_label := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/PartsBox/HBoxContainer/Label
+	part_count_label.text = str(global.part_count)
 	
 	init_graph()
 
@@ -69,3 +49,6 @@ func _process(delta):
 func on_level_button_pressed(level_name):
 	global.current_level = level_name
 	get_tree().change_scene_to_file("res://levels/level_restart.tscn")
+
+func go_to_menu():
+	get_tree().change_scene_to_file("res://menu_stuff/menu_2.tscn")
