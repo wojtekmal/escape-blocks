@@ -350,7 +350,7 @@ func manage_changing_gravity():
 		rotations += 2
 	if(Input.is_action_pressed("gravity_left")):
 		game_started = true
-		rotations += 3
+		rotations -= 1
 	
 	var wasd := get_tree().get_nodes_in_group("wasd")
 		
