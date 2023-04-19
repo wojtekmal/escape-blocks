@@ -20,7 +20,6 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 script = ExtResource("1_u507s")
-action = null
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

@@ -555,18 +555,23 @@ func _on_player_finished(start_rotations):
 		if !part_box_1.part_visible:
 			part_box_1.part_new = true
 			part_box_1.part_visible = true
+			global.part_count += 1
 		if !part_box_2.part_visible && time_parts >= 1:
 			part_box_2.part_new = true
 			part_box_2.part_visible = true
+			global.part_count += 1
 		if !part_box_3.part_visible && time_parts >= 2:
 			part_box_3.part_new = true
 			part_box_3.part_visible = true
+			global.part_count += 1
 		if !part_box_4.part_visible && rotation_parts >= 1:
 			part_box_4.part_new = true
 			part_box_4.part_visible = true
+			global.part_count += 1
 		if !part_box_5.part_visible && rotation_parts >= 2:
 			part_box_5.part_new = true
 			part_box_5.part_visible = true
+			global.part_count += 1
 		
 		global.levels[level_name]["finished_parts"] = 1
 		global.levels[level_name]["time_parts"] = max(global.levels[level_name]["time_parts"], time_parts)

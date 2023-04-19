@@ -1,6 +1,7 @@
 extends Node
 
 var current_level : String = "1"
+var part_count : int = 0
  
 # This is a dictionary holding all levels by their numbers.
 # Here all important information about levels is held in this format:
@@ -40,9 +41,14 @@ func load_data():
 	var content = file.get_var()
 	print(content)
 	
-	levels = content["levels"]
-	current_level = content["current_level"]
-	settings = content["settings"]
+	if content.has("levels"):
+		levels = content["levels"]
+	if content.has("current_level"):
+		current_level = content["current_level"]
+	if content.has("settings"):
+		settings = content["settings"]
+	if content.has("part_count"):
+		part_count = content["part_count"]
 	
 	manage_settings()
 
@@ -50,7 +56,8 @@ func save():
 	var saved_var = {
 		"levels" : levels,
 		"current_level" : current_level,
-		"settings" : settings
+		"settings" : settings,
+		"part_count" : part_count,
 	}
 	
 	print(saved_var)

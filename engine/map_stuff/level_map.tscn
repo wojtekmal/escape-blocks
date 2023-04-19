@@ -47,7 +47,6 @@ position = Vector2(398, 314)
 
 [node name="LevelButton3" parent="." instance=ExtResource("1_qu7sv")]
 position = Vector2(675, 207)
-label_text = "1"
 
 [node name="MapCamera" type="Camera2D" parent="."]
 script = ExtResource("3_772qu")
@@ -60,22 +59,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MapHUD/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Container" type="Container" parent="MapHUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 7.0
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MapHUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="PartsBox" type="MarginContainer" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer/PartsBox"]
 layout_mode = 2
@@ -85,6 +89,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("4_y8sme")
 expand_mode = 2
+stretch_mode = 4
 
 [node name="Label" type="Label" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer/PartsBox/HBoxContainer"]
 layout_mode = 2
@@ -96,11 +101,13 @@ label_settings = SubResource("LabelSettings_lnd47")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.0
+mouse_filter = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
