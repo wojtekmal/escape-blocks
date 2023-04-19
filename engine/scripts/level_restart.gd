@@ -50,5 +50,8 @@ func change_to_next_level(level_name: String):
 func pause(value := true):
 	paused = value
 	for level in get_tree().get_nodes_in_group("level"):
+		#get_child(0).get_child(0).get_child(6).get_child(2).stop(true)
 		get_tree().paused = value
+		
+		
 	pause_screen.visible = paused

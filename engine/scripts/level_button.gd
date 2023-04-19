@@ -6,6 +6,7 @@ signal button_pressed
 
 @onready var pressable_button := $TextureButton
 #var is_unlocked : bool = false
+#var label_text : String = "" : set = set_label_text
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
