@@ -87,3 +87,4 @@ buttonText = "Creddits"
 [node name="MenuButton3" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4" instance=ExtResource("1")]
 layout_mode = 2
 buttonText = "Exit"
+custom_method = "exit_game_press"

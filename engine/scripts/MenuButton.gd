@@ -61,3 +61,6 @@ func continue_game_press():
 
 func settings_press():
 	get_tree().change_scene_to_file("res://menu_stuff/settings.tscn")
+
+func exit_game_press():
+	get_tree().quit()
