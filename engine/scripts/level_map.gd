@@ -17,29 +17,32 @@ func _ready():
 	var part_count_label := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/PartsBox/HBoxContainer/Label
 	part_count_label.text = str(global.part_count)
 	
+	var map_camera := $MapCamera
+	
+	for button_text in buttons:
+		if button_text == global.current_level:
+			map_camera.position = buttons[button_text].position
+	
 	init_graph()
 
 func init_graph():
 	for button_text in buttons:
-		if not global.levels_data.has(button_text):
-			button_text = "NULL"
-		for dependency in global.levels_data[button_text]["dependencies"]:
-			if global.levels[dependency]["finished_parts"] == 1:
-				global.levels[button_text]["unlocked"] = true
-		
-		if global.levels[button_text]["unlocked"]:
+		if global.levels.has(button_text) && global.levels[button_text]["unlocked"]:
 			buttons[button_text].pressable_button.disabled = false
-	
-	for button_text in buttons:
+		
 		if not global.levels_data.has(button_text):
 			button_text = "NULL"
-		for dependency in global.levels_data[button_text]["dependencies"]:
-			
+		
+		for dependency in global.levels_data[button_text]["unlocks"]:
 			var line = Line2D.new()
 			line.add_point(buttons[button_text].position)
 			line.add_point(buttons[dependency].position)
 			line.default_color = Color8(0, 0, 0)
 			line.z_index = -1
+			
+			if !global.levels[button_text]["unlocked"] || !global.levels[dependency]["unlocked"]:
+				line.default_color = Color8(128, 128, 128)
+			
 			add_child(line)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
