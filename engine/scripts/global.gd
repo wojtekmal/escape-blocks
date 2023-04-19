@@ -16,17 +16,8 @@ var part_count : int = 0
 func _ready():
 	name = "global"
 	load_data()
-	
-	#print(preload("res://levels/test_level_template.tscn").instantiate())
 
 var levels := {}
-
-# Moved to save().
-#var saved_var := {
-#	"levels" : levels,
-#	"current_level" : current_level,
-#	"settings" : settings,
-#}
 
 func load_data():
 	var file = FileAccess.open(
@@ -75,42 +66,42 @@ var levels_data := {
 	"1": {
 		"resource": load("res://levels/test_level_template.tscn"),
 		"unlocks": ["2a", "2b"],
-		"dependencies": [],
+		#"dependencies": [],
 	},
 	"2a": {
 		"resource": load("res://levels/level_2.tscn"),
 		"unlocks": ["3"],
-		"dependencies": ["1"],
+		#"dependencies": ["1"],
 	},
 	"2b": {
 		"resource": load("res://levels/level_2_v2.tscn"),
 		"unlocks": [],
-		"dependencies": ["1"],
+		#"dependencies": ["1"],
 	},
 	"3": {
 		"resource": load("res://levels/wojtekmal_1.tscn"),
 		"unlocks": ["4"],
-		"dependencies": ["2a"],
+		#"dependencies": ["2a"],
 	},
 	"4": {
 		"resource": load("res://levels/test_level_template_2.tscn"),
 		"unlocks": ["5"],
-		"dependencies": ["3"],
+		#"dependencies": ["3"],
 	},
 	"5": {
 		"resource": load("res://levels/roupiq_1.tscn"),
 		"unlocks": [],
-		"dependencies": ["4"],
+		#"dependencies": ["4"],
 	},
 	"6": {
 		"resource": load("res://levels/frutlevel1.tscn"),
 		"unlocks": [],
-		"dependencies": ["5"],
+		#"dependencies": ["5"],
 	},
 	"NULL": {
 		"resource": load("res://levels/NULL.tscn"),
 		"unlocks": [],
-		"dependencies": [],
+		#"dependencies": [],
 	},
 }
 
