@@ -7,6 +7,7 @@ extends Control
 # var b = "text"
 @export_multiline var buttonText := "" : set = UpdateLabel # (String, MULTILINE)
 @export var custom_method : String
+@export var texture : Texture : set = set_texture
 @onready var label := $CenterContainer/ButtonLabel
 @onready var pressable_button = $AspectRatioContainer/TextureButton
 
@@ -64,3 +65,8 @@ func settings_press():
 
 func exit_game_press():
 	get_tree().quit()
+
+func set_texture(new_value):
+	texture = new_value
+	var texture_rect := $AspectRatioContainer/TextureButton
+	texture_rect.texture_normal = new_value

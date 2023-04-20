@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://52tgw8e0ihah"]
+[gd_scene load_steps=5 format=3 uid="uid://52tgw8e0ihah"]
 
 [ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/blocks/block.png" id="1"]
 [ext_resource type="Script" path="res://scripts/MenuButton.gd" id="3"]
+[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="3_ow5cs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2qcr6"]
+font = ExtResource("3_ow5cs")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
 
