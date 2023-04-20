@@ -428,6 +428,8 @@ func rotation_ended():
 			round((entity.position.x - left_wall - 32) / 64),
 			round((entity.position.y - top_wall - 32) / 64)
 		)
+		
+		entity.y_speed = 0
 	
 	player.is_falling = true
 	

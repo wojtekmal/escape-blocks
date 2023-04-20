@@ -28,4 +28,7 @@ func set_part_visible(new_value):
 func set_part_new(new_value):
 	part_new = new_value
 	var part_texture = $VBoxContainer/FrameBox/RatioPartBox/Part
-	part_texture.flip_h = new_value
+	#print(part_texture)
+	#part_texture.flip_h = new_value
+	var animation := $VBoxContainer/FrameBox/RatioPartBox/Part/AnimationPlayer
+	animation.play("make_part_appear")
