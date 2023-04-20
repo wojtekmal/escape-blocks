@@ -1,9 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://csptwsrwupxko"]
+[gd_scene load_steps=8 format=3 uid="uid://csptwsrwupxko"]
 
 [ext_resource type="Script" path="res://scripts/part_box.gd" id="1_etha7"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="2_15io6"]
 [ext_resource type="Texture2D" uid="uid://difqxscv2ep4s" path="res://textures/temporary_part_frame.png" id="2_r8xf4"]
 [ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="3_lbcbi"]
+
+[sub_resource type="Animation" id="Animation_fucij"]
+resource_name = "make_part_appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ialaf"]
+_data = {
+"make_part_appear": SubResource("Animation_fucij")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_1njnc"]
 font = ExtResource("2_15io6")
@@ -42,6 +62,11 @@ visible = false
 layout_mode = 2
 texture = ExtResource("3_lbcbi")
 expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/FrameBox/RatioPartBox/Part"]
+libraries = {
+"": SubResource("AnimationLibrary_ialaf")
+}
 
 [node name="LabelBox" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
