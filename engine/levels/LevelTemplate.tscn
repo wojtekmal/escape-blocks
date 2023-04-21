@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=43 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://csptwsrwupxko" path="res://menu_stuff/part_box.tscn" id="17_j8u3w"]
 [ext_resource type="Texture2D" uid="uid://c8yym53ddmjaq" path="res://textures/end_panel_button.png" id="18_e15eb"]
 [ext_resource type="Script" path="res://scripts/stopwatch.gd" id="19_nh8s2"]
+[ext_resource type="AudioStream" uid="uid://d21kqeopilqrt" path="res://sound/escapeblocksv5.mp3" id="20_q7ff1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -501,3 +502,6 @@ offset_left = 6.0
 offset_top = 26.0
 offset_right = 239.0
 offset_bottom = 89.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_q7ff1")

@@ -112,6 +112,9 @@ func _ready():
 	if Engine.is_editor_hint(): return
 	
 	load_blocks_from_tilemap()
+	
+	var audio := $AudioStreamPlayer
+	audio.play()
 
 func _process(delta):
 	# We won't be loading frames in the editor.
