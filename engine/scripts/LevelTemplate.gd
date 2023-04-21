@@ -549,6 +549,12 @@ func _on_player_finished(start_rotations):
 		elif timer._time <= time_limit_2:
 			time_parts = 1
 		
+		part_box_1.label_text = "FINISHED"
+		part_box_2.label_text = str(time_limit_1) + "s"
+		part_box_3.label_text = str(time_limit_2) + "s"
+		part_box_4.label_text = str(rotation_limit_1) + "\nROTATIONS"
+		part_box_5.label_text = str(rotation_limit_2) + "\nROTATIONS"
+		
 		if global.levels[level_name]["finished_parts"] >= 1:
 			part_box_1.part_visible = true
 		if global.levels[level_name]["time_parts"] >= 1:

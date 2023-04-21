@@ -45,4 +45,5 @@ func reset_progress():
 	
 	global.levels["1"]["unlocked"] = true
 	global.current_level = "1"
+	global.part_count = 0
 	global.save()
