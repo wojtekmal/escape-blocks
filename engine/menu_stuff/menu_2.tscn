@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce2ksb07wp8of"]
+[gd_scene load_steps=4 format=3 uid="uid://ce2ksb07wp8of"]
 
 [ext_resource type="PackedScene" uid="uid://52tgw8e0ihah" path="res://menu_stuff/MenuButton.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://d4lbjhayyy8hw" path="res://textures/transparent32x32.png" id="2_ebkg8"]
+[ext_resource type="Texture2D" uid="uid://c00o4ibdjkbef" path="res://textures/player/player.png" id="2_f8q4f"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -37,17 +39,21 @@ color = Color(0.329412, 0.329412, 0.329412, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 
 [node name="MenuButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("1")]
 layout_mode = 2
+texture = ExtResource("2_ebkg8")
 
 [node name="MenuButton2" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("1")]
 layout_mode = 2
+texture = ExtResource("2_ebkg8")
 
 [node name="MenuButton3" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("1")]
 layout_mode = 2
@@ -58,31 +64,34 @@ custom_method = "settings_press"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 
 [node name="MenuButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("1")]
 layout_mode = 2
+texture = ExtResource("2_ebkg8")
 
 [node name="MenuButton2" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("1")]
 layout_mode = 2
-buttonText = "New
-game"
+buttonText = "Start"
+custom_method = "continue_game_press"
 
 [node name="MenuButton3" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer3" instance=ExtResource("1")]
 layout_mode = 2
-buttonText = "Start"
-custom_method = "continue_game_press"
+buttonText = "Creddits"
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 
 [node name="MenuButton" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4" instance=ExtResource("1")]
 layout_mode = 2
+texture = ExtResource("2_ebkg8")
 
 [node name="MenuButton2" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4" instance=ExtResource("1")]
 layout_mode = 2
-buttonText = "Creddits"
+texture = ExtResource("2_f8q4f")
 
 [node name="MenuButton3" parent="MarginContainer/AspectRatioContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer4" instance=ExtResource("1")]
 layout_mode = 2
