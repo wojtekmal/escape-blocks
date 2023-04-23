@@ -55,3 +55,4 @@ func on_level_button_pressed(level_name):
 
 func go_to_menu():
 	get_tree().change_scene_to_file("res://menu_stuff/menu_2.tscn")
+

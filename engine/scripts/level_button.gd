@@ -17,11 +17,6 @@ func _ready():
 	set_label_text(name)
 	pressable_button.pressed.connect(on_button_pressed)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func set_label_text(new_value):
 	#print("check")
 	var label = $TextureButton/Label
@@ -29,7 +24,6 @@ func set_label_text(new_value):
 		label.text = new_value
 	else:
 		label.text = "NULL"
-		name = "NULL"
 	#print(label.text)
 
 func on_button_pressed():

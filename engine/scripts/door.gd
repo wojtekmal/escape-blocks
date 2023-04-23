@@ -53,14 +53,6 @@ func _ready():
 	open = false
 	$Shaded/Door.visible = true
 
-#func opened(value := true):
-#	if value:
-#		#emit_signal("open_door", self, value)
-#		$Shaded/Door.visible = false
-#	else:
-#		#emit_signal("open_door", self, value)
-#		$Shaded/Door.visible = true
-
 func button_pressed():
 	pressed_buttons += 1
 
