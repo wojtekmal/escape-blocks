@@ -517,3 +517,7 @@ script = ExtResource("21_lbwbm")
 position = Vector2(0, -19)
 gizmo_extents = 100.0
 script = ExtResource("22_uv5px")
+
+[node name="WOLOLO" type="Marker2D" parent="."]
+position = Vector2(100, 100)
+gizmo_extents = 1000.0
