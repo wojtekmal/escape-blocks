@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvn3xtlhpyj4k"]
+
+[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="1_imuyc"]
+[ext_resource type="Script" path="res://scripts/confirm_buy_level.gd" id="1_mmaas"]
+[ext_resource type="Texture2D" uid="uid://c8yym53ddmjaq" path="res://textures/end_panel_button.png" id="2_7fbxt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u8gxa"]
+font = ExtResource("1_imuyc")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_vtrwa"]
+font = ExtResource("1_imuyc")
+font_size = 24
+
+[node name="ConfirmBuyLevel" type="MarginContainer"]
+offset_right = 335.0
+offset_bottom = 140.0
+script = ExtResource("1_mmaas")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.34902, 0.34902, 0.34902, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 2.0
+text = "Open level <level>
+for <number> parts?"
+label_settings = SubResource("LabelSettings_u8gxa")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="OkBox" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/OkBox"]
+layout_mode = 2
+texture_normal = ExtResource("2_7fbxt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/OkBox"]
+layout_mode = 2
+text = "OK"
+label_settings = SubResource("LabelSettings_vtrwa")
+horizontal_alignment = 1
+
+[node name="CancelBox" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/CancelBox"]
+layout_mode = 2
+texture_normal = ExtResource("2_7fbxt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/CancelBox"]
+layout_mode = 2
+text = "CANCEL"
+label_settings = SubResource("LabelSettings_vtrwa")
+horizontal_alignment = 1

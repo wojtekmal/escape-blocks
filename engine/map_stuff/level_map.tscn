@@ -46,7 +46,7 @@ position = Vector2(604, 497)
 position = Vector2(398, 314)
 
 [node name="LevelButton3" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(675, 207)
+position = Vector2(675, 100)
 
 [node name="MapCamera" type="Camera2D" parent="."]
 script = ExtResource("3_772qu")
