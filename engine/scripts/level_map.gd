@@ -8,6 +8,7 @@ func _ready():
 	print(preload("res://levels/level_2.tscn").instantiate())
 	for button_reference in get_tree().get_nodes_in_group("level_buttons"):
 		button_reference.button_pressed.connect(on_level_button_pressed)
+		button_reference.refresh_map.connect(refresh_map)
 		buttons[button_reference.name] = button_reference
 		#print(button_reference.label_text)
 	
@@ -27,9 +28,6 @@ func _ready():
 
 func init_graph():
 	for button_text in buttons:
-		if global.levels.has(button_text) && global.levels[button_text]["unlocked"]:
-			buttons[button_text].pressable_button.disabled = false
-		
 		if not global.levels_data.has(button_text):
 			button_text = "NULL"
 		
@@ -55,3 +53,25 @@ func on_level_button_pressed(level_name):
 
 func go_to_menu():
 	get_tree().change_scene_to_file("res://menu_stuff/menu_2.tscn")
+
+func refresh_map():
+	var part_count_label := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/PartsBox/HBoxContainer/Label
+	part_count_label.text = str(global.part_count)
+	
+#	for button_text in buttons:
+#		var label = buttons[button_text].get_node("TextureButton/VBoxContainer/Label")
+#		print(global.levels.has(label.text))
+#		print(global.levels[label.text]["unlocked"] > 0)
+#		if global.levels.has(label.text) && global.levels[label.text]["unlocked"] > 0:
+#			buttons[button_text].pressable_button.disabled = false
+#
+#			if global.levels[label.text]["unlocked"] == 2:
+#				buttons[button_text].needed_part_display.modulate = Color8(0,0,0,0)
+#
+#			if global.levels[label.text]["unlocked"] == 1:
+#				buttons[button_text].get_node("TextureButton").texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
+#		else:
+#			pass
+#			#modulate = Color8(255,255,255,100)
+	
+	global.save()

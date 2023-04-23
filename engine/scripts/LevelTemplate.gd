@@ -597,7 +597,7 @@ func _on_player_finished(start_rotations):
 		
 		for unlocked_level in global.levels_data[level_name]["unlocks"]:
 			print("level unlocked: " + unlocked_level)
-			global.levels[unlocked_level]["unlocked"] = true
+			global.levels[unlocked_level]["unlocked"] = 1
 		
 		#print(global.levels)
 		#print("\n\n")
