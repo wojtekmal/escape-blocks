@@ -31,6 +31,7 @@ signal change_to_next_level
 @onready var part_box_3 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox3
 @onready var part_box_4 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox4
 @onready var part_box_5 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox5
+@onready var camera := $Camera2D
 
 var rotations_number : int : set = update_counter
 var moving_entities = []
@@ -47,8 +48,6 @@ var game_ended := false
 var game_started := false : set = set_started
 var column_top_entities = []
 var y_friction = 0.99;
-
-var to_remove := []
 
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
@@ -119,6 +118,7 @@ func _ready():
 func _process(delta):
 	# We won't be loading frames in the editor.
 	if Engine.is_editor_hint(): return
+	move_camera()
 	
 	if Input.is_action_just_pressed("quick_finish"):
 		_on_player_finished(-total_rotations)
@@ -129,8 +129,6 @@ func _process(delta):
 		
 	first_frame = false
 	frame_count += 1
-	
-	remove()
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -211,12 +209,6 @@ func move_block(delta, block):
 		block.board_cords.y = max_height
 		block.is_falling = false
 		return
-
-func remove():
-	for to in to_remove:
-		if to != null:
-			to.queue_free()
-	to_remove.clear()
 
 func move_player(delta):
 	player.y_speed *= y_friction
@@ -656,3 +648,7 @@ func floor_div(a, b):
 		return floori(a) / floori(b)
 	else:
 		return floori(a) / floori(b) - 1
+
+func move_camera():
+	while (camera.position - player.position).length() * camera.zoom.x > 100:
+		camera.position = lerp(camera.position, player.position, 0.01)
