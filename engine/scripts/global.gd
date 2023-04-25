@@ -110,8 +110,8 @@ var settings := {
 }
 
 func manage_settings():
-	switch_rotation(settings["switch_rotation"])
-
+#	switch_rotation(settings["switch_rotation"])
+	pass
 func switch_rotation(new_value: bool):
 	#if settings["switch_rotation_direction"] == new_value:
 	#	return
