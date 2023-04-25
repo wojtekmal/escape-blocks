@@ -41,14 +41,15 @@ func load_new_game():
 	
 	for level_name in global.levels_data:
 		global.levels[level_name] = {
-			"unlocked": false,
+			"unlocked": 0,
 			"finished_parts": 0,
 			"rotation_parts": 0,
 			"time_parts": 0,
 		}
 	
-	global.levels["1"]["unlocked"] = true
+	global.levels["1"]["unlocked"] = 2
 	global.current_level = "1"
+	global.save()
 	
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
 

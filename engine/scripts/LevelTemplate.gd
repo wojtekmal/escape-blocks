@@ -25,6 +25,7 @@ signal change_to_next_level
 @onready var level_map_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/LevelMapBox/TextureButton
 @onready var next_level_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/NextLevelBox/TextureButton
 @onready var retry_level_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/RetryLevelBox/TextureButton
+@onready var next_level_button_text := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/NextLevelBox/RichTextLabel
 @onready var timer := $Control/Timer
 @onready var part_box_1 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox1
 @onready var part_box_2 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox2
@@ -541,6 +542,12 @@ func _on_player_finished(start_rotations):
 		elif timer._time <= time_limit_2:
 			time_parts = 1
 		
+		part_box_1.label_text = "FINISHED"
+		part_box_2.label_text = str(time_limit_1) + "s"
+		part_box_3.label_text = str(time_limit_2) + "s"
+		part_box_4.label_text = str(rotation_limit_1) + "\nROTATIONS"
+		part_box_5.label_text = str(rotation_limit_2) + "\nROTATIONS"
+		
 		if global.levels[level_name]["finished_parts"] >= 1:
 			part_box_1.part_visible = true
 		if global.levels[level_name]["time_parts"] >= 1:
@@ -583,7 +590,7 @@ func _on_player_finished(start_rotations):
 		
 		for unlocked_level in global.levels_data[level_name]["unlocks"]:
 			print("level unlocked: " + unlocked_level)
-			global.levels[unlocked_level]["unlocked"] = true
+			global.levels[unlocked_level]["unlocked"] = max(1, global.levels[unlocked_level]["unlocked"])
 		
 		#print(global.levels)
 		#print("\n\n")
@@ -592,6 +599,14 @@ func _on_player_finished(start_rotations):
 		level_map_button.pressed.connect(go_to_map)
 		retry_level_button.pressed.connect(retry_level)
 		next_level_button.pressed.connect(go_to_next_level)
+		#next_level_button_text.add_font_override("normal_font", load("res://fonts/conthrax/conthrax-sb.otf"))
+		next_level_button_text.push_paragraph(HORIZONTAL_ALIGNMENT_CENTER)
+		next_level_button_text.push_font(load("res://fonts/conthrax/conthrax-sb.otf"), 36)
+		next_level_button_text.push_color(Color(0,0,0,1))
+		next_level_button_text.append_text("NEXT (")
+		next_level_button_text.add_image(load("res://textures/temporary_part.png"), 36, 36)
+		next_level_button_text.append_text(str(global.levels_data[level_name]["part_price"]) + ")")
+		#next_level_button_text.pop()
 
 func manage_doors():
 	if !rotation_timer.is_stopped():
