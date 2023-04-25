@@ -13,6 +13,7 @@ font = ExtResource("1_imuyc")
 font_size = 24
 
 [node name="ConfirmBuyLevel" type="MarginContainer"]
+z_index = 1
 offset_right = 335.0
 offset_bottom = 140.0
 script = ExtResource("1_mmaas")
