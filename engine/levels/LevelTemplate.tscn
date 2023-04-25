@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=45 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://c8yym53ddmjaq" path="res://textures/end_panel_button.png" id="18_e15eb"]
 [ext_resource type="Script" path="res://scripts/stopwatch.gd" id="19_nh8s2"]
 [ext_resource type="AudioStream" uid="uid://d21kqeopilqrt" path="res://sound/escapeblocksv5.mp3" id="20_q7ff1"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="21_lbwbm"]
+[ext_resource type="Script" path="res://scripts/Center.gd" id="22_uv5px"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -506,3 +508,17 @@ offset_bottom = 89.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_q7ff1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -9.5)
+ignore_rotation = false
+script = ExtResource("21_lbwbm")
+
+[node name="Center" type="Marker2D" parent="." groups=["wasd`"]]
+position = Vector2(0, -19)
+gizmo_extents = 100.0
+script = ExtResource("22_uv5px")
+
+[node name="WOLOLO" type="Marker2D" parent="."]
+position = Vector2(100, 100)
+gizmo_extents = 1000.0
