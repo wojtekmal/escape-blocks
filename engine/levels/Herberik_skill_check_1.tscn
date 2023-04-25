@@ -1,0 +1,396 @@
+[gd_scene load_steps=37 format=3 uid="uid://b60boeu27dkjs"]
+
+[ext_resource type="Script" path="res://scripts/LevelTemplate.gd" id="1_ke3q3"]
+[ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="2_j3wws"]
+[ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3_egjw8"]
+[ext_resource type="Script" path="res://scripts/TileMap.gd" id="4_4vvxf"]
+[ext_resource type="Script" path="res://scripts/RotationTimer.gd" id="5_qrdww"]
+[ext_resource type="Texture2D" uid="uid://i7xh45ciueey" path="res://textures/blocks/barrier.png" id="6_m766j"]
+[ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/blocks/block.png" id="7_1iljv"]
+[ext_resource type="Texture2D" uid="uid://drv87tnvat6t1" path="res://textures/blocks/static.png" id="8_lq5ws"]
+[ext_resource type="Texture2D" uid="uid://c1b1kvyaj2575" path="res://textures/blocks/emergency_escape_sign.png" id="9_o0ayg"]
+[ext_resource type="Texture2D" uid="uid://c00o4ibdjkbef" path="res://textures/player/player.png" id="10_nd7o8"]
+[ext_resource type="Shader" path="res://shaders/button.gdshader" id="11_3f6n4"]
+[ext_resource type="Texture2D" uid="uid://ddo0kuo1nd0xw" path="res://textures/blocks/button.png" id="12_f0kdl"]
+[ext_resource type="Texture2D" uid="uid://dwm0i4f3lr28f" path="res://textures/blocks/door.png" id="13_abfk1"]
+[ext_resource type="PackedScene" uid="uid://dl47nov66utcv" path="res://hud_stuff/counter.tscn" id="14_2iyqh"]
+[ext_resource type="Texture2D" uid="uid://dd7lkv07jf7o1" path="res://textures/overlay.png" id="15_atr04"]
+[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="16_2dbg6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
+texture = ExtResource("3_egjw8")
+margins = Vector2i(376, 8)
+texture_region_size = Vector2i(8, 8)
+0:0/next_alternative_id = 9
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/1/physics_layer_0/angular_velocity = 0.0
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 4, 4, 4, 4, -4, -4, -4)
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/2/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/2/physics_layer_0/angular_velocity = 0.0
+0:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(4, -4, -4, -4, -4, 4, 4, 4)
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+0:0/3/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/3/physics_layer_0/angular_velocity = 0.0
+0:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:0/4 = 4
+0:0/4/transpose = true
+0:0/4/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/4/physics_layer_0/angular_velocity = 0.0
+0:0/4/physics_layer_0/polygon_0/points = PackedVector2Array(4, 4, -4, 4, -4, -4, 4, -4)
+0:0/5 = 5
+0:0/5/flip_h = true
+0:0/5/transpose = true
+0:0/5/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/5/physics_layer_0/angular_velocity = 0.0
+0:0/5/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 4, 4, 4, 4, -4, -4, -4)
+0:0/6 = 6
+0:0/6/flip_v = true
+0:0/6/transpose = true
+0:0/6/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/6/physics_layer_0/angular_velocity = 0.0
+0:0/6/physics_layer_0/polygon_0/points = PackedVector2Array(4, -4, -4, -4, -4, 4, 4, 4)
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/flip_v = true
+0:0/7/transpose = true
+0:0/7/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/7/physics_layer_0/angular_velocity = 0.0
+0:0/7/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:0/8 = 8
+0:0/8/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/8/physics_layer_0/angular_velocity = 0.0
+25:65/0 = 0
+25:65/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+25:65/0/physics_layer_0/angular_velocity = 0.0
+26:65/0 = 0
+26:65/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+26:65/0/physics_layer_0/angular_velocity = 0.0
+6:65/0 = 0
+6:65/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:65/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="2"]
+tile_size = Vector2i(8, 8)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_ja7cw")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_id2jv"]
+texture = ExtResource("6_m766j")
+texture_region_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_voqr5"]
+texture = ExtResource("7_1iljv")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7h21e"]
+texture = ExtResource("8_lq5ws")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_so2yg"]
+texture = ExtResource("9_o0ayg")
+texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 4
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/1/transpose = true
+0:0/2 = 2
+0:0/2/flip_h = true
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_v = true
+0:0/3/transpose = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ejgp5"]
+texture = ExtResource("10_nd7o8")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m3mtc"]
+shader = ExtResource("11_3f6n4")
+shader_parameter/u_color = Color(0, 1, 0, 1)
+shader_parameter/rgb = true
+shader_parameter/strength = 0.5
+shader_parameter/speed = 0.5
+shader_parameter/angle = 45.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nnypg"]
+shader = ExtResource("11_3f6n4")
+shader_parameter/u_color = Color(1, 0, 0, 1)
+shader_parameter/rgb = null
+shader_parameter/strength = 0.5
+shader_parameter/speed = 0.5
+shader_parameter/angle = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sp2p6"]
+shader = ExtResource("11_3f6n4")
+shader_parameter/u_color = Color(0, 1, 0, 1)
+shader_parameter/rgb = null
+shader_parameter/strength = 0.5
+shader_parameter/speed = 0.5
+shader_parameter/angle = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8d5x"]
+shader = ExtResource("11_3f6n4")
+shader_parameter/u_color = Color(0, 0, 1, 1)
+shader_parameter/rgb = null
+shader_parameter/strength = 0.5
+shader_parameter/speed = 0.5
+shader_parameter/angle = 0.0
+
+[sub_resource type="Shader" id="Shader_rbh5n"]
+code = "shader_type canvas_item;
+
+uniform vec4 u_color : source_color;
+uniform bool rgb;
+
+uniform float strength: hint_range(0., 1.) = 0.5;
+uniform float speed: hint_range(0., 10.) = 0.5;
+uniform float angle: hint_range(0., 360.) = 45.;
+
+void fragment() {
+	if(!rgb)
+	{
+		vec4 color = u_color;
+		vec4 pixelColor = texture(TEXTURE, UV);
+		float brightness = (pixelColor.r + pixelColor.g + pixelColor.b) / 3.0;
+		vec4 grayScale = vec4(brightness, brightness, brightness, 1.0 - pixelColor.a);
+		COLOR = color * pixelColor;
+	}
+	else if(2 == 1)
+	{
+		vec4 pixelColor = texture(TEXTURE, UV);
+//		vec4 color = vec4(sin(TIME * 0,5)
+//		COLOR = color;
+		COLOR.rgb *= pixelColor.rgb;
+		COLOR.r = (sin(TIME*2.0) + 1.0) * 0.5;
+		COLOR.g = (sin(TIME*2.0 + PI) + 1.0) * 0.5;
+		COLOR.b = (sin(TIME*2.0 + PI * 1.5) + 1.0) * 0.5;
+	}
+	else
+	{
+		
+	float hue = UV.x * cos(radians(angle)) - UV.y * sin(radians(angle));
+	hue = fract(hue + fract(TIME  * speed + UV.x));
+	float x = 1. - abs(mod(hue / (1./ 6.), 2.) - 1.);
+	vec3 rainbow;
+	if(hue < 1./6.){
+		rainbow = vec3(1., x, 0.);
+	} else if (hue < 1./3.) {
+		rainbow = vec3(x, 1., 0);
+	} else if (hue < 0.5) {
+		rainbow = vec3(0, 1., x);
+	} else if (hue < 2./3.) {
+		rainbow = vec3(0., x, 1.);
+	} else if (hue < 5./6.) {
+		rainbow = vec3(x, 0., 1.);
+	} else {
+		rainbow = vec3(1., 0., x);
+	}
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = mix(color, vec4(rainbow, color.a), strength);
+	}
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cnx4n"]
+shader = SubResource("Shader_rbh5n")
+shader_parameter/u_color = null
+shader_parameter/rgb = true
+shader_parameter/strength = 0.5
+shader_parameter/speed = 0.5
+shader_parameter/angle = 45.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_no55m"]
+texture = ExtResource("12_f0kdl")
+texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 5
+0:0/0 = 0
+0:0/0/modulate = Color(1, 0, 1, 1)
+0:0/0/material = SubResource("ShaderMaterial_m3mtc")
+0:0/1 = 1
+0:0/1/modulate = Color(1, 0, 0, 1)
+0:0/1/material = SubResource("ShaderMaterial_nnypg")
+0:0/2 = 2
+0:0/2/modulate = Color(0, 1, 0, 1)
+0:0/2/material = SubResource("ShaderMaterial_sp2p6")
+0:0/3 = 3
+0:0/3/modulate = Color(0, 0, 1, 1)
+0:0/3/material = SubResource("ShaderMaterial_t8d5x")
+0:0/4 = 4
+0:0/4/modulate = Color(1, 0.333333, 1, 1)
+0:0/4/material = SubResource("ShaderMaterial_cnx4n")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jw1gh"]
+shader = ExtResource("11_3f6n4")
+shader_parameter/u_color = Color(0, 1, 0, 1)
+shader_parameter/rgb = true
+shader_parameter/strength = 0.5
+shader_parameter/speed = 0.5
+shader_parameter/angle = 45.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0382d"]
+texture = ExtResource("13_abfk1")
+texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 4
+0:0/0 = 0
+0:0/0/modulate = Color(1, 0, 1, 1)
+0:0/0/material = SubResource("ShaderMaterial_jw1gh")
+0:0/1 = 1
+0:0/1/modulate = Color(1, 0, 0, 1)
+0:0/2 = 2
+0:0/2/modulate = Color(0, 1, 0, 1)
+0:0/3 = 3
+0:0/3/modulate = Color(0, 0, 1, 1)
+
+[sub_resource type="TileSet" id="TileSet_srb8s"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_id2jv")
+sources/1 = SubResource("TileSetAtlasSource_voqr5")
+sources/2 = SubResource("TileSetAtlasSource_7h21e")
+sources/6 = SubResource("TileSetAtlasSource_ejgp5")
+sources/4 = SubResource("TileSetAtlasSource_so2yg")
+sources/7 = SubResource("TileSetAtlasSource_no55m")
+sources/9 = SubResource("TileSetAtlasSource_0382d")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arxux"]
+texture = ExtResource("15_atr04")
+separation = Vector2i(2, 2)
+0:0/0 = 0
+1:0/0 = 0
+2:0/next_alternative_id = 5
+2:0/0 = 0
+2:0/1 = 1
+2:0/2 = 2
+2:0/2/flip_v = true
+2:0/3 = 3
+2:0/3/flip_h = true
+2:0/4 = 4
+2:0/4/flip_h = true
+2:0/4/flip_v = true
+3:0/0 = 0
+0:1/next_alternative_id = 8
+0:1/0 = 0
+0:1/2 = 2
+0:1/3 = 3
+0:1/3/flip_v = true
+0:1/4 = 4
+0:1/4/transpose = true
+0:1/5 = 5
+0:1/5/flip_h = true
+0:1/5/transpose = true
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7fwbe"]
+sources/0 = SubResource("TileSetAtlasSource_arxux")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pg4o3"]
+shader = ExtResource("11_3f6n4")
+shader_parameter/u_color = Color(0, 1, 0, 1)
+shader_parameter/rgb = true
+shader_parameter/strength = 0.5
+shader_parameter/speed = 0.5
+shader_parameter/angle = 45.0
+
+[node name="LevelTemplate3" type="Node2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_ke3q3")
+board_dimensions = Vector2i(9, 13)
+
+[node name="Player" parent="." instance=ExtResource("2_j3wws")]
+visible = false
+position = Vector2(0, -256)
+collision_layer = 10
+collision_mask = 1
+board_cords = Vector2i(3, 2)
+board_dimensions = Vector2i(9, 13)
+metadata/_edit_horizontal_guides_ = []
+
+[node name="BoardLimits" type="TileMap" parent="." groups=["board_limits"]]
+tile_set = SubResource("2")
+format = 2
+layer_0/tile_data = PackedInt32Array(3473371, 0, 0, -3407909, 0, 0, 3473372, 0, 0, -3407908, 0, 0, 3473373, 0, 0, -3407907, 0, 0, 3473374, 0, 0, -3407906, 0, 0, 3473375, 0, 0, -3407905, 0, 0, 3473376, 0, 0, -3407904, 0, 0, 3473377, 0, 0, -3407903, 0, 0, 3473378, 0, 0, -3407902, 0, 0, 3473379, 0, 0, -3407901, 0, 0, 3473380, 0, 0, -3407900, 0, 0, 3473381, 0, 0, -3407899, 0, 0, 3473382, 0, 0, -3407898, 0, 0, 3473383, 0, 0, -3407897, 0, 0, 3473384, 0, 0, -3407896, 0, 0, 3473385, 0, 0, -3407895, 0, 0, 3473386, 0, 0, -3407894, 0, 0, 3473387, 0, 0, -3407893, 0, 0, 3473388, 0, 0, -3407892, 0, 0, 3473389, 0, 0, -3407891, 0, 0, 3473390, 0, 0, -3407890, 0, 0, 3473391, 0, 0, -3407889, 0, 0, 3473392, 0, 0, -3407888, 0, 0, 3473393, 0, 0, -3407887, 0, 0, 3473394, 0, 0, -3407886, 0, 0, 3473395, 0, 0, -3407885, 0, 0, 3473396, 0, 0, -3407884, 0, 0, 3473397, 0, 0, -3407883, 0, 0, 3473398, 0, 0, -3407882, 0, 0, 3473399, 0, 0, -3407881, 0, 0, 3473400, 0, 0, -3407880, 0, 0, 3473401, 0, 0, -3407879, 0, 0, 3473402, 0, 0, -3407878, 0, 0, 3473403, 0, 0, -3407877, 0, 0, 3473404, 0, 0, -3407876, 0, 0, 3473405, 0, 0, -3407875, 0, 0, 3473406, 0, 0, -3407874, 0, 0, 3473407, 0, 0, -3407873, 0, 0, 3407872, 0, 0, -3473408, 0, 0, 3407873, 0, 0, -3473407, 0, 0, 3407874, 0, 0, -3473406, 0, 0, 3407875, 0, 0, -3473405, 0, 0, 3407876, 0, 0, -3473404, 0, 0, 3407877, 0, 0, -3473403, 0, 0, 3407878, 0, 0, -3473402, 0, 0, 3407879, 0, 0, -3473401, 0, 0, 3407880, 0, 0, -3473400, 0, 0, 3407881, 0, 0, -3473399, 0, 0, 3407882, 0, 0, -3473398, 0, 0, 3407883, 0, 0, -3473397, 0, 0, 3407884, 0, 0, -3473396, 0, 0, 3407885, 0, 0, -3473395, 0, 0, 3407886, 0, 0, -3473394, 0, 0, 3407887, 0, 0, -3473393, 0, 0, 3407888, 0, 0, -3473392, 0, 0, 3407889, 0, 0, -3473391, 0, 0, 3407890, 0, 0, -3473390, 0, 0, 3407891, 0, 0, -3473389, 0, 0, 3407892, 0, 0, -3473388, 0, 0, 3407893, 0, 0, -3473387, 0, 0, 3407894, 0, 0, -3473386, 0, 0, 3407895, 0, 0, -3473385, 0, 0, 3407896, 0, 0, -3473384, 0, 0, 3407897, 0, 0, -3473383, 0, 0, 3407898, 0, 0, -3473382, 0, 0, 3407899, 0, 0, -3473381, 0, 0, 3407900, 0, 0, -3473380, 0, 0, 3407901, 0, 0, -3473379, 0, 0, 3407902, 0, 0, -3473378, 0, 0, 3407903, 0, 0, -3473377, 0, 0, 3407904, 0, 0, -3473376, 0, 0, 3407905, 0, 0, -3473375, 0, 0, 3407906, 0, 0, -3473374, 0, 0, 3407907, 0, 0, -3473373, 0, 0, 3407908, 0, 0, -3473372, 0, 0, -3342373, 0, 0, -3407836, 0, 0, -3276837, 0, 0, -3342300, 0, 0, -3211301, 0, 0, -3276764, 0, 0, -3145765, 0, 0, -3211228, 0, 0, -3080229, 0, 0, -3145692, 0, 0, -3014693, 0, 0, -3080156, 0, 0, -2949157, 0, 0, -3014620, 0, 0, -2883621, 0, 0, -2949084, 0, 0, -2818085, 0, 0, -2883548, 0, 0, -2752549, 0, 0, -2818012, 0, 0, -2687013, 0, 0, -2752476, 0, 0, -2621477, 0, 0, -2686940, 0, 0, -2555941, 0, 0, -2621404, 0, 0, -2490405, 0, 0, -2555868, 0, 0, -2424869, 0, 0, -2490332, 0, 0, -2359333, 0, 0, -2424796, 0, 0, -2293797, 0, 0, -2359260, 0, 0, -2228261, 0, 0, -2293724, 0, 0, -2162725, 0, 0, -2228188, 0, 0, -2097189, 0, 0, -2162652, 0, 0, -2031653, 0, 0, -2097116, 0, 0, -1966117, 0, 0, -2031580, 0, 0, -1900581, 0, 0, -1966044, 0, 0, -1835045, 0, 0, -1900508, 0, 0, -1769509, 0, 0, -1834972, 0, 0, -1703973, 0, 0, -1769436, 0, 0, -1638437, 0, 0, -1703900, 0, 0, -1572901, 0, 0, -1638364, 0, 0, -1507365, 0, 0, -1572828, 0, 0, -1441829, 0, 0, -1507292, 0, 0, -1376293, 0, 0, -1441756, 0, 0, -1310757, 0, 0, -1376220, 0, 0, -1245221, 0, 0, -1310684, 0, 0, -1179685, 0, 0, -1245148, 0, 0, -1114149, 0, 0, -1179612, 0, 0, -1048613, 0, 0, -1114076, 0, 0, -983077, 0, 0, -1048540, 0, 0, -917541, 0, 0, -983004, 0, 0, -852005, 0, 0, -917468, 0, 0, -786469, 0, 0, -851932, 0, 0, -720933, 0, 0, -786396, 0, 0, -655397, 0, 0, -720860, 0, 0, -589861, 0, 0, -655324, 0, 0, -524325, 0, 0, -589788, 0, 0, -458789, 0, 0, -524252, 0, 0, -393253, 0, 0, -458716, 0, 0, -327717, 0, 0, -393180, 0, 0, -262181, 0, 0, -327644, 0, 0, -196645, 0, 0, -262108, 0, 0, -131109, 0, 0, -196572, 0, 0, -65573, 0, 0, -131036, 0, 0, -37, 0, 0, -65500, 0, 0, 65499, 0, 0, 36, 0, 0, 131035, 0, 0, 65572, 0, 0, 196571, 0, 0, 131108, 0, 0, 262107, 0, 0, 196644, 0, 0, 327643, 0, 0, 262180, 0, 0, 393179, 0, 0, 327716, 0, 0, 458715, 0, 0, 393252, 0, 0, 524251, 0, 0, 458788, 0, 0, 589787, 0, 0, 524324, 0, 0, 655323, 0, 0, 589860, 0, 0, 720859, 0, 0, 655396, 0, 0, 786395, 0, 0, 720932, 0, 0, 851931, 0, 0, 786468, 0, 0, 917467, 0, 0, 852004, 0, 0, 983003, 0, 0, 917540, 0, 0, 1048539, 0, 0, 983076, 0, 0, 1114075, 0, 0, 1048612, 0, 0, 1179611, 0, 0, 1114148, 0, 0, 1245147, 0, 0, 1179684, 0, 0, 1310683, 0, 0, 1245220, 0, 0, 1376219, 0, 0, 1310756, 0, 0, 1441755, 0, 0, 1376292, 0, 0, 1507291, 0, 0, 1441828, 0, 0, 1572827, 0, 0, 1507364, 0, 0, 1638363, 0, 0, 1572900, 0, 0, 1703899, 0, 0, 1638436, 0, 0, 1769435, 0, 0, 1703972, 0, 0, 1834971, 0, 0, 1769508, 0, 0, 1900507, 0, 0, 1835044, 0, 0, 1966043, 0, 0, 1900580, 0, 0, 2031579, 0, 0, 1966116, 0, 0, 2097115, 0, 0, 2031652, 0, 0, 2162651, 0, 0, 2097188, 0, 0, 2228187, 0, 0, 2162724, 0, 0, 2293723, 0, 0, 2228260, 0, 0, 2359259, 0, 0, 2293796, 0, 0, 2424795, 0, 0, 2359332, 0, 0, 2490331, 0, 0, 2424868, 0, 0, 2555867, 0, 0, 2490404, 0, 0, 2621403, 0, 0, 2555940, 0, 0, 2686939, 0, 0, 2621476, 0, 0, 2752475, 0, 0, 2687012, 0, 0, 2818011, 0, 0, 2752548, 0, 0, 2883547, 0, 0, 2818084, 0, 0, 2949083, 0, 0, 2883620, 0, 0, 3014619, 0, 0, 2949156, 0, 0, 3080155, 0, 0, 3014692, 0, 0, 3145691, 0, 0, 3080228, 0, 0, 3211227, 0, 0, 3145764, 0, 0, 3276763, 0, 0, 3211300, 0, 0, 3342299, 0, 0, 3276836, 0, 0, 3407835, 0, 0, 3342372, 0, 0)
+script = ExtResource("4_4vvxf")
+board_dimensions = Vector2i(9, 13)
+
+[node name="RotationTimer" type="Timer" parent="."]
+one_shot = true
+script = ExtResource("5_qrdww")
+
+[node name="Walls" type="TileMap" parent="." groups=["walls"]]
+position = Vector2(-288, -416)
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_srb8s")
+cell_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(65536, 2, 0, 131072, 2, 0, 196608, 2, 0, 262144, 2, 0, 327680, 2, 0, 393216, 2, 0, 458752, 2, 0, 524288, 2, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, 327681, 1, 0, 393217, 1, 0, 458753, 1, 0, 524289, 1, 0, 196610, 2, 0, 327682, 2, 0, 458754, 2, 0, 131077, 2, 0, 262149, 2, 0, 393221, 2, 0, 524293, 2, 0, 65542, 1, 0, 131078, 1, 0, 196614, 1, 0, 262150, 1, 0, 327686, 1, 0, 393222, 1, 0, 458758, 1, 0, 524294, 1, 0, 7, 4, 0, 65543, 2, 0, 131079, 2, 0, 196615, 2, 0, 262151, 2, 0, 327687, 2, 0, 393223, 2, 0, 458759, 2, 0, 524295, 2, 0, 589824, 2, 0, 655360, 2, 0, 720896, 2, 0, 786432, 2, 0, 589825, 1, 0, 655361, 1, 0, 720897, 1, 0, 786433, 2, 0, 589826, 2, 0, 720898, 2, 0, 786434, 6, 0, 655365, 2, 0, 786437, 2, 0, 589830, 1, 0, 655366, 1, 0, 720902, 1, 0, 786438, 2, 0, 589831, 2, 0, 655367, 2, 0, 720903, 2, 0, 786439, 2, 0, 8, 2, 0)
+
+[node name="Counter" parent="." instance=ExtResource("14_2iyqh")]
+
+[node name="Overlay" type="TileMap" parent="." groups=["board_limits"]]
+z_index = 2
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_7fwbe")
+cell_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(3473371, 0, 0, -3407909, 0, 0, 3473372, 0, 0, -3407908, 0, 0, 3473373, 0, 0, -3407907, 0, 0, 3473374, 0, 0, -3407906, 0, 0, 3473375, 0, 0, -3407905, 0, 0, 3473376, 0, 0, -3407904, 0, 0, 3473377, 0, 0, -3407903, 0, 0, 3473378, 0, 0, -3407902, 0, 0, 3473379, 0, 0, -3407901, 0, 0, 3473380, 0, 0, -3407900, 0, 0, 3473381, 0, 0, -3407899, 0, 0, 3473382, 0, 0, -3407898, 0, 0, 3473383, 0, 0, -3407897, 0, 0, 3473384, 0, 0, -3407896, 0, 0, 3473385, 0, 0, -3407895, 0, 0, 3473386, 0, 0, -3407894, 0, 0, 3473387, 0, 0, -3407893, 0, 0, 3473388, 0, 0, -3407892, 0, 0, 3473389, 0, 0, -3407891, 0, 0, 3473390, 0, 0, -3407890, 0, 0, 3473391, 0, 0, -3407889, 0, 0, 3473392, 0, 0, -3407888, 0, 0, 3473393, 0, 0, -3407887, 0, 0, 3473394, 0, 0, -3407886, 0, 0, 3473395, 0, 0, -3407885, 0, 0, 3473396, 0, 0, -3407884, 0, 0, 3473397, 0, 0, -3407883, 0, 0, 3473398, 0, 0, -3407882, 0, 0, 3473399, 0, 0, -3407881, 0, 0, 3473400, 0, 0, -3407880, 0, 0, 3473401, 0, 0, -3407879, 0, 0, 3473402, 0, 0, -3407878, 0, 0, 3473403, 0, 0, -3407877, 0, 0, 3473404, 0, 0, -3407876, 0, 0, 3473405, 0, 0, -3407875, 0, 0, 3473406, 0, 0, -3407874, 0, 0, 3473407, 0, 0, -3407873, 0, 0, 3407872, 0, 0, -3473408, 0, 0, 3407873, 0, 0, -3473407, 0, 0, 3407874, 0, 0, -3473406, 0, 0, 3407875, 0, 0, -3473405, 0, 0, 3407876, 0, 0, -3473404, 0, 0, 3407877, 0, 0, -3473403, 0, 0, 3407878, 0, 0, -3473402, 0, 0, 3407879, 0, 0, -3473401, 0, 0, 3407880, 0, 0, -3473400, 0, 0, 3407881, 0, 0, -3473399, 0, 0, 3407882, 0, 0, -3473398, 0, 0, 3407883, 0, 0, -3473397, 0, 0, 3407884, 0, 0, -3473396, 0, 0, 3407885, 0, 0, -3473395, 0, 0, 3407886, 0, 0, -3473394, 0, 0, 3407887, 0, 0, -3473393, 0, 0, 3407888, 0, 0, -3473392, 0, 0, 3407889, 0, 0, -3473391, 0, 0, 3407890, 0, 0, -3473390, 0, 0, 3407891, 0, 0, -3473389, 0, 0, 3407892, 0, 0, -3473388, 0, 0, 3407893, 0, 0, -3473387, 0, 0, 3407894, 0, 0, -3473386, 0, 0, 3407895, 0, 0, -3473385, 0, 0, 3407896, 0, 0, -3473384, 0, 0, 3407897, 0, 0, -3473383, 0, 0, 3407898, 0, 0, -3473382, 0, 0, 3407899, 0, 0, -3473381, 0, 0, 3407900, 0, 0, -3473380, 0, 0, 3407901, 0, 0, -3473379, 0, 0, 3407902, 0, 0, -3473378, 0, 0, 3407903, 0, 0, -3473377, 0, 0, 3407904, 0, 0, -3473376, 0, 0, 3407905, 0, 0, -3473375, 0, 0, 3407906, 0, 0, -3473374, 0, 0, 3407907, 0, 0, -3473373, 0, 0, 3407908, 0, 0, -3473372, 0, 0, -3342373, 0, 0, -3407836, 0, 0, -3276837, 0, 0, -3342300, 0, 0, -3211301, 0, 0, -3276764, 0, 0, -3145765, 0, 0, -3211228, 0, 0, -3080229, 0, 0, -3145692, 0, 0, -3014693, 0, 0, -3080156, 0, 0, -2949157, 0, 0, -3014620, 0, 0, -2883621, 0, 0, -2949084, 0, 0, -2818085, 0, 0, -2883548, 0, 0, -2752549, 0, 0, -2818012, 0, 0, -2687013, 0, 0, -2752476, 0, 0, -2621477, 0, 0, -2686940, 0, 0, -2555941, 0, 0, -2621404, 0, 0, -2490405, 0, 0, -2555868, 0, 0, -2424869, 0, 0, -2490332, 0, 0, -2359333, 0, 0, -2424796, 0, 0, -2293797, 0, 0, -2359260, 0, 0, -2228261, 0, 0, -2293724, 0, 0, -2162725, 0, 0, -2228188, 0, 0, -2097189, 0, 0, -2162652, 0, 0, -2031653, 0, 0, -2097116, 0, 0, -1966117, 0, 0, -2031580, 0, 0, -1900581, 0, 0, -1966044, 0, 0, -1835045, 0, 0, -1900508, 0, 0, -1769509, 0, 0, -1834972, 0, 0, -1703973, 0, 0, -1769436, 0, 0, -1638437, 0, 0, -1703900, 0, 0, -1572901, 0, 0, -1638364, 0, 0, -1507365, 0, 0, -1572828, 0, 0, -1441829, 0, 0, -1507292, 0, 0, -1376293, 0, 0, -1441756, 0, 0, -1310757, 0, 0, -1376220, 0, 0, -1245221, 0, 0, -1310684, 0, 0, -1179685, 0, 0, -1245148, 0, 0, -1114149, 0, 0, -1179612, 0, 0, -1048613, 0, 0, -1114076, 0, 0, -983077, 0, 0, -1048540, 0, 0, -917541, 0, 0, -983004, 0, 0, -852005, 0, 0, -917468, 0, 0, -786469, 0, 0, -851932, 0, 0, -720933, 0, 0, -786396, 0, 0, -655397, 0, 0, -720860, 0, 0, -589861, 0, 0, -655324, 0, 0, -524325, 0, 0, -589788, 0, 0, -458789, 0, 0, -524252, 0, 0, -393253, 0, 0, -458716, 0, 0, -327717, 0, 0, -393180, 0, 0, -262181, 0, 0, -327644, 0, 0, -196645, 0, 0, -262108, 0, 0, -131109, 0, 0, -196572, 0, 0, -65573, 0, 0, -131036, 0, 0, -37, 0, 0, -65500, 0, 0, 65499, 0, 0, 36, 0, 0, 131035, 0, 0, 65572, 0, 0, 196571, 0, 0, 131108, 0, 0, 262107, 0, 0, 196644, 0, 0, 327643, 0, 0, 262180, 0, 0, 393179, 0, 0, 327716, 0, 0, 458715, 0, 0, 393252, 0, 0, 524251, 0, 0, 458788, 0, 0, 589787, 0, 0, 524324, 0, 0, 655323, 0, 0, 589860, 0, 0, 720859, 0, 0, 655396, 0, 0, 786395, 0, 0, 720932, 0, 0, 851931, 0, 0, 786468, 0, 0, 917467, 0, 0, 852004, 0, 0, 983003, 0, 0, 917540, 0, 0, 1048539, 0, 0, 983076, 0, 0, 1114075, 0, 0, 1048612, 0, 0, 1179611, 0, 0, 1114148, 0, 0, 1245147, 0, 0, 1179684, 0, 0, 1310683, 0, 0, 1245220, 0, 0, 1376219, 0, 0, 1310756, 0, 0, 1441755, 0, 0, 1376292, 0, 0, 1507291, 0, 0, 1441828, 0, 0, 1572827, 0, 0, 1507364, 0, 0, 1638363, 0, 0, 1572900, 0, 0, 1703899, 0, 0, 1638436, 0, 0, 1769435, 0, 0, 1703972, 0, 0, 1834971, 0, 0, 1769508, 0, 0, 1900507, 0, 0, 1835044, 0, 0, 1966043, 0, 0, 1900580, 0, 0, 2031579, 0, 0, 1966116, 0, 0, 2097115, 0, 0, 2031652, 0, 0, 2162651, 0, 0, 2097188, 0, 0, 2228187, 0, 0, 2162724, 0, 0, 2293723, 0, 0, 2228260, 0, 0, 2359259, 0, 0, 2293796, 0, 0, 2424795, 0, 0, 2359332, 0, 0, 2490331, 0, 0, 2424868, 0, 0, 2555867, 0, 0, 2490404, 0, 0, 2621403, 0, 0, 2555940, 0, 0, 2686939, 0, 0, 2621476, 0, 0, 2752475, 0, 0, 2687012, 0, 0, 2818011, 0, 0, 2752548, 0, 0, 2883547, 0, 0, 2818084, 0, 0, 2949083, 0, 0, 2883620, 0, 0, 3014619, 0, 0, 2949156, 0, 0, 3080155, 0, 0, 3014692, 0, 0, 3145691, 0, 0, 3080228, 0, 0, 3211227, 0, 0, 3145764, 0, 0, 3276763, 0, 0, 3211300, 0, 0, 3342299, 0, 0, 3276836, 0, 0, 3407835, 0, 0, 3342372, 0, 0)
+script = ExtResource("4_4vvxf")
+board_dimensions = Vector2i(9, 13)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="ColorRect" type="ColorRect" parent="Control/CanvasLayer"]
+visible = false
+offset_left = 358.0
+offset_top = 166.0
+offset_right = 881.0
+offset_bottom = 368.0
+color = Color(0, 0, 0, 0.227451)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_pg4o3")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -190.0
+offset_right = 235.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("16_2dbg6")
+theme_override_font_sizes/normal_font_size = 50
+text = "END GAME.
+TOTAL ROTATIONS : 7"
+context_menu_enabled = true
