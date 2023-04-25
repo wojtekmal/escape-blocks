@@ -34,3 +34,7 @@ func on_cancel_pressed():
 	if !button_pressed:
 		emit_signal("cancel_pressed")
 		button_pressed = true
+
+func set_label_text(new_value):
+	var label := $VBoxContainer/Label
+	label.text = new_value

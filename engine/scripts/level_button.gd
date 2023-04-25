@@ -18,15 +18,15 @@ func _ready():
 	set_label_text(name)
 	pressable_button.pressed.connect(on_button_pressed)
 	
-	if global.levels.has(label.text) && global.levels[label.text]["unlocked"] > 0:
+	if global.levels[label.text]["unlocked"] == 2:
 		pressable_button.disabled = false
-		
-		if global.levels[label.text]["unlocked"] == 2:
-			needed_part_display.modulate = Color8(0,0,0,0)
-		
-		if global.levels[label.text]["unlocked"] == 1:
-			$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
+		needed_part_display.modulate = Color8(0,0,0,0)
+	elif global.levels[label.text]["unlocked"] == 1:
+		pressable_button.disabled = false
+		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
 	else:
+		pressable_button.disabled = true
+		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
 		modulate = Color8(255,255,255,100)
 	
 	if global.levels_data.has(label.text):
@@ -52,6 +52,8 @@ func on_button_pressed():
 	if global.levels[label.text]["unlocked"] == 1:
 		var confirm_buy_level = load("res://map_stuff/confirm_buy_level.tscn").instantiate()
 		confirm_buy_level.ok_pressed.connect(on_level_bought)
+		confirm_buy_level.set_label_text("Open level " + str(label.text) +\
+		"\nfor " + str(global.levels_data[label.text]["part_price"]) + " parts?")
 		add_child(confirm_buy_level)
 	else:
 		emit_signal("button_pressed", label.text)

@@ -71,7 +71,7 @@ var levels_data := {
 	"2a": {
 		"resource": load("res://levels/level_2.tscn"),
 		"unlocks": ["3"],
-		"part_price": 0,
+		"part_price": 5,
 	},
 	"2b": {
 		"resource": load("res://levels/level_2_v2.tscn"),
