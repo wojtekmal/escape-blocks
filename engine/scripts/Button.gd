@@ -5,6 +5,7 @@ signal pressed
 signal released
 var bodies := 0
 
+@export var negative := false;
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var start_rotations : int = 1
@@ -37,6 +38,11 @@ func _ready():
 	)
 	if start_rotations == 0:
 		$Shaded.material.set_shader_parameter("rgb", true)
+	if negative:
+		$Shaded.material.set_shader_parameter(
+			"u_color", 
+			Color.AQUA
+		)
 
 func on_press():
 	show_particles(true)
@@ -51,7 +57,7 @@ func show_particles(value := true):
 
 func _process(delta):
 	var overlapping = $hitbox.get_overlapping_areas()
-	if $hitbox.has_overlapping_areas():
+	if $hitbox.has_overlapping_areas() == !negative:
 		$Shaded/TextureProgressBar.value = 1.0 - (pressed_for) / delay
 		if pressed_for > 0 and pressed_for - delta < 0:
 			on_press()

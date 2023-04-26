@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_5plcs"]
 
 [node name="LevelTemplate4" instance=ExtResource("1_5plcs")]
+position = Vector2(0, -13)
 board_dimensions = Vector2i(12, 10)
 
 [node name="Player" parent="." index="0"]

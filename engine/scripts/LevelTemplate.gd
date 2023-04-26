@@ -93,6 +93,12 @@ var tile_blocks := {
 		"layer" : 0,
 		"id" : 9
 	},
+	"negativeButton" : { #must be below buttons
+		"resource" : preload("res://board_stuff/NegativeButton.tscn"),
+		"adress" : Vector2i(0, 0),
+		"layer" : 0,
+		"id" : 11
+	},
 }
 
 var door_blocks := {}
@@ -340,6 +346,9 @@ func manage_changing_gravity():
 	if Engine.is_editor_hint(): return
 	
 	var rotations = 0
+	if(Input.is_action_pressed("gravity_down")):
+		game_started = true
+		rotations += 4
 	if(Input.is_action_pressed("gravity_right")):
 		game_started = true
 		rotations += 1

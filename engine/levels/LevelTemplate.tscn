@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=47 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -99,6 +99,30 @@ texture_region_size = Vector2i(32, 32)
 texture = ExtResource("7_oxuh3")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cc5be"]
+shader = ExtResource("11_psw4b")
+shader_parameter/u_color = Color(1, 0, 0, 1)
+shader_parameter/rgb = null
+shader_parameter/strength = 0.5
+shader_parameter/speed = 0.5
+shader_parameter/angle = 45.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t0ido"]
+texture = ExtResource("12_gobi5")
+texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 5
+0:0/0 = 0
+0:0/0/modulate = Color(1, 0, 1, 1)
+0:0/1 = 1
+0:0/1/modulate = Color(1, 0, 0, 1)
+0:0/1/material = SubResource("ShaderMaterial_cc5be")
+0:0/2 = 2
+0:0/2/modulate = Color(0, 1, 0, 1)
+0:0/3 = 3
+0:0/3/modulate = Color(0, 0, 1, 1)
+0:0/4 = 4
+0:0/4/modulate = Color(1, 0, 1, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7h21e"]
 texture = ExtResource("8_22un6")
@@ -224,7 +248,7 @@ shader_parameter/angle = 45.0
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_no55m"]
 texture = ExtResource("12_gobi5")
 texture_region_size = Vector2i(32, 32)
-0:0/next_alternative_id = 5
+0:0/next_alternative_id = 6
 0:0/0 = 0
 0:0/0/modulate = Color(1, 0, 1, 1)
 0:0/0/material = SubResource("ShaderMaterial_m3mtc")
@@ -272,6 +296,7 @@ sources/6 = SubResource("TileSetAtlasSource_ejgp5")
 sources/4 = SubResource("TileSetAtlasSource_so2yg")
 sources/7 = SubResource("TileSetAtlasSource_no55m")
 sources/9 = SubResource("TileSetAtlasSource_0382d")
+sources/11 = SubResource("TileSetAtlasSource_t0ido")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arxux"]
 texture = ExtResource("12_52lji")
@@ -357,7 +382,7 @@ scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_srb8s")
 cell_quadrant_size = 32
 format = 2
-layer_0/tile_data = PackedInt32Array(262144, 6, 0, 262146, 2, 0, 262147, 1, 0, 262148, 0, 0, 262149, 4, 131072, 196611, 7, 131072, 196610, 7, 65536, 196612, 7, 196608, 4, 9, 196608, 3, 9, 131072, 2, 9, 65536, 65538, 1, 0, 131074, 1, 0, 1, 9, 65536, 262145, 9, 65536)
+layer_0/tile_data = PackedInt32Array(262146, 2, 0, 262147, 1, 0, 262148, 0, 0, 262149, 4, 131072, 196612, 7, 196608, 4, 9, 196608, 3, 9, 131072, 2, 9, 65536, 131074, 1, 0, 1, 9, 65536, 196610, 7, 131072, 196609, 6, 0, 262145, 0, 0, 196611, 11, 131072)
 
 [node name="Counter" parent="." instance=ExtResource("9_pbxjo")]
 
