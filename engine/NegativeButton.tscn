@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://cwi8c04vtf31n"]
+
+[ext_resource type="PackedScene" uid="uid://vntb00nxrmwy" path="res://board_stuff/Button.tscn" id="1_fvu1c"]
+[ext_resource type="Shader" path="res://shaders/button.gdshader" id="2_62v6x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1miuy"]
+resource_local_to_scene = true
+shader = ExtResource("2_62v6x")
+shader_parameter/u_color = Color(0, 1, 0, 1)
+shader_parameter/rgb = false
+shader_parameter/strength = 0.461
+shader_parameter/speed = 0.1
+shader_parameter/angle = 45.0
+
+[sub_resource type="Gradient" id="Gradient_y6ae1"]
+offsets = PackedFloat32Array(0, 0.331104, 0.638796, 1)
+colors = PackedColorArray(0.729412, 0.792157, 1, 0, 0.701961, 0.811765, 1, 0.521569, 0.439216, 0.988235, 1, 0.556863, 0.423529, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rdi78"]
+gradient = SubResource("Gradient_y6ae1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o6oq2"]
+resource_local_to_scene = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+scale_min = 2.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_rdi78")
+hue_variation_min = -0.5
+hue_variation_max = 0.5
+
+[sub_resource type="Gradient" id="Gradient_yv4jc"]
+offsets = PackedFloat32Array(0.5)
+colors = PackedColorArray(0.478431, 0.478431, 0.478431, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nr5yp"]
+gradient = SubResource("Gradient_yv4jc")
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f2xya"]
+resource_local_to_scene = true
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_nr5yp")
+
+[node name="Button" instance=ExtResource("1_fvu1c")]
+negative = true
+is_pressed = true
+
+[node name="Shaded" parent="." index="1"]
+material = SubResource("ShaderMaterial_1miuy")
+
+[node name="RainbowParticles" parent="Shaded" index="2"]
+process_material = SubResource("ParticleProcessMaterial_o6oq2")
+
+[node name="Normal" parent="Shaded" index="3"]
+process_material = SubResource("ParticleProcessMaterial_f2xya")
