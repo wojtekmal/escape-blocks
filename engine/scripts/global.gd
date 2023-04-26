@@ -7,7 +7,7 @@ var part_count : int = 0
 # Here all important information about levels is held in this format:
 #
 #"level_number": {
-# 	"unlocked": bool,
+# 	"unlocked": int,
 #	"finished_parts": int, # This is 0 or 1 depending on whether the level was finished.
 #	"rotation_parts": int, # This is 0, 1, or 2.
 #	"time_parts": int, # This is 0, 1 or 2.
@@ -66,42 +66,42 @@ var levels_data := {
 	"1": {
 		"resource": load("res://levels/test_level_template.tscn"),
 		"unlocks": ["2a", "2b"],
-		#"dependencies": [],
+		"part_price": 0,
 	},
 	"2a": {
 		"resource": load("res://levels/level_2.tscn"),
 		"unlocks": ["3"],
-		#"dependencies": ["1"],
+		"part_price": 5,
 	},
 	"2b": {
 		"resource": load("res://levels/level_2_v2.tscn"),
 		"unlocks": [],
-		#"dependencies": ["1"],
+		"part_price": 0,
 	},
 	"3": {
 		"resource": load("res://levels/wojtekmal_1.tscn"),
 		"unlocks": ["4"],
-		#"dependencies": ["2a"],
+		"part_price": 0,
 	},
 	"4": {
 		"resource": load("res://levels/test_level_template_2.tscn"),
 		"unlocks": ["5"],
-		#"dependencies": ["3"],
+		"part_price": 3,
 	},
 	"5": {
 		"resource": load("res://levels/roupiq_1.tscn"),
 		"unlocks": [],
-		#"dependencies": ["4"],
+		"part_price": 2,
 	},
 	"6": {
 		"resource": load("res://levels/frutlevel1.tscn"),
 		"unlocks": [],
-		#"dependencies": ["5"],
+		"part_price": 0,
 	},
 	"NULL": {
 		"resource": load("res://levels/LevelTemplate.tscn"),
 		"unlocks": [],
-		#"dependencies": [],
+		"part_price": 0,
 	},
 }
 
