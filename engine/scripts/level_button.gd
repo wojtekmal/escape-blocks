@@ -9,21 +9,26 @@ signal refresh_map
 @onready var needed_part_display := $TextureButton/VBoxContainer/HBoxContainer
 #var is_unlocked : bool = false
 #var label_text : String = "" : set = set_label_text
-	
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var label = $TextureButton/VBoxContainer/Label
 	var part_label := $TextureButton/VBoxContainer/HBoxContainer/Label
 	
 	set_label_text(name)
+	#print(global.levels[label.text]["unlocked"])
+	#print(name)
 	pressable_button.pressed.connect(on_button_pressed)
 	
 	if global.levels[label.text]["unlocked"] == 2:
 		pressable_button.disabled = false
 		needed_part_display.modulate = Color8(0,0,0,0)
+		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button.png")
+		modulate = Color8(255,255,255,255)
 	elif global.levels[label.text]["unlocked"] == 1:
 		pressable_button.disabled = false
 		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
+		modulate = Color8(255,255,255,255)
 	else:
 		pressable_button.disabled = true
 		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
@@ -41,10 +46,15 @@ func _process(delta):
 
 func set_label_text(new_value):
 	var label = $TextureButton/VBoxContainer/Label
-	if(global.levels.has(new_value)):
+	#print(global.levels)
+	#print("checkabc")
+	if(global.levels_data.has(new_value)):
+		#print("check")
 		label.text = new_value
 	else:
+		#print("check2")
 		label.text = "NULL"
+	#print("checkdef")
 
 func on_button_pressed():
 	var label = $TextureButton/VBoxContainer/Label
