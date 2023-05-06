@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://rouy06kekko2"]
+[gd_scene load_steps=12 format=3 uid="uid://c2yddew7l0578"]
 
 [ext_resource type="Script" path="res://scripts/Button.gd" id="1_yjoll"]
 [ext_resource type="Shader" path="res://shaders/button.gdshader" id="2_wrqhq"]
@@ -62,6 +62,7 @@ color_ramp = SubResource("GradientTexture1D_nr5yp")
 [node name="Button" type="Node2D"]
 position = Vector2(303, 148)
 script = ExtResource("1_yjoll")
+negative = true
 metadata/_edit_group_ = true
 
 [node name="hitbox" type="Area2D" parent="."]

@@ -38,11 +38,6 @@ func _ready():
 	)
 	if start_rotations == 0:
 		$Shaded.material.set_shader_parameter("rgb", true)
-	if negative:
-		$Shaded.material.set_shader_parameter(
-			"u_color", 
-			Color.AQUA
-		)
 
 func on_press():
 	show_particles(true)

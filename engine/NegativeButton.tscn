@@ -67,3 +67,5 @@ process_material = SubResource("ParticleProcessMaterial_o6oq2")
 
 [node name="Normal" parent="Shaded" index="3"]
 process_material = SubResource("ParticleProcessMaterial_f2xya")
+
+[node name="Negative" type="Node" parent="." index="2"]

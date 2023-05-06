@@ -94,11 +94,11 @@ var tile_blocks := {
 		"layer" : 0,
 		"id" : 9
 	},
-	"negativeButton" : { #must be below buttons
+	"negativeButton" : {
 		"resource" : preload("res://board_stuff/NegativeButton.tscn"),
 		"adress" : Vector2i(0, 0),
 		"layer" : 0,
-		"id" : 11
+		"id" : 10
 	},
 }
 
