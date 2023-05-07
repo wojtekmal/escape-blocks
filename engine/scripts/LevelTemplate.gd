@@ -114,7 +114,7 @@ func _ready():
 	load_blocks_from_tilemap()
 	
 	var audio := $AudioStreamPlayer
-	audio.play()
+	#audio.play()
 
 func _process(delta):
 	# We won't be loading frames in the editor.
@@ -591,6 +591,9 @@ func _on_player_finished(start_rotations):
 		for unlocked_level in global.levels_data[level_name]["unlocks"]:
 			print("level unlocked: " + unlocked_level)
 			global.levels[unlocked_level]["unlocked"] = max(1, global.levels[unlocked_level]["unlocked"])
+			
+			if global.levels_data[unlocked_level]["part_price"] == 0:
+				global.levels[unlocked_level]["unlocked"] = 2
 		
 		#print(global.levels)
 		#print("\n\n")
@@ -600,13 +603,27 @@ func _on_player_finished(start_rotations):
 		retry_level_button.pressed.connect(retry_level)
 		next_level_button.pressed.connect(go_to_next_level)
 		#next_level_button_text.add_font_override("normal_font", load("res://fonts/conthrax/conthrax-sb.otf"))
+		
+		var next_level_name := "NULL"
+		
+		if global.levels_data[level_name]["unlocks"].size():
+			next_level_name = global.levels_data[level_name]["unlocks"][0]
+		
 		next_level_button_text.push_paragraph(HORIZONTAL_ALIGNMENT_CENTER)
 		next_level_button_text.push_font(load("res://fonts/conthrax/conthrax-sb.otf"), 36)
 		next_level_button_text.push_color(Color(0,0,0,1))
-		next_level_button_text.append_text("NEXT (")
-		next_level_button_text.add_image(load("res://textures/temporary_part.png"), 36, 36)
-		next_level_button_text.append_text(str(global.levels_data[level_name]["part_price"]) + ")")
-		#next_level_button_text.pop()
+		
+		if next_level_name == "NULL":
+			next_level_button_text.append_text("NEXT")
+			next_level_button.disabled = true
+			next_level_button.modulate = Color8(255,255,255,100)
+		elif global.levels_data[next_level_name]["part_price"] == 0:
+			next_level_button_text.append_text("NEXT")
+		else:
+			next_level_button_text.append_text("NEXT (")
+			next_level_button_text.add_image(load("res://textures/temporary_part.png"), 36, 36)
+			next_level_button_text.append_text(str(global.levels_data[next_level_name]["part_price"]) + ")")
+			#next_level_button_text.pop()
 
 func manage_doors():
 	if !rotation_timer.is_stopped():
@@ -656,6 +673,27 @@ func retry_level():
 	emit_signal("retry_this_level", level_name)
 
 func go_to_next_level():
+	var next_level_name := "NULL"
+	if global.levels_data[level_name]["unlocks"].size():
+		next_level_name = global.levels_data[level_name]["unlocks"][0]
+	
+	if global.levels_data[next_level_name]["part_price"] > global.part_count:
+		print("Not enough parts.")
+		return
+	
+	var confirmation_popup = load("res://menu_stuff/confirmation_popup.tscn").instantiate()
+	confirmation_popup.label_text = "Open level " + next_level_name +\
+	"\nfor " + str(global.levels_data[next_level_name]["part_price"]) + " parts?"
+	confirmation_popup.ok_pressed.connect(actually_go_to_next_level)
+	get_tree().get_root().add_child(confirmation_popup)
+
+func actually_go_to_next_level():
+	var next_level_name := "NULL"
+	if global.levels_data[level_name]["unlocks"].size():
+		next_level_name = global.levels_data[level_name]["unlocks"][0]
+	
+	global.levels[next_level_name]["unlocked"] = 2
+	global.part_count -= global.levels_data[next_level_name]["part_price"]
 	emit_signal("change_to_next_level", level_name)
 
 func floor_div(a, b):

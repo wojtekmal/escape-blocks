@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 var current_level : String = "1"
@@ -14,6 +15,9 @@ var part_count : int = 0
 #}
 
 func _ready():
+	if Engine.is_editor_hint():
+		return
+	
 	name = "global"
 	load_data()
 
@@ -90,11 +94,26 @@ var levels_data := {
 	},
 	"5": {
 		"resource": load("res://levels/roupiq_1.tscn"),
-		"unlocks": [],
+		"unlocks": ["6"],
 		"part_price": 2,
 	},
 	"6": {
 		"resource": load("res://levels/frutlevel1.tscn"),
+		"unlocks": ["7"],
+		"part_price": 0,
+	},
+	"7": {
+		"resource": load("res://levels/4QT0R_1.tscn"),
+		"unlocks": ["8"],
+		"part_price": 0,
+	},
+	"8": {
+		"resource": load("res://levels/4QT0R_2.tscn"),
+		"unlocks": [],
+		"part_price": 0,
+	},
+	"9": {
+		"resource": load("res://levels/4QT0R_3.tscn"),
 		"unlocks": [],
 		"part_price": 0,
 	},
