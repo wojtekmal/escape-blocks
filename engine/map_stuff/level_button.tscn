@@ -14,7 +14,6 @@ font = ExtResource("4_tsx42")
 font_color = Color(0, 0, 0, 1)
 
 [node name="LevelButton" type="Node2D" groups=["level_buttons"]]
-modulate = Color(1, 1, 1, 0.392157)
 script = ExtResource("1_oaoe2")
 
 [node name="TextureButton" type="TextureButton" parent="."]

@@ -20,22 +20,28 @@ func _ready():
 	#print(name)
 	pressable_button.pressed.connect(on_button_pressed)
 	
-	if global.levels[label.text]["unlocked"] == 2:
+	needed_part_display.modulate = Color8(255,255,255,255)
+	modulate = Color8(255,255,255,255)
+	
+	if !global.levels.has(label.text):
+		pass
+	elif global.levels[label.text]["unlocked"] == 2:
 		pressable_button.disabled = false
 		needed_part_display.modulate = Color8(0,0,0,0)
 		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button.png")
-		modulate = Color8(255,255,255,255)
 	elif global.levels[label.text]["unlocked"] == 1:
 		pressable_button.disabled = false
 		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
-		modulate = Color8(255,255,255,255)
 	else:
 		pressable_button.disabled = true
 		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
 		modulate = Color8(255,255,255,100)
 	
+	print("check")
+	
 	if global.levels_data.has(label.text):
 		part_label.text = str(global.levels_data[label.text]["part_price"])
+		print(global.levels_data[label.text]["part_price"])
 		
 		if global.levels_data[label.text]["part_price"] == 0:
 			needed_part_display.modulate = Color8(0,0,0,0)
@@ -64,6 +70,7 @@ func on_button_pressed():
 		confirm_buy_level.ok_pressed.connect(on_level_bought)
 		confirm_buy_level.set_label_text("Open level " + str(label.text) +\
 		"\nfor " + str(global.levels_data[label.text]["part_price"]) + " parts?")
+		confirm_buy_level.real_pos = position
 		add_child(confirm_buy_level)
 	else:
 		emit_signal("button_pressed", label.text)

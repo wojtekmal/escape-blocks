@@ -35,17 +35,12 @@ func _process(delta):
 		start(current_level)
 
 func change_to_next_level(level_name: String):
-	var level_name_found : bool = false
+	if global.levels_data[level_name]["unlocks"].is_empty():
+		get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+		return
 	
-	for level in global.levels_data.keys():
-		if level_name_found:
-			start(level)
-			return
-		
-		if level == level_name:
-			level_name_found = true
-	
-	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+	var level = global.levels_data[level_name]["unlocks"][0]
+	start(level)
 
 func pause(value := true):
 	paused = value
