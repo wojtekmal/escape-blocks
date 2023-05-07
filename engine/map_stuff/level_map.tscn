@@ -40,7 +40,7 @@ position = Vector2(246, 443)
 position = Vector2(404, 504)
 
 [node name="7" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(604, 497)
+position = Vector2(578, 586)
 
 [node name="8" parent="." instance=ExtResource("1_qu7sv")]
 position = Vector2(398, 314)
@@ -49,9 +49,11 @@ position = Vector2(398, 314)
 position = Vector2(675, 100)
 
 [node name="MapCamera" type="Camera2D" parent="."]
+position = Vector2(1014, 296)
 script = ExtResource("3_772qu")
 
 [node name="MapHUD" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="MapHUD"]
 anchors_preset = 15
@@ -94,7 +96,7 @@ stretch_mode = 4
 [node name="Label" type="Label" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer/PartsBox/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "12"
+text = "0"
 label_settings = SubResource("LabelSettings_lnd47")
 
 [node name="Container" type="Container" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer"]

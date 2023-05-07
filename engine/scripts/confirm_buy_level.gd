@@ -3,8 +3,8 @@ extends MarginContainer
 signal ok_pressed
 signal cancel_pressed
 
-var left_click_previous_frame : bool = false
 var button_pressed : bool = false
+var real_pos := Vector2i(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,23 +17,29 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if left_click_previous_frame:
-		queue_free()
-	
-	if Input.is_action_just_pressed("left_click"):
-		left_click_previous_frame = true
-		return
+	pass
+
+func _input(event):
+	if event is InputEventMouseButton:
+		print("Mouse Click/Unclick at: ", event.position)
+		print(real_pos)
+		print(size)
+		if (!(event.position.x >= real_pos.x && event.position.x <= real_pos.x + size.x) ||
+		!(event.position.y >= real_pos.y && event.position.y <= real_pos.y + size.y)):
+			queue_free()
 
 func on_ok_pressed():
 	print("ok_pressed")
 	if !button_pressed:
 		emit_signal("ok_pressed")
 		button_pressed = true
+		queue_free()
 
 func on_cancel_pressed():
 	if !button_pressed:
 		emit_signal("cancel_pressed")
 		button_pressed = true
+		queue_free()
 
 func set_label_text(new_value):
 	var label := $VBoxContainer/Label
