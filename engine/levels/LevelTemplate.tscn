@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=46 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://scripts/stopwatch.gd" id="19_nh8s2"]
 [ext_resource type="AudioStream" uid="uid://d21kqeopilqrt" path="res://sound/escapeblocksv5.mp3" id="20_q7ff1"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="21_lbwbm"]
+[ext_resource type="PackedScene" uid="uid://klvxuhcfwpx0" path="res://background.tscn" id="22_fxc5x"]
 [ext_resource type="Script" path="res://scripts/Center.gd" id="22_uv5px"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
@@ -513,6 +514,14 @@ stream = ExtResource("20_q7ff1")
 position = Vector2(0, -9.5)
 ignore_rotation = false
 script = ExtResource("21_lbwbm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+layer = -100
+
+[node name="background" parent="Camera2D/CanvasLayer" instance=ExtResource("22_fxc5x")]
+z_index = -100
+position = Vector2(750, 200)
+scale = Vector2(6, 6)
 
 [node name="Center" type="Marker2D" parent="." groups=["wasd`"]]
 position = Vector2(0, -19)
