@@ -1,0 +1,36 @@
+[gd_scene load_steps=10 format=3 uid="uid://ce6genainsnm3"]
+
+[ext_resource type="Shader" path="res://shaders/glow.gdshader" id="1_ktdxk"]
+[ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="2_3uul4"]
+
+[sub_resource type="Gradient" id="Gradient_npgm1"]
+colors = PackedColorArray(0.0705882, 0.580392, 0, 1, 2.88785e-06, 0.722318, 0.976657, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vfxi4"]
+gradient = SubResource("Gradient_npgm1")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c3f46"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1esat"]
+seamless = true
+noise = SubResource("FastNoiseLite_c3f46")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7rk0q"]
+seed = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ou2eb"]
+seamless = true
+noise = SubResource("FastNoiseLite_7rk0q")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a5q0v"]
+shader = ExtResource("1_ktdxk")
+shader_parameter/gradient = SubResource("GradientTexture1D_vfxi4")
+shader_parameter/noise1 = SubResource("NoiseTexture2D_1esat")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_ou2eb")
+
+[node name="part_shaded" type="Node2D"]
+
+[node name="TemporaryPart" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_a5q0v")
+position = Vector2(-152, -94)
+texture = ExtResource("2_3uul4")
