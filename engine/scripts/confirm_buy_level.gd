@@ -21,15 +21,11 @@ func _process(delta):
 
 func _input(event):
 	if event is InputEventMouseButton:
-		print("Mouse Click/Unclick at: ", event.position)
-		print(real_pos)
-		print(size)
 		if (!(event.position.x >= real_pos.x && event.position.x <= real_pos.x + size.x) ||
 		!(event.position.y >= real_pos.y && event.position.y <= real_pos.y + size.y)):
 			queue_free()
 
 func on_ok_pressed():
-	print("ok_pressed")
 	if !button_pressed:
 		emit_signal("ok_pressed")
 		button_pressed = true

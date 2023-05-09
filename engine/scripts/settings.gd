@@ -24,9 +24,16 @@ func manage_changing_settings(action, new_value):
 		global.switch_rotation(new_value)
 	elif action == "reset_progress":
 		reset_progress_press()
+	elif action == "change_volume":
+		change_volume(new_value)
 	else:
 		print("This setting's method doesn't exist in settings.gd. ~wojtekmal")
 
+func change_volume(new_value):
+	global.settings["change_volume"] = new_value
+	global.save()
+	var master_bus = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_db(master_bus, (new_value - 100) * 72 / 100)
 
 func reset_progress_press():
 	print("check")

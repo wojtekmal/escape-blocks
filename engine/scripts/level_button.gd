@@ -37,11 +37,8 @@ func _ready():
 		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
 		modulate = Color8(255,255,255,100)
 	
-	print("check")
-	
 	if global.levels_data.has(label.text):
 		part_label.text = str(global.levels_data[label.text]["part_price"])
-		print(global.levels_data[label.text]["part_price"])
 		
 		if global.levels_data[label.text]["part_price"] == 0:
 			needed_part_display.modulate = Color8(0,0,0,0)
@@ -52,15 +49,10 @@ func _process(delta):
 
 func set_label_text(new_value):
 	var label = $TextureButton/VBoxContainer/Label
-	#print(global.levels)
-	#print("checkabc")
 	if(global.levels_data.has(new_value)):
-		#print("check")
 		label.text = new_value
 	else:
-		#print("check2")
 		label.text = "NULL"
-	#print("checkdef")
 
 func on_button_pressed():
 	var label = $TextureButton/VBoxContainer/Label
@@ -80,8 +72,6 @@ func _on_renamed():
 
 func on_level_bought():
 	var label = $TextureButton/VBoxContainer/Label
-	
-	print(global.levels_data[label.text]["part_price"])
 	
 	if global.part_count < global.levels_data[label.text]["part_price"]:
 		return
