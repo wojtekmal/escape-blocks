@@ -126,6 +126,7 @@ var levels_data := {
 
 var settings := {
 	"switch_rotation": false,
+	"change_volume": 0
 }
 
 func manage_settings():

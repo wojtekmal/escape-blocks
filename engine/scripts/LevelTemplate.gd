@@ -114,7 +114,7 @@ func _ready():
 	load_blocks_from_tilemap()
 	
 	var audio := $AudioStreamPlayer
-	#audio.play()
+	audio.play()
 
 func _process(delta):
 	# We won't be loading frames in the editor.
