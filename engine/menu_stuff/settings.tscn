@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtkhnervfb8g8"]
+[gd_scene load_steps=10 format=3 uid="uid://dtkhnervfb8g8"]
 
 [ext_resource type="Script" path="res://scripts/settings.gd" id="1_1sbxb"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="1_8r5dt"]
 [ext_resource type="PackedScene" uid="uid://cimdip5w7semr" path="res://menu_stuff/settings_bool.tscn" id="2_or2vx"]
 [ext_resource type="Texture2D" uid="uid://c8yym53ddmjaq" path="res://textures/end_panel_button.png" id="3_ard7o"]
 [ext_resource type="PackedScene" uid="uid://qltep5mntvfb" path="res://menu_stuff/settings_button.tscn" id="3_b01vd"]
+[ext_resource type="PackedScene" uid="uid://bkuryr5wpwy4h" path="res://menu_stuff/settings_slider.tscn" id="5_fdlcu"]
+
+[sub_resource type="Theme" id="Theme_3dlb4"]
+default_font = ExtResource("1_8r5dt")
 
 [sub_resource type="LabelSettings" id="LabelSettings_7jr6i"]
 font = ExtResource("1_8r5dt")
@@ -21,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_3dlb4")
 script = ExtResource("1_1sbxb")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -78,6 +83,11 @@ action = "switch_rotation"
 layout_mode = 2
 label_text = "RESET PROGRESS"
 action = "reset_progress"
+
+[node name="Volume" parent="VBoxContainer/ScrollPanelBox/ScrollContainer/VBoxContainer" instance=ExtResource("5_fdlcu")]
+layout_mode = 2
+action = "change_volume"
+label_text = "VOLUME"
 
 [node name="ExternalButtonsBox" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
