@@ -7,7 +7,6 @@
 [sub_resource type="LabelSettings" id="LabelSettings_y4dh6"]
 font = ExtResource("2_pcu2s")
 font_size = 48
-font_color = Color(0, 0, 0, 1)
 
 [node name="SettingsButton" type="MarginContainer"]
 anchors_preset = 15
