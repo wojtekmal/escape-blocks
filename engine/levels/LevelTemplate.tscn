@@ -520,8 +520,9 @@ layer = -100
 
 [node name="background" parent="Camera2D/CanvasLayer" instance=ExtResource("22_fxc5x")]
 z_index = -100
-position = Vector2(750, 200)
-scale = Vector2(6, 6)
+z_as_relative = false
+position = Vector2(0, -9.5)
+scale = Vector2(0.2, 0.2)
 
 [node name="Center" type="Marker2D" parent="." groups=["wasd`"]]
 position = Vector2(0, -19)

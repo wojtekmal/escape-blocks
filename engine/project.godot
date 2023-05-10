@@ -105,7 +105,7 @@ left_click={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.0862745, 0.121569, 0.211765, 1)
+environment/defaults/default_clear_color=Color(0.0313726, 0.054902, 0.109804, 1)
 environment/defaults/default_environment="res://default_env.tres"
 textures/canvas_textures/default_texture_filter=0
 quality/driver/driver_name="GLES2"
