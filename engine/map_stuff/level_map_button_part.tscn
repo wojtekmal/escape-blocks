@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd1ob5jcd2dcq"]
+
+[ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="1_8o4me"]
+
+[node name="LevelMapButtonPart" type="Sprite2D"]
+z_index = 1
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_8o4me")
