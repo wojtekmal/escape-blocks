@@ -29,6 +29,18 @@ func _ready():
 		pressable_button.disabled = false
 		needed_part_display.modulate = Color8(0,0,0,0)
 		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button.png")
+		
+		var done_part := $DonePart
+		var time_part_1 := $TimePart1
+		var time_part_2 := $TimePart2
+		var rotation_part_1 := $RotationPart1
+		var rotation_part_2 := $RotationPart2
+		
+		if global.levels[label.text]["finished_parts"] < 1:
+			done_part.visible = false
+		if global.levels[label.text]["time_parts"] < 1:
+			done_part.visible = false
+		
 	elif global.levels[label.text]["unlocked"] == 1:
 		pressable_button.disabled = false
 		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
