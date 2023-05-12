@@ -36,18 +36,50 @@ func _ready():
 		var rotation_part_1 := $RotationPart1
 		var rotation_part_2 := $RotationPart2
 		
-		if global.levels[label.text]["finished_parts"] < 1:
-			done_part.visible = false
-		if global.levels[label.text]["time_parts"] < 1:
-			done_part.visible = false
+		done_part.visible = true
+		time_part_1.visible = true
+		time_part_2.visible = true
+		rotation_part_1.visible = true
+		rotation_part_2.visible = true
+		
+		if global.levels[label.text]["finished_parts"] >= 1:
+			done_part.self_modulate = Color8(255, 255, 255, 255)
+		if global.levels[label.text]["time_parts"] >= 1:
+			time_part_1.self_modulate = Color8(255, 255, 255, 255)
+		if global.levels[label.text]["time_parts"] >= 2:
+			time_part_2.self_modulate = Color8(255, 255, 255, 255)
+		if global.levels[label.text]["rotation_parts"] >= 1:
+			rotation_part_1.self_modulate = Color8(255, 255, 255, 255)
+		if global.levels[label.text]["rotation_parts"] >= 2:
+			rotation_part_2.self_modulate = Color8(255, 255, 255, 255)
 		
 	elif global.levels[label.text]["unlocked"] == 1:
 		pressable_button.disabled = false
 		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
+		var done_part := $DonePart
+		var time_part_1 := $TimePart1
+		var time_part_2 := $TimePart2
+		var rotation_part_1 := $RotationPart1
+		var rotation_part_2 := $RotationPart2
+		done_part.visible = false
+		time_part_1.visible = false
+		time_part_2.visible = false
+		rotation_part_1.visible = false
+		rotation_part_2.visible = false
 	else:
 		pressable_button.disabled = true
 		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
-		modulate = Color8(255,255,255,100)
+		modulate = Color8(100,100,100)
+		var done_part := $DonePart
+		var time_part_1 := $TimePart1
+		var time_part_2 := $TimePart2
+		var rotation_part_1 := $RotationPart1
+		var rotation_part_2 := $RotationPart2
+		done_part.visible = false
+		time_part_1.visible = false
+		time_part_2.visible = false
+		rotation_part_1.visible = false
+		rotation_part_2.visible = false
 	
 	if global.levels_data.has(label.text):
 		part_label.text = str(global.levels_data[label.text]["part_price"])

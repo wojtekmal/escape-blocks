@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bd1ob5jcd2dcq"]
+[gd_scene load_steps=3 format=3 uid="uid://bd1ob5jcd2dcq"]
 
 [ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="1_8o4me"]
+[ext_resource type="Texture2D" uid="uid://difqxscv2ep4s" path="res://textures/temporary_part_frame.png" id="2_km8vc"]
 
 [node name="LevelMapButtonPart" type="Sprite2D"]
-z_index = 1
+self_modulate = Color(1, 1, 1, 0)
+z_index = 2
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_8o4me")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_km8vc")
