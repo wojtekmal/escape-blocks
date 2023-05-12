@@ -109,11 +109,16 @@ var levels_data := {
 	},
 	"8": {
 		"resource": load("res://levels/4QT0R_2.tscn"),
-		"unlocks": [],
+		"unlocks": ["9"],
 		"part_price": 0,
 	},
 	"9": {
 		"resource": load("res://levels/4QT0R_3.tscn"),
+		"unlocks": ["10"],
+		"part_price": 0,
+	},
+	"10": {
+		"resource": load("res://levels/Herberik_level_1_4.tscn"),
 		"unlocks": [],
 		"part_price": 0,
 	},
@@ -130,8 +135,12 @@ var settings := {
 }
 
 func manage_settings():
-#	switch_rotation(settings["switch_rotation"])
-	pass
+	var master_bus = AudioServer.get_bus_index("Master")
+	if settings.has("change_volume"):
+		AudioServer.set_bus_volume_db(master_bus, (settings["change_volume"] - 100) * 72 / 100)
+	
+	switch_rotation(settings["switch_rotation"])
+
 func switch_rotation(new_value: bool):
 	#if settings["switch_rotation_direction"] == new_value:
 	#	return
