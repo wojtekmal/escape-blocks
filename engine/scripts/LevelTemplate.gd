@@ -48,7 +48,7 @@ var positions_before_rotations_wasd = []
 var game_ended := false
 var game_started := false : set = set_started
 var column_top_entities = []
-var y_friction = 0.99;
+var y_friction = 0.5;
 
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
@@ -173,7 +173,7 @@ func compare_entity_heights(a, b): # Sorts the entities in decreasing order acco
 	return a.position.y > b.position.y
 
 func move_block(delta, block):
-	block.y_speed *= y_friction
+	block.y_speed *= pow(y_friction, delta)
 	if block.is_falling:
 		block.y_speed += 1000 * delta
 	else:
@@ -212,7 +212,7 @@ func move_block(delta, block):
 		return
 
 func move_player(delta):
-	player.y_speed *= y_friction
+	player.y_speed *= pow(y_friction, delta)
 	if player.is_falling:
 		player.y_speed += 1000 * delta
 	else:
@@ -595,8 +595,6 @@ func _on_player_finished(start_rotations):
 			if global.levels_data[unlocked_level]["part_price"] == 0:
 				global.levels[unlocked_level]["unlocked"] = 2
 		
-		#print(global.levels)
-		#print("\n\n")
 		global.save()
 		
 		level_map_button.pressed.connect(go_to_map)
@@ -694,6 +692,7 @@ func actually_go_to_next_level():
 	
 	global.levels[next_level_name]["unlocked"] = 2
 	global.part_count -= global.levels_data[next_level_name]["part_price"]
+	global.save()
 	emit_signal("change_to_next_level", level_name)
 
 func floor_div(a, b):
