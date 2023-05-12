@@ -595,8 +595,6 @@ func _on_player_finished(start_rotations):
 			if global.levels_data[unlocked_level]["part_price"] == 0:
 				global.levels[unlocked_level]["unlocked"] = 2
 		
-		#print(global.levels)
-		#print("\n\n")
 		global.save()
 		
 		level_map_button.pressed.connect(go_to_map)
@@ -694,6 +692,7 @@ func actually_go_to_next_level():
 	
 	global.levels[next_level_name]["unlocked"] = 2
 	global.part_count -= global.levels_data[next_level_name]["part_price"]
+	global.save()
 	emit_signal("change_to_next_level", level_name)
 
 func floor_div(a, b):

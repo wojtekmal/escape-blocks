@@ -45,8 +45,14 @@ position = Vector2(578, 586)
 [node name="8" parent="." instance=ExtResource("1_qu7sv")]
 position = Vector2(398, 314)
 
+[node name="9" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(789, 530)
+
+[node name="10" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(1063, 431)
+
 [node name="LevelButton3" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(675, 100)
+position = Vector2(836, 56)
 
 [node name="MapCamera" type="Camera2D" parent="."]
 position = Vector2(1014, 296)

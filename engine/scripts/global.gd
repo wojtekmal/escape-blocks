@@ -109,11 +109,16 @@ var levels_data := {
 	},
 	"8": {
 		"resource": load("res://levels/4QT0R_2.tscn"),
-		"unlocks": [],
+		"unlocks": ["9"],
 		"part_price": 0,
 	},
 	"9": {
 		"resource": load("res://levels/4QT0R_3.tscn"),
+		"unlocks": ["10"],
+		"part_price": 0,
+	},
+	"10": {
+		"resource": load("res://levels/Herberik_level_1_4.tscn"),
 		"unlocks": [],
 		"part_price": 0,
 	},
