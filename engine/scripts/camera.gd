@@ -12,7 +12,6 @@ func _ready():
 
 func _process(delta) -> void:
 	zoom_camera()
-	global_position = Vector2.ZERO
 
 func _input(event : InputEvent, delta = get_physics_process_delta_time()) -> void:
 	if event is InputEventMouseButton:

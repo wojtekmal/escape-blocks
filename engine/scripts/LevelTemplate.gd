@@ -521,6 +521,7 @@ func _on_player_finished(start_rotations):
 	#print("finished signal recived")
 	if (total_rotations + start_rotations) % 4 == 0 && !game_ended:
 		game_ended = true
+		#get_tree().paused = true
 		print("End game.\nTotal rotations: " + str(rotations_number))
 		$Control/CanvasLayer/MarginContainer/VBoxContainer/FinishLabelBox/FinishLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
 		$Control/CanvasLayer.visible = true
@@ -702,5 +703,6 @@ func floor_div(a, b):
 		return floori(a) / floori(b) - 1
 
 func move_camera():
+	global_position = Vector2.ZERO
 	while (camera.position - player.position).length() * camera.zoom.x > 100:
 		camera.position = lerp(camera.position, player.position, 0.01)
