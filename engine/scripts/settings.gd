@@ -1,5 +1,7 @@
+@tool
 extends Control
 
+@export var mode : String = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,14 +12,19 @@ func _ready():
 	
 	for setting in settings_list.get_children():
 		setting.changed.connect(manage_changing_settings)
-
+		
+		if "disabled_in_level" in setting && mode == "in_level":
+			setting.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 func go_to_menu():
-	get_tree().change_scene_to_file("res://menu_stuff/menu_2.tscn")
+	if mode == "in_level":
+		visible = false
+	else:
+		get_tree().change_scene_to_file("res://menu_stuff/menu_2.tscn")
 
 func manage_changing_settings(action, new_value):
 	if action == "switch_rotation":
