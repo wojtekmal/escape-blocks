@@ -329,6 +329,7 @@ font_size = 36
 font_color = Color(0, 0, 0, 1)
 
 [node name="LevelTemplate4" type="Node2D"]
+process_mode = 1
 script = ExtResource("4")
 board_dimensions = Vector2i(8, 5)
 
@@ -511,6 +512,7 @@ offset_bottom = 89.0
 stream = ExtResource("20_q7ff1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_mode = 3
 position = Vector2(0, -9.5)
 ignore_rotation = false
 script = ExtResource("21_lbwbm")

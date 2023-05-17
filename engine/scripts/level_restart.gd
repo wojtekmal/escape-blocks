@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var pause_screen := $Control/CanvasLayer
+@onready var pause_screen := $CanvasLayer
 
 var paused = false
 @export var current_level : String
@@ -22,6 +22,14 @@ func start(level_name : String):
 	await new_level.ready
 
 func _ready():
+	var resume := $CanvasLayer/Control/VBoxContainer/MarginContainer/HBoxContainer/Resume
+	var restart := $CanvasLayer/Control/VBoxContainer/MarginContainer/HBoxContainer/Restart
+	var settings := $CanvasLayer/Control/VBoxContainer/MarginContainer/HBoxContainer/Settings
+	var map := $CanvasLayer/Control/VBoxContainer/MarginContainer/HBoxContainer/Map
+	resume.pressed.connect(unpause)
+	restart.pressed.connect(start_current_level)
+	settings.pressed.connect(open_settings)
+	map.pressed.connect(go_to_map)
 	current_level = global.current_level
 	start(current_level)
 
@@ -32,6 +40,15 @@ func _process(delta):
 	if Input.is_action_just_pressed("restart"):
 		start(current_level)
 
+func go_to_map():
+	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+
+func open_settings():
+	$SettingsLayer/Settings.visible = true
+
+func start_current_level():
+	start(global.current_level)
+
 func change_to_next_level(level_name: String):
 	if global.levels_data[level_name]["unlocks"].is_empty():
 		get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
@@ -39,6 +56,9 @@ func change_to_next_level(level_name: String):
 	
 	var level = global.levels_data[level_name]["unlocks"][0]
 	start(level)
+
+func unpause():
+	pause(false)
 
 func pause(value := true):
 	paused = value
