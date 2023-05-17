@@ -79,10 +79,11 @@ layout_mode = 2
 label_text = "SWITCH ROTATION DIRECTION"
 action = "switch_rotation"
 
-[node name="SettingsButton" parent="VBoxContainer/ScrollPanelBox/ScrollContainer/VBoxContainer" instance=ExtResource("3_b01vd")]
+[node name="ResetProgress" parent="VBoxContainer/ScrollPanelBox/ScrollContainer/VBoxContainer" instance=ExtResource("3_b01vd")]
 layout_mode = 2
 label_text = "RESET PROGRESS"
 action = "reset_progress"
+disabled_in_level = false
 
 [node name="Volume" parent="VBoxContainer/ScrollPanelBox/ScrollContainer/VBoxContainer" instance=ExtResource("5_fdlcu")]
 layout_mode = 2
