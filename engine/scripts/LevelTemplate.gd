@@ -33,6 +33,7 @@ signal change_to_next_level
 @onready var part_box_4 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox4
 @onready var part_box_5 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox5
 @onready var camera := $Camera2D
+@onready var background := $Camera2D/CanvasLayer/CenterContainer/Container/background
 
 var rotations_number : int : set = update_counter
 var moving_entities = []
@@ -375,6 +376,7 @@ func manage_changing_gravity():
 	var change_angle = PI * now_rotations * (rotation_timer.wait_time - rotation_timer.time_left) / rotation_timer.wait_time / 2
 	tilemap.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	overlay.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
+	background.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
@@ -404,6 +406,7 @@ func all_not_falling():
 func rotation_ended():
 	tilemap.rotation = total_rotations * PI / 2
 	overlay.rotation = total_rotations * PI / 2
+	background.rotation = total_rotations * PI / 2
 	var wasd := get_tree().get_nodes_in_group("wasd")
 	
 	if now_rotations % 2:
@@ -703,6 +706,9 @@ func floor_div(a, b):
 		return floori(a) / floori(b) - 1
 
 func move_camera():
+	#print(camera.position)
+	#print(background.position)
 	global_position = Vector2.ZERO
 	while (camera.position - player.position).length() * camera.zoom.x > 100:
 		camera.position = lerp(camera.position, player.position, 0.01)
+	#background.position = camera.position
