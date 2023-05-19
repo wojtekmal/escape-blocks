@@ -2,7 +2,7 @@
 class_name Player
 extends Area2D
 
-@export var walk_speed = 60
+#@export var walk_speed = 60
 @export var jump_speed = 300
 @export var coyote_time = 0.1
 @export var jump_time = 0.1
@@ -15,7 +15,7 @@ extends Area2D
 @export var y_speed := 0
 @export var x_speed := 0
 
-var WALK_SPEED := 150.0
+var WALK_SPEED := 100.0
 var friction := 0.65
 
 var offset = 10;
