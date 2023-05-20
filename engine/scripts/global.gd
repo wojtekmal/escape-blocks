@@ -3,6 +3,7 @@ extends Node
 
 var current_level : String = "1"
 var part_count : int = 0
+var zoom_factor : float = 0.7
  
 # This is a dictionary holding all levels by their numbers.
 # Here all important information about levels is held in this format:
@@ -44,6 +45,8 @@ func load_data():
 		settings = content["settings"]
 	if content.has("part_count"):
 		part_count = content["part_count"]
+	if content.has("zoom_factor") && content["zoom_factor"] != 0:
+		zoom_factor = content["zoom_factor"]
 	
 	manage_settings()
 
@@ -53,6 +56,7 @@ func save():
 		"current_level" : current_level,
 		"settings" : settings,
 		"part_count" : part_count,
+		"zoom_factor" : zoom_factor,
 	}
 	
 	print(saved_var)

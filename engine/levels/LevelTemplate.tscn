@@ -21,7 +21,7 @@
 [ext_resource type="Script" path="res://scripts/stopwatch.gd" id="19_nh8s2"]
 [ext_resource type="AudioStream" uid="uid://d21kqeopilqrt" path="res://sound/escapeblocksv5.mp3" id="20_q7ff1"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="21_lbwbm"]
-[ext_resource type="PackedScene" path="res://background.tscn" id="22_fxc5x"]
+[ext_resource type="PackedScene" uid="uid://bgr1bna3ymmvr" path="res://background.tscn" id="22_fxc5x"]
 [ext_resource type="Script" path="res://scripts/Center.gd" id="22_uv5px"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
@@ -515,14 +515,24 @@ stream = ExtResource("20_q7ff1")
 process_mode = 3
 position = Vector2(0, -9.5)
 ignore_rotation = false
+zoom = Vector2(0.7, 0.7)
 script = ExtResource("21_lbwbm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
-layer = -100
+layer = -10
 
-[node name="background" parent="Camera2D/CanvasLayer" instance=ExtResource("22_fxc5x")]
-z_index = -100
-position = Vector2(750, 200)
+[node name="CenterContainer" type="CenterContainer" parent="Camera2D/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Container" parent="Camera2D/CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="background" parent="Camera2D/CanvasLayer/CenterContainer/Container" instance=ExtResource("22_fxc5x")]
+position = Vector2(-20, -20)
 scale = Vector2(6, 6)
 
 [node name="Center" type="Marker2D" parent="." groups=["wasd`"]]

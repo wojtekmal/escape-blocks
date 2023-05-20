@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cylgj4bcajsr0"]
+[gd_scene load_steps=10 format=3 uid="uid://cylgj4bcajsr0"]
 
 [ext_resource type="Script" path="res://scripts/level_map.gd" id="1_gliqh"]
 [ext_resource type="PackedScene" uid="uid://ba4y62q3j4hcl" path="res://map_stuff/level_button.tscn" id="1_qu7sv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="4_y8sme"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="5_iu41y"]
 [ext_resource type="Texture2D" uid="uid://c8yym53ddmjaq" path="res://textures/end_panel_button.png" id="6_mdfpr"]
+[ext_resource type="PackedScene" uid="uid://bgr1bna3ymmvr" path="res://background.tscn" id="7_opcik"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lnd47"]
 font = ExtResource("5_iu41y")
@@ -57,6 +58,9 @@ position = Vector2(836, 56)
 [node name="MapCamera" type="Camera2D" parent="."]
 position = Vector2(1014, 296)
 script = ExtResource("3_772qu")
+
+[node name="background" parent="MapCamera" instance=ExtResource("7_opcik")]
+z_index = -5
 
 [node name="MapHUD" type="CanvasLayer" parent="."]
 visible = false
