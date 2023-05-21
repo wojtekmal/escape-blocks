@@ -72,7 +72,7 @@ func save():
 # This dictionary also contains all levels' scenes and dependencies.
 var levels_data := {
 	"1": {
-		"resource": load("res://levels/test_level_template.tscn"),
+		"resource": load("res://levels/tutorial.tscn"),
 		"unlocks": ["2a", "2b"],
 		"part_price": 0,
 	},
@@ -123,6 +123,11 @@ var levels_data := {
 	},
 	"10": {
 		"resource": load("res://levels/Herberik_level_1_4.tscn"),
+		"unlocks": [],
+		"part_price": 0,
+	},
+	"11": {
+		"resource": load("res://levels/test_level_template.tscn"),
 		"unlocks": [],
 		"part_price": 0,
 	},
