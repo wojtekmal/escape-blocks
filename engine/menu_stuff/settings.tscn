@@ -83,7 +83,6 @@ action = "switch_rotation"
 layout_mode = 2
 label_text = "RESET PROGRESS"
 action = "reset_progress"
-disabled_in_level = false
 
 [node name="Volume" parent="VBoxContainer/ScrollPanelBox/ScrollContainer/VBoxContainer" instance=ExtResource("5_fdlcu")]
 layout_mode = 2
