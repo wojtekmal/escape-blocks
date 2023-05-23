@@ -9,6 +9,7 @@ var bodies := 0
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var start_rotations : int = 1
 @export var is_pressed : bool = false
+@export var negative : bool = true
 
 var colors := {
 	0 : Color.WHITE,
@@ -51,7 +52,7 @@ func show_particles(value := true):
 
 func _process(delta):
 	var overlapping = $hitbox.get_overlapping_areas()
-	if $hitbox.has_overlapping_areas():
+	if $hitbox.has_overlapping_areas() != negative:
 		$Shaded/TextureProgressBar.value = 1.0 - (pressed_for) / delay
 		if pressed_for > 0 and pressed_for - delta < 0:
 			on_press()
