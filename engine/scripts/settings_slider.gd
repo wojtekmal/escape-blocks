@@ -6,7 +6,7 @@ signal changed
 @export var action : String = ""
 @export_multiline var label_text : String = "" : set = set_label_text
 @export var range : Vector2 = Vector2(0, 100) : set = set_range
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	var h_slider := $HBoxContainer/VBoxContainer/HSlider
 	h_slider.value_changed.connect(on_value_changed)
@@ -14,8 +14,6 @@ func _ready():
 	if global.settings.has(action):
 		h_slider.value = global.settings[action]
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
