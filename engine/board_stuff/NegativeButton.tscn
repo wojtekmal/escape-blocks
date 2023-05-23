@@ -1,15 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://qkk34yk2cr5q"]
+[gd_scene load_steps=10 format=3 uid="uid://csxm6djh8uf3g"]
 
-[ext_resource type="Script" path="res://scripts/Button.gd" id="1_yjoll"]
-[ext_resource type="Shader" path="res://shaders/button.gdshader" id="2_wrqhq"]
-[ext_resource type="Texture2D" uid="uid://ddo0kuo1nd0xw" path="res://textures/blocks/button.png" id="3_j766s"]
+[ext_resource type="PackedScene" uid="uid://vntb00nxrmwy" path="res://board_stuff/Button.tscn" id="1_brn8m"]
+[ext_resource type="Shader" path="res://shaders/button.gdshader" id="2_p1dr0"]
 
-[sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(16, 16)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nbn8s"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r104v"]
 resource_local_to_scene = true
-shader = ExtResource("2_wrqhq")
+shader = ExtResource("2_p1dr0")
 shader_parameter/u_color = Color(0, 1, 0, 1)
 shader_parameter/rgb = false
 shader_parameter/strength = 0.461
@@ -23,7 +19,7 @@ colors = PackedColorArray(0.729412, 0.792157, 1, 0, 0.701961, 0.811765, 1, 0.521
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_rdi78"]
 gradient = SubResource("Gradient_y6ae1")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rltyq"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hj0qu"]
 resource_local_to_scene = true
 direction = Vector3(0, 0, 0)
 spread = 180.0
@@ -44,7 +40,7 @@ colors = PackedColorArray(0.478431, 0.478431, 0.478431, 1)
 gradient = SubResource("Gradient_yv4jc")
 use_hdr = true
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pucb7"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8wrqs"]
 resource_local_to_scene = true
 lifetime_randomness = 0.2
 particle_flag_disable_z = true
@@ -59,51 +55,14 @@ scale_min = 2.0
 scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_nr5yp")
 
-[node name="Button" type="Node2D"]
-position = Vector2(303, 148)
-script = ExtResource("1_yjoll")
-metadata/_edit_group_ = true
+[node name="Button" instance=ExtResource("1_brn8m")]
+negative = true
 
-[node name="hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+[node name="Shaded" parent="." index="1"]
+material = SubResource("ShaderMaterial_r104v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-shape = SubResource("1")
+[node name="RainbowParticles" parent="Shaded" index="2"]
+process_material = SubResource("ParticleProcessMaterial_hj0qu")
 
-[node name="Shaded" type="Node2D" parent="."]
-material = SubResource("ShaderMaterial_nbn8s")
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Shaded"]
-z_index = 1
-use_parent_material = true
-offset_left = -41.0
-offset_top = -41.0
-offset_right = 41.0
-offset_bottom = 41.0
-max_value = 1.0
-step = 0.01
-fill_mode = 5
-nine_patch_stretch = true
-texture_progress = ExtResource("3_j766s")
-
-[node name="Button" type="Sprite2D" parent="Shaded"]
-use_parent_material = true
-scale = Vector2(2, 2)
-texture = ExtResource("3_j766s")
-
-[node name="RainbowParticles" type="GPUParticles2D" parent="Shaded"]
-z_index = 5
-emitting = false
-amount = 16
-process_material = SubResource("ParticleProcessMaterial_rltyq")
-local_coords = true
-
-[node name="Normal" type="GPUParticles2D" parent="Shaded"]
-z_index = 1
-use_parent_material = true
-emitting = false
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_pucb7")
-lifetime = 1.5
-local_coords = true
+[node name="Normal" parent="Shaded" index="3"]
+process_material = SubResource("ParticleProcessMaterial_8wrqs")
