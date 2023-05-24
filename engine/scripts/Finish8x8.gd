@@ -12,7 +12,7 @@ func _ready():
 func _enter_tree():
 	$EmergencyEscapeSign.rotation = start_rotations * PI / 2
 
-func _process(delta):
+func _physics_process(delta):
 	if has_overlapping_areas():
 		emit_signal("player_reached_finish_area", start_rotations)
 

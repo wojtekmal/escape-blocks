@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1hd1lrqdodhv"]
+
+[ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_blbis"]
+[ext_resource type="PackedScene" uid="uid://bh28swydxx22h" path="res://board_stuff/tutorial_float.tscn" id="2_solsn"]
+
+[node name="LevelTemplate4" instance=ExtResource("1_blbis")]
+board_dimensions = Vector2i(3, 2)
+rotation_disabled = true
+end_screen_disabled = true
+
+[node name="Player" parent="." index="0"]
+position = Vector2(0, 96)
+board_dimensions = Vector2i(3, 2)
+
+[node name="BoardLimits" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(589811, 0, 0, -524301, 0, 0, 589812, 0, 0, -524300, 0, 0, 589813, 0, 0, -524299, 0, 0, 589814, 0, 0, -524298, 0, 0, 589815, 0, 0, -524297, 0, 0, 589816, 0, 0, -524296, 0, 0, 589817, 0, 0, -524295, 0, 0, 589818, 0, 0, -524294, 0, 0, 589819, 0, 0, -524293, 0, 0, 589820, 0, 0, -524292, 0, 0, 589821, 0, 0, -524291, 0, 0, 589822, 0, 0, -524290, 0, 0, 589823, 0, 0, -524289, 0, 0, 524288, 0, 0, -589824, 0, 0, 524289, 0, 0, -589823, 0, 0, 524290, 0, 0, -589822, 0, 0, 524291, 0, 0, -589821, 0, 0, 524292, 0, 0, -589820, 0, 0, 524293, 0, 0, -589819, 0, 0, 524294, 0, 0, -589818, 0, 0, 524295, 0, 0, -589817, 0, 0, 524296, 0, 0, -589816, 0, 0, 524297, 0, 0, -589815, 0, 0, 524298, 0, 0, -589814, 0, 0, 524299, 0, 0, -589813, 0, 0, 524300, 0, 0, -589812, 0, 0, -458765, 0, 0, -524276, 0, 0, -393229, 0, 0, -458740, 0, 0, -327693, 0, 0, -393204, 0, 0, -262157, 0, 0, -327668, 0, 0, -196621, 0, 0, -262132, 0, 0, -131085, 0, 0, -196596, 0, 0, -65549, 0, 0, -131060, 0, 0, -13, 0, 0, -65524, 0, 0, 65523, 0, 0, 12, 0, 0, 131059, 0, 0, 65548, 0, 0, 196595, 0, 0, 131084, 0, 0, 262131, 0, 0, 196620, 0, 0, 327667, 0, 0, 262156, 0, 0, 393203, 0, 0, 327692, 0, 0, 458739, 0, 0, 393228, 0, 0, 524275, 0, 0, 458764, 0, 0)
+board_dimensions = Vector2i(3, 2)
+
+[node name="Walls" parent="." index="3"]
+position = Vector2(-96, -64)
+layer_0/tile_data = PackedInt32Array(65537, 2, 0, 65536, 6, 0, 65538, 4, 0)
+
+[node name="Overlay" parent="." index="5"]
+layer_0/tile_data = PackedInt32Array()
+board_dimensions = Vector2i(3, 2)
+
+[node name="TutorialFloat" parent="." index="11" instance=ExtResource("2_solsn")]
+pages = PackedStringArray("Welcome to Escape Blocks!\nGet to the finish (the square with a green evacuation sign). Press A/D to move left/right and W or Space to jump. Use R to restart the level and Esc to pause it and view some options.\nPress any key to continue.")
