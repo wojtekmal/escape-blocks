@@ -5,7 +5,6 @@
 
 [node name="LevelTemplate4" instance=ExtResource("1_vga7u")]
 board_dimensions = Vector2i(3, 3)
-rotation_disabled = false
 end_screen_disabled = true
 
 [node name="Player" parent="." index="0"]

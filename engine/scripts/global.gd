@@ -71,8 +71,23 @@ func save():
 
 # This dictionary also contains all levels' scenes and dependencies.
 var levels_data := {
-	"1": {
+	"Tutorial": {
+		"resource": load("res://levels/tutorial_walking_jumping.tscn"),
+		"unlocks": ["tutorial_rotating"],
+		"part_price": 0,
+	},
+	"tutorial_rotating": {
+		"resource": load("res://levels/tutorial_rotating.tscn"),
+		"unlocks": ["final_tutorial"],
+		"part_price": 0,
+	},
+	"final_tutorial": {
 		"resource": load("res://levels/tutorial.tscn"),
+		"unlocks": [],
+		"part_price": 0,
+	},
+	"1": {
+		"resource": load("res://levels/test_level_template.tscn"),
 		"unlocks": ["2a", "2b"],
 		"part_price": 0,
 	},
