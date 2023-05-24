@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/level_restart.gd" id="1_cj13w"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="2_ytadq"]
-[ext_resource type="PackedScene" path="res://menu_stuff/my_button.tscn" id="3_cpjcm"]
+[ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="3_cpjcm"]
 [ext_resource type="PackedScene" uid="uid://dtkhnervfb8g8" path="res://menu_stuff/settings.tscn" id="4_uv8qk"]
 
 [sub_resource type="Theme" id="Theme_bk2k3"]
