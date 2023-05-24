@@ -12,8 +12,8 @@ func _ready():
 		button_reference.button_pressed.connect(on_level_button_pressed)
 		button_reference.refresh_map.connect(refresh_map)
 		buttons[button_reference.name] = button_reference
-		#print(button_reference.name)
-		#print(button_reference.label_text)
+	
+	$Tutorial.button_pressed.connect(on_level_button_pressed)
 	
 	var back_to_menu_button := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/TextureButton
 	back_to_menu_button.pressed.connect(go_to_menu)
@@ -40,6 +40,9 @@ func init_graph():
 			button_text = "NULL"
 		
 		for dependency in global.levels_data[button_text]["unlocks"]:
+			if !buttons.has(dependency):
+				continue
+			
 			var line = Line2D.new()
 			line.add_point(buttons[button_text].position)
 			line.add_point(buttons[dependency].position)
@@ -57,6 +60,7 @@ func _process(delta):
 	pass
 
 func on_level_button_pressed(level_name):
+	print("Level map detected tutorial button.")
 	global.current_level = level_name
 	get_tree().change_scene_to_file("res://levels/level_restart.tscn")
 

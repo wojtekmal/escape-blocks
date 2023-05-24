@@ -528,7 +528,7 @@ func load_blocks_from_tilemap():
 
 func _on_player_finished(start_rotations):
 	#print("finished signal recived")
-	if (total_rotations + start_rotations) % 4 == 0 && !game_ended:
+	if (total_rotations + start_rotations) % 4 == 0 && !game_ended && !rotation_timer.time_left:
 		game_ended = true
 		#get_tree().paused = true
 		print("End game.\nTotal rotations: " + str(rotations_number))
@@ -536,6 +536,9 @@ func _on_player_finished(start_rotations):
 		
 		if !end_screen_disabled:
 			$Control/CanvasLayer.visible = true
+		
+		if end_screen_disabled:
+			emit_signal("change_to_next_level", level_name)
 		
 		if !global.levels.has(level_name):
 			print("This level\'s name is\'nt in global.levels.")
