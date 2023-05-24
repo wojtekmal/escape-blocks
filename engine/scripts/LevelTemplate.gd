@@ -91,6 +91,12 @@ var tile_blocks := {
 		"layer" : 0,
 		"id" : 7
 	},
+	"negative button" : {
+		"resource" : preload("res://board_stuff/NegativeButton.tscn"),
+		"adress" : Vector2i(0, 0),
+		"layer" : 0,
+		"id" : 8
+	},
 	"door" : { #must be below buttons
 		"resource" : preload("res://board_stuff/Door.tscn"),
 		"adress" : Vector2i(0, 0),
@@ -111,11 +117,12 @@ func _ready():
 	overlay.board_dimensions = board_dimensions
 	size = $Player/StandingHitBox.shape.size
 	game_ended = false
-
+	
 	if Engine.is_editor_hint(): return
 	
 	load_blocks_from_tilemap()
 	
+	overlay.collapse();
 	var audio := $AudioStreamPlayer
 	audio.play()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=51 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -16,12 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://ddo0kuo1nd0xw" path="res://textures/blocks/button.png" id="12_gobi5"]
 [ext_resource type="Texture2D" uid="uid://dwm0i4f3lr28f" path="res://textures/blocks/door.png" id="13_lyb2i"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="14_wb3oo"]
+[ext_resource type="Texture2D" uid="uid://btql8fsjcl1vi" path="res://textures/bg/bg0.png" id="16_v8nsv"]
 [ext_resource type="PackedScene" uid="uid://csptwsrwupxko" path="res://menu_stuff/part_box.tscn" id="17_j8u3w"]
+[ext_resource type="Texture2D" uid="uid://csyalhich42in" path="res://textures/icon.png" id="17_l5edx"]
 [ext_resource type="Texture2D" uid="uid://c8yym53ddmjaq" path="res://textures/end_panel_button.png" id="18_e15eb"]
 [ext_resource type="Script" path="res://scripts/stopwatch.gd" id="19_nh8s2"]
 [ext_resource type="AudioStream" uid="uid://d21kqeopilqrt" path="res://sound/escapeblocksv5.mp3" id="20_q7ff1"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="21_lbwbm"]
-[ext_resource type="PackedScene" uid="uid://bgr1bna3ymmvr" path="res://background.tscn" id="22_fxc5x"]
+[ext_resource type="PackedScene" uid="uid://klvxuhcfwpx0" path="res://background.tscn" id="22_fxc5x"]
 [ext_resource type="Script" path="res://scripts/Center.gd" id="22_uv5px"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
@@ -242,6 +244,19 @@ texture_region_size = Vector2i(32, 32)
 0:0/4/modulate = Color(1, 0.333333, 1, 1)
 0:0/4/material = SubResource("ShaderMaterial_cnx4n")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7aifg"]
+resource_name = "Negative Button"
+texture = ExtResource("12_gobi5")
+texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 4
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/modulate = Color(1, 0, 0, 1)
+0:0/2 = 2
+0:0/2/modulate = Color(0, 1, 0, 1)
+0:0/3 = 3
+0:0/3/modulate = Color(0, 0, 1, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jw1gh"]
 shader = ExtResource("11_psw4b")
 shader_parameter/u_color = Color(0, 1, 0, 1)
@@ -273,6 +288,7 @@ sources/6 = SubResource("TileSetAtlasSource_ejgp5")
 sources/4 = SubResource("TileSetAtlasSource_so2yg")
 sources/7 = SubResource("TileSetAtlasSource_no55m")
 sources/9 = SubResource("TileSetAtlasSource_0382d")
+sources/8 = SubResource("TileSetAtlasSource_7aifg")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_arxux"]
 texture = ExtResource("12_52lji")
@@ -308,8 +324,48 @@ separation = Vector2i(2, 2)
 2:2/0 = 0
 3:2/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t7h7h"]
+texture = ExtResource("16_v8nsv")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvol4"]
+texture = ExtResource("17_l5edx")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_7fwbe"]
 sources/0 = SubResource("TileSetAtlasSource_arxux")
+sources/2 = SubResource("TileSetAtlasSource_t7h7h")
+sources/3 = SubResource("TileSetAtlasSource_wvol4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pg4o3"]
 shader = ExtResource("11_psw4b")
@@ -359,11 +415,12 @@ scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_srb8s")
 cell_quadrant_size = 32
 format = 2
-layer_0/tile_data = PackedInt32Array(262144, 6, 0, 262146, 2, 0, 262147, 1, 0, 262148, 0, 0, 262149, 4, 131072, 196611, 7, 131072, 196610, 7, 65536, 196612, 7, 196608, 4, 9, 196608, 3, 9, 131072, 2, 9, 65536, 65538, 1, 0, 131074, 1, 0, 1, 9, 65536, 262145, 9, 65536)
+layer_0/tile_data = PackedInt32Array(262144, 6, 0, 262146, 2, 0, 262147, 1, 0, 262148, 0, 0, 262149, 4, 131072, 196611, 7, 131072, 196610, 7, 65536, 196612, 7, 196608, 4, 9, 196608, 3, 9, 131072, 2, 9, 65536, 65538, 1, 0, 131074, 1, 0, 1, 9, 65536, 262145, 9, 65536, 196609, 8, 65536)
 
 [node name="Counter" parent="." instance=ExtResource("9_pbxjo")]
 
 [node name="Overlay" type="TileMap" parent="." groups=["board_limits"]]
+visible = false
 z_index = 2
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_7fwbe")
