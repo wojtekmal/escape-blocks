@@ -57,12 +57,14 @@ func _input(event):
 	if Engine.is_editor_hint():
 		return
 	
-	if event is InputEventKey and event.pressed:
-		if current_page == pages.size() - 1:
-			visible = false
-			return
-		
-		current_page += 1
-		
-		var label = $HBoxContainer/VBoxContainer/MarginContainer/MarginContainer/MarginContainer/Label
-		label.text = pages[current_page]
+	if !(event is InputEventKey) || !event.pressed || event.keycode == KEY_ESCAPE:
+		return
+	
+	if current_page == pages.size() - 1:
+		visible = false
+		return
+	
+	current_page += 1
+	
+	var label = $HBoxContainer/VBoxContainer/MarginContainer/MarginContainer/MarginContainer/Label
+	label.text = pages[current_page]

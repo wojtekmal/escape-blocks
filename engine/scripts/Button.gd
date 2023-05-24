@@ -49,7 +49,7 @@ func on_release():
 func show_particles(value := true):
 	$Shaded/Normal.emitting = value
 
-func _process(delta):
+func _physics_process(delta):
 	var overlapping = $hitbox.get_overlapping_areas()
 	if $hitbox.has_overlapping_areas():
 		$Shaded/TextureProgressBar.value = 1.0 - (pressed_for) / delay
