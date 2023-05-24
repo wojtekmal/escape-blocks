@@ -17,6 +17,7 @@ process_mode = 3
 script = ExtResource("1_cj13w")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 120
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3

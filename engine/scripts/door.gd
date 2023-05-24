@@ -28,7 +28,7 @@ func set_board_cords(newValue):
 	board_cords = newValue
 	set_position(Vector2i(board_cords.x * 64 + 32 - board_dimensions.x * 32, board_cords.y * 64 + 32 - board_dimensions.y * 32))
 
-func _process(delta):
+func _physics_process(delta):
 	if open == false && pressed_buttons == buttons_number: #opening
 		open = true
 		$Shaded/Door.visible = false
