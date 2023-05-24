@@ -9,13 +9,11 @@ func _ready():
 func _process(delta):
 	var default_screen_x = ProjectSettings.get_setting("display/window/size/viewport_width")
 	var default_screen_y = ProjectSettings.get_setting("display/window/size/viewport_height")
-	#print(Vector2(default_screen_x, default_screen_y))
 	var default_ratio = 1.0 * default_screen_y / default_screen_x
-	#print(default_ratio)
+	
 	var actual_screen_x = get_viewport().get_visible_rect().size.x
 	var actual_screen_y = get_viewport().get_visible_rect().size.y
-	#print(get_viewport().get_visible_rect().size)
 	var actual_ratio = 1.0 * actual_screen_y / actual_screen_x
+	
 	var scale_float = 8 * max(actual_ratio / default_ratio, default_ratio / actual_ratio)
-	#print(scale_float)
 	scale = Vector2(scale_float, scale_float)

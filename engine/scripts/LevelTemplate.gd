@@ -14,6 +14,8 @@ signal change_to_next_level
 @export var rotation_limit_2 : int
 @export var time_limit_1 : float
 @export var time_limit_2 : float
+@export var rotation_disabled : bool = false
+@export var end_screen_disabled : bool = false
 
 #children
 @onready var tilemap := $BoardLimits
@@ -124,10 +126,9 @@ func _ready():
 	var audio := $AudioStreamPlayer
 	audio.play()
 
-func _process(delta):
+func _physics_process(delta):
 	# We won't be loading frames in the editor.
 	if Engine.is_editor_hint(): return
-	move_camera()
 	
 	if Input.is_action_just_pressed("quick_finish"):
 		_on_player_finished(-total_rotations)
@@ -138,6 +139,10 @@ func _process(delta):
 		
 	first_frame = false
 	frame_count += 1
+
+func _process(delta):
+	if Engine.is_editor_hint(): return
+	move_camera()
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -292,11 +297,11 @@ func move_player(delta):
 	var entity_below_right = column_top_entities[player_right_column]
 	
 	if (entity_below_left != counter && (player.y_speed - entity_below_left.y_speed) * delta >=
-		entity_below_left.position.y - player.position.y - 32 - get_y_size(entity_below_left) / 2):
+		entity_below_left.position.y - player.position.y - size.y - get_y_size(entity_below_left) / 2):
 		entity_below_left.y_speed = player.y_speed
 	
 	if (entity_below_right != counter && (player.y_speed - entity_below_right.y_speed) * delta >=
-		entity_below_right.position.y - player.position.y - 32 - get_y_size(entity_below_right) / 2):
+		entity_below_right.position.y - player.position.y - size.y - get_y_size(entity_below_right) / 2):
 		entity_below_right.y_speed = player.y_speed
 	
 	column_top_entities[player_left_column] = player
@@ -346,7 +351,8 @@ func move_player(delta):
 
 func manage_changing_gravity():
 	# We won't be loading frames in the editor.
-	if Engine.is_editor_hint(): return
+	if Engine.is_editor_hint() || rotation_disabled:
+		return
 	
 	var rotations = 0
 	if(Input.is_action_pressed("gravity_right")):
@@ -529,12 +535,17 @@ func load_blocks_from_tilemap():
 
 func _on_player_finished(start_rotations):
 	#print("finished signal recived")
-	if (total_rotations + start_rotations) % 4 == 0 && !game_ended:
+	if (total_rotations + start_rotations) % 4 == 0 && !game_ended && !rotation_timer.time_left:
 		game_ended = true
 		#get_tree().paused = true
 		print("End game.\nTotal rotations: " + str(rotations_number))
 		$Control/CanvasLayer/MarginContainer/VBoxContainer/FinishLabelBox/FinishLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
-		$Control/CanvasLayer.visible = true
+		
+		if !end_screen_disabled:
+			$Control/CanvasLayer.visible = true
+		
+		if end_screen_disabled:
+			emit_signal("change_to_next_level", level_name)
 		
 		if !global.levels.has(level_name):
 			print("This level\'s name is\'nt in global.levels.")
