@@ -35,7 +35,7 @@ func load_data():
 		save()
 		return
 	var content = file.get_var()
-	print(content)
+#	print(content)
 	
 	if content.has("levels"):
 		levels = content["levels"]
@@ -59,7 +59,7 @@ func save():
 		"zoom_factor" : zoom_factor,
 	}
 	
-	print(saved_var)
+#	print(saved_var)
 	#print(saved_var)
 	var file = FileAccess.open(
 		"user://" + name + ".dat", 
@@ -67,7 +67,7 @@ func save():
 	)
 	file.store_var(saved_var)
 	#print(content)
-	print("saved " + name)
+#	print("saved " + name)
 
 # This dictionary also contains all levels' scenes and dependencies.
 var levels_data := {
