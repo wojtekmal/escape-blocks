@@ -2,6 +2,9 @@
 extends Node2D
 
 var buttons := {}
+var ZOOM_SPEED = PI * 1.5
+var ZOOM_MIN = 0.1
+var ZOOM_MAX = 7.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -60,7 +63,7 @@ func _process(delta):
 	pass
 
 func on_level_button_pressed(level_name):
-	print("Level map detected tutorial button.")
+	#print("Level map detected tutorial button.")
 	global.current_level = level_name
 	get_tree().change_scene_to_file("res://levels/level_restart.tscn")
 
@@ -71,20 +74,18 @@ func refresh_map():
 	var part_count_label := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/PartsBox/HBoxContainer/Label
 	part_count_label.text = str(global.part_count)
 	
-#	for button_text in buttons:
-#		var label = buttons[button_text].get_node("TextureButton/VBoxContainer/Label")
-#		print(global.levels.has(label.text))
-#		print(global.levels[label.text]["unlocked"] > 0)
-#		if global.levels.has(label.text) && global.levels[label.text]["unlocked"] > 0:
-#			buttons[button_text].pressable_button.disabled = false
-#
-#			if global.levels[label.text]["unlocked"] == 2:
-#				buttons[button_text].needed_part_display.modulate = Color8(0,0,0,0)
-#
-#			if global.levels[label.text]["unlocked"] == 1:
-#				buttons[button_text].get_node("TextureButton").texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
-#		else:
-#			pass
-#			#modulate = Color8(255,255,255,100)
-	
 	global.save()
+
+func _input(event : InputEvent, delta = get_physics_process_delta_time()) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed:
+			var map_camera = $MapCamera
+			match event.button_index:
+				MOUSE_BUTTON_WHEEL_DOWN:
+					map_camera.zoom_factor -= ZOOM_SPEED * delta * map_camera.zoom_factor
+				MOUSE_BUTTON_WHEEL_UP:
+					map_camera.zoom_factor += ZOOM_SPEED * delta * map_camera.zoom_factor
+			
+			map_camera.zoom_factor = min(ZOOM_MAX, map_camera.zoom_factor)
+			map_camera.zoom_factor = max(ZOOM_MIN, map_camera.zoom_factor)
+			map_camera.zoom = Vector2(map_camera.zoom_factor, map_camera.zoom_factor)
