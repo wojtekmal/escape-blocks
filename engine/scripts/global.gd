@@ -171,20 +171,24 @@ func switch_rotation(new_value: bool):
 	
 	settings["switch_rotation"] = new_value
 	save()
+	var left_key = InputMap.action_get_events("gravity_left")[0]
+	var right_key = InputMap.action_get_events("gravity_right")[0]
 	InputMap.action_erase_events("gravity_left")
 	InputMap.action_erase_events("gravity_right")
+	InputMap.action_add_event("gravity_left", right_key)
+	InputMap.action_add_event("gravity_right", left_key)
 	
-	if new_value == false:
-		var key = InputEventKey.new()
-		key.physical_keycode = KEY_LEFT
-		InputMap.action_add_event("gravity_left", key)
-		var key2 = InputEventKey.new()
-		key2.physical_keycode = KEY_RIGHT
-		InputMap.action_add_event("gravity_right", key2)
-	else:
-		var key = InputEventKey.new()
-		key.physical_keycode = KEY_RIGHT
-		InputMap.action_add_event("gravity_left", key)
-		var key2 = InputEventKey.new()
-		key2.physical_keycode = KEY_LEFT
-		InputMap.action_add_event("gravity_right", key2)
+#	if new_value == false:
+#		var key = InputEventKey.new()
+#		key.physical_keycode = KEY_LEFT
+#		InputMap.action_add_event("gravity_left", key)
+#		var key2 = InputEventKey.new()
+#		key2.physical_keycode = KEY_RIGHT
+#		InputMap.action_add_event("gravity_right", key2)
+#	else:
+#		var key = InputEventKey.new()
+#		key.physical_keycode = KEY_RIGHT
+#		InputMap.action_add_event("gravity_left", key)
+#		var key2 = InputEventKey.new()
+#		key2.physical_keycode = KEY_LEFT
+#		InputMap.action_add_event("gravity_right", key2)

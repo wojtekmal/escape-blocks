@@ -63,8 +63,22 @@ position = Vector2(836, 56)
 position = Vector2(1014, 296)
 script = ExtResource("3_772qu")
 
-[node name="background" parent="MapCamera" instance=ExtResource("7_opcik")]
-z_index = -5
+[node name="CanvasLayer" type="CanvasLayer" parent="MapCamera"]
+layer = -10
+
+[node name="CenterContainer" type="CenterContainer" parent="MapCamera/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Container" parent="MapCamera/CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="background" parent="MapCamera/CanvasLayer/CenterContainer/Container" instance=ExtResource("7_opcik")]
+position = Vector2(-20, -20)
+scale = Vector2(6, 6)
 
 [node name="MapHUD" type="CanvasLayer" parent="."]
 visible = false
