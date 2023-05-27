@@ -13,6 +13,9 @@ func _ready():
 	settings_list.append_array($VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer.get_children())
 	
 	for setting in settings_list:
+		if !setting.has_signal("changed"):
+			continue
+		
 		setting.changed.connect(manage_changing_settings)
 		
 		if "disabled_in_level" in setting && mode == "in_level":
