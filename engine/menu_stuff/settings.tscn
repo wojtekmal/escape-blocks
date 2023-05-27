@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtkhnervfb8g8"]
+[gd_scene load_steps=11 format=3 uid="uid://dtkhnervfb8g8"]
 
 [ext_resource type="Script" path="res://scripts/settings.gd" id="1_1sbxb"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="1_8r5dt"]
@@ -13,6 +13,9 @@ default_font = ExtResource("1_8r5dt")
 [sub_resource type="LabelSettings" id="LabelSettings_7jr6i"]
 font = ExtResource("1_8r5dt")
 font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_0tibx"]
+font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_q8w7j"]
 font = ExtResource("1_8r5dt")
@@ -95,6 +98,34 @@ size_flags_vertical = 3
 layout_mode = 2
 label_text = "SWITCH ROTATION DIRECTION"
 action = "switch_rotation"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Action"
+label_settings = SubResource("LabelSettings_0tibx")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Control"
+label_settings = SubResource("LabelSettings_0tibx")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = SubResource("LabelSettings_0tibx")
+horizontal_alignment = 1
 
 [node name="Audio" type="ScrollContainer" parent="VBoxContainer/ScrollPanelBox/TabContainer"]
 visible = false
