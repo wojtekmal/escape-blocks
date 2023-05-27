@@ -114,7 +114,7 @@ func _ready():
 	#calls the setter function
 	board_dimensions = board_dimensions
 	tilemap.board_dimensions = board_dimensions
-	overlay.board_dimensions = board_dimensions
+	#overlay.board_dimensions = board_dimensions
 	size = $Player/StandingHitBox.shape.size
 	game_ended = false
 	
@@ -122,7 +122,7 @@ func _ready():
 	
 	load_blocks_from_tilemap()
 	
-	overlay.collapse();
+	#overlay.collapse();
 	var audio := $AudioStreamPlayer
 	audio.play()
 
