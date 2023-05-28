@@ -11,6 +11,7 @@ func _ready():
 	#print(preload("res://levels/level_2.tscn").instantiate())
 	if !Engine.is_editor_hint():
 		$MapHUD.visible = true
+	
 	for button_reference in get_tree().get_nodes_in_group("level_buttons"):
 		button_reference.button_pressed.connect(on_level_button_pressed)
 		button_reference.refresh_map.connect(refresh_map)
@@ -89,3 +90,5 @@ func _input(event : InputEvent, delta = get_physics_process_delta_time()) -> voi
 			map_camera.zoom_factor = min(ZOOM_MAX, map_camera.zoom_factor)
 			map_camera.zoom_factor = max(ZOOM_MIN, map_camera.zoom_factor)
 			map_camera.zoom = Vector2(map_camera.zoom_factor, map_camera.zoom_factor)
+	elif event is InputEventKey:
+		print("Map detected key press.")
