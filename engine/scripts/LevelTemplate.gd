@@ -687,6 +687,7 @@ func get_y_size(entity):
 		return 64
 
 func go_to_map():
+	print_tree_pretty()
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
 
 func retry_level():
