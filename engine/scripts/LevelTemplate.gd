@@ -500,6 +500,7 @@ func rotation_ended():
 	
 	player.position.x = min(player.position.x, max_right)
 	player.position.x = max(player.position.x, min_left)
+	player.x_speed = 0
 	
 func set_board_dimensions(newValue):
 	board_dimensions = newValue
