@@ -306,8 +306,8 @@ func move_player(delta):
 	
 	if Input.is_action_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0):
 		game_started = true
-		player.y_speed = -400
-		coyote_timer.stop()
+		player.y_speed = -player.jump_speed
+		#coyote_timer.stop()
 	
 	var delta_height = delta * player.y_speed
 	var new_player_cord_y = floor_div(player.position.y - top_wall + delta_height - 32 - 1, 64) + 1
