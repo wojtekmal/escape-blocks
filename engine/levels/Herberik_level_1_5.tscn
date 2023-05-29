@@ -6,6 +6,7 @@
 board_dimensions = Vector2i(5, 5)
 
 [node name="Player" parent="." index="0"]
+jump_time = 0.1
 board_dimensions = Vector2i(5, 5)
 
 [node name="BoardLimits" parent="." index="1"]
