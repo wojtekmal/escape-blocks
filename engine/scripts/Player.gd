@@ -3,9 +3,9 @@ class_name Player
 extends Area2D
 
 #@export var walk_speed = 60
-@export var jump_speed = 300
-@export var coyote_time = 0.1
-@export var jump_time = 0.1
+var jump_speed = 400
+@export var coyote_time = 90.1
+@export var jump_time = 0.3
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var is_falling : bool = true : set = set_is_falling
@@ -15,7 +15,7 @@ extends Area2D
 @export var y_speed := 0
 @export var x_speed := 0
 
-var WALK_SPEED := 100.0
+var WALK_SPEED := 160.0
 var friction := 0.65
 
 var offset = 10;
@@ -54,15 +54,14 @@ func animations():
 		# We won't be loading frames in the editor.
 		return
 	
-	var crawlAnimation := ""
-	if crawling:
-		crawlAnimation = "crawl "
 	elif Input.is_action_pressed("move_right"):
-		_animated_sprite.play(crawlAnimation + "walking")
+		_animated_sprite.play("walking")
+		_animated_sprite.flip_h = false
 	elif Input.is_action_pressed("move_left"):
-		_animated_sprite.play(crawlAnimation + "walking")
+		_animated_sprite.flip_h = true	
+		_animated_sprite.play("walking")
 	else:
-		_animated_sprite.play(crawlAnimation + "default")
+		_animated_sprite.play("default")
 
 func change_sprite_rotation(direction: Vector2):
 	if direction.x > 0:
@@ -76,7 +75,7 @@ func get_real_class():
 func set_board_cords(newValue):
 	board_cords = newValue
 	set_position(Vector2(position.x, board_cords.y * 64 + 32 - board_dimensions.y * 32))
-	
+
 func set_board_dimensions(newValue):
 	board_dimensions = newValue
 	set_board_cords(board_cords)
