@@ -41,6 +41,7 @@ func _process(delta):
 		start(current_level)
 
 func go_to_map():
+	unpause()
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
 
 func open_settings():
@@ -62,9 +63,5 @@ func unpause():
 
 func pause(value := true):
 	paused = value
-	for level in get_tree().get_nodes_in_group("level"):
-		#get_child(0).get_child(0).get_child(6).get_child(2).stop(true)
-		get_tree().paused = value
-		
-		
+	get_tree().paused = value
 	pause_screen.visible = paused

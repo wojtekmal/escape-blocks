@@ -14,6 +14,8 @@ signal change_to_next_level
 @export var rotation_limit_2 : int
 @export var time_limit_1 : float
 @export var time_limit_2 : float
+@export var rotation_disabled : bool = false
+@export var end_screen_disabled : bool = false
 
 #children
 @onready var tilemap := $BoardLimits
@@ -112,7 +114,7 @@ func _ready():
 	#calls the setter function
 	board_dimensions = board_dimensions
 	tilemap.board_dimensions = board_dimensions
-	overlay.board_dimensions = board_dimensions
+	#overlay.board_dimensions = board_dimensions
 	size = $Player/StandingHitBox.shape.size
 	game_ended = false
 	
@@ -120,14 +122,13 @@ func _ready():
 	
 	load_blocks_from_tilemap()
 	
-	overlay.collapse();
+	#overlay.collapse();
 	var audio := $AudioStreamPlayer
 	audio.play()
 
-func _process(delta):
+func _physics_process(delta):
 	# We won't be loading frames in the editor.
 	if Engine.is_editor_hint(): return
-	move_camera()
 	
 	if Input.is_action_just_pressed("quick_finish"):
 		_on_player_finished(-total_rotations)
@@ -138,6 +139,10 @@ func _process(delta):
 		
 	first_frame = false
 	frame_count += 1
+
+func _process(delta):
+	if Engine.is_editor_hint(): return
+	move_camera()
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -159,14 +164,7 @@ func manage_falling_entities(delta):
 		elif entity.is_in_group("player"):
 			move_player(delta)
 		elif entity.is_in_group("static_blocks"):
-			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
-			var entity_below = column_top_entities[entity.board_cords.x]
-			entity.y_speed = 0
-	
-			if (entity_below != counter && (entity.y_speed - entity_below.y_speed) * delta >=
-				entity_below.position.y - entity.position.y - 32 - get_y_size(entity_below) / 2):
-				entity_below.y_speed = entity.y_speed
-			column_top_entities[entity.board_cords.x] = entity
+			manage_static_block(delta, entity)
 		elif entity.is_in_group("doors") && !entity.open:
 			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
 			var entity_below = column_top_entities[entity.board_cords.x]
@@ -180,6 +178,21 @@ func manage_falling_entities(delta):
 func compare_entity_heights(a, b): # Sorts the entities in decreasing order according to their height.
 	return a.position.y > b.position.y
 
+func manage_static_block(delta, block):
+	column_top_still_blocks[block.board_cords.x] = block.board_cords.y
+	var entity_below = column_top_entities[block.board_cords.x]
+	block.y_speed = 0
+	
+	if (entity_below != counter && (block.y_speed - entity_below.y_speed) * delta >=
+		entity_below.position.y - block.position.y - 32 - get_y_size(entity_below) / 2):
+		entity_below.y_speed = block.y_speed
+	
+	if (entity_below != counter && entity_below.position.y - block.position.y < 
+	32 + get_y_size(entity_below) / 2):
+		entity_below.position.y = block.position.y + 32 + get_y_size(entity_below) / 2
+	
+	column_top_entities[block.board_cords.x] = block
+
 func move_block(delta, block):
 	block.y_speed *= y_friction
 	if block.is_falling:
@@ -192,13 +205,26 @@ func move_block(delta, block):
 	var max_height = column_top_still_blocks[block.board_cords.x] - 1
 	
 	var entity_below = column_top_entities[block.board_cords.x]
+	#print(entity_below)
 	
-	if (entity_below != counter && (block.y_speed - entity_below.y_speed) * delta >=
-		entity_below.position.y - block.position.y - 32 - get_y_size(entity_below) / 2):
+	if (entity_below != counter && (block.y_speed - entity_below.y_speed) * delta >
+	entity_below.position.y - block.position.y - 32 - get_y_size(entity_below) / 2):
 		entity_below.y_speed = block.y_speed
+	
+	if (entity_below != counter && entity_below.position.y - block.position.y < 
+	32 + get_y_size(entity_below) / 2):
+		entity_below.position.y = block.position.y - 32 - get_y_size(entity_below) / 2
+	
+	#if entity_below == player:# && entity_below.position.y - block.position.y < 64:
+	#	print(entity_below.position.y - block.position.y)
+	
+	#print(entity_below)
 	
 	column_top_entities[block.board_cords.x] = block
 	column_top_still_blocks[block.board_cords.x] = max_height
+	
+#	if frame_count < 100:
+#		print(column_top_entities)
 	
 	if block.position.y == top_wall + max_height * 64 + 32:
 		block.board_cords.y = max_height
@@ -291,12 +317,14 @@ func move_player(delta):
 	var entity_below_left = column_top_entities[player_left_column]
 	var entity_below_right = column_top_entities[player_right_column]
 	
-	if (entity_below_left != counter && (player.y_speed - entity_below_left.y_speed) * delta >=
-		entity_below_left.position.y - player.position.y - 32 - get_y_size(entity_below_left) / 2):
+	if (entity_below_left != counter && (player.y_speed - entity_below_left.y_speed) * delta >
+		entity_below_left.position.y - player.position.y - size.y - get_y_size(entity_below_left) / 2):
+		#print("left detected")
 		entity_below_left.y_speed = player.y_speed
 	
-	if (entity_below_right != counter && (player.y_speed - entity_below_right.y_speed) * delta >=
-		entity_below_right.position.y - player.position.y - 32 - get_y_size(entity_below_right) / 2):
+	if (entity_below_right != counter && (player.y_speed - entity_below_right.y_speed) * delta >
+		entity_below_right.position.y - player.position.y - size.y - get_y_size(entity_below_right) / 2):
+		#print("right_detected")
 		entity_below_right.y_speed = player.y_speed
 	
 	column_top_entities[player_left_column] = player
@@ -308,6 +336,9 @@ func move_player(delta):
 	#print(frame_count)
 	#print(player.position.y)
 	#print(player.y_speed)
+	
+	if frame_count < 1:
+		print(column_top_entities)
 	
 	if player.y_speed < 0:
 		if player.position.y + delta_height < top_wall + size.y / 2:
@@ -346,7 +377,8 @@ func move_player(delta):
 
 func manage_changing_gravity():
 	# We won't be loading frames in the editor.
-	if Engine.is_editor_hint(): return
+	if Engine.is_editor_hint() || rotation_disabled:
+		return
 	
 	var rotations = 0
 	if(Input.is_action_pressed("gravity_right")):
@@ -468,6 +500,7 @@ func rotation_ended():
 	
 	player.position.x = min(player.position.x, max_right)
 	player.position.x = max(player.position.x, min_left)
+	player.x_speed = 0
 	
 func set_board_dimensions(newValue):
 	board_dimensions = newValue
@@ -529,12 +562,17 @@ func load_blocks_from_tilemap():
 
 func _on_player_finished(start_rotations):
 	#print("finished signal recived")
-	if (total_rotations + start_rotations) % 4 == 0 && !game_ended:
+	if (total_rotations + start_rotations) % 4 == 0 && !game_ended && !rotation_timer.time_left:
 		game_ended = true
 		#get_tree().paused = true
 		print("End game.\nTotal rotations: " + str(rotations_number))
 		$Control/CanvasLayer/MarginContainer/VBoxContainer/FinishLabelBox/FinishLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
-		$Control/CanvasLayer.visible = true
+		
+		if !end_screen_disabled:
+			$Control/CanvasLayer.visible = true
+		
+		if end_screen_disabled:
+			emit_signal("change_to_next_level", level_name)
 		
 		if !global.levels.has(level_name):
 			print("This level\'s name is\'nt in global.levels.")
@@ -676,6 +714,7 @@ func get_y_size(entity):
 		return 64
 
 func go_to_map():
+	print_tree_pretty()
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
 
 func retry_level():
