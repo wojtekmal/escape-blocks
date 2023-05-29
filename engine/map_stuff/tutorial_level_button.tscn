@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcvu4b06caw6j"]
+
+[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="1_1hvxv"]
+[ext_resource type="Script" path="res://scripts/tutorial_level_button.gd" id="1_uo7x3"]
+[ext_resource type="Texture2D" uid="uid://pg1wg2tc0es7" path="res://textures/temporary_level_map_button.png" id="1_vm5vk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qemrk"]
+font = ExtResource("1_1hvxv")
+font_color = Color(0, 0, 0, 1)
+
+[node name="TutorialLevelButton" type="Node2D"]
+script = ExtResource("1_uo7x3")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+texture_normal = ExtResource("1_vm5vk")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_qemrk")
+horizontal_alignment = 1

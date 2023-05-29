@@ -57,11 +57,11 @@ func set_board_dimensions(newValue):
 	for i in range(-board_dimensions.x * 4 - 1, board_dimensions.x * 4 + 1):
 		set_cell(0, Vector2i(i, board_dimensions.y * 4), -1, Vector2i(0, 0))
 		set_cell(0, Vector2i(i, -board_dimensions.y * 4 - 1), -1, Vector2i(0, 0))
-	
+
 	for i in range(-board_dimensions.y * 4 - 1, board_dimensions.y * 4 + 1):
 		set_cell(0, Vector2i(-board_dimensions.x * 4 - 1, i), -1, Vector2i(0, 0))
 		set_cell(0, Vector2i(board_dimensions.x * 4, i), -1, Vector2i(0, 0))
-		
+
 	for i in range(-newValue.x * 4 - 1, newValue.x * 4 + 1):
 		set_cell(0, Vector2i(i, newValue.y * 4), 0, Vector2i(0, 0))
 		set_cell(0, Vector2i(i, -newValue.y * 4 - 1), 0, Vector2i(0, 0))
