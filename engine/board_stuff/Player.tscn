@@ -89,7 +89,11 @@ enabled = false
 script = ExtResource("12_x6ppo")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
-wait_time = 90.1
+wait_time = 0.15
+one_shot = true
+
+[node name="jumping" type="Timer" parent="."]
+wait_time = 0.07
 one_shot = true
 
 [node name="FinishDetection" type="Area2D" parent="."]
