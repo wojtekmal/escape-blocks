@@ -23,7 +23,7 @@
 [ext_resource type="Script" path="res://scripts/stopwatch.gd" id="19_nh8s2"]
 [ext_resource type="AudioStream" uid="uid://d21kqeopilqrt" path="res://sound/escapeblocksv5.mp3" id="20_q7ff1"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="21_lbwbm"]
-[ext_resource type="PackedScene" uid="uid://bgr1bna3ymmvr" path="res://background.tscn" id="22_fxc5x"]
+[ext_resource type="PackedScene" uid="uid://klvxuhcfwpx0" path="res://background.tscn" id="22_fxc5x"]
 [ext_resource type="Script" path="res://scripts/Center.gd" id="22_uv5px"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
@@ -393,10 +393,9 @@ board_dimensions = Vector2i(8, 5)
 visible = false
 collision_layer = 10
 collision_mask = 1
-coyote_time = 0.1
-jump_time = 0.1
 board_cords = Vector2i(3, 2)
 board_dimensions = Vector2i(8, 5)
+flying = null
 metadata/_edit_horizontal_guides_ = []
 
 [node name="BoardLimits" type="TileMap" parent="." groups=["board_limits"]]

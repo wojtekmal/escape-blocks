@@ -147,7 +147,7 @@ var levels_data := {
 		"part_price": 0,
 	},
 	"NULL": {
-		"resource": load("res://levels/NULL.tscn"),
+		"resource": load("res://levels/LevelTemplate.tscn"),
 		"unlocks": [],
 		"part_price": 0,
 	},
