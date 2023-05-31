@@ -19,7 +19,7 @@ func _ready():
 	
 	$Tutorial.button_pressed.connect(on_level_button_pressed)
 	
-	var back_to_menu_button := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/TextureButton
+	var back_to_menu_button := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/MyButton
 	back_to_menu_button.pressed.connect(go_to_menu)
 	
 	var part_count_label := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/PartsBox/HBoxContainer/Label
