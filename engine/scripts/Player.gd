@@ -3,26 +3,32 @@ class_name Player
 extends Area2D
 
 #@export var walk_speed = 60
-var jump_speed = 400
+var jump_speed = 5500
 @export var coyote_time = 90.1
 @export var jump_time = 0.3
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
 @export var is_falling : bool = true : set = set_is_falling
 @export var start_rotations : int = 0
+var flying := false
 
 # Player speed
 @export var y_speed := 0
 @export var x_speed := 0
 
-var WALK_SPEED := 160.0
+var WALK_SPEED := 150.0
 var friction := 0.65
 
 var offset = 10;
-var crawling := false
 
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var StandingHitBox = $StandingHitBox
+
+func getjumptime():
+	return $jumping.time_left
+
+func setjumptime(x := 0.0):
+	$jumping.start()
 
 func _process(delta: float) -> void:
 	animations()
