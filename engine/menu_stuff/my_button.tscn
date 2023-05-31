@@ -3,19 +3,20 @@
 [ext_resource type="Script" path="res://scripts/my_button.gd" id="1_hhmvv"]
 [ext_resource type="Texture2D" uid="uid://d4lbjhayyy8hw" path="res://textures/transparent32x32.png" id="2_2cgnb"]
 [ext_resource type="Texture2D" uid="uid://kd6u3rrs5wgy" path="res://textures/button/top_left.png" id="2_4thx1"]
-[ext_resource type="Texture2D" uid="uid://gb02etmdvas" path="res://textures/button/left.png" id="3_3mei7"]
+[ext_resource type="Texture2D" uid="uid://cxc7np8kq8ot1" path="res://textures/button/left_blue.png" id="3_0hpgm"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="3_lv7e2"]
 [ext_resource type="Texture2D" uid="uid://dap1vj6rhbbag" path="res://textures/button/bottom_left.png" id="4_808oa"]
-[ext_resource type="Texture2D" uid="uid://3xqisp6o0fp3" path="res://textures/button/top.png" id="5_lc2ly"]
+[ext_resource type="Texture2D" uid="uid://cal85fcmufpt3" path="res://textures/button/top_blue.png" id="5_kn0qd"]
 [ext_resource type="Texture2D" uid="uid://bj15lohp1xpbb" path="res://textures/button/center.png" id="6_xgsen"]
-[ext_resource type="Texture2D" uid="uid://ccl1ytxndisx7" path="res://textures/button/bottom.png" id="7_ps5lm"]
+[ext_resource type="Texture2D" uid="uid://cmnxr4sfuf47y" path="res://textures/button/bottom_blue.png" id="7_klasc"]
 [ext_resource type="Texture2D" uid="uid://cyiiydjjec3lv" path="res://textures/button/top_right.png" id="8_ug4qo"]
-[ext_resource type="Texture2D" uid="uid://myfc4l8rcg02" path="res://textures/button/right.png" id="9_jysdm"]
+[ext_resource type="Texture2D" uid="uid://b6hsoyx0dhl2j" path="res://textures/button/right_blue.png" id="9_lu3na"]
 [ext_resource type="Texture2D" uid="uid://dnvdruycrvtcg" path="res://textures/button/bottom_right.png" id="10_s7yol"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6y3r3"]
 font = ExtResource("3_lv7e2")
 font_size = 48
+font_color = Color(0, 0, 0, 1)
 
 [node name="MyButton" type="MarginContainer"]
 anchors_preset = 15
@@ -26,6 +27,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_hhmvv")
+disabled = null
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -34,69 +36,81 @@ theme_override_constants/separation = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.8125
 theme_override_constants/separation = 0
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
 texture = ExtResource("2_4thx1")
 expand_mode = 1
 
 [node name="TextureRect2" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("3_3mei7")
+size_flags_stretch_ratio = 22.0
+texture = ExtResource("3_0hpgm")
 expand_mode = 1
 
 [node name="TextureRect3" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
 texture = ExtResource("4_808oa")
 expand_mode = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 26.375
 theme_override_constants/separation = 0
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("5_lc2ly")
+size_flags_stretch_ratio = 5.0
+texture = ExtResource("5_kn0qd")
 expand_mode = 1
 
 [node name="TextureRect2" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 22.0
 texture = ExtResource("6_xgsen")
 expand_mode = 1
 
 [node name="TextureRect3" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("7_ps5lm")
+size_flags_stretch_ratio = 5.0
+texture = ExtResource("7_klasc")
 expand_mode = 1
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.8125
 theme_override_constants/separation = 0
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
 texture = ExtResource("8_ug4qo")
 expand_mode = 1
 
 [node name="TextureRect2" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("9_jysdm")
+size_flags_stretch_ratio = 22.0
+texture = ExtResource("9_lu3na")
 expand_mode = 1
 
 [node name="TextureRect3" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
 texture = ExtResource("10_s7yol")
 expand_mode = 1
 
@@ -106,7 +120,13 @@ texture_normal = ExtResource("2_2cgnb")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="."]
+[node name="LabelBox" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 112
+theme_override_constants/margin_right = 112
+
+[node name="Label" type="Label" parent="LabelBox"]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_6y3r3")
 horizontal_alignment = 1
