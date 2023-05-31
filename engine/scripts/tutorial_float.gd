@@ -57,7 +57,7 @@ func _input(event):
 	if Engine.is_editor_hint():
 		return
 	
-	if !(event is InputEventKey) || !event.pressed || event.keycode == KEY_ESCAPE:
+	if !(event is InputEventKey) || !event.pressed || event.physical_keycode == KEY_ESCAPE:
 		return
 	
 	if current_page == pages.size() - 1:

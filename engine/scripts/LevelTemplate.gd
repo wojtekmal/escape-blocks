@@ -166,14 +166,15 @@ func manage_falling_entities(delta):
 		elif entity.is_in_group("static_blocks"):
 			manage_static_block(delta, entity)
 		elif entity.is_in_group("doors") && !entity.open:
-			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
-			var entity_below = column_top_entities[entity.board_cords.x]
-			entity.y_speed = 0
-	
-			if (entity_below != counter && (entity.y_speed - entity_below.y_speed) * delta >=
-				entity_below.position.y - entity.position.y - 32 - get_y_size(entity_below) / 2):
-				entity_below.y_speed = entity.y_speed
-			column_top_entities[entity.board_cords.x] = entity
+			manage_static_block(delta, entity)
+#			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
+#			var entity_below = column_top_entities[entity.board_cords.x]
+#			entity.y_speed = 0
+#
+#			if (entity_below != counter && (entity.y_speed - entity_below.y_speed) * delta >=
+#				entity_below.position.y - entity.position.y - 32 - get_y_size(entity_below) / 2):
+#				entity_below.y_speed = entity.y_speed
+#			column_top_entities[entity.board_cords.x] = entity
 
 func compare_entity_heights(a, b): # Sorts the entities in decreasing order according to their height.
 	return a.position.y > b.position.y
@@ -205,7 +206,6 @@ func move_block(delta, block):
 	var max_height = column_top_still_blocks[block.board_cords.x] - 1
 	
 	var entity_below = column_top_entities[block.board_cords.x]
-	#print(entity_below)
 	
 	if (entity_below != counter && (block.y_speed - entity_below.y_speed) * delta >
 	entity_below.position.y - block.position.y - 32 - get_y_size(entity_below) / 2):
@@ -213,18 +213,10 @@ func move_block(delta, block):
 	
 	if (entity_below != counter && entity_below.position.y - block.position.y < 
 	32 + get_y_size(entity_below) / 2):
-		entity_below.position.y = block.position.y - 32 - get_y_size(entity_below) / 2
-	
-	#if entity_below == player:# && entity_below.position.y - block.position.y < 64:
-	#	print(entity_below.position.y - block.position.y)
-	
-	#print(entity_below)
+		entity_below.position.y = block.position.y + 32 + get_y_size(entity_below) / 2
 	
 	column_top_entities[block.board_cords.x] = block
 	column_top_still_blocks[block.board_cords.x] = max_height
-	
-#	if frame_count < 100:
-#		print(column_top_entities)
 	
 	if block.position.y == top_wall + max_height * 64 + 32:
 		block.board_cords.y = max_height
@@ -239,11 +231,11 @@ func move_block(delta, block):
 		block.is_falling = true
 		block.position.y += delta_height
 	
-	if block.position.y == top_wall + max_height * 64 + 32:
-		#column_top_still_blocks[block.board_cords.x] = max_height
-		block.board_cords.y = max_height
-		block.is_falling = false
-		return
+#	if block.position.y == top_wall + max_height * 64 + 32:
+#		#column_top_still_blocks[block.board_cords.x] = max_height
+#		block.board_cords.y = max_height
+#		block.is_falling = false
+#		return
 
 func move_player(delta):
 	player.y_speed *= y_friction
@@ -318,12 +310,13 @@ func move_player(delta):
 	var entity_below_right = column_top_entities[player_right_column]
 	
 	if (entity_below_left != counter && (player.y_speed - entity_below_left.y_speed) * delta >
-		entity_below_left.position.y - player.position.y - size.y - get_y_size(entity_below_left) / 2):
-		#print("left detected")
+		entity_below_left.position.y - player.position.y - size.y / 2 - get_y_size(entity_below_left) / 2):
+		print("player slowing left block")
+		print("")
 		entity_below_left.y_speed = player.y_speed
 	
 	if (entity_below_right != counter && (player.y_speed - entity_below_right.y_speed) * delta >
-		entity_below_right.position.y - player.position.y - size.y - get_y_size(entity_below_right) / 2):
+		entity_below_right.position.y - player.position.y - size.y / 2 - get_y_size(entity_below_right) / 2):
 		#print("right_detected")
 		entity_below_right.y_speed = player.y_speed
 	
@@ -332,21 +325,11 @@ func move_player(delta):
 	column_top_still_blocks[player_left_column] = max_height
 	column_top_still_blocks[player_right_column] = max_height
 	
-	#print("framecount, player.position.y")
-	#print(frame_count)
-	#print(player.position.y)
-	#print(player.y_speed)
-	
-	if frame_count < 1:
-		print(column_top_entities)
-	
 	if player.y_speed < 0:
 		if player.position.y + delta_height < top_wall + size.y / 2:
 			player.position.y = top_wall + size.y / 2
 			player.y_speed = 0
 			player.is_falling = true
-			#print("ceiling stopped player")
-			#print(player.position.y)
 			return
 		
 		player.position.y += delta_height
@@ -360,7 +343,6 @@ func move_player(delta):
 		return
 	
 	if new_player_cord_y > max_height:
-		#print("player teleported to floor")
 		player.is_falling = false
 		# Here the height of the block is set so that it lands on something else.
 		player.board_cords.y = max_height
@@ -369,11 +351,11 @@ func move_player(delta):
 		player.is_falling = true
 		player.position.y += delta_height
 	
-	if player.position.y == top_wall + max_height * 64 + 32:
-		player.board_cords.y = max_height
-		player.is_falling = false
-		coyote_timer.start(coyote_timer.wait_time)
-		return
+#	if player.position.y == top_wall + max_height * 64 + 32:
+#		player.board_cords.y = max_height
+#		player.is_falling = false
+#		coyote_timer.start(coyote_timer.wait_time)
+#		return
 
 func manage_changing_gravity():
 	# We won't be loading frames in the editor.

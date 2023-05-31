@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cylgj4bcajsr0"]
+[gd_scene load_steps=10 format=3 uid="uid://cylgj4bcajsr0"]
 
 [ext_resource type="Script" path="res://scripts/level_map.gd" id="1_gliqh"]
 [ext_resource type="PackedScene" uid="uid://ba4y62q3j4hcl" path="res://map_stuff/level_button.tscn" id="1_qu7sv"]
@@ -6,14 +6,10 @@
 [ext_resource type="Script" path="res://scripts/map_camera.gd" id="3_772qu"]
 [ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="4_y8sme"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="5_iu41y"]
-[ext_resource type="Texture2D" uid="uid://c8yym53ddmjaq" path="res://textures/end_panel_button.png" id="6_mdfpr"]
 [ext_resource type="PackedScene" uid="uid://bgr1bna3ymmvr" path="res://background.tscn" id="7_opcik"]
+[ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="9_bo5fr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lnd47"]
-font = ExtResource("5_iu41y")
-font_size = 48
-
-[sub_resource type="LabelSettings" id="LabelSettings_t74uh"]
 font = ExtResource("5_iu41y")
 font_size = 48
 
@@ -133,24 +129,8 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.0
 mouse_filter = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MyButton" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("9_bo5fr")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-mouse_filter = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureButton" type="TextureButton" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
-layout_mode = 2
-texture_normal = ExtResource("6_mdfpr")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
-layout_mode = 2
-text = "MENU"
-label_settings = SubResource("LabelSettings_t74uh")
-horizontal_alignment = 1
+size_flags_stretch_ratio = 1.5
+label_text = "Menu"
+disabled = null
