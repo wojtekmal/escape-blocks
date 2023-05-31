@@ -296,10 +296,24 @@ func move_player(delta):
 	
 	var coyote_timer = $Player/CoyoteTimer
 	
-	if Input.is_action_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0):
+	if Input.is_action_pressed("jump") and player.getjumptime() > 0:
+		if player.flying:
+			player.y_speed -= (player.jump_speed) * delta * PI/11
+		else:
+			player.y_speed -= (player.jump_speed) * delta
+		coyote_timer.stop()
+	
+	if Input.is_action_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0 or player.flying):
+		if(player.y_speed > 0):
+			player.y_speed = 0
 		game_started = true
-		player.y_speed = -player.jump_speed
-		#coyote_timer.stop()
+		if player.flying:
+			player.y_speed -= (player.jump_speed) * delta * PI/11
+		else:
+			player.y_speed -= (player.jump_speed) * delta
+		player.setjumptime()
+	
+	
 	
 	var delta_height = delta * player.y_speed
 	var new_player_cord_y = floor_div(player.position.y - top_wall + delta_height - 32 - 1, 64) + 1
