@@ -296,7 +296,7 @@ func move_player(delta):
 	
 	var coyote_timer = $Player/CoyoteTimer
 	
-	if Input.is_action_pressed("jump"):# and (!player.is_falling or coyote_timer.time_left > 0):
+	if Input.is_action_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0):
 		game_started = true
 		player.y_speed = -400
 		coyote_timer.stop()
@@ -310,12 +310,13 @@ func move_player(delta):
 	var entity_below_right = column_top_entities[player_right_column]
 	
 	if (entity_below_left != counter && (player.y_speed - entity_below_left.y_speed) * delta >
-		entity_below_left.position.y - player.position.y - size.y - get_y_size(entity_below_left) / 2):
-		#print("left detected")
+		entity_below_left.position.y - player.position.y - size.y / 2 - get_y_size(entity_below_left) / 2):
+		print("player slowing left block")
+		print("")
 		entity_below_left.y_speed = player.y_speed
 	
 	if (entity_below_right != counter && (player.y_speed - entity_below_right.y_speed) * delta >
-		entity_below_right.position.y - player.position.y - size.y - get_y_size(entity_below_right) / 2):
+		entity_below_right.position.y - player.position.y - size.y / 2 - get_y_size(entity_below_right) / 2):
 		#print("right_detected")
 		entity_below_right.y_speed = player.y_speed
 	
