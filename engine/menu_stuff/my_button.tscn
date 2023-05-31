@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4xosnqq2382v"]
+[gd_scene load_steps=12 format=3 uid="uid://b4xosnqq2382v"]
 
 [ext_resource type="Script" path="res://scripts/my_button.gd" id="1_hhmvv"]
 [ext_resource type="Texture2D" uid="uid://d4lbjhayyy8hw" path="res://textures/transparent32x32.png" id="2_2cgnb"]
 [ext_resource type="Texture2D" uid="uid://kd6u3rrs5wgy" path="res://textures/button/top_left.png" id="2_4thx1"]
 [ext_resource type="Texture2D" uid="uid://cxc7np8kq8ot1" path="res://textures/button/left_blue.png" id="3_0hpgm"]
-[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="3_lv7e2"]
 [ext_resource type="Texture2D" uid="uid://dap1vj6rhbbag" path="res://textures/button/bottom_left.png" id="4_808oa"]
 [ext_resource type="Texture2D" uid="uid://cal85fcmufpt3" path="res://textures/button/top_blue.png" id="5_kn0qd"]
 [ext_resource type="Texture2D" uid="uid://bj15lohp1xpbb" path="res://textures/button/center.png" id="6_xgsen"]
@@ -12,11 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://cyiiydjjec3lv" path="res://textures/button/top_right.png" id="8_ug4qo"]
 [ext_resource type="Texture2D" uid="uid://b6hsoyx0dhl2j" path="res://textures/button/right_blue.png" id="9_lu3na"]
 [ext_resource type="Texture2D" uid="uid://dnvdruycrvtcg" path="res://textures/button/bottom_right.png" id="10_s7yol"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_6y3r3"]
-font = ExtResource("3_lv7e2")
-font_size = 48
-font_color = Color(0, 0, 0, 1)
 
 [node name="MyButton" type="MarginContainer"]
 anchors_preset = 15
@@ -27,7 +21,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_hhmvv")
-disabled = null
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -126,7 +119,9 @@ mouse_filter = 2
 theme_override_constants/margin_left = 112
 theme_override_constants/margin_right = 112
 
-[node name="Label" type="Label" parent="LabelBox"]
+[node name="Label" type="RichTextLabel" parent="LabelBox"]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_6y3r3")
-horizontal_alignment = 1
+size_flags_vertical = 4
+mouse_filter = 2
+fit_content = true
+autowrap_mode = 0

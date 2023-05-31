@@ -133,4 +133,4 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_stretch_ratio = 1.5
 label_text = "Menu"
-disabled = null
+disabled = false
