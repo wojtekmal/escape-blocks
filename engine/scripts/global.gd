@@ -4,6 +4,7 @@ extends Node
 var current_level : String = "1"
 var part_count : int = 0
 var zoom_factor : float = 0.7
+#@onready var ui_click_player = AudioStreamPlayer.new()
  
 # This is a dictionary holding all levels by their numbers.
 # Here all important information about levels is held in this format:
@@ -16,6 +17,8 @@ var zoom_factor : float = 0.7
 #}
 
 func _ready():
+	#ui_click_player.stream = preload("res://sound/ui_click_v2.wav")
+	#ui_click_player.volume_db = 20
 	if Engine.is_editor_hint():
 		return
 	
@@ -192,3 +195,7 @@ func switch_rotation(new_value: bool):
 #		var key2 = InputEventKey.new()
 #		key2.physical_keycode = KEY_LEFT
 #		InputMap.action_add_event("gravity_right", key2)
+
+#func play_ui_click():
+#	print(ui_click_player.stream)
+#	ui_click_player.play()

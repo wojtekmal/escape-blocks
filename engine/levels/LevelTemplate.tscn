@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=51 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://scripts/camera.gd" id="21_lbwbm"]
 [ext_resource type="PackedScene" uid="uid://bgr1bna3ymmvr" path="res://background.tscn" id="22_fxc5x"]
 [ext_resource type="Script" path="res://scripts/Center.gd" id="22_uv5px"]
+[ext_resource type="AudioStream" uid="uid://hxpxst5ebqfl" path="res://sound/rotation.wav" id="26_2h2bl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -554,3 +555,6 @@ script = ExtResource("22_uv5px")
 [node name="WOLOLO" type="Marker2D" parent="."]
 position = Vector2(100, 100)
 gizmo_extents = 1000.0
+
+[node name="RotationSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_2h2bl")

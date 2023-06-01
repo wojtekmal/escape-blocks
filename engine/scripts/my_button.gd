@@ -101,6 +101,7 @@ func set_label_text(new_value):
 	$LabelBox/Label.append_text(new_value)
 
 func emit_pressed():
+	ClickPlayer.play()
 	emit_signal("pressed")
 
 func set_disabled(new_value):
