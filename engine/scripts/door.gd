@@ -30,9 +30,11 @@ func set_board_cords(newValue):
 
 func _physics_process(delta):
 	if open == false && pressed_buttons == buttons_number: #opening
+		$Open.play()
 		open = true
 		$Shaded/Door.visible = false
 	elif open == true && pressed_buttons != buttons_number && can_close: #closing
+		$Close.play()
 		open = false
 		$Shaded/Door.visible = true
 

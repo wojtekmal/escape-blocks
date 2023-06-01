@@ -36,3 +36,6 @@ func get_real_class():
 
 func set_is_falling(new_value):
 	is_falling = new_value
+
+func falling_sound():
+	$Landing.play()

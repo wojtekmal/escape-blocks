@@ -53,11 +53,15 @@ func show_particles(value := true):
 func _physics_process(delta):
 	var overlapping = $hitbox.get_overlapping_areas()
 	if $hitbox.has_overlapping_areas() != negative:
+		if pressed_for == delay:
+			$WhirUp.play()
+		
 		$Shaded/TextureProgressBar.value = 1.0 - (pressed_for) / delay
 		if pressed_for > 0 and pressed_for - delta < 0:
 			on_press()
 		pressed_for -= delta
 	else:
+		$WhirUp.stop()
 		$Shaded/TextureProgressBar.value = 0.0
 		if pressed_for < 0:
 			on_release()

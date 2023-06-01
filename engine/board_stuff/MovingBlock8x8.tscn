@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnnpl12gw24v"]
+[gd_scene load_steps=5 format=3 uid="uid://dnnpl12gw24v"]
 
 [ext_resource type="Script" path="res://scripts/MovingBlock8x8.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/blocks/block.png" id="2_k45q2"]
+[ext_resource type="AudioStream" uid="uid://qihwjb4b8bel" path="res://sound/block_landing.wav" id="3_52pw4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eto6a"]
 size = Vector2(64, 64)
@@ -19,3 +20,7 @@ texture = ExtResource("2_k45q2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_eto6a")
+
+[node name="Landing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_52pw4")
+volume_db = -26.271

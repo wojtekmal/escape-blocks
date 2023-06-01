@@ -123,7 +123,7 @@ func _ready():
 	
 	#overlay.collapse();
 	var audio := $AudioStreamPlayer
-	audio.play()
+	#audio.play()
 
 func _physics_process(delta):
 	# We won't be loading frames in the editor.
@@ -223,6 +223,9 @@ func move_block(delta, block):
 		return
 	
 	if new_block_cord_y > max_height:
+		if block.is_falling:
+			block.falling_sound()
+		
 		block.is_falling = false
 		# Here the height of the block is set so that it lands on something else.
 		block.board_cords.y = max_height
@@ -356,6 +359,9 @@ func move_player(delta):
 		return
 	
 	if new_player_cord_y > max_height:
+		if player.is_falling:
+			player.falling_sound()
+		
 		player.is_falling = false
 		# Here the height of the block is set so that it lands on something else.
 		player.board_cords.y = max_height
@@ -389,6 +395,7 @@ func manage_changing_gravity():
 	var wasd := get_tree().get_nodes_in_group("wasd")
 		
 	if all_not_falling() and rotation_timer.is_stopped() and rotations != 0:
+		$RotationSound.play()
 		rotations_number += 1
 		counter.update(rotations_number)
 		now_rotations = rotations
