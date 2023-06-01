@@ -20,7 +20,6 @@ layout_mode = 2
 
 [node name="MyButton" parent="HBoxContainer" instance=ExtResource("2_mrxdw")]
 layout_mode = 2
-disabled = null
 
 [node name="Container" type="Container" parent="HBoxContainer"]
 layout_mode = 2

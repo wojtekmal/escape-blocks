@@ -18,6 +18,7 @@ config/icon="res://textures/icon.png"
 [autoload]
 
 global="*res://scripts/global.gd"
+ClickPlayer="*res://sound/click_player.tscn"
 
 [display]
 

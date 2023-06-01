@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo0nthv1x5g0v"]
+[gd_scene load_steps=8 format=3 uid="uid://bo0nthv1x5g0v"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_lj0ds"]
 [ext_resource type="Shader" path="res://shaders/button.gdshader" id="3_6r8xq"]
 [ext_resource type="Texture2D" uid="uid://dwm0i4f3lr28f" path="res://textures/blocks/door.png" id="4_8c54u"]
+[ext_resource type="AudioStream" uid="uid://bfggmq2mq7r4y" path="res://sound/board_door_open.wav" id="4_e0qhx"]
+[ext_resource type="AudioStream" uid="uid://kbnwlfdg78uu" path="res://sound/board_door_close.wav" id="5_vusou"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i0yv4"]
 resource_local_to_scene = true
@@ -35,3 +37,9 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_1xlvr")
+
+[node name="Open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_e0qhx")
+
+[node name="Close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vusou")

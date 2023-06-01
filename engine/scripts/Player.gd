@@ -32,6 +32,7 @@ func setjumptime(x := 0.0):
 
 func _process(delta: float) -> void:
 	animations()
+	walking_sound()
 
 func get_direction() -> Vector2:
 	if !Engine.is_editor_hint():
@@ -88,3 +89,12 @@ func set_board_dimensions(newValue):
 
 func set_is_falling(new_value):
 	is_falling = new_value
+
+func falling_sound():
+	$Landing.play()
+
+func walking_sound():
+	if !is_falling && !$Walking.playing && abs(x_speed) >= 0.01:
+		$Walking.play()
+	elif $Walking.playing && (is_falling || abs(x_speed) < 0.01):
+		$Walking.stop()

@@ -94,9 +94,14 @@ func _process(delta):
 
 func set_label_text(new_value):
 	label_text = new_value
-	$LabelBox/Label.text = new_value
+	#$LabelBox/Label.text = new_value
+	$LabelBox/Label.push_paragraph(HORIZONTAL_ALIGNMENT_CENTER)
+	$LabelBox/Label.push_font(load("res://fonts/conthrax/conthrax-sb.otf"), 36)
+	$LabelBox/Label.push_color(Color(0,0,0,1))
+	$LabelBox/Label.append_text(new_value)
 
 func emit_pressed():
+	ClickPlayer.play()
 	emit_signal("pressed")
 
 func set_disabled(new_value):
