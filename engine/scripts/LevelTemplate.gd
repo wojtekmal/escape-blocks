@@ -24,10 +24,9 @@ signal change_to_next_level
 @onready var rotation_timer = $RotationTimer
 @onready var walls := $Walls
 @onready var counter := $Counter
-@onready var level_map_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/LevelMapBox/TextureButton
-@onready var next_level_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/NextLevelBox/TextureButton
-@onready var retry_level_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/RetryLevelBox/TextureButton
-@onready var next_level_button_text := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/NextLevelBox/RichTextLabel
+@onready var level_map_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/Map
+@onready var next_level_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/Next
+@onready var retry_level_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/Retry
 @onready var timer := $Control/Timer
 @onready var part_box_1 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox1
 @onready var part_box_2 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox2
@@ -124,7 +123,7 @@ func _ready():
 	
 	#overlay.collapse();
 	var audio := $AudioStreamPlayer
-	audio.play()
+	#audio.play()
 
 func _physics_process(delta):
 	# We won't be loading frames in the editor.
@@ -224,6 +223,9 @@ func move_block(delta, block):
 		return
 	
 	if new_block_cord_y > max_height:
+		if block.is_falling:
+			block.falling_sound()
+		
 		block.is_falling = false
 		# Here the height of the block is set so that it lands on something else.
 		block.board_cords.y = max_height
@@ -357,6 +359,9 @@ func move_player(delta):
 		return
 	
 	if new_player_cord_y > max_height:
+		if player.is_falling:
+			player.falling_sound()
+		
 		player.is_falling = false
 		# Here the height of the block is set so that it lands on something else.
 		player.board_cords.y = max_height
@@ -390,6 +395,7 @@ func manage_changing_gravity():
 	var wasd := get_tree().get_nodes_in_group("wasd")
 		
 	if all_not_falling() and rotation_timer.is_stopped() and rotations != 0:
+		$RotationSound.play()
 		rotations_number += 1
 		counter.update(rotations_number)
 		now_rotations = rotations
@@ -652,20 +658,18 @@ func _on_player_finished(start_rotations):
 		if global.levels_data[level_name]["unlocks"].size():
 			next_level_name = global.levels_data[level_name]["unlocks"][0]
 		
-		next_level_button_text.push_paragraph(HORIZONTAL_ALIGNMENT_CENTER)
-		next_level_button_text.push_font(load("res://fonts/conthrax/conthrax-sb.otf"), 36)
-		next_level_button_text.push_color(Color(0,0,0,1))
+		#next_level_button_text.push_paragraph(HORIZONTAL_ALIGNMENT_CENTER)
+		#next_level_button_text.push_font(load("res://fonts/conthrax/conthrax-sb.otf"), 36)
+		#next_level_button_text.push_color(Color(0,0,0,1))
 		
 		if next_level_name == "NULL":
-			next_level_button_text.append_text("NEXT")
+			next_level_button.label_text = "Next"
 			next_level_button.disabled = true
 			next_level_button.modulate = Color8(255,255,255,100)
 		elif global.levels_data[next_level_name]["part_price"] == 0:
-			next_level_button_text.append_text("NEXT")
+			next_level_button.label_text = "Next"
 		else:
-			next_level_button_text.append_text("NEXT (")
-			next_level_button_text.add_image(load("res://textures/temporary_part.png"), 36, 36)
-			next_level_button_text.append_text(str(global.levels_data[next_level_name]["part_price"]) + ")")
+			next_level_button.label_text = "NEXT (" + str(global.levels_data[next_level_name]["part_price"]) + "[img=36x36]res://textures/temporary_part.png[/img])"
 			#next_level_button_text.pop()
 
 func manage_doors():

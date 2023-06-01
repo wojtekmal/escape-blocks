@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://vntb00nxrmwy"]
+[gd_scene load_steps=13 format=3 uid="uid://vntb00nxrmwy"]
 
 [ext_resource type="Script" path="res://scripts/Button.gd" id="1"]
 [ext_resource type="Shader" path="res://shaders/button.gdshader" id="2_2rqvq"]
 [ext_resource type="Texture2D" uid="uid://ddo0kuo1nd0xw" path="res://textures/blocks/button.png" id="3_y85x6"]
+[ext_resource type="AudioStream" uid="uid://bf4xsccw5d4i2" path="res://sound/board_button.wav" id="4_0fpri"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(16, 16)
@@ -108,3 +109,7 @@ amount = 20
 process_material = SubResource("ParticleProcessMaterial_pucb7")
 lifetime = 1.5
 local_coords = true
+
+[node name="WhirUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0fpri")
+volume_db = -18.0

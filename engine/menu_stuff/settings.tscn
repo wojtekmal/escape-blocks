@@ -151,7 +151,6 @@ size_flags_horizontal = 3
 [node name="MyButton" parent="VBoxContainer/ExternalButtonsBox/HBoxContainer" instance=ExtResource("6_1m8wc")]
 layout_mode = 2
 label_text = "Menu"
-disabled = null
 
 [node name="Container2" type="Container" parent="VBoxContainer/ExternalButtonsBox/HBoxContainer"]
 layout_mode = 2

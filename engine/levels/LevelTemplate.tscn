@@ -19,12 +19,13 @@
 [ext_resource type="Texture2D" uid="uid://btql8fsjcl1vi" path="res://textures/bg/bg0.png" id="16_v8nsv"]
 [ext_resource type="PackedScene" uid="uid://csptwsrwupxko" path="res://menu_stuff/part_box.tscn" id="17_j8u3w"]
 [ext_resource type="Texture2D" uid="uid://csyalhich42in" path="res://textures/icon.png" id="17_l5edx"]
-[ext_resource type="Texture2D" uid="uid://c8yym53ddmjaq" path="res://textures/end_panel_button.png" id="18_e15eb"]
 [ext_resource type="Script" path="res://scripts/stopwatch.gd" id="19_nh8s2"]
+[ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="20_q1fjy"]
 [ext_resource type="AudioStream" uid="uid://d21kqeopilqrt" path="res://sound/escapeblocksv5.mp3" id="20_q7ff1"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="21_lbwbm"]
-[ext_resource type="PackedScene" uid="uid://klvxuhcfwpx0" path="res://background.tscn" id="22_fxc5x"]
+[ext_resource type="PackedScene" uid="uid://bgr1bna3ymmvr" path="res://background.tscn" id="22_fxc5x"]
 [ext_resource type="Script" path="res://scripts/Center.gd" id="22_uv5px"]
+[ext_resource type="AudioStream" uid="uid://hxpxst5ebqfl" path="res://sound/rotation.wav" id="26_2h2bl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -379,11 +380,6 @@ shader_parameter/angle = 45.0
 font = ExtResource("14_wb3oo")
 font_size = 48
 
-[sub_resource type="LabelSettings" id="LabelSettings_xh2jf"]
-font = ExtResource("14_wb3oo")
-font_size = 36
-font_color = Color(0, 0, 0, 1)
-
 [node name="LevelTemplate4" type="Node2D"]
 process_mode = 1
 script = ExtResource("4")
@@ -395,7 +391,6 @@ collision_layer = 10
 collision_mask = 1
 board_cords = Vector2i(3, 2)
 board_dimensions = Vector2i(8, 5)
-flying = null
 metadata/_edit_horizontal_guides_ = []
 
 [node name="BoardLimits" type="TileMap" parent="." groups=["board_limits"]]
@@ -505,54 +500,16 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="LevelMapBox" type="MarginContainer" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer"]
+[node name="Map" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
 layout_mode = 2
-size_flags_horizontal = 3
+label_text = "Map"
 
-[node name="TextureButton" type="TextureButton" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/LevelMapBox"]
+[node name="Retry" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
 layout_mode = 2
-texture_normal = ExtResource("18_e15eb")
-ignore_texture_size = true
-stretch_mode = 0
+label_text = "Retry"
 
-[node name="Label" type="Label" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/LevelMapBox"]
+[node name="Next" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
 layout_mode = 2
-text = "MAP"
-label_settings = SubResource("LabelSettings_xh2jf")
-horizontal_alignment = 1
-
-[node name="RetryLevelBox" type="MarginContainer" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextureButton" type="TextureButton" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/RetryLevelBox"]
-layout_mode = 2
-texture_normal = ExtResource("18_e15eb")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/RetryLevelBox"]
-layout_mode = 2
-text = "RETRY"
-label_settings = SubResource("LabelSettings_xh2jf")
-horizontal_alignment = 1
-
-[node name="NextLevelBox" type="MarginContainer" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextureButton" type="TextureButton" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/NextLevelBox"]
-layout_mode = 2
-texture_normal = ExtResource("18_e15eb")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/NextLevelBox"]
-layout_mode = 2
-size_flags_vertical = 4
-mouse_filter = 2
-bbcode_enabled = true
-fit_content = true
 
 [node name="Timer" type="CanvasLayer" parent="Control"]
 script = ExtResource("19_nh8s2")
@@ -598,3 +555,6 @@ script = ExtResource("22_uv5px")
 [node name="WOLOLO" type="Marker2D" parent="."]
 position = Vector2(100, 100)
 gizmo_extents = 1000.0
+
+[node name="RotationSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_2h2bl")

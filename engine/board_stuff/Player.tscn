@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ow2x5epfg1v2"]
+[gd_scene load_steps=16 format=3 uid="uid://ow2x5epfg1v2"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://c00o4ibdjkbef" path="res://textures/player/player.png" id="2_50npn"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://be0b0undcvn1h" path="res://textures/player/p/Player/Player_Move4.png" id="7_6ul6r"]
 [ext_resource type="Texture2D" uid="uid://c1tcn5egqkwuo" path="res://textures/player/p/Player/Player_Move5.png" id="8_yol0v"]
 [ext_resource type="Texture2D" uid="uid://c0gkw58utllkc" path="res://textures/player/p/Player/Player_Move6.png" id="9_u76fj"]
+[ext_resource type="AudioStream" uid="uid://db662udwtdjhm" path="res://sound/player_landing.wav" id="11_gty8t"]
+[ext_resource type="AudioStream" uid="uid://bhpe1cgavnv5v" path="res://sound/player_walking.wav" id="12_kuxtn"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="12_x6ppo"]
 
 [sub_resource type="RectangleShape2D" id="2"]
@@ -103,3 +105,9 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FinishDetection"]
 position = Vector2(0, 21)
 shape = SubResource("RectangleShape2D_waxpy")
+
+[node name="Landing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_gty8t")
+
+[node name="Walking" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_kuxtn")
