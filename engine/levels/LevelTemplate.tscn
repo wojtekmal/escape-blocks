@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=63 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -16,15 +16,21 @@
 [ext_resource type="Texture2D" uid="uid://ddo0kuo1nd0xw" path="res://textures/blocks/button.png" id="12_gobi5"]
 [ext_resource type="Texture2D" uid="uid://dwm0i4f3lr28f" path="res://textures/blocks/door.png" id="13_lyb2i"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="14_wb3oo"]
+[ext_resource type="Texture2D" uid="uid://c1bpkytwgid7w" path="res://textures/Cables/CableBlueAll.png" id="16_64pof"]
 [ext_resource type="Texture2D" uid="uid://btql8fsjcl1vi" path="res://textures/bg/bg0.png" id="16_v8nsv"]
 [ext_resource type="PackedScene" uid="uid://csptwsrwupxko" path="res://menu_stuff/part_box.tscn" id="17_j8u3w"]
 [ext_resource type="Texture2D" uid="uid://csyalhich42in" path="res://textures/icon.png" id="17_l5edx"]
 [ext_resource type="Script" path="res://scripts/stopwatch.gd" id="19_nh8s2"]
+[ext_resource type="Texture2D" uid="uid://bnxkcwv4tqe42" path="res://textures/Cables/CablesRedAll.png" id="19_ufsc0"]
+[ext_resource type="Texture2D" uid="uid://bkwore3qr2i8t" path="res://textures/bg/bg1.png" id="20_7a8rv"]
 [ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="20_q1fjy"]
 [ext_resource type="AudioStream" uid="uid://d21kqeopilqrt" path="res://sound/escapeblocksv5.mp3" id="20_q7ff1"]
+[ext_resource type="Texture2D" uid="uid://caiyn6mytgol0" path="res://textures/bg/bg2.png" id="21_3oo5s"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="21_lbwbm"]
+[ext_resource type="Texture2D" uid="uid://p6udsqfojnfj" path="res://textures/bg/bg3.png" id="22_63tuk"]
 [ext_resource type="PackedScene" uid="uid://bgr1bna3ymmvr" path="res://background.tscn" id="22_fxc5x"]
 [ext_resource type="Script" path="res://scripts/Center.gd" id="22_uv5px"]
+[ext_resource type="Texture2D" uid="uid://cdlsn2pxsyddd" path="res://textures/bg/white16x16.png" id="23_shffb"]
 [ext_resource type="AudioStream" uid="uid://hxpxst5ebqfl" path="res://sound/rotation.wav" id="26_2h2bl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
@@ -325,6 +331,26 @@ separation = Vector2i(2, 2)
 2:2/0 = 0
 3:2/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dyqn8"]
+texture = ExtResource("16_64pof")
+separation = Vector2i(2, 2)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t7h7h"]
 texture = ExtResource("16_v8nsv")
 0:0/0 = 0
@@ -363,10 +389,94 @@ texture = ExtResource("17_l5edx")
 2:3/0 = 0
 3:3/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cue2n"]
+texture = ExtResource("19_ufsc0")
+separation = Vector2i(2, 2)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n10hf"]
+texture = ExtResource("20_7a8rv")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m0mxk"]
+texture = ExtResource("21_3oo5s")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ck7ca"]
+texture = ExtResource("22_63tuk")
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ww58g"]
+texture = ExtResource("23_shffb")
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_7fwbe"]
 sources/0 = SubResource("TileSetAtlasSource_arxux")
 sources/2 = SubResource("TileSetAtlasSource_t7h7h")
+sources/1 = SubResource("TileSetAtlasSource_dyqn8")
+sources/4 = SubResource("TileSetAtlasSource_cue2n")
+sources/5 = SubResource("TileSetAtlasSource_n10hf")
+sources/6 = SubResource("TileSetAtlasSource_m0mxk")
+sources/7 = SubResource("TileSetAtlasSource_ck7ca")
 sources/3 = SubResource("TileSetAtlasSource_wvol4")
+sources/8 = SubResource("TileSetAtlasSource_ww58g")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pg4o3"]
 shader = ExtResource("11_psw4b")
@@ -416,7 +526,6 @@ layer_0/tile_data = PackedInt32Array(262144, 6, 0, 262146, 2, 0, 262147, 1, 0, 2
 [node name="Counter" parent="." instance=ExtResource("9_pbxjo")]
 
 [node name="Overlay" type="TileMap" parent="."]
-visible = false
 z_index = 2
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_7fwbe")

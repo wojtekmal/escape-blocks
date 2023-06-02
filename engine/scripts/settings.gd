@@ -34,7 +34,8 @@ func go_to_menu():
 func manage_changing_settings(action, new_value):
 	if action == "switch_rotation":
 		#print("Settings received switch rotation.")
-		global.switch_rotation(new_value)
+		global.settings["switch_rotation"] = new_value
+		global.save()
 	elif action == "reset_progress":
 		reset_progress_press()
 	elif action == "change_volume":
