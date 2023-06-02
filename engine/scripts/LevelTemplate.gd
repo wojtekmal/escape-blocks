@@ -382,13 +382,16 @@ func manage_changing_gravity():
 		return
 	
 	var rotations = 0
-	if(Input.is_action_pressed("gravity_right")):
+	if(Input.is_action_pressed("gravity_right") && !global.settings["switch_rotation"] ||
+	Input.is_action_pressed("gravity_left") && global.settings["switch_rotation"]):
 		game_started = true
 		rotations += 1
+		#print("Adding one 90 degrees rotation.")
 	if(Input.is_action_pressed("gravity_up")):
 		game_started = true
 		rotations += 2
-	if(Input.is_action_pressed("gravity_left")):
+	if(Input.is_action_pressed("gravity_left") && !global.settings["switch_rotation"] ||
+	Input.is_action_pressed("gravity_right") && global.settings["switch_rotation"]):
 		game_started = true
 		rotations -= 1
 	
@@ -575,6 +578,7 @@ func _on_player_finished(start_rotations):
 		
 		if end_screen_disabled:
 			emit_signal("change_to_next_level", level_name)
+			return
 		
 		if !global.levels.has(level_name):
 			print("This level\'s name is\'nt in global.levels.")
@@ -714,7 +718,6 @@ func get_y_size(entity):
 		return 64
 
 func go_to_map():
-	print_tree_pretty()
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
 
 func retry_level():

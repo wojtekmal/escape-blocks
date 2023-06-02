@@ -166,21 +166,25 @@ func manage_settings():
 	if settings.has("change_volume"):
 		AudioServer.set_bus_volume_db(master_bus, (settings["change_volume"] - 100) * 72 / 100)
 	
-	switch_rotation(settings["switch_rotation"])
+	#switch_rotation(settings["switch_rotation"])
 
-func switch_rotation(new_value: bool):
-	#if settings["switch_rotation_direction"] == new_value:
-	#	return
-	
-	settings["switch_rotation"] = new_value
-	save()
-	var left_key = InputMap.action_get_events("gravity_left")[0]
-	var right_key = InputMap.action_get_events("gravity_right")[0]
-	InputMap.action_erase_events("gravity_left")
-	InputMap.action_erase_events("gravity_right")
-	InputMap.action_add_event("gravity_left", right_key)
-	InputMap.action_add_event("gravity_right", left_key)
-	
+#func switch_rotation(new_value: bool):
+#	#if settings["switch_rotation_direction"] == new_value:
+#	#	return
+#
+#	settings["switch_rotation"] = new_value
+#	save()
+##	print(settings["switch_rotation"])
+##	var left_key = InputMap.action_get_events("gravity_left")[0]
+##	var right_key = InputMap.action_get_events("gravity_right")[0]
+##	InputMap.action_erase_events("gravity_left")
+##	InputMap.action_erase_events("gravity_right")
+##	InputMap.action_add_event("gravity_left", right_key)
+##	InputMap.action_add_event("gravity_right", left_key)
+#
+#	InputMap.action_erase_events("gravity_left")
+#	InputMap.action_erase_events("gravity_right")
+#
 #	if new_value == false:
 #		var key = InputEventKey.new()
 #		key.physical_keycode = KEY_LEFT
