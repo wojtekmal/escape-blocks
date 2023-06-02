@@ -90,5 +90,3 @@ func _input(event : InputEvent, delta = get_physics_process_delta_time()) -> voi
 			map_camera.zoom_factor = min(ZOOM_MAX, map_camera.zoom_factor)
 			map_camera.zoom_factor = max(ZOOM_MIN, map_camera.zoom_factor)
 			map_camera.zoom = Vector2(map_camera.zoom_factor, map_camera.zoom_factor)
-	elif event is InputEventKey:
-		print("Map detected key press.")
