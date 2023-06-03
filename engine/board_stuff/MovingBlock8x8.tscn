@@ -23,4 +23,4 @@ shape = SubResource("RectangleShape2D_eto6a")
 
 [node name="Landing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_52pw4")
-volume_db = -26.271
+volume_db = -20.0

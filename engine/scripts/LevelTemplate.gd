@@ -758,6 +758,10 @@ func move_camera():
 	#print(camera.position)
 	#print(background.position)
 	global_position = Vector2.ZERO
+	camera.position = lerp(player.position, $Center.position, 0.5)
 	while (camera.position - player.position).length() * camera.zoom.x > 100:
 		camera.position = lerp(camera.position, player.position, 0.01)
+		
+#	while (camera.position - player.position).length() * camera.zoom.x > 100:
+#		camera.position = lerp(camera.position, player.position, 0.01)
 	#background.position = camera.position
