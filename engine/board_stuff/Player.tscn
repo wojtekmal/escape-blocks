@@ -108,7 +108,7 @@ shape = SubResource("RectangleShape2D_waxpy")
 
 [node name="Landing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_gty8t")
-volume_db = 5.0
+volume_db = 6.0
 
 [node name="Walking" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_kuxtn")
