@@ -33,6 +33,14 @@ func setjumptime(x := 0.0):
 func _process(delta: float) -> void:
 	animations()
 	walking_sound()
+	if Engine.is_editor_hint():
+		return
+	if Input.is_action_just_pressed("fly"):
+		flying = not flying
+		if flying:
+			WALK_SPEED *= 1.0 + PI/10
+		else:
+			WALK_SPEED /= 1.0 + PI/10
 
 func get_direction() -> Vector2:
 	if !Engine.is_editor_hint():
