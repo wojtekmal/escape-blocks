@@ -112,4 +112,5 @@ local_coords = true
 
 [node name="WhirUp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_0fpri")
-volume_db = -25.0
+volume_db = -30.0
+bus = &"Buttons"

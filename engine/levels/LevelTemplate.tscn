@@ -667,4 +667,4 @@ gizmo_extents = 1000.0
 
 [node name="RotationSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_2h2bl")
-volume_db = 10.0
+volume_db = 7.0
