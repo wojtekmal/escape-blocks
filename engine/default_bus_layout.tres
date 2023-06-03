@@ -1,3 +1,27 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://cvt7i0j3lgpm"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://cvt7i0j3lgpm"]
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_xoor2"]
+resource_name = "Limiter"
+ceiling_db = -9.7
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_32hxy"]
+resource_name = "Limiter"
+ceiling_db = -9.7
 
 [resource]
+bus/1/name = &"Doors"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Doors 2"
+bus/1/effect/0/effect = SubResource("AudioEffectLimiter_xoor2")
+bus/1/effect/0/enabled = true
+bus/2/name = &"Buttons"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Buttons 2"
+bus/2/effect/0/effect = SubResource("AudioEffectLimiter_32hxy")
+bus/2/effect/0/enabled = true

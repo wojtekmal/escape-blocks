@@ -300,17 +300,17 @@ func move_player(delta):
 	
 	if Input.is_action_pressed("jump") and player.getjumptime() > 0:
 		if player.flying:
-			player.y_speed -= (player.jump_speed) * delta * PI/11
+			player.y_speed = lerp(player.y_speed, -431, delta * 10)
 		else:
 			player.y_speed -= (player.jump_speed) * delta
 		coyote_timer.stop()
 	
-	if Input.is_action_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0 or player.flying):
+	elif Input.is_action_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0 or player.flying):
 		if(player.y_speed > 0):
 			player.y_speed = 0
 		game_started = true
 		if player.flying:
-			player.y_speed -= (player.jump_speed) * delta * PI/11
+			player.y_speed = lerp(player.y_speed, -431, delta * 10)
 		else:
 			player.y_speed -= (player.jump_speed) * delta
 		player.setjumptime()
@@ -758,6 +758,10 @@ func move_camera():
 	#print(camera.position)
 	#print(background.position)
 	global_position = Vector2.ZERO
+	camera.position = lerp(player.position, $Center.position, 0.5)
 	while (camera.position - player.position).length() * camera.zoom.x > 100:
 		camera.position = lerp(camera.position, player.position, 0.01)
+		
+#	while (camera.position - player.position).length() * camera.zoom.x > 100:
+#		camera.position = lerp(camera.position, player.position, 0.01)
 	#background.position = camera.position

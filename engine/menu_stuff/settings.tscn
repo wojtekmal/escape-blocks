@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="1_8r5dt"]
 [ext_resource type="PackedScene" uid="uid://cimdip5w7semr" path="res://menu_stuff/settings_bool.tscn" id="2_or2vx"]
 [ext_resource type="PackedScene" uid="uid://qltep5mntvfb" path="res://menu_stuff/settings_button.tscn" id="3_b01vd"]
-[ext_resource type="PackedScene" uid="uid://bkuryr5wpwy4h" path="res://menu_stuff/settings_slider.tscn" id="5_fdlcu"]
+[ext_resource type="PackedScene" path="res://menu_stuff/settings_slider.tscn" id="5_fdlcu"]
 [ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="6_1m8wc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7jr6i"]

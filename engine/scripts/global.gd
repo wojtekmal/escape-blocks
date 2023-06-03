@@ -4,6 +4,7 @@ extends Node
 var current_level : String = "1"
 var part_count : int = 0
 var zoom_factor : float = 0.7
+
 #@onready var ui_click_player = AudioStreamPlayer.new()
  
 # This is a dictionary holding all levels by their numbers.
