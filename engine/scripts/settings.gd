@@ -5,12 +5,12 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var back_to_menu_button := $VBoxContainer/ExternalButtonsBox/HBoxContainer/MyButton
+	var back_to_menu_button := $MyPanel/MarginContainer/VBoxContainer/ExternalButtonsBox/HBoxContainer/MyButton
 	back_to_menu_button.pressed.connect(go_to_menu)
 	
-	var settings_list = $VBoxContainer/ScrollPanelBox/TabContainer/Misc/VBoxContainer.get_children()
-	settings_list.append_array($VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer.get_children())
-	settings_list.append_array($VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer.get_children())
+	var settings_list = $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Misc/VBoxContainer.get_children()
+	settings_list.append_array($MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer.get_children())
+	settings_list.append_array($MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer.get_children())
 	
 	for setting in settings_list:
 		if !setting.has_signal("changed"):
