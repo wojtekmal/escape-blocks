@@ -57,6 +57,8 @@ color = Color(0.352941, 0.352941, 0.352941, 1)
 
 [node name="TabContainer" type="TabContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox"]
 layout_mode = 2
+theme = ExtResource("1_2esgo")
+theme_override_constants/side_margin = 0
 
 [node name="Misc" type="ScrollContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer"]
 layout_mode = 2
