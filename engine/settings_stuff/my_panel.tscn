@@ -10,6 +10,7 @@ texture_margin_top = 20.0
 texture_margin_right = 20.0
 texture_margin_bottom = 20.0
 region_rect = Rect2(0, 0, 128, 128)
+modulate_color = Color(0.682353, 0.682353, 0.682353, 0.643137)
 
 [node name="MyPanel" type="PanelContainer"]
 anchors_preset = 15
