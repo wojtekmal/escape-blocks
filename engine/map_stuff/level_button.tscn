@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bys0t6027yhij" path="res://textures/temporary_level_map_button_disabled.png" id="2_yxlcj"]
 [ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="4_gpkad"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="4_tsx42"]
-[ext_resource type="PackedScene" uid="uid://bd1ob5jcd2dcq" path="res://map_stuff/level_map_button_part.tscn" id="5_6aplh"]
+[ext_resource type="PackedScene" path="res://map_stuff/level_map_button_part.tscn" id="5_6aplh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3dvoa"]
 font = ExtResource("4_tsx42")
