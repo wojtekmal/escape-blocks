@@ -5,12 +5,12 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var back_to_menu_button := $VBoxContainer/ExternalButtonsBox/HBoxContainer/MyButton
+	var back_to_menu_button := $MyPanel/MarginContainer/VBoxContainer/ExternalButtonsBox/HBoxContainer/MyButton
 	back_to_menu_button.pressed.connect(go_to_menu)
 	
-	var settings_list = $VBoxContainer/ScrollPanelBox/TabContainer/Misc/VBoxContainer.get_children()
-	settings_list.append_array($VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer.get_children())
-	settings_list.append_array($VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer.get_children())
+	var settings_list = $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Misc/VBoxContainer.get_children()
+	settings_list.append_array($MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer.get_children())
+	settings_list.append_array($MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer.get_children())
 	
 	for setting in settings_list:
 		if !setting.has_signal("changed"):
@@ -20,10 +20,37 @@ func _ready():
 		
 		if "disabled_in_level" in setting && mode == "in_level":
 			setting.disabled = true
+	
+	#print(preload("res://themes/main_theme.tres").get_stylebox_type_list())
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since the previous frame.                                                                                              
 func _process(delta):
-	pass
+	var theme = preload("res://themes/main_theme.tres")
+	var tab_container := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer
+	var tab_count = tab_container.get_child_count()
+	var total_len = 0
+	var font = preload("res://fonts/conthrax/conthrax-sb.otf")
+	var font_size = theme.get_font_size("font_size", "TabContainer")
+	#print(preload("res://themes/main_theme.tres").has_stylebox("tab_selected", "normal"))
+	var stylebox = theme.get_stylebox("tab_selected", "TabContainer")
+	var side_margin = theme.get_constant("side_margin", "TabContainer")
+	var tabbar_len = tab_container.size.x - side_margin
+	
+	#print(stylebox.border_width_left)
+	
+	for i in tab_count:
+		var title = tab_container.get_tab_title(i)
+		total_len += font.get_string_size(title, 0, -1, font_size).x
+	
+	stylebox.set_content_margin(SIDE_LEFT, (tabbar_len - total_len) * 1.0 / tab_count / 2)
+	stylebox.set_content_margin(SIDE_RIGHT, (tabbar_len - total_len) * 1.0 / tab_count / 2)
+	
+	#print((total_len - tabbar_len) * 1.0 / tab_count / 2)
+	#print(tabbar_len)
+	#print(stylebox.border_width_left)
+	
+	tab_container.add_theme_stylebox_override("tab_selected", stylebox)
+	tab_container.add_theme_stylebox_override("tab_unselected", stylebox)
 
 func go_to_menu():
 	if mode == "in_level":
