@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfgrl48wnlnlx"]
+
+[ext_resource type="Texture2D" uid="uid://cskb0gnj50pt2" path="res://textures/panel.png" id="1_s11em"]
+[ext_resource type="Script" path="res://scripts/my_panel.gd" id="1_yn81x"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dhhys"]
+texture = ExtResource("1_s11em")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+region_rect = Rect2(0, 0, 256, 256)
+
+[node name="MyPanel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_dhhys")
+script = ExtResource("1_yn81x")
