@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1hd1lrqdodhv"]
 
-[ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_blbis"]
-[ext_resource type="PackedScene" uid="uid://bh28swydxx22h" path="res://board_stuff/tutorial_float.tscn" id="2_solsn"]
+[ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_1kfgi"]
+[ext_resource type="PackedScene" uid="uid://bh28swydxx22h" path="res://board_stuff/tutorial_float.tscn" id="2_krfh1"]
 
-[node name="LevelTemplate4" instance=ExtResource("1_blbis")]
+[node name="LevelTemplate4" instance=ExtResource("1_1kfgi")]
 board_dimensions = Vector2i(3, 2)
 rotation_disabled = true
 end_screen_disabled = true
@@ -20,5 +20,5 @@ board_dimensions = Vector2i(3, 2)
 position = Vector2(-96, -64)
 layer_0/tile_data = PackedInt32Array(65537, 2, 0, 65536, 6, 0, 65538, 4, 0)
 
-[node name="TutorialFloat" parent="." index="11" instance=ExtResource("2_solsn")]
+[node name="TutorialFloat" parent="." index="11" instance=ExtResource("2_krfh1")]
 pages = PackedStringArray("Welcome to Escape Blocks!\n\nGet to the finish (the square with a green evacuation sign). Press A⁠/⁠D to move left⁠/⁠right and W or Space to jump. Use R to restart the level and Esc to pause it and view some options.\nPress any key to continue.")

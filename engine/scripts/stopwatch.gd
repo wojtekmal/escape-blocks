@@ -14,4 +14,4 @@ func _process(delta):
 #	$RichTextLabel.text =  str(sec) + ":" + str(ms)
 	
 	$RichTextLabel.text =  "%d.%02d s" % [sec, ms]
-	$RichTextLabel.text += "\n" + str(roundf(1.0 / delta))  + "fps"
+	$RichTextLabel.text += "\n" + str(Engine.get_frames_per_second())  + "fps"

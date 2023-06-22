@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cylgj4bcajsr0"]
+[gd_scene load_steps=11 format=3 uid="uid://cylgj4bcajsr0"]
 
 [ext_resource type="Script" path="res://scripts/level_map.gd" id="1_gliqh"]
 [ext_resource type="PackedScene" uid="uid://ba4y62q3j4hcl" path="res://map_stuff/level_button.tscn" id="1_qu7sv"]
@@ -6,12 +6,20 @@
 [ext_resource type="Script" path="res://scripts/map_camera.gd" id="3_772qu"]
 [ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="4_y8sme"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="5_iu41y"]
-[ext_resource type="PackedScene" uid="uid://bgr1bna3ymmvr" path="res://background.tscn" id="7_opcik"]
+[ext_resource type="PackedScene" uid="uid://klvxuhcfwpx0" path="res://background.tscn" id="7_opcik"]
 [ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="9_bo5fr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lnd47"]
 font = ExtResource("5_iu41y")
 font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ru84r"]
+bg_color = Color(0.807843, 0.807843, 0.807843, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.490196, 0.490196, 0.490196, 1)
 
 [node name="LevelMap" type="Node2D"]
 script = ExtResource("1_gliqh")
@@ -21,36 +29,6 @@ position = Vector2(1070, 121)
 
 [node name="1" parent="." instance=ExtResource("1_qu7sv")]
 position = Vector2(1014, 296)
-
-[node name="2a" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(641, 341)
-
-[node name="2b" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(694, 180)
-
-[node name="3" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(402, 159)
-
-[node name="4" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(264, 225)
-
-[node name="5" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(246, 443)
-
-[node name="6" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(404, 504)
-
-[node name="7" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(578, 586)
-
-[node name="8" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(398, 314)
-
-[node name="9" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(789, 530)
-
-[node name="10" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(1063, 431)
 
 [node name="LevelButton3" parent="." instance=ExtResource("1_qu7sv")]
 position = Vector2(836, 56)
@@ -133,3 +111,11 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_stretch_ratio = 1.5
 label_text = "Menu"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -100.0
+offset_top = -1100.0
+offset_right = 2886.0
+offset_bottom = -710.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ru84r")

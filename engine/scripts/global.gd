@@ -18,8 +18,6 @@ var zoom_factor : float = 0.7
 #}
 
 func _ready():
-	#ui_click_player.stream = preload("res://sound/ui_click_v2.wav")
-	#ui_click_player.volume_db = 20
 	if Engine.is_editor_hint():
 		return
 	
@@ -76,77 +74,17 @@ func save():
 # This dictionary also contains all levels' scenes and dependencies.
 var levels_data := {
 	"Tutorial": {
-		"resource": load("res://levels/tutorial_walking_jumping.tscn"),
+		"resource": load("res://levels/tutorial/1.tscn"),
 		"unlocks": ["tutorial_rotating"],
 		"part_price": 0,
 	},
 	"tutorial_rotating": {
-		"resource": load("res://levels/tutorial_rotating.tscn"),
+		"resource": load("res://levels/tutorial/2.tscn"),
 		"unlocks": ["final_tutorial"],
 		"part_price": 0,
 	},
 	"final_tutorial": {
-		"resource": load("res://levels/tutorial.tscn"),
-		"unlocks": [],
-		"part_price": 0,
-	},
-	"1": {
-		"resource": load("res://levels/test_level_template.tscn"),
-		"unlocks": ["2a", "2b"],
-		"part_price": 0,
-	},
-	"2a": {
-		"resource": load("res://levels/level_2.tscn"),
-		"unlocks": ["3"],
-		"part_price": 5,
-	},
-	"2b": {
-		"resource": load("res://levels/level_2_v2.tscn"),
-		"unlocks": [],
-		"part_price": 0,
-	},
-	"3": {
-		"resource": load("res://levels/wojtekmal_1.tscn"),
-		"unlocks": ["4"],
-		"part_price": 0,
-	},
-	"4": {
-		"resource": load("res://levels/test_level_template_2.tscn"),
-		"unlocks": ["5"],
-		"part_price": 3,
-	},
-	"5": {
-		"resource": load("res://levels/roupiq_1.tscn"),
-		"unlocks": ["6"],
-		"part_price": 2,
-	},
-	"6": {
-		"resource": load("res://levels/frutlevel1.tscn"),
-		"unlocks": ["7"],
-		"part_price": 0,
-	},
-	"7": {
-		"resource": load("res://levels/4QT0R_1.tscn"),
-		"unlocks": ["8"],
-		"part_price": 0,
-	},
-	"8": {
-		"resource": load("res://levels/4QT0R_2.tscn"),
-		"unlocks": ["9"],
-		"part_price": 0,
-	},
-	"9": {
-		"resource": load("res://levels/4QT0R_3.tscn"),
-		"unlocks": ["10"],
-		"part_price": 0,
-	},
-	"10": {
-		"resource": load("res://levels/Herberik_level_1_4.tscn"),
-		"unlocks": [],
-		"part_price": 0,
-	},
-	"11": {
-		"resource": load("res://levels/test_level_template.tscn"),
+		"resource": load("res://levels/tutorial/3.tscn"),
 		"unlocks": [],
 		"part_price": 0,
 	},

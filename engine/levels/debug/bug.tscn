@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://dke5xya76w1wi"]
 
-[ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_nioeu"]
+[ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_84aom"]
 
-[node name="LevelTemplate4" instance=ExtResource("1_nioeu")]
+[node name="LevelTemplate4" instance=ExtResource("1_84aom")]
 board_dimensions = Vector2i(3, 1)
 
 [node name="Player" parent="." index="0"]
@@ -19,4 +19,3 @@ layer_0/tile_data = PackedInt32Array(0, 6, 0, 2, 4, 0, 1, 1, 0)
 
 [node name="Overlay" parent="." index="5"]
 layer_0/tile_data = PackedInt32Array(327667, 0, 0, -262157, 0, 0, 327668, 0, 0, -262156, 0, 0, 327669, 0, 0, -262155, 0, 0, 327670, 0, 0, -262154, 0, 0, 327671, 0, 0, -262153, 0, 0, 327672, 0, 0, -262152, 0, 0, 327673, 0, 0, -262151, 0, 0, 327674, 0, 0, -262150, 0, 0, 327675, 0, 0, -262149, 0, 0, 327676, 0, 0, -262148, 0, 0, 327677, 0, 0, -262147, 0, 0, 327678, 0, 0, -262146, 0, 0, 327679, 0, 0, -262145, 0, 0, 262144, 0, 0, -327680, 0, 0, 262145, 0, 0, -327679, 0, 0, 262146, 0, 0, -327678, 0, 0, 262147, 0, 0, -327677, 0, 0, 262148, 0, 0, -327676, 0, 0, 262149, 0, 0, -327675, 0, 0, 262150, 0, 0, -327674, 0, 0, 262151, 0, 0, -327673, 0, 0, 262152, 0, 0, -327672, 0, 0, 262153, 0, 0, -327671, 0, 0, 262154, 0, 0, -327670, 0, 0, 262155, 0, 0, -327669, 0, 0, 262156, 0, 0, -327668, 0, 0, -196621, 0, 0, -262132, 0, 0, -131085, 0, 0, -196596, 0, 0, -65549, 0, 0, -131060, 0, 0, -13, 0, 0, -65524, 0, 0, 65523, 0, 0, 12, 0, 0, 131059, 0, 0, 65548, 0, 0, 196595, 0, 0, 131084, 0, 0, 262131, 0, 0, 196620, 0, 0)
-board_dimensions = Vector2i(3, 1)
