@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dtkhnervfb8g8"]
+[gd_scene load_steps=12 format=3 uid="uid://dtkhnervfb8g8"]
 
 [ext_resource type="Script" path="res://scripts/settings.gd" id="1_1sbxb"]
 [ext_resource type="Theme" uid="uid://b6dnqex7rkm3u" path="res://themes/main_theme.tres" id="1_2esgo"]
@@ -6,12 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://cimdip5w7semr" path="res://menu_stuff/settings_bool.tscn" id="2_or2vx"]
 [ext_resource type="PackedScene" uid="uid://bfgrl48wnlnlx" path="res://settings_stuff/my_panel.tscn" id="3_2u476"]
 [ext_resource type="PackedScene" uid="uid://qltep5mntvfb" path="res://menu_stuff/settings_button.tscn" id="3_b01vd"]
-[ext_resource type="PackedScene" path="res://menu_stuff/settings_slider.tscn" id="5_fdlcu"]
+[ext_resource type="PackedScene" uid="uid://bkuryr5wpwy4h" path="res://menu_stuff/settings_slider.tscn" id="5_fdlcu"]
 [ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="6_1m8wc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7jr6i"]
 font = ExtResource("1_8r5dt")
 font_size = 72
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn53h"]
+content_margin_left = 147.667
+content_margin_top = 16.0
+content_margin_right = 147.667
+content_margin_bottom = 16.0
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.717647, 0.717647, 0.717647, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0tibx"]
 font_size = 48
@@ -49,7 +60,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_right = 50
+theme_override_constants/margin_right = 42
 
 [node name="ColorRect" type="ColorRect" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox"]
 layout_mode = 2
@@ -58,7 +69,8 @@ color = Color(0.352941, 0.352941, 0.352941, 1)
 [node name="TabContainer" type="TabContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox"]
 layout_mode = 2
 theme = ExtResource("1_2esgo")
-theme_override_constants/side_margin = 0
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_nn53h")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_nn53h")
 
 [node name="Misc" type="ScrollContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer"]
 layout_mode = 2

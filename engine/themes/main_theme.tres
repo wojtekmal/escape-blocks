@@ -1,23 +1,45 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://b6dnqex7rkm3u"]
 
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="1_a65e2"]
-[ext_resource type="Texture2D" uid="uid://b61xr7nybkgat" path="res://textures/button/blue_block_big.png" id="1_ot6wy"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rypt0"]
-texture = ExtResource("1_ot6wy")
-texture_margin_left = 20.0
-texture_margin_right = 20.0
-texture_margin_bottom = 20.0
-region_rect = Rect2(0, 20, 128, 108)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hflk"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+border_width_right = 8
+border_color = Color(0.717647, 0.717647, 0.717647, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rgwru"]
-texture = ExtResource("1_ot6wy")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn53h"]
+content_margin_left = 147.667
+content_margin_top = 16.0
+content_margin_right = 147.667
+content_margin_bottom = 16.0
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.717647, 0.717647, 0.717647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gm3yu"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.717647, 0.717647, 0.717647, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbdn3"]
-bg_color = Color(0, 0, 0, 0)
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(0.717647, 0.717647, 0.717647, 1)
 
 [resource]
 default_font = ExtResource("1_a65e2")
-TabContainer/styles/panel = SubResource("StyleBoxTexture_rypt0")
-TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_rgwru")
+TabContainer/constants/side_margin = -8
+TabContainer/font_sizes/font_size = 24
+TabContainer/styles/panel = SubResource("StyleBoxFlat_8hflk")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_nn53h")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_gm3yu")
 TabContainer/styles/tabbar_background = SubResource("StyleBoxFlat_qbdn3")
