@@ -35,6 +35,7 @@ signal change_to_next_level
 @onready var part_box_5 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox5
 @onready var camera := $Camera2D
 @onready var background := $Camera2D/CanvasLayer/CenterContainer/Container/background
+@onready var backblock = preload("res://board_stuff/backgroundblock.tscn")
 
 var rotations_number : int : set = update_counter
 var moving_entities = []
@@ -142,6 +143,9 @@ func _physics_process(delta):
 func _process(delta):
 	if Engine.is_editor_hint(): return
 	move_camera()
+	if randi()%1000 == 0:
+		add_child(backblock.instantiate(0))
+
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():

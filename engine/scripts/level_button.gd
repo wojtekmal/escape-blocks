@@ -7,10 +7,8 @@ signal refresh_map
 
 @onready var pressable_button := $TextureButton
 @onready var needed_part_display := $TextureButton/VBoxContainer/HBoxContainer
-#var is_unlocked : bool = false
-#var label_text : String = "" : set = set_label_text
+var real_name = "NULL"
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	var label = $TextureButton/VBoxContainer/Label
 	var part_label := $TextureButton/VBoxContainer/HBoxContainer/Label
@@ -94,9 +92,9 @@ func _process(delta):
 func set_label_text(new_value):
 	var label = $TextureButton/VBoxContainer/Label
 	if(global.levels_data.has(new_value)):
+#		print(new_value, " name")
+		real_name = new_value
 		label.text = new_value
-	else:
-		label.text = "NULL"
 
 func on_button_pressed():
 	var label = $TextureButton/VBoxContainer/Label
@@ -109,6 +107,7 @@ func on_button_pressed():
 		confirm_buy_level.real_pos = position
 		add_child(confirm_buy_level)
 	else:
+		print("pressed: " +  label.text)
 		emit_signal("button_pressed", label.text)
 
 func _on_renamed():

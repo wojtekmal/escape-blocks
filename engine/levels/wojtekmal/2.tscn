@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwa3yjn5y80wh"]
 
-[ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_1ahki"]
+[ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_8ko1i"]
 
-[node name="LevelTemplate4" instance=ExtResource("1_1ahki")]
+[node name="LevelTemplate4" instance=ExtResource("1_8ko1i")]
 board_dimensions = Vector2i(6, 6)
 
 [node name="Player" parent="." index="0"]

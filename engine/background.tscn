@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgr1bna3ymmvr"]
+[gd_scene load_steps=7 format=3 uid="uid://klvxuhcfwpx0"]
 
 [ext_resource type="Script" path="res://scripts/background.gd" id="1_bpbh2"]
 [ext_resource type="Shader" path="res://shaders/background.gdshader" id="1_y3jj5"]
@@ -23,16 +23,20 @@ shader_parameter/direction = Vector2(1, 0.5)
 shader_parameter/speed = 0.1
 
 [node name="background" type="Node2D"]
+z_index = -100
 script = ExtResource("1_bpbh2")
 
 [node name="Stars" type="Sprite2D" parent="."]
+z_index = -100
 material = SubResource("ShaderMaterial_8fojd")
 texture = ExtResource("2_kk2d1")
 
 [node name="Stars2" type="Sprite2D" parent="."]
+z_index = -100
 material = SubResource("ShaderMaterial_86ikq")
 texture = ExtResource("2_kk2d1")
 
 [node name="Stars3" type="Sprite2D" parent="."]
+z_index = -100
 material = SubResource("ShaderMaterial_4w004")
 texture = ExtResource("2_kk2d1")
