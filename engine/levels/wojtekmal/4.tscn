@@ -4,6 +4,8 @@
 
 [node name="LevelTemplate4" instance=ExtResource("1_t6684")]
 board_dimensions = Vector2i(8, 8)
+rotation_limit_1 = 11
+rotation_limit_2 = 7
 
 [node name="Player" parent="." index="0"]
 position = Vector2(0, -96)

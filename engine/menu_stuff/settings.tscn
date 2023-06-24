@@ -14,9 +14,9 @@ font = ExtResource("1_8r5dt")
 font_size = 72
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn53h"]
-content_margin_left = 147.667
+content_margin_left = 134.5
 content_margin_top = 16.0
-content_margin_right = 147.667
+content_margin_right = 134.5
 content_margin_bottom = 16.0
 border_width_left = 8
 border_width_top = 8
@@ -72,15 +72,15 @@ theme = ExtResource("1_2esgo")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_nn53h")
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_nn53h")
 
-[node name="Misc" type="ScrollContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer"]
+[node name="Gameplay" type="ScrollContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Misc"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ResetProgress" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Misc/VBoxContainer" instance=ExtResource("3_b01vd")]
+[node name="ResetProgress" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer" instance=ExtResource("3_b01vd")]
 layout_mode = 2
 label_text = "RESET PROGRESS"
 action = "reset_progress"
