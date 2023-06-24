@@ -8,7 +8,7 @@ func _ready():
 	var back_to_menu_button := $MyPanel/MarginContainer/VBoxContainer/ExternalButtonsBox/HBoxContainer/MyButton
 	back_to_menu_button.pressed.connect(go_to_menu)
 	
-	var settings_list = $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Misc/VBoxContainer.get_children()
+	var settings_list = $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer.get_children()
 	settings_list.append_array($MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer.get_children())
 	settings_list.append_array($MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer.get_children())
 	
