@@ -4,6 +4,8 @@
 
 [node name="LevelTemplate4" instance=ExtResource("1_8ko1i")]
 board_dimensions = Vector2i(6, 6)
+rotation_limit_1 = 7
+rotation_limit_2 = 6
 
 [node name="Player" parent="." index="0"]
 position = Vector2(0, -32)
@@ -14,11 +16,11 @@ layer_0/tile_data = PackedInt32Array(1638375, 0, 0, -1572889, 0, 0, 1638376, 0, 
 board_dimensions = Vector2i(6, 6)
 
 [node name="Walls" parent="." index="3"]
-position = Vector2(-192, -192)
-layer_0/tile_data = PackedInt32Array(65537, 2, 0, 131073, 2, 0, 196609, 2, 0, 262145, 2, 0, 65540, 2, 0, 131076, 2, 0, 196612, 2, 0, 262148, 2, 0, 262146, 2, 0, 131075, 2, 0, 196608, 2, 0, 65541, 2, 0, 327680, 6, 0, 131072, 4, 0, 327681, 1, 0, 327682, 1, 0, 196610, 1, 0, 131074, 1, 0, 65538, 1, 0, 2, 1, 0, 65539, 1, 0)
+position = Vector2(-190, -192)
+layer_0/tile_data = PackedInt32Array(65537, 2, 0, 131073, 2, 0, 196609, 2, 0, 262145, 2, 0, 65540, 2, 0, 131076, 2, 0, 196612, 2, 0, 262148, 2, 0, 262146, 2, 0, 131075, 2, 0, 196608, 2, 0, 327680, 6, 0, 131072, 4, 0, 327681, 1, 0, 327682, 1, 0, 196610, 1, 0, 131074, 1, 0, 65538, 1, 0, 2, 1, 0, 65539, 1, 0)
 
 [node name="CenterContainer" parent="Camera2D/CanvasLayer" index="0"]
-offset_left = -214.0
-offset_top = -68.0
-offset_right = -214.0
-offset_bottom = -68.0
+offset_left = -273.0
+offset_top = -94.0
+offset_right = -273.0
+offset_bottom = -94.0

@@ -113,9 +113,9 @@ size_flags_stretch_ratio = 1.5
 label_text = "Menu"
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = -100.0
-offset_top = -1100.0
-offset_right = 2886.0
-offset_bottom = -710.0
+offset_left = -150.0
+offset_top = -800.0
+offset_right = 1800.0
+offset_bottom = -232.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ru84r")
