@@ -123,6 +123,8 @@ func _input(event : InputEvent, delta = get_physics_process_delta_time()) -> voi
 	if event is InputEventMouseButton:
 		if event.pressed:
 			var map_camera = $MapCamera
+			var mouse_pos = get_global_mouse_position()
+			var current_zoom = map_camera.zoom_factor
 			match event.button_index:
 				MOUSE_BUTTON_WHEEL_DOWN:
 					map_camera.zoom_factor -= ZOOM_SPEED * delta * map_camera.zoom_factor
@@ -132,3 +134,29 @@ func _input(event : InputEvent, delta = get_physics_process_delta_time()) -> voi
 			map_camera.zoom_factor = min(ZOOM_MAX, map_camera.zoom_factor)
 			map_camera.zoom_factor = max(ZOOM_MIN, map_camera.zoom_factor)
 			map_camera.zoom = Vector2(map_camera.zoom_factor, map_camera.zoom_factor)
+			var zoom_change = map_camera.zoom_factor / current_zoom
+			map_camera.position = lerp(mouse_pos, map_camera.position, 1 / zoom_change)
+
+#func _input(event):
+#	if event is InputEventMouse:
+#		if event.is_pressed() and not event.is_echo():
+#			var mouse_position = event.position
+#			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+#				zoom_at_point(ZOOM_SPEED,mouse_position)
+#			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+#				zoom_at_point(1/ZOOM_SPEED,mouse_position)
+
+#func zoom_at_point(zoom_change, point):
+#	var map_camera := $MapCamera
+#	var c0 = global_position # camera position
+#	var v0 = get_viewport().size # vieport size
+#	var c1 # next camera position
+#	var z0 = map_camera.zoom.x # current zoom value
+#	var z1 = z0 * zoom_change # next zoom value
+#
+#	c1 = c0 + (-0.5*v0 + point)*(z0 - z1)
+#
+#	z1 = max(ZOOM_MIN, z1)
+#	z1 = min(ZOOM_MAX, z1)
+#	map_camera.zoom = Vector2(z1, z1)
+#	global_position = c1
