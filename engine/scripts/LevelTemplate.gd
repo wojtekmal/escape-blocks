@@ -331,8 +331,6 @@ func move_player(delta):
 	
 	if (entity_below_left != counter && (player.y_speed - entity_below_left.y_speed) * delta >
 		entity_below_left.position.y - player.position.y - size.y / 2 - get_y_size(entity_below_left) / 2):
-		print("player slowing left block")
-		print("")
 		entity_below_left.y_speed = player.y_speed
 	
 	if (entity_below_right != counter && (player.y_speed - entity_below_right.y_speed) * delta >

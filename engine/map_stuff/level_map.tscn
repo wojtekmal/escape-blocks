@@ -116,6 +116,6 @@ label_text = "Menu"
 offset_left = -150.0
 offset_top = -800.0
 offset_right = 1800.0
-offset_bottom = -232.0
+offset_bottom = -154.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ru84r")
