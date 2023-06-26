@@ -804,8 +804,8 @@ func move_camera():
 	#print(camera.position)
 	#print(background.position)
 	global_position = Vector2.ZERO
-	camera.position = lerp(player.position, $Center.position, 0.5)
-	while (camera.position - player.position).length() * camera.zoom.x > 100:
+	camera.position = lerp(player.position, $Center.position, 0.7)
+	while (camera.position - player.position).length() * camera.zoom.x > 200:
 		camera.position = lerp(camera.position, player.position, 0.01)
 
 func load_blocks_from_walls_source():

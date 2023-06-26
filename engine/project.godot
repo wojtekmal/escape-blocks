@@ -13,7 +13,9 @@ config_version=5
 config/name="Escape blocks"
 run/main_scene="res://menu_stuff/menu_2.tscn"
 config/features=PackedStringArray("4.0")
-config/icon="res://textures/icon.png"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://textures/logo.png"
+config/icon="res://textures/block.png"
 
 [autoload]
 
