@@ -99,7 +99,7 @@ var levels_data := {
 	},
 	"Random": {
 		"resource": load("res://levels/random_level.tscn"),
-		"unlocks": [],
+		"unlocks": ["Random"],
 		"part_price": 0,
 	},
 }
