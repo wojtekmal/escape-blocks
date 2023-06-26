@@ -1,14 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://ow2x5epfg1v2"]
+[gd_scene load_steps=15 format=3 uid="uid://ow2x5epfg1v2"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://c00o4ibdjkbef" path="res://textures/player/player.png" id="2_50npn"]
-[ext_resource type="Texture2D" uid="uid://bilry3a4g1ptf" path="res://textures/player/EB/EscapeBlocks/Player/Player_Front.png" id="2_lla33"]
-[ext_resource type="Texture2D" uid="uid://6kmb30nuyjk" path="res://textures/player/p/Player/Player_Move1.png" id="4_3xubx"]
-[ext_resource type="Texture2D" uid="uid://bxs354fabfxg8" path="res://textures/player/p/Player/Player_Move2.png" id="5_ss4ae"]
-[ext_resource type="Texture2D" uid="uid://c0v78w1kjbeql" path="res://textures/player/p/Player/Player_Move3.png" id="6_rmiak"]
-[ext_resource type="Texture2D" uid="uid://be0b0undcvn1h" path="res://textures/player/p/Player/Player_Move4.png" id="7_6ul6r"]
-[ext_resource type="Texture2D" uid="uid://c1tcn5egqkwuo" path="res://textures/player/p/Player/Player_Move5.png" id="8_yol0v"]
-[ext_resource type="Texture2D" uid="uid://c0gkw58utllkc" path="res://textures/player/p/Player/Player_Move6.png" id="9_u76fj"]
+[ext_resource type="Texture2D" uid="uid://r5s75ub5g24x" path="res://textures/Player/Player_Front.png" id="2_ris8j"]
+[ext_resource type="Texture2D" uid="uid://x2i73rpg2pc7" path="res://textures/Player/Player_Move1.png" id="3_je7l4"]
+[ext_resource type="Texture2D" uid="uid://dg6fkqcbtna8t" path="res://textures/Player/Player_Move2.png" id="4_43pw6"]
+[ext_resource type="Texture2D" uid="uid://dufjorh7cdwrh" path="res://textures/Player/Player_Move3.png" id="5_fbai5"]
+[ext_resource type="Texture2D" uid="uid://bbqq3l2g2acw6" path="res://textures/Player/Player_Move4.png" id="6_h0e5q"]
+[ext_resource type="Texture2D" uid="uid://doyb1a8jme8ue" path="res://textures/Player/Player_Move5.png" id="7_owydn"]
+[ext_resource type="Texture2D" uid="uid://c3p2gaf52vcdf" path="res://textures/Player/Player_Move6.png" id="8_s2vea"]
 [ext_resource type="AudioStream" uid="uid://db662udwtdjhm" path="res://sound/player_landing.wav" id="11_gty8t"]
 [ext_resource type="AudioStream" uid="uid://bhpe1cgavnv5v" path="res://sound/player_walking.wav" id="12_kuxtn"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="12_x6ppo"]
@@ -20,7 +19,7 @@ size = Vector2(30, 50)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_lla33")
+"texture": ExtResource("2_ris8j")
 }],
 "loop": true,
 "name": &"default",
@@ -28,7 +27,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_lla33")
+"texture": ExtResource("2_ris8j")
 }],
 "loop": true,
 "name": &"fallingDown",
@@ -36,7 +35,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_50npn")
+"texture": ExtResource("2_ris8j")
 }],
 "loop": true,
 "name": &"fallingUp",
@@ -44,22 +43,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_3xubx")
+"texture": ExtResource("3_je7l4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ss4ae")
+"texture": ExtResource("4_43pw6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_rmiak")
+"texture": ExtResource("5_fbai5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_6ul6r")
+"texture": ExtResource("6_h0e5q")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_yol0v")
+"texture": ExtResource("7_owydn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_u76fj")
+"texture": ExtResource("8_s2vea")
 }],
 "loop": true,
 "name": &"walking",
@@ -82,7 +81,7 @@ shape = SubResource("2")
 z_index = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("3")
-animation = &"walking"
+animation = &"fallingUp"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -19)
