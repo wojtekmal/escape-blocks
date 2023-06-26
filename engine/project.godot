@@ -35,6 +35,7 @@ Updatedupstreamwindow/size/height=128
 [global]
 
 main=false
+minimum_display_time=10000
 
 [input]
 
@@ -114,7 +115,7 @@ common/quality/msaa_2d=0
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.0862745, 0.121569, 0.211765, 1)
-anti_aliasing/quality/msaa_2d=3
+anti_aliasing/quality/msaa_2d=1
 environment/defaults/default_environment="res://default_env.tres"
 textures/canvas_textures/default_texture_filter=0
 quality/driver/driver_name="GLES2"
