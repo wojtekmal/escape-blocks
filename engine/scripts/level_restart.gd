@@ -14,6 +14,20 @@ func start(level_name : String):
 		await level.tree_exited
 	var new_level = global.levels_data[level_name]["resource"].instantiate()
 	
+	if level_name == "Random":
+		var file = FileAccess.open("res://levels/maps/" + str(global.current_random_level) + ".txt", FileAccess.READ)
+		new_level.walls_source = file.get_as_text()
+		global.current_random_level += 1
+		print(global.current_random_level)
+		
+		var dir = DirAccess.open("res://levels/maps/")
+		
+		if !dir.file_exists(str(global.current_random_level) + ".txt"):
+			print("Looping global.current_random_level to 0.")
+			global.current_random_level = 0
+		
+		global.save()
+	
 	# This can be removed when all levels get their final name.
 	new_level.level_name = level_name
 	new_level.retry_this_level.connect(start)

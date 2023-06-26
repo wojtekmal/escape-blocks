@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dey3dfrrv4tg5"]
+
+[ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_j8hjm"]
+
+[node name="LevelTemplate4" instance=ExtResource("1_j8hjm")]
+walls_source = "11 11
+.....#.#W#.
+P....###D##
+.#...#3DGDE
+.#B..###D##
+B###.#.#M#.
+######.###.
+.#...#.....
+#....#.....
+##..P#.....
+...B.#.....
+BB.#B#....."
