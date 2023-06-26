@@ -4,6 +4,7 @@ extends Node
 var current_level : String = "1"
 var part_count : int = 0
 var zoom_factor : float = 0.7
+var current_random_level : int = 0
 
 #@onready var ui_click_player = AudioStreamPlayer.new()
  
@@ -49,6 +50,8 @@ func load_data():
 		part_count = content["part_count"]
 	if content.has("zoom_factor") && content["zoom_factor"] != 0:
 		zoom_factor = content["zoom_factor"]
+	if content.has("current_random_level"):
+		current_random_level = content["current_random_level"]
 	
 	manage_settings()
 
@@ -59,6 +62,7 @@ func save():
 		"settings" : settings,
 		"part_count" : part_count,
 		"zoom_factor" : zoom_factor,
+		"current_random_level" : current_random_level,
 	}
 	
 #	print(saved_var)
@@ -90,6 +94,11 @@ var levels_data := {
 	},
 	"NULL": {
 		"resource": load("res://levels/LevelTemplate.tscn"),
+		"unlocks": [],
+		"part_price": 0,
+	},
+	"Random": {
+		"resource": load("res://levels/random_level.tscn"),
 		"unlocks": [],
 		"part_price": 0,
 	},

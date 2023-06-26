@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://csxm6djh8uf3g"]
+[gd_scene load_steps=11 format=3 uid="uid://csxm6djh8uf3g"]
 
 [ext_resource type="PackedScene" uid="uid://vntb00nxrmwy" path="res://board_stuff/Button.tscn" id="1_brn8m"]
 [ext_resource type="Shader" path="res://shaders/button.gdshader" id="2_p1dr0"]
+[ext_resource type="Texture2D" uid="uid://cccwvxhkxhkc7" path="res://textures/blocks/antibutton.png" id="3_wiuwf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r104v"]
 resource_local_to_scene = true
@@ -60,6 +61,12 @@ negative = true
 
 [node name="Shaded" parent="." index="1"]
 material = SubResource("ShaderMaterial_r104v")
+
+[node name="TextureProgressBar" parent="Shaded" index="0"]
+texture_progress = ExtResource("3_wiuwf")
+
+[node name="Button" parent="Shaded" index="1"]
+texture = ExtResource("3_wiuwf")
 
 [node name="RainbowParticles" parent="Shaded" index="2"]
 process_material = SubResource("ParticleProcessMaterial_hj0qu")
