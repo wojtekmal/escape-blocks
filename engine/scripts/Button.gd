@@ -55,6 +55,7 @@ func _physics_process(delta):
 	if $hitbox.has_overlapping_areas() != negative:
 		if pressed_for == delay:
 			$WhirUp.play()
+			button.visible = false
 		
 		$Shaded/TextureProgressBar.value = 1.0 - (pressed_for) / delay
 		if pressed_for > 0 and pressed_for - delta < 0:
@@ -66,3 +67,4 @@ func _physics_process(delta):
 		if pressed_for < 0:
 			on_release()
 		pressed_for = delay
+		button.visible = true

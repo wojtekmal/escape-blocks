@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cylgj4bcajsr0"]
+[gd_scene load_steps=12 format=3 uid="uid://cylgj4bcajsr0"]
 
 [ext_resource type="Script" path="res://scripts/level_map.gd" id="1_gliqh"]
 [ext_resource type="PackedScene" uid="uid://ba4y62q3j4hcl" path="res://map_stuff/level_button.tscn" id="1_qu7sv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="4_y8sme"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="5_iu41y"]
 [ext_resource type="PackedScene" uid="uid://klvxuhcfwpx0" path="res://background.tscn" id="7_opcik"]
+[ext_resource type="PackedScene" uid="uid://btvxc5u10k7ff" path="res://map_stuff/random_level_button.tscn" id="9_4gwoi"]
 [ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="9_bo5fr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lnd47"]
@@ -23,6 +24,9 @@ border_color = Color(0.490196, 0.490196, 0.490196, 1)
 
 [node name="LevelMap" type="Node2D"]
 script = ExtResource("1_gliqh")
+
+[node name="Random" parent="." instance=ExtResource("9_4gwoi")]
+position = Vector2(527, 469)
 
 [node name="Tutorial" parent="." instance=ExtResource("3_6e3n4")]
 position = Vector2(1070, 121)
@@ -116,6 +120,6 @@ label_text = "Menu"
 offset_left = -150.0
 offset_top = -800.0
 offset_right = 1800.0
-offset_bottom = -154.0
+offset_bottom = -76.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ru84r")

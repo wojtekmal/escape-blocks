@@ -16,6 +16,7 @@ signal change_to_next_level
 @export var time_limit_2 : float
 @export var rotation_disabled : bool = false
 @export var end_screen_disabled : bool = false
+@export_multiline var walls_source : String
 
 #children
 @onready var tilemap := $BoardLimits
@@ -105,6 +106,46 @@ var tile_blocks := {
 	},
 }
 
+# Letters to blocks.
+var letters_to_blocks := {
+	"#" : {
+		"name" : "static",
+		"rotation" : 0,
+	},
+	"B" : {
+		"name" : "moving",
+		"rotation" : 0,
+	},
+	"P" : {
+		"name" : "button",
+		"rotation" : 1,
+	},
+	"D" : {
+		"name" : "door",
+		"rotation" : 1,
+	},
+	"G" : {
+		"name" : "player",
+		"rotation" : 0,
+	},
+	"M" : {
+		"name" : "finish",
+		"rotation" : 0,
+	},
+	"W" : {
+		"name" : "finish",
+		"rotation" : 2,
+	},
+	"3" : {
+		"name" : "finish",
+		"rotation" : 1,
+	},
+	"E" : {
+		"name" : "finish",
+		"rotation" : 3,
+	},
+}
+
 var door_blocks := {}
 
 func _ready():
@@ -119,6 +160,9 @@ func _ready():
 	game_ended = false
 	
 	if Engine.is_editor_hint(): return
+	
+	if walls_source != "":
+		load_blocks_from_walls_source()
 	
 	load_blocks_from_tilemap()
 	
@@ -145,7 +189,6 @@ func _process(delta):
 	move_camera()
 	if randi()%1000 == 0:
 		add_child(backblock.instantiate(0))
-
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -388,7 +431,7 @@ func manage_changing_gravity():
 	Input.is_action_pressed("gravity_left") && global.settings["switch_rotation"]):
 		game_started = true
 		rotations += 1
-		#print("Adding one 90 degrees rotation.")
+		#("Adding one 90 degrees rotation.")
 	if(Input.is_action_pressed("gravity_up")):
 		game_started = true
 		rotations += 2
@@ -420,7 +463,7 @@ func manage_changing_gravity():
 		return
 	
 	var change_angle = PI * now_rotations * (rotation_timer.wait_time - rotation_timer.time_left) / rotation_timer.wait_time / 2
-	tilemap.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
+	tilemap.rotation = change_angle
 	overlay.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	background.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	
@@ -450,7 +493,7 @@ func all_not_falling():
 	return true
 
 func rotation_ended():
-	tilemap.rotation = total_rotations * PI / 2
+	tilemap.rotation = 0
 	overlay.rotation = total_rotations * PI / 2
 	background.rotation = total_rotations * PI / 2
 	var wasd := get_tree().get_nodes_in_group("wasd")
@@ -763,7 +806,29 @@ func move_camera():
 	camera.position = lerp(player.position, $Center.position, 0.5)
 	while (camera.position - player.position).length() * camera.zoom.x > 100:
 		camera.position = lerp(camera.position, player.position, 0.01)
-		
-#	while (camera.position - player.position).length() * camera.zoom.x > 100:
-#		camera.position = lerp(camera.position, player.position, 0.01)
-	#background.position = camera.position
+
+func load_blocks_from_walls_source():
+	var copy = walls_source
+	var x_size = copy.left(copy.findn(" "))
+	copy = copy.right(copy.length() - x_size.length() - 1)
+	x_size = x_size.to_int()
+	var y_size = copy.left(copy.findn("\n"))
+	copy = copy.right(copy.length() - y_size.length() - 1)
+	y_size = y_size.to_int()
+	copy = copy + "\n"
+	
+	walls.clear()
+	set_board_dimensions(Vector2i(x_size, y_size))
+	print(board_dimensions)
+	
+	for row in y_size:
+		for i in x_size:
+			var char_num = i + row * (x_size + 1)
+			var letter = copy[char_num]
+			
+			if letter == '.':
+				continue
+			
+			var block_type = letters_to_blocks[letter]["name"]
+			var rotation = letters_to_blocks[letter]["rotation"]
+			walls.set_cell(tile_blocks[block_type]["layer"], Vector2i(i, row), tile_blocks[block_type]["id"], tile_blocks[block_type]["adress"], rotation)

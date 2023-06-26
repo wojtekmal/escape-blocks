@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=64 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -14,6 +14,7 @@
 [ext_resource type="Shader" path="res://shaders/button.gdshader" id="11_psw4b"]
 [ext_resource type="Texture2D" uid="uid://dd7lkv07jf7o1" path="res://textures/overlay.png" id="12_52lji"]
 [ext_resource type="Texture2D" uid="uid://ddo0kuo1nd0xw" path="res://textures/blocks/button.png" id="12_gobi5"]
+[ext_resource type="Texture2D" uid="uid://cccwvxhkxhkc7" path="res://textures/blocks/antibutton.png" id="13_jwgjb"]
 [ext_resource type="Texture2D" uid="uid://dwm0i4f3lr28f" path="res://textures/blocks/door.png" id="13_lyb2i"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="14_wb3oo"]
 [ext_resource type="Texture2D" uid="uid://c1bpkytwgid7w" path="res://textures/Cables/CableBlueAll.png" id="16_64pof"]
@@ -253,7 +254,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7aifg"]
 resource_name = "Negative Button"
-texture = ExtResource("12_gobi5")
+texture = ExtResource("13_jwgjb")
 texture_region_size = Vector2i(32, 32)
 0:0/next_alternative_id = 4
 0:0/0 = 0
@@ -531,6 +532,49 @@ scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_7fwbe")
 cell_quadrant_size = 32
 format = 2
+layer_0/name = "bg0"
+layer_1/name = "bg1"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "bg2"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "bg3"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array()
+layer_4/name = "blue_cable"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 0
+layer_4/tile_data = PackedInt32Array()
+layer_5/name = "red_cable"
+layer_5/enabled = true
+layer_5/modulate = Color(1, 1, 1, 1)
+layer_5/y_sort_enabled = false
+layer_5/y_sort_origin = 0
+layer_5/z_index = 0
+layer_5/tile_data = PackedInt32Array()
+layer_6/name = "computers"
+layer_6/enabled = true
+layer_6/modulate = Color(1, 1, 1, 1)
+layer_6/y_sort_enabled = false
+layer_6/y_sort_origin = 0
+layer_6/z_index = 0
+layer_6/tile_data = PackedInt32Array()
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
