@@ -105,6 +105,10 @@ fly={
 2d_physics/layer_3="world"
 2d_physics/layer_4="finish"
 
+[physics]
+
+common/quality/msaa_2d=0
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.0862745, 0.121569, 0.211765, 1)

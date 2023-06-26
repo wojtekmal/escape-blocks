@@ -180,15 +180,16 @@ func _physics_process(delta):
 	manage_changing_gravity()
 	manage_falling_entities(delta)
 	manage_doors()
-		
+	
 	first_frame = false
 	frame_count += 1
+	
+	if randf_range(0, 2137) <= delta:
+		add_child(backblock.instantiate())
 
 func _process(delta):
 	if Engine.is_editor_hint(): return
 	move_camera()
-	if randi()%1000 == 0:
-		add_child(backblock.instantiate(0))
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -832,3 +833,9 @@ func load_blocks_from_walls_source():
 			var block_type = letters_to_blocks[letter]["name"]
 			var rotation = letters_to_blocks[letter]["rotation"]
 			walls.set_cell(tile_blocks[block_type]["layer"], Vector2i(i, row), tile_blocks[block_type]["id"], tile_blocks[block_type]["adress"], rotation)
+
+func _exit_tree():
+	if randi() % 420 == 0:
+		get_window().title = "Enter Blocks"
+	else:
+		get_window().title = "Escape Blocks"

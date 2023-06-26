@@ -18,6 +18,7 @@ func start(level_name : String):
 		var file = FileAccess.open("res://levels/maps/" + str(global.current_random_level) + ".txt", FileAccess.READ)
 		new_level.walls_source = file.get_as_text()
 		global.current_random_level += 1
+
 		print(global.current_random_level)
 		
 		var dir = DirAccess.open("res://levels/maps/")
@@ -26,8 +27,11 @@ func start(level_name : String):
 			print("Looping global.current_random_level to 0.")
 			global.current_random_level = 0
 		
+		get_window().title = "random level: " + str(global.current_random_level)
 		global.save()
-	
+	else:
+		get_window().title = level_name
+
 	# This can be removed when all levels get their final name.
 	new_level.level_name = level_name
 	new_level.retry_this_level.connect(start)

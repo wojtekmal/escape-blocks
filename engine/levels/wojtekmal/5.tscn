@@ -4,7 +4,6 @@
 
 [node name="LevelTemplate4" instance=ExtResource("1_7bw0j")]
 board_dimensions = Vector2i(20, 20)
-walls_source = ""
 
 [node name="Player" parent="." index="0"]
 position = Vector2(0, -480)
