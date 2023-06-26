@@ -766,7 +766,7 @@ func go_to_map():
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
 
 func retry_level():
-	emit_signal("retry_this_level", level_name)
+	emit_signal("retry_this_level")
 
 func go_to_next_level():
 	var next_level_name := "NULL"
