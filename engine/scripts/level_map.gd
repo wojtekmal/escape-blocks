@@ -21,6 +21,7 @@ func _ready():
 		buttons[button_reference.real_name] = button_reference
 	
 	$Tutorial.button_pressed.connect(on_level_button_pressed)
+	$Random.button_pressed.connect(on_level_button_pressed)
 	
 	var back_to_menu_button := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/MyButton
 	back_to_menu_button.pressed.connect(go_to_menu)
