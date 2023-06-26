@@ -13,7 +13,7 @@ func start(level_name : String):
 		level.hide()
 		await level.tree_exited
 	var new_level = global.levels_data[level_name]["resource"].instantiate()
-	
+		
 	if level_name == "Random":
 		var file = FileAccess.open("res://levels/maps/" + str(global.current_random_level) + ".txt", FileAccess.READ)
 		new_level.walls_source = file.get_as_text()
