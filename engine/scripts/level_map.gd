@@ -50,8 +50,10 @@ func add_levels(path, dirname):
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				add_levels(path + file_name + "/", dirname + file_name + "/")
+				if file_name != "maps":
+					add_levels(path + file_name + "/", dirname + file_name + "/")
 			else:
+				file_name = file_name.replace(".remap" , "")
 				global.levels_data[dirname + file_name] = {"resource":load(path + file_name), "unlocks": [], "part_price": 0,}
 				global.levels[dirname + file_name] = {
 					"unlocked": 2,

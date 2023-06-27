@@ -5,7 +5,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_ecgtq"]
 font = ExtResource("2_jgxdu")
-font_size = 26
+font_size = 25
 
 [node name="TutorialFloat" type="CanvasLayer"]
 layer = 101
