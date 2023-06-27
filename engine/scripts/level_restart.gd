@@ -48,7 +48,7 @@ func start(level_name : String):
 
 	# This can be removed when all levels get their final name.
 	new_level.level_name = level_name
-	new_level.retry_this_level.connect(start)
+	new_level.retry_this_level.connect(restart_current_level)
 	new_level.change_to_next_level.connect(change_to_next_level)
 	add_child(new_level)
 	await new_level.ready
@@ -59,7 +59,7 @@ func _ready():
 	var settings := $CanvasLayer/Control/VBoxContainer/MarginContainer/HBoxContainer/Settings
 	var map := $CanvasLayer/Control/VBoxContainer/MarginContainer/HBoxContainer/Map
 	resume.pressed.connect(unpause)
-	restart.pressed.connect(start_current_level)
+	restart.pressed.connect(restart_current_level)
 	settings.pressed.connect(open_settings)
 	map.pressed.connect(go_to_map)
 	current_level = global.current_level
@@ -70,7 +70,7 @@ func _process(delta):
 		pause(not paused)
 	
 	if Input.is_action_just_pressed("restart"):
-		start(current_level)
+		restart_current_level()
 
 func go_to_map():
 	unpause()
@@ -97,3 +97,10 @@ func pause(value := true):
 	paused = value
 	get_tree().paused = value
 	pause_screen.visible = paused
+
+func restart_current_level(level_name = current_level):
+	if current_level == "Random":
+		global.current_random_level -= 1
+	
+	start(current_level)
+	

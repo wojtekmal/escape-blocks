@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_kxfkh"]
 
 [node name="LevelTemplate4" instance=ExtResource("1_kxfkh")]
+rotation_limit_1 = 3
+rotation_limit_2 = 2
 
 [node name="Walls" parent="." index="3"]
 layer_0/tile_data = PackedInt32Array(196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 65542, 2, 0, 131078, 2, 0, 196614, 1, 0, 65537, 2, 0, 131076, 2, 0, 196612, 2, 0, 262148, 2, 0, 131077, 4, 0, 262144, 6, 0)
