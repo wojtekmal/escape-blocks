@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=65 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -33,6 +33,7 @@
 [ext_resource type="Script" path="res://scripts/Center.gd" id="22_uv5px"]
 [ext_resource type="Texture2D" uid="uid://cdlsn2pxsyddd" path="res://textures/bg/white16x16.png" id="23_shffb"]
 [ext_resource type="AudioStream" uid="uid://hxpxst5ebqfl" path="res://sound/rotation.wav" id="26_2h2bl"]
+[ext_resource type="PackedScene" uid="uid://bfgrl48wnlnlx" path="res://settings_stuff/my_panel.tscn" id="30_bqc0w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -576,103 +577,6 @@ layer_6/y_sort_origin = 0
 layer_6/z_index = 0
 layer_6/tile_data = PackedInt32Array()
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
-visible = false
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 50
-
-[node name="ColorRect" type="ColorRect" parent="Control/CanvasLayer/MarginContainer"]
-layout_mode = 2
-color = Color(0.345098, 0.345098, 0.345098, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/CanvasLayer/MarginContainer"]
-layout_mode = 2
-
-[node name="FinishLabelBox" type="MarginContainer" parent="Control/CanvasLayer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="FinishLabel" type="Label" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/FinishLabelBox"]
-material = SubResource("ShaderMaterial_pg4o3")
-layout_mode = 2
-text = "LEVEL FINISHED
-TOTAL ROTATIONS : 7"
-label_settings = SubResource("LabelSettings_n40f3")
-horizontal_alignment = 1
-
-[node name="PartsBox" type="MarginContainer" parent="Control/CanvasLayer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox"]
-layout_mode = 2
-
-[node name="PartBox1" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
-layout_mode = 2
-
-[node name="PartBox2" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
-layout_mode = 2
-
-[node name="PartBox3" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
-layout_mode = 2
-
-[node name="PartBox4" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
-layout_mode = 2
-
-[node name="PartBox5" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
-layout_mode = 2
-label_text = "text"
-
-[node name="ButtonsBox" type="MarginContainer" parent="Control/CanvasLayer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Map" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
-layout_mode = 2
-label_text = "Map"
-
-[node name="Retry" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
-layout_mode = 2
-label_text = "Retry"
-
-[node name="Next" parent="Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
-layout_mode = 2
-
-[node name="Timer" type="CanvasLayer" parent="Control"]
-script = ExtResource("19_nh8s2")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/Timer"]
-offset_left = 6.0
-offset_top = 26.0
-offset_right = 239.0
-offset_bottom = 89.0
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_q7ff1")
 
@@ -712,3 +616,91 @@ gizmo_extents = 1000.0
 [node name="RotationSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_2h2bl")
 volume_db = 7.0
+
+[node name="EndPanel" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="EndPanel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="MyPanel" parent="EndPanel/MarginContainer" instance=ExtResource("30_bqc0w")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndPanel/MarginContainer/MyPanel"]
+layout_mode = 2
+
+[node name="FinishLabelBox" type="MarginContainer" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FinishLabel" type="Label" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/FinishLabelBox"]
+material = SubResource("ShaderMaterial_pg4o3")
+layout_mode = 2
+text = "LEVEL FINISHED
+TOTAL ROTATIONS : 7"
+label_settings = SubResource("LabelSettings_n40f3")
+horizontal_alignment = 1
+
+[node name="PartsBox" type="MarginContainer" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox"]
+layout_mode = 2
+
+[node name="PartBox1" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
+layout_mode = 2
+
+[node name="PartBox2" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
+layout_mode = 2
+
+[node name="PartBox3" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
+layout_mode = 2
+
+[node name="PartBox4" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
+layout_mode = 2
+
+[node name="PartBox5" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
+layout_mode = 2
+label_text = "text"
+
+[node name="ButtonsBox" type="MarginContainer" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Map" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
+layout_mode = 2
+label_text = "Map"
+
+[node name="Retry" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
+layout_mode = 2
+label_text = "Retry"
+
+[node name="Next" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
+layout_mode = 2
+
+[node name="Timer" type="CanvasLayer" parent="."]
+script = ExtResource("19_nh8s2")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Timer"]
+offset_left = 6.0
+offset_top = 26.0
+offset_right = 239.0
+offset_bottom = 89.0

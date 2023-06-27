@@ -25,15 +25,15 @@ signal change_to_next_level
 @onready var rotation_timer = $RotationTimer
 @onready var walls := $Walls
 @onready var counter := $Counter
-@onready var level_map_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/Map
-@onready var next_level_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/Next
-@onready var retry_level_button := $Control/CanvasLayer/MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/Retry
-@onready var timer := $Control/Timer
-@onready var part_box_1 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox1
-@onready var part_box_2 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox2
-@onready var part_box_3 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox3
-@onready var part_box_4 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox4
-@onready var part_box_5 := $Control/CanvasLayer/MarginContainer/VBoxContainer/PartsBox/HBoxContainer/PartBox5
+@onready var level_map_button := $EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer/Map
+@onready var next_level_button := $EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer/Next
+@onready var retry_level_button := $EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer/Retry
+@onready var timer := $Timer
+@onready var part_box_1 := $EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer/PartBox1
+@onready var part_box_2 := $EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer/PartBox2
+@onready var part_box_3 := $EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer/PartBox3
+@onready var part_box_4 := $EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer/PartBox4
+@onready var part_box_5 := $EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer/PartBox5
 @onready var camera := $Camera2D
 @onready var background := $Camera2D/CanvasLayer/CenterContainer/Container/background
 @onready var backblock = preload("res://board_stuff/backgroundblock.tscn")
@@ -616,10 +616,10 @@ func _on_player_finished(start_rotations):
 		game_ended = true
 		#get_tree().paused = true
 		print("End game.\nTotal rotations: " + str(rotations_number))
-		$Control/CanvasLayer/MarginContainer/VBoxContainer/FinishLabelBox/FinishLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
+		$EndPanel/MarginContainer/MyPanel/VBoxContainer/FinishLabelBox/FinishLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
 		
 		if !end_screen_disabled:
-			$Control/CanvasLayer.visible = true
+			$EndPanel.visible = true
 		
 		if end_screen_disabled:
 			emit_signal("change_to_next_level", level_name)
