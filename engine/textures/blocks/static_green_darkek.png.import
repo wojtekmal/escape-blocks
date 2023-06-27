@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgsvxwjk3aana"
-path="res://.godot/imported/sun.png-6d6049ffdf123a47441d6f966914b59c.ctex"
+uid="uid://ba2h6p3y848q4"
+path="res://.godot/imported/static_green_darkek.png-361a6952e69a530e5f839d9aa63fc6ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/sun.png"
-dest_files=["res://.godot/imported/sun.png-6d6049ffdf123a47441d6f966914b59c.ctex"]
+source_file="res://textures/blocks/static_green_darkek.png"
+dest_files=["res://.godot/imported/static_green_darkek.png-361a6952e69a530e5f839d9aa63fc6ce.ctex"]
 
 [params]
 
