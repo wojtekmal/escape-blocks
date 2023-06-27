@@ -12,6 +12,8 @@ signal open_door
 var buttons := []
 var pressed_buttons := 0;
 var buttons_number := 0;
+var normal_texture = preload("res://textures/blocks/door.png")
+var transparent_texture = preload("res://textures/blocks/door_transparent.png")
 
 var colors := {
 	0 : Color.WHITE,
@@ -32,11 +34,11 @@ func _physics_process(delta):
 	if open == false && pressed_buttons == buttons_number: #opening
 		$Open.play()
 		open = true
-		$Shaded/Door.visible = false
+		$Shaded/Door.texture = transparent_texture
 	elif open == true && pressed_buttons != buttons_number && can_close: #closing
 		$Close.play()
 		open = false
-		$Shaded/Door.visible = true
+		$Shaded/Door.texture = normal_texture
 
 func _ready():
 	add_to_group("door " + str(start_rotations))
@@ -53,7 +55,7 @@ func _ready():
 	buttons_number = buttons.size()
 	#connect("open_door", Callable(get_parent(), "_on_door_spawn"));
 	open = false
-	$Shaded/Door.visible = true
+	$Shaded/Door.texture = normal_texture
 
 func button_pressed():
 	pressed_buttons += 1
