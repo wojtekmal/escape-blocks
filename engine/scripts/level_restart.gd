@@ -5,23 +5,6 @@ extends Node2D
 var paused = false
 @export var current_level : String
 
-func next_file(path = "res://levels/maps"):
-	var dir = DirAccess.open(path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		if file_name != "":
-			return "end"
-		if dir.current_is_dir():
-			next_file(path + file_name + "/")
-		else:
-			file_name = file_name.replace(".remap" , "")
-			return file_name
-		file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
-	return "error"
-
 func start(level_name : String):
 	pause(false)
 	current_level = level_name
