@@ -5,6 +5,23 @@ extends Node2D
 var paused = false
 @export var current_level : String
 
+func next_file(path = "res://levels/maps"):
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		if file_name != "":
+			return "end"
+		if dir.current_is_dir():
+			next_file(path + file_name + "/")
+		else:
+			file_name = file_name.replace(".remap" , "")
+			return file_name
+		file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+	return "error"
+
 func start(level_name : String):
 	pause(false)
 	current_level = level_name
@@ -13,21 +30,18 @@ func start(level_name : String):
 		level.hide()
 		await level.tree_exited
 	var new_level = global.levels_data[level_name]["resource"].instantiate()
-		
+	
 	if level_name == "Random":
-		var file = FileAccess.open("res://levels/maps/" + str(global.current_random_level) + ".txt", FileAccess.READ)
+		var dir := DirAccess.open("res://levels/maps/")
+		var levels := dir.get_files()
+		
+		var file = FileAccess.open("res://levels/maps/" + levels[global.current_random_level], FileAccess.READ)
 		new_level.walls_source = file.get_as_text()
-		global.current_random_level += 1
 
-		print(global.current_random_level)
+		get_window().title = "random level: " + str(global.current_random_level) + " - " + levels[global.current_random_level]
 		
-		var dir = DirAccess.open("res://levels/maps/")
-		
-		if !dir.file_exists(str(global.current_random_level) + ".txt"):
-			print("Looping global.current_random_level to 0.")
-			global.current_random_level = 0
-		
-		get_window().title = "random level: " + str(global.current_random_level)
+		global.current_random_level += 1
+		global.current_random_level %= levels.size()
 		global.save()
 	else:
 		get_window().title = level_name
