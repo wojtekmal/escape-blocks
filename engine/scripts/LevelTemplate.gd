@@ -172,7 +172,7 @@ func _ready():
 
 func _physics_process(delta):
 	# We won't be loading frames in the editor.
-	if Engine.is_editor_hint(): return
+	if Engine.is_editor_hint() || game_ended: return
 	
 	if Input.is_action_just_pressed("quick_finish"):
 		_on_player_finished(-total_rotations)
@@ -272,7 +272,7 @@ func move_block(delta, block):
 	
 	if new_block_cord_y > max_height:
 		if block.is_falling:
-			block.falling_sound()
+			block.falling_sound(block.y_speed)
 		
 		block.is_falling = false
 		# Here the height of the block is set so that it lands on something else.
@@ -615,6 +615,7 @@ func _on_player_finished(start_rotations):
 	#print("finished signal recived")
 	if (total_rotations + start_rotations) % 4 == 0 && !game_ended && !rotation_timer.time_left:
 		game_ended = true
+		timer.stop()
 		#get_tree().paused = true
 		print("End game.\nTotal rotations: " + str(rotations_number))
 		$EndPanel/MarginContainer/MyPanel/VBoxContainer/FinishLabelBox/FinishLabel.text = "End game.\nTotal rotations: " + str(rotations_number)

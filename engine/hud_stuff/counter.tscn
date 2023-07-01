@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl47nov66utcv"]
+[gd_scene load_steps=4 format=3 uid="uid://dl47nov66utcv"]
 
-[ext_resource type="FontFile" uid="uid://dlrlmq6vw5heb" path="res://fonts/comfortaa/static/Comfortaa-Regular.ttf" id="1_7ofo6"]
 [ext_resource type="Script" path="res://scripts/counter.gd" id="1_fmk3p"]
+[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="2_lucek"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bljj"]
+font = ExtResource("2_lucek")
 
 [node name="Counter" type="Control"]
 layout_mode = 3
@@ -14,11 +17,10 @@ script = ExtResource("1_fmk3p")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+[node name="RichTextLabel" type="Label" parent="CanvasLayer"]
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 186.0
 offset_bottom = 46.0
-theme_override_fonts/normal_font = ExtResource("1_7ofo6")
 text = "0 rotations"
-tab_size = 1
+label_settings = SubResource("LabelSettings_1bljj")

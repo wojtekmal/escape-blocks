@@ -9,14 +9,14 @@ func _ready():
 	if pages.size() == 0:
 		print("The tutorial float doesn't have any text.")
 	
-	var label = $HBoxContainer/VBoxContainer/MarginContainer/MarginContainer/MarginContainer/Label
+	var label = $HBoxContainer/VBoxContainer/MarginContainer/MyPanel/Label
 	label.text = pages[0]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var vbox = $HBoxContainer/VBoxContainer
 	var float_box = $HBoxContainer/VBoxContainer/MarginContainer
-	var label = $HBoxContainer/VBoxContainer/MarginContainer/MarginContainer/MarginContainer/Label
+	var label = $HBoxContainer/VBoxContainer/MarginContainer/MyPanel/Label
 	
 	var default_screen_x = ProjectSettings.get_setting("display/window/size/viewport_width")
 	var default_screen_y = ProjectSettings.get_setting("display/window/size/viewport_height")
@@ -66,5 +66,5 @@ func _input(event):
 	
 	current_page += 1
 	
-	var label = $HBoxContainer/VBoxContainer/MarginContainer/MarginContainer/MarginContainer/Label
+	var label = $HBoxContainer/VBoxContainer/MarginContainer/MyPanel/Label
 	label.text = pages[current_page]
