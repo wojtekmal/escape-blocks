@@ -37,5 +37,7 @@ func get_real_class():
 func set_is_falling(new_value):
 	is_falling = new_value
 
-func falling_sound():
+func falling_sound(y_speed):
+	$Landing.volume_db = -15 + y_speed / 30
+	print($Landing.volume_db)
 	$Landing.play()

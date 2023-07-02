@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=66 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -492,6 +492,9 @@ shader_parameter/angle = 45.0
 font = ExtResource("14_wb3oo")
 font_size = 48
 
+[sub_resource type="LabelSettings" id="LabelSettings_yatq1"]
+font = ExtResource("14_wb3oo")
+
 [node name="LevelTemplate4" type="Node2D"]
 process_mode = 1
 script = ExtResource("4")
@@ -699,8 +702,9 @@ layout_mode = 2
 [node name="Timer" type="CanvasLayer" parent="."]
 script = ExtResource("19_nh8s2")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Timer"]
+[node name="RichTextLabel" type="Label" parent="Timer"]
 offset_left = 6.0
-offset_top = 26.0
+offset_top = 29.0
 offset_right = 239.0
-offset_bottom = 89.0
+offset_bottom = 92.0
+label_settings = SubResource("LabelSettings_yatq1")
