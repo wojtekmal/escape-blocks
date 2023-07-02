@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cylgj4bcajsr0"]
+[gd_scene load_steps=13 format=3 uid="uid://cylgj4bcajsr0"]
 
 [ext_resource type="Script" path="res://scripts/level_map.gd" id="1_gliqh"]
 [ext_resource type="PackedScene" uid="uid://ba4y62q3j4hcl" path="res://map_stuff/level_button.tscn" id="1_qu7sv"]
+[ext_resource type="PackedScene" uid="uid://dt1tg7cvomeo6" path="res://map_stuff/MEGA_RANDOM_level_button.tscn" id="2_wtusj"]
 [ext_resource type="PackedScene" uid="uid://bcvu4b06caw6j" path="res://map_stuff/tutorial_level_button.tscn" id="3_6e3n4"]
 [ext_resource type="Script" path="res://scripts/map_camera.gd" id="3_772qu"]
 [ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="4_y8sme"]
@@ -24,6 +25,9 @@ border_color = Color(0.490196, 0.490196, 0.490196, 1)
 
 [node name="LevelMap" type="Node2D"]
 script = ExtResource("1_gliqh")
+
+[node name="MEGA_RANDOM" parent="." instance=ExtResource("2_wtusj")]
+position = Vector2(469, 335)
 
 [node name="Random" parent="." instance=ExtResource("9_4gwoi")]
 position = Vector2(527, 469)

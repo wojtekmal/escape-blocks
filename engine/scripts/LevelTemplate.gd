@@ -821,7 +821,6 @@ func load_blocks_from_walls_source():
 	
 	walls.clear()
 	set_board_dimensions(Vector2i(x_size, y_size))
-	print(board_dimensions)
 	
 	for row in y_size:
 		for i in x_size:
@@ -830,7 +829,7 @@ func load_blocks_from_walls_source():
 			
 			if letter == '.':
 				continue
-			
+
 			var block_type = letters_to_blocks[letter]["name"]
 			var rotation = letters_to_blocks[letter]["rotation"]
 			walls.set_cell(tile_blocks[block_type]["layer"], Vector2i(i, row), tile_blocks[block_type]["id"], tile_blocks[block_type]["adress"], rotation)

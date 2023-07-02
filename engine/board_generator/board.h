@@ -124,24 +124,24 @@ public:
                 {
                     if (finish.count({x, y}))
                     {
-                        std::cout << "\033[1;31;41m";
+                        std::cerr << "\033[1;31;41m";
                     }
                     if (board[y][x] == '#')
-                        std::cout << "██";
-                    else if (board[y][x] == 'P')
-                        std::cout << "/\\";
+                        std::cerr << "██";
+                    else if (board[y][x] == 'G')
+                        std::cerr << "/\\";
                     else if (board[y][x] == 'B')
-                        std::cout << "[]";
+                        std::cerr << "[]";
                     else
-                        std::cout << "░░";
+                        std::cerr << "░░";
                     if (finish.count({x, y}))
                     {
-                        std::cout << "\033[0;m";
+                        std::cerr << "\033[0;m";
                     }
                 }
-                std::cout << "\n";
+                std::cerr << "\n";
             }
-            std::cout << std::flush;
+            std::cerr << std::flush;
         }
         else if (fancy == 0)
         {
@@ -151,36 +151,80 @@ public:
                 {
                     if (finish.count({x, y}))
                     {
-                        std::cout << "P";
+                        std::cerr << "P";
                     }
                     else
                     {
-                        // std::cout << board[y][x];
-                        if(board[y][x] == ' ')
-                            std::cout << '.';
+                        // std::cerr << board[y][x];
+                        if (board[y][x] == ' ')
+                            std::cerr << '.';
                         else
-                            std::cout << board[y][x];
+                            std::cerr << board[y][x];
                     }
-
                 }
-                if(y == 1)
-                    std::cout << ".#W#.";
-                else if(y == 2)
-                    std::cout << "##D##";
-                else if(y == 3)
-                    std::cout << "3DGDE";
-                else if(y == 4)
-                    std::cout << "##D##";
-                else if(y == 5)
-                    std::cout << ".#M#.";
-                else if(y == 6)
-                    std::cout << ".###.";
+                if (y == 1)
+                    std::cerr << ".#W#.";
+                else if (y == 2)
+                    std::cerr << "##D##";
+                else if (y == 3)
+                    std::cerr << "3DGDE";
+                else if (y == 4)
+                    std::cerr << "##D##";
+                else if (y == 5)
+                    std::cerr << ".#M#.";
+                else if (y == 6)
+                    std::cerr << ".###.";
                 else
-                    std::cout << ".....";
-                std::cout << "\n";
+                    std::cerr << ".....";
+                std::cerr << "\n";
             }
-            std::cout << std::flush;
+            std::cerr << std::flush;
         }
+    }
+
+    std::string getfile(bool multi = false)
+    {
+        std::string result;
+        for (int y = 1; y <= dim.y; y++)
+        {
+            for (int x = 1; x <= (multi ? dim.x / 2 + 1 : dim.x); x++)
+            {
+                if (finish.count({x, y}))
+                {
+                    if(multi)
+                        result += "P";
+                    else
+                        result += "M";
+                }
+                else
+                {
+                    // result += board[y][x];
+                    if (board[y][x] == ' ')
+                        result += '.';
+                    else
+                        result += board[y][x];
+                }
+            }
+            if(multi)
+            {
+                if (y == 1)
+                    result += ".#W#.";
+                else if (y == 2)
+                    result += "##D##";
+                else if (y == 3)
+                    result += "3DGDE";
+                else if (y == 4)
+                    result += "##D##";
+                else if (y == 5)
+                    result += ".#M#.";
+                else if (y == 6)
+                    result += ".###.";
+                else
+                    result += ".....";
+            }
+            result += "\n";
+        }
+        return result;
     }
 
     Board() {}
@@ -261,8 +305,6 @@ public:
                 }
             }
         }
-        if (single)
-            std::cout << 2137 << "a\n";
         if (!single && multiCheck())
         {
             // std::cout << "amogus\a\n";
@@ -367,7 +409,7 @@ public:
 
     std::set<std::vector<bool>> states;
 
-    std::string solveBFS(Board sboard, int limit = INT_MAX, bool single = true)
+    std::string solveBFS(Board sboard, uint limit = UINT_MAX, bool single = true)
     {
         std::queue<std::pair<Board, std::string>> Q;
         Q.push({sboard, ""});
@@ -376,7 +418,7 @@ public:
         {
             sboard = Q.front().x;
             moves = Q.front().y;
-            if(moves.size() > limit)
+            if (moves.size() > limit)
                 break;
             Q.pop();
 
@@ -426,9 +468,7 @@ public:
             return;
         }
         if (!statesRec.count(boardL.get_id()) || statesRec[boardL.get_id()] >= moves.size() + 1)
-        {
             solveRec(boardL, moves + 'L', single);
-        }
 
         boardR.rotate(RIGHT);
         if (boardR.update(true, single) == FINISH)
@@ -442,9 +482,7 @@ public:
             return;
         }
         if (!statesRec.count(boardR.get_id()) || statesRec[boardR.get_id()] >= moves.size() + 1)
-        {
             solveRec(boardR, moves + 'R', single);
-        }
 
         boardU.rotate(UP);
         if (boardU.update(true, single) == FINISH)
@@ -458,9 +496,7 @@ public:
             return;
         }
         if (!statesRec.count(boardU.get_id()) || statesRec[boardU.get_id()] >= moves.size() + 1)
-        {
             solveRec(boardU, moves + 'U', single);
-        }
     }
 
     bool initialTest(bool multi = false)
@@ -620,7 +656,6 @@ public:
             }
             std::cout << result.size() << " " << result << "\n";
 
-            std::cout << time << "MS\n";
         }
         if (result.size() == 0)
             return "";
