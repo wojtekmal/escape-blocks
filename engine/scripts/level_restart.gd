@@ -26,6 +26,20 @@ func start(level_name : String):
 		global.current_random_level += 1
 		global.current_random_level %= levels.size()
 		global.save()
+	elif level_name == "MEGA RANDOM":
+		randomize()
+		var seed = str(randi() % 1000)
+		var size = str(randi() % 3 + 5)
+		
+		var output = []
+		var exit_code = OS.execute("board_generator/MEGA_RANDOM.exe", [size, seed], output, false, true)
+		if exit_code != 0:
+			print("error while generating level: ", exit_code)
+		print(output[0])
+		
+		new_level.walls_source = output[0]
+
+		get_window().title = "MEGA RANDOM: " + size + " " + seed
 	else:
 		get_window().title = level_name
 
