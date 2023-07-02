@@ -5,23 +5,6 @@ extends Node2D
 var paused = false
 @export var current_level : String
 
-func next_file(path = "res://levels/maps"):
-	var dir = DirAccess.open(path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		if file_name != "":
-			return "end"
-		if dir.current_is_dir():
-			next_file(path + file_name + "/")
-		else:
-			file_name = file_name.replace(".remap" , "")
-			return file_name
-		file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
-	return "error"
-
 func start(level_name : String):
 	pause(false)
 	current_level = level_name
@@ -43,6 +26,20 @@ func start(level_name : String):
 		global.current_random_level += 1
 		global.current_random_level %= levels.size()
 		global.save()
+	elif level_name == "MEGA RANDOM":
+		randomize()
+		var seed = str(randi() % 1000)
+		var size = str(randi() % 3 + 5)
+		
+		var output = []
+		var exit_code = OS.execute("board_generator/MEGA_RANDOM.exe", [size, seed], output, false, true)
+		if exit_code != 0:
+			print("error while generating level: ", exit_code)
+		print(output[0])
+		
+		new_level.walls_source = output[0]
+
+		get_window().title = "MEGA RANDOM: " + size + " " + seed
 	else:
 		get_window().title = level_name
 

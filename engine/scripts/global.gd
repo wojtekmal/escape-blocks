@@ -102,6 +102,11 @@ var levels_data := {
 		"unlocks": ["Random"],
 		"part_price": 0,
 	},
+	"MEGA RANDOM": {
+		"resource": load("res://levels/z_other/MEGA_RANDOM.tscn"),
+		"unlocks": [],
+		"part_price": 0,
+	},
 }
 
 var settings := {

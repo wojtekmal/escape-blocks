@@ -268,20 +268,42 @@ void multisolutions(int size, int xd)
 int main()
 {
     auto begin = now();
-    int size = 7;
-    multisolutions(size, 20);
+    int size = 5;
+    multisolutions(size, 15);
     auto end = now();
 
     std::cout << multiBoards.size() << "\n";
     std::cout << gettime(begin, end) << "MS\n\n";
 
-    for(auto brd : multiBoards)
+    if(true)
     {
-        std::cout << size + 6 << " " << size * 2 + 1 << "\n";
-        Board brdc = brd.first;
-        brdc.cls = false;
-        brdc.print(0);
-        std::cout << brd.second.size() << " " << brd.second << "\n\n"; 
+        for(auto brd : multiBoards)
+        {
+            std::ofstream myfile;
+            Board brdc = brd.first;
+            uint hash = std::hash<std::vector<bool>>{}(brdc.get_id());
+            myfile.open ("maps/" + std::to_string(size) + "_" + std::to_string(hash) + ".txt");
+            
+            myfile << size + 6 << " " << size * 2 + 1 << "\n";
+
+            brdc.cls = false;
+            myfile << brdc.getfile(true);
+            myfile << brd.second.size() << " " << brd.second << "\n\n"; 
+            
+            myfile.close();
+        }
+        system("zip -r maps.zip maps");
+    }
+    else
+    {
+        for(auto brd : multiBoards)
+        {
+            std::cout << size + 6 << " " << size * 2 + 1 << "\n";
+            Board brdc = brd.first;
+            brdc.cls = false;
+            brdc.print(0);
+            std::cout << brd.second.size() << " " << brd.second << "\n\n"; 
+        }
     }
 
     // auto begin = now();
