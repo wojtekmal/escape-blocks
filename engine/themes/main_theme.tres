@@ -9,9 +9,9 @@ border_width_right = 8
 border_color = Color(0.717647, 0.717647, 0.717647, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn53h"]
-content_margin_left = -47.5
+content_margin_left = 134.5
 content_margin_top = 16.0
-content_margin_right = -47.5
+content_margin_right = 134.5
 content_margin_bottom = 16.0
 border_width_left = 8
 border_width_top = 8
