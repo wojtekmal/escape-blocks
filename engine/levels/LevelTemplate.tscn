@@ -582,6 +582,7 @@ layer_6/tile_data = PackedInt32Array()
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_q7ff1")
+bus = &"Music"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 3
@@ -619,6 +620,7 @@ gizmo_extents = 1000.0
 [node name="RotationSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_2h2bl")
 volume_db = 7.0
+bus = &"Sound Effects"
 
 [node name="EndPanel" type="CanvasLayer" parent="."]
 visible = false
