@@ -67,8 +67,24 @@ func manage_changing_settings(action, new_value):
 		reset_progress_press()
 	elif action == "change_volume":
 		change_volume(new_value)
+	elif action == "change_sound_effects_volume":
+		change_sound_effects_volume(new_value)
+	elif action == "change_music_volume":
+		change_music_volume(new_value)
 	else:
 		print("This setting's method doesn't exist in settings.gd. ~wojtekmal")
+
+func change_sound_effects_volume(new_value):
+	global.settings["change_volume"] = new_value
+	global.save()
+	var sound_effects_bus = AudioServer.get_bus_index("Sound Effects")
+	AudioServer.set_bus_volume_db(sound_effects_bus, (new_value - 100) * 72 / 100)
+
+func change_music_volume(new_value):
+	global.settings["change_volume"] = new_value
+	global.save()
+	var music_bus = AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_db(music_bus, (new_value - 100) * 72 / 100)
 
 func change_volume(new_value):
 	global.settings["change_volume"] = new_value

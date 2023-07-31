@@ -4,3 +4,4 @@
 
 [node name="ClickPlayer" type="AudioStreamPlayer"]
 stream = ExtResource("1_4api1")
+bus = &"Sound Effects"

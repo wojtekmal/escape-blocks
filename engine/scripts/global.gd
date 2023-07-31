@@ -111,13 +111,22 @@ var levels_data := {
 
 var settings := {
 	"switch_rotation": false,
-	"change_volume": 0
+	"change_volume": 0,
+	"change_sound_effects_volume": 0,
+	"change_music_volume": 0,
 }
 
 func manage_settings():
 	var master_bus = AudioServer.get_bus_index("Master")
+	var music_bus = AudioServer.get_bus_index("Music")
+	var sound_effects_bus = AudioServer.get_bus_index("Sound Effects")
+	
 	if settings.has("change_volume"):
 		AudioServer.set_bus_volume_db(master_bus, (settings["change_volume"] - 100) * 72 / 100)
+	if settings.has("change_sound_effects_volume"):
+		AudioServer.set_bus_volume_db(master_bus, (settings["change_sound_effects_volume"] - 100) * 72 / 100)
+	if settings.has("change_music_volume"):
+		AudioServer.set_bus_volume_db(master_bus, (settings["change_music_volume"] - 100) * 72 / 100)
 	
 	#switch_rotation(settings["switch_rotation"])
 
