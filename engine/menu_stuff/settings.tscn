@@ -139,7 +139,17 @@ size_flags_vertical = 3
 [node name="Volume" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer" instance=ExtResource("5_fdlcu")]
 layout_mode = 2
 action = "change_volume"
-label_text = "VOLUME"
+label_text = "Master Volume"
+
+[node name="MusicVolume" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer" instance=ExtResource("5_fdlcu")]
+layout_mode = 2
+action = "change_music_volume"
+label_text = "Music"
+
+[node name="SoundEffectsVolume" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer" instance=ExtResource("5_fdlcu")]
+layout_mode = 2
+action = "change_sound_effects_volume"
+label_text = "Sound effects"
 
 [node name="ExternalButtonsBox" type="MarginContainer" parent="MyPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2

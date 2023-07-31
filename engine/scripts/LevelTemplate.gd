@@ -168,7 +168,7 @@ func _ready():
 	
 	#overlay.collapse();
 	var audio := $AudioStreamPlayer
-	#audio.play()
+	audio.play()
 
 func _physics_process(delta):
 	# We won't be loading frames in the editor.
