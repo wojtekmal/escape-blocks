@@ -93,8 +93,12 @@ func _process(delta):
 		$HBoxContainer/VBoxContainer3/TextureRect3.size_flags_stretch_ratio = 5.0 * x_size / y_size
 
 func set_label_text(new_value):
+	if $LabelBox/Label == null:
+		return
 	label_text = new_value
+	print(new_value)
 	#$LabelBox/Label.text = new_value
+	$LabelBox/Label.clear()
 	$LabelBox/Label.push_paragraph(HORIZONTAL_ALIGNMENT_CENTER)
 	$LabelBox/Label.push_font(load("res://fonts/conthrax/conthrax-sb.otf"), 36)
 	$LabelBox/Label.push_color(Color(0,0,0,1))
