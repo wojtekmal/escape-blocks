@@ -52,6 +52,7 @@ func _process(delta):
 	
 	tab_container.add_theme_stylebox_override("tab_selected", stylebox)
 	tab_container.add_theme_stylebox_override("tab_unselected", stylebox)
+	tab_container.add_theme_stylebox_override("tab_hovered", stylebox)
 
 func go_to_menu():
 	if mode == "in_level":
