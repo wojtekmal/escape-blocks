@@ -51,15 +51,24 @@ func _ready():
 	init_graph()
 	
 	switch_slide(0)
+	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.pressed.connect(next_slide)
+	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Skip.pressed.connect(skip_slides)
 
 func switch_slide(slide_num):
 	if slide_num >= slide_texts.size():
 		$CanvasLayer.visible = false
+		return
 	
 	current_slide = slide_num
 	var slide_label = $CanvasLayer/ColorRect/VBoxContainer/MarginContainer3/Label
 	slide_label.text = slide_texts[current_slide]
 	animation_player.play(animation_key_list[current_slide])
+
+func next_slide():
+	switch_slide(current_slide + 1)
+
+func skip_slides():
+	$CanvasLayer.visible = false
 
 func load_all():
 	var path = "res://levels/"
