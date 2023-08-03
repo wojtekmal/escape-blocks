@@ -28,6 +28,7 @@ func _process(delta):
 	var theme = preload("res://themes/main_theme.tres")
 	var tab_container := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer
 	var tab_count = tab_container.get_child_count()
+	#print(tab_count)
 	var total_len = 0
 	var font = preload("res://fonts/conthrax/conthrax-sb.otf")
 	var font_size = theme.get_font_size("font_size", "TabContainer")
@@ -51,6 +52,7 @@ func _process(delta):
 	
 	tab_container.add_theme_stylebox_override("tab_selected", stylebox)
 	tab_container.add_theme_stylebox_override("tab_unselected", stylebox)
+	tab_container.add_theme_stylebox_override("tab_hovered", stylebox)
 
 func go_to_menu():
 	if mode == "in_level":
