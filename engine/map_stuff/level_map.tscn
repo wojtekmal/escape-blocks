@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cylgj4bcajsr0"]
+[gd_scene load_steps=40 format=3 uid="uid://cylgj4bcajsr0"]
 
 [ext_resource type="Script" path="res://scripts/level_map.gd" id="1_gliqh"]
 [ext_resource type="PackedScene" uid="uid://ba4y62q3j4hcl" path="res://map_stuff/level_button.tscn" id="1_qu7sv"]
@@ -10,6 +10,26 @@
 [ext_resource type="PackedScene" uid="uid://klvxuhcfwpx0" path="res://background.tscn" id="7_opcik"]
 [ext_resource type="PackedScene" uid="uid://btvxc5u10k7ff" path="res://map_stuff/random_level_button.tscn" id="9_4gwoi"]
 [ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="9_bo5fr"]
+[ext_resource type="Texture2D" uid="uid://blr11io5tpp0q" path="res://textures/cutscene/zlomek2.png" id="11_xvn6e"]
+[ext_resource type="Texture2D" uid="uid://dmymqhcdnyf0l" path="res://textures/cutscene/zlomek1.png" id="12_y37fw"]
+[ext_resource type="Texture2D" uid="uid://dcwhgufd761bl" path="res://textures/cutscene/zlomek3.png" id="13_4yvx7"]
+[ext_resource type="Texture2D" uid="uid://c6xbeogklcsfp" path="res://textures/cutscene/poker.png" id="14_o3h3f"]
+[ext_resource type="Texture2D" uid="uid://bbkbgepgnjbai" path="res://textures/cutscene/damage1.png" id="15_spxvd"]
+[ext_resource type="Texture2D" uid="uid://bfmmu5bc1bp40" path="res://textures/cutscene/damage2.png" id="16_nf4ht"]
+[ext_resource type="Texture2D" uid="uid://bcjibpnj66hls" path="res://textures/cutscene/damage3.png" id="17_eautp"]
+[ext_resource type="Texture2D" uid="uid://cuu4vubkp456h" path="res://textures/cutscene/damage4.png" id="18_fta3h"]
+[ext_resource type="Texture2D" uid="uid://pkbkaftx1jq4" path="res://textures/cutscene/damage5.png" id="19_4gown"]
+[ext_resource type="Texture2D" uid="uid://1ijcvacykim7" path="res://textures/cutscene/sucking1.png" id="20_53bqn"]
+[ext_resource type="Texture2D" uid="uid://bgog5rubsplmv" path="res://textures/cutscene/sucking2.png" id="21_3lcik"]
+[ext_resource type="Texture2D" uid="uid://det0wgdjvtcen" path="res://textures/cutscene/sucking3.png" id="22_qfy8t"]
+[ext_resource type="Texture2D" uid="uid://6tkkjibntx1c" path="res://textures/cutscene/sucking4.png" id="23_jarea"]
+[ext_resource type="Texture2D" uid="uid://bvge18p183omm" path="res://textures/cutscene/sucking5.png" id="24_bwg45"]
+[ext_resource type="Texture2D" uid="uid://cma226b3yrxen" path="res://textures/cutscene/sucking6.png" id="25_wkytq"]
+[ext_resource type="Texture2D" uid="uid://dvqudcj0sjii2" path="res://textures/cutscene/sucking7.png" id="26_g0fl6"]
+[ext_resource type="Texture2D" uid="uid://016sy1qm5ndw" path="res://textures/cutscene/sucking8.png" id="27_m0kai"]
+[ext_resource type="Texture2D" uid="uid://c37hm01j2i011" path="res://textures/cutscene/sucking9.png" id="28_ids11"]
+[ext_resource type="Texture2D" uid="uid://bxb6brmnkoe62" path="res://textures/cutscene/sucking10.png" id="29_pbgkd"]
+[ext_resource type="Texture2D" uid="uid://clbbdvd6lwm12" path="res://textures/cutscene/mechanic.png" id="30_rbljo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lnd47"]
 font = ExtResource("5_iu41y")
@@ -22,6 +42,100 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.490196, 0.490196, 0.490196, 1)
+
+[sub_resource type="Animation" id="Animation_0puka"]
+resource_name = "3damage"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("15_spxvd"), ExtResource("16_nf4ht"), ExtResource("17_eautp"), ExtResource("18_fta3h"), ExtResource("19_4gown")]
+}
+
+[sub_resource type="Animation" id="Animation_lddi1"]
+resource_name = "1flying_zlomek"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("12_y37fw"), ExtResource("11_xvn6e"), ExtResource("12_y37fw"), ExtResource("13_4yvx7")]
+}
+
+[sub_resource type="Animation" id="Animation_g7foy"]
+resource_name = "2poker"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_o3h3f")]
+}
+
+[sub_resource type="Animation" id="Animation_rfdrc"]
+resource_name = "4sucking"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("20_53bqn"), ExtResource("21_3lcik"), ExtResource("22_qfy8t"), ExtResource("23_jarea"), ExtResource("24_bwg45"), ExtResource("25_wkytq"), ExtResource("26_g0fl6"), ExtResource("27_m0kai"), ExtResource("28_ids11"), ExtResource("29_pbgkd")]
+}
+
+[sub_resource type="Animation" id="Animation_yg5ed"]
+resource_name = "5mechanic"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("30_rbljo")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nf6ud"]
+_data = {
+"1flying_zlomek": SubResource("Animation_lddi1"),
+"2poker": SubResource("Animation_g7foy"),
+"3damage": SubResource("Animation_0puka"),
+"4sucking": SubResource("Animation_rfdrc"),
+"5mechanic": SubResource("Animation_yg5ed")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_gs5cb"]
+font = ExtResource("5_iu41y")
+font_size = 48
 
 [node name="LevelMap" type="Node2D"]
 script = ExtResource("1_gliqh")
@@ -127,3 +241,67 @@ offset_right = 1800.0
 offset_bottom = -76.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ru84r")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0823529, 0.0470588, 0.156863, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("20_53bqn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer/TextureRect"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_nf6ud")
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_gs5cb")
+autowrap_mode = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="Next" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("9_bo5fr")]
+layout_mode = 2
+label_text = "Next"
+
+[node name="Skip" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("9_bo5fr")]
+layout_mode = 2
+label_text = "Skip"

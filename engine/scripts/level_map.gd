@@ -7,6 +7,17 @@ var ZOOM_MIN = 0.1
 var ZOOM_MAX = 7.0
 @onready var level_button = preload("res://map_stuff/level_button.tscn")
 var last_pos := 0
+var current_slide := 0
+@onready var animation_player := $CanvasLayer/ColorRect/VBoxContainer/MarginContainer/TextureRect/AnimationPlayer
+@onready var animation_key_list = animation_player.get_animation_list()
+
+var slide_texts := [
+	"After months of voyage, the famous \"Złomek\" was nearing its destination.",
+	"You, the ships mechanic, were playing poker with your crewmates.",
+	"Suddenly, \"Złomek\" got hit by a rouge group of meteroites.",
+	"Everyone except for you got sucked out through a hole in the ships walls.",
+	"It is now your job to fix the ship as quickly as possible.",
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,6 +49,26 @@ func _ready():
 	
 	#print("check")
 	init_graph()
+	
+	switch_slide(0)
+	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.pressed.connect(next_slide)
+	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Skip.pressed.connect(skip_slides)
+
+func switch_slide(slide_num):
+	if slide_num >= slide_texts.size():
+		$CanvasLayer.visible = false
+		return
+	
+	current_slide = slide_num
+	var slide_label = $CanvasLayer/ColorRect/VBoxContainer/MarginContainer3/Label
+	slide_label.text = slide_texts[current_slide]
+	animation_player.play(animation_key_list[current_slide])
+
+func next_slide():
+	switch_slide(current_slide + 1)
+
+func skip_slides():
+	$CanvasLayer.visible = false
 
 func load_all():
 	var path = "res://levels/"
