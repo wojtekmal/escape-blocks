@@ -93,8 +93,8 @@ func _process(delta):
 		$HBoxContainer/VBoxContainer3/TextureRect3.size_flags_stretch_ratio = 5.0 * x_size / y_size
 
 func set_label_text(new_value):
-	if $LabelBox/Label == null:
-		return
+	#if $LabelBox/Label == null:
+	#	return
 	label_text = new_value
 	print(new_value)
 	#$LabelBox/Label.text = new_value

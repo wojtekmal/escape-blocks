@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlu8o1g61geft"
-path="res://.godot/imported/stworus.png-0bdbacc407f67fbac564d39630731444.ctex"
+uid="uid://dmymqhcdnyf0l"
+path="res://.godot/imported/zlomek1.png-0e2d448a3ea2a03ad1b09b8220c4a87f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/player/stworus.png"
-dest_files=["res://.godot/imported/stworus.png-0bdbacc407f67fbac564d39630731444.ctex"]
+source_file="res://textures/cutscene/zlomek1.png"
+dest_files=["res://.godot/imported/zlomek1.png-0e2d448a3ea2a03ad1b09b8220c4a87f.ctex"]
 
 [params]
 
