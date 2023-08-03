@@ -21,7 +21,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_hhmvv")
-label_text = "Next"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

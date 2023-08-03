@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cylgj4bcajsr0"]
+[gd_scene load_steps=21 format=3 uid="uid://cylgj4bcajsr0"]
 
 [ext_resource type="Script" path="res://scripts/level_map.gd" id="1_gliqh"]
 [ext_resource type="PackedScene" uid="uid://ba4y62q3j4hcl" path="res://map_stuff/level_button.tscn" id="1_qu7sv"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://klvxuhcfwpx0" path="res://background.tscn" id="7_opcik"]
 [ext_resource type="PackedScene" uid="uid://btvxc5u10k7ff" path="res://map_stuff/random_level_button.tscn" id="9_4gwoi"]
 [ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="9_bo5fr"]
+[ext_resource type="Texture2D" uid="uid://blr11io5tpp0q" path="res://textures/cutscene/zlomek2.png" id="11_xvn6e"]
+[ext_resource type="Texture2D" uid="uid://dmymqhcdnyf0l" path="res://textures/cutscene/zlomek1.png" id="12_y37fw"]
+[ext_resource type="Texture2D" uid="uid://dcwhgufd761bl" path="res://textures/cutscene/zlomek3.png" id="13_4yvx7"]
+[ext_resource type="Texture2D" uid="uid://c6xbeogklcsfp" path="res://textures/cutscene/poker.png" id="14_o3h3f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lnd47"]
 font = ExtResource("5_iu41y")
@@ -22,6 +26,49 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.490196, 0.490196, 0.490196, 1)
+
+[sub_resource type="Animation" id="Animation_lddi1"]
+resource_name = "flying_zlomek"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("12_y37fw"), ExtResource("11_xvn6e"), ExtResource("12_y37fw"), ExtResource("13_4yvx7")]
+}
+
+[sub_resource type="Animation" id="Animation_g7foy"]
+resource_name = "poker"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_o3h3f")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nf6ud"]
+_data = {
+"flying_zlomek": SubResource("Animation_lddi1"),
+"poker": SubResource("Animation_g7foy")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_gs5cb"]
+font = ExtResource("5_iu41y")
+font_size = 48
 
 [node name="LevelMap" type="Node2D"]
 script = ExtResource("1_gliqh")
@@ -151,6 +198,26 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("12_y37fw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer/TextureRect"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_nf6ud")
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_gs5cb")
+autowrap_mode = 3
+
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -166,6 +233,7 @@ theme_override_constants/separation = 30
 
 [node name="MyButton" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("9_bo5fr")]
 layout_mode = 2
+label_text = "Next"
 
 [node name="MyButton2" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("9_bo5fr")]
 layout_mode = 2
