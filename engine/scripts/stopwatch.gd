@@ -6,7 +6,7 @@ var timer_on := false
 func stop(value := true):
 	timer_on = not value
 
-func _process(delta):
+func _physics_process(delta):
 	if timer_on:
 		_time += delta
 	var ms = fmod(_time, 1) * 100

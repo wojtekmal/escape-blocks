@@ -516,6 +516,7 @@ script = ExtResource("4_gvo1y")
 board_dimensions = Vector2i(8, 5)
 
 [node name="RotationTimer" type="Timer" parent="."]
+process_callback = 0
 wait_time = 0.3
 one_shot = true
 script = ExtResource("6_lnp4p")

@@ -4,6 +4,8 @@
 
 [node name="LevelTemplate4" instance=ExtResource("1_yhr81")]
 board_dimensions = Vector2i(10, 6)
+rotation_limit_1 = 13
+rotation_limit_2 = 12
 
 [node name="Player" parent="." index="0"]
 position = Vector2(0, -32)
@@ -17,5 +19,5 @@ board_dimensions = Vector2i(10, 6)
 position = Vector2(-320, -192)
 layer_0/tile_data = PackedInt32Array(0, 0, 0, 131072, 7, 65536, 327680, 1, 0, 262145, 0, 0, 327681, 0, 0, 65538, 0, 0, 131074, 0, 0, 262146, 0, 0, 327682, 0, 0, 65539, 0, 0, 131075, 1, 0, 196611, 9, 131072, 65540, 0, 0, 131076, 7, 131072, 262148, 0, 0, 65541, 0, 0, 131077, 0, 0, 196613, 0, 0, 262149, 0, 0, 7, 0, 0, 65543, 0, 0, 131079, 0, 0, 196615, 0, 0, 262151, 0, 0, 327687, 9, 131072, 8, 0, 0, 65544, 4, 131072, 131080, 9, 65536, 196616, 6, 0, 262152, 0, 0, 9, 0, 0, 65545, 0, 0, 131081, 0, 0, 196617, 1, 0, 262153, 0, 0, 327689, 1, 0)
 
-[node name="Center" parent="." index="9"]
+[node name="Center" parent="." index="8"]
 position = Vector2(-111, 267)

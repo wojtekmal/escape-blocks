@@ -43,22 +43,6 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.490196, 0.490196, 0.490196, 1)
 
-[sub_resource type="Animation" id="Animation_0puka"]
-resource_name = "3damage"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("15_spxvd"), ExtResource("16_nf4ht"), ExtResource("17_eautp"), ExtResource("18_fta3h"), ExtResource("19_4gown")]
-}
-
 [sub_resource type="Animation" id="Animation_lddi1"]
 resource_name = "1flying_zlomek"
 length = 1.2
@@ -90,6 +74,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("14_o3h3f")]
+}
+
+[sub_resource type="Animation" id="Animation_0puka"]
+resource_name = "3damage"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("15_spxvd"), ExtResource("16_nf4ht"), ExtResource("17_eautp"), ExtResource("18_fta3h"), ExtResource("19_4gown")]
 }
 
 [sub_resource type="Animation" id="Animation_rfdrc"]
@@ -267,7 +267,7 @@ size_flags_stretch_ratio = 3.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("20_53bqn")
+texture = ExtResource("13_4yvx7")
 expand_mode = 1
 stretch_mode = 5
 
@@ -282,6 +282,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer3"]
 layout_mode = 2
+text = "After months of voyage, the famous \"Złomek\" was nearing its destination."
 label_settings = SubResource("LabelSettings_gs5cb")
 autowrap_mode = 3
 
