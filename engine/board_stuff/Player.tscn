@@ -90,10 +90,12 @@ enabled = false
 script = ExtResource("12_x6ppo")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
+process_callback = 0
 wait_time = 0.15
 one_shot = true
 
 [node name="jumping" type="Timer" parent="."]
+process_callback = 0
 wait_time = 0.07
 one_shot = true
 
