@@ -5,6 +5,7 @@ var current_level : String = "1"
 var part_count : int = 0
 var zoom_factor : float = 0.7
 var current_random_level : int = 0
+var show_cutscene : bool = false
 
 #@onready var ui_click_player = AudioStreamPlayer.new()
  
@@ -77,6 +78,11 @@ func save():
 
 # This dictionary also contains all levels' scenes and dependencies.
 var levels_data := {
+	"1": {
+		"resource": load("res://levels/Herbercik/level_0_1.tscn"),
+		"unlocks": [],
+		"part_price": 0,
+	},
 	"Tutorial": {
 		"resource": load("res://levels/tutorial/1.tscn"),
 		"unlocks": ["tutorial_rotating"],

@@ -72,13 +72,15 @@ expand_mode = 1
 position = Vector2(-45, -12)
 
 [node name="TimePart1" parent="." instance=ExtResource("5_6aplh")]
+visible = false
 position = Vector2(-35, -35)
 
 [node name="TimePart2" parent="." instance=ExtResource("5_6aplh")]
+visible = false
 position = Vector2(0, -45)
 
 [node name="RotationPart1" parent="." instance=ExtResource("5_6aplh")]
-position = Vector2(35, -35)
+position = Vector2(0, -40)
 
 [node name="RotationPart2" parent="." instance=ExtResource("5_6aplh")]
 position = Vector2(45, -12)

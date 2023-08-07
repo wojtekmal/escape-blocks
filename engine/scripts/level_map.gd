@@ -50,6 +50,10 @@ func _ready():
 	#print("check")
 	init_graph()
 	
+	if global.show_cutscene:
+		$CanvasLayer.visible = true
+		global.show_cutscene = false
+	
 	switch_slide(0)
 	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.pressed.connect(next_slide)
 	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Skip.pressed.connect(skip_slides)
