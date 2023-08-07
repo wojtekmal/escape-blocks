@@ -44,7 +44,7 @@ func load_new_game():
 			"unlocked": 0,
 			"finished_parts": 0,
 			"rotation_parts": 0,
-			"time_parts": 0,
+#			"time_parts": 0,
 		}
 	
 	global.levels["1"]["unlocked"] = 2
