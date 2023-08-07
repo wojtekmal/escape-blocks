@@ -50,6 +50,7 @@ func load_new_game():
 	global.levels["1"]["unlocked"] = 2
 	global.current_level = "1"
 	global.save()
+	global.show_cutscene = true
 	
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
 
