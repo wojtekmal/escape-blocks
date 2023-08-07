@@ -631,7 +631,7 @@ func _on_player_finished(start_rotations):
 			print("This level\'s name is\'nt in global.levels.")
 			return
 		
-		var time_parts = 0
+		#var time_parts = 0
 		var rotation_parts = 0
 		
 		if rotations_number <= rotation_limit_1:
@@ -639,23 +639,23 @@ func _on_player_finished(start_rotations):
 		elif rotations_number <= rotation_limit_2:
 			rotation_parts = 1
 		
-		if timer._time <= time_limit_1:
-			time_parts = 2
-		elif timer._time <= time_limit_2:
-			time_parts = 1
+#		if timer._time <= time_limit_1:
+#			time_parts = 2
+#		elif timer._time <= time_limit_2:
+#			time_parts = 1
 		
 		part_box_1.label_text = "FINISHED"
-		part_box_2.label_text = str(time_limit_1) + "s"
-		part_box_3.label_text = str(time_limit_2) + "s"
+#		part_box_2.label_text = str(time_limit_1) + "s"
+#		part_box_3.label_text = str(time_limit_2) + "s"
 		part_box_4.label_text = str(rotation_limit_1) + "\nROTATIONS"
 		part_box_5.label_text = str(rotation_limit_2) + "\nROTATIONS"
 		
 		if global.levels[level_name]["finished_parts"] >= 1:
 			part_box_1.part_visible = true
-		if global.levels[level_name]["time_parts"] >= 1:
-			part_box_2.part_visible = true
-		if global.levels[level_name]["time_parts"] >= 2:
-			part_box_3.part_visible = true
+#		if global.levels[level_name]["time_parts"] >= 1:
+#			part_box_2.part_visible = true
+#		if global.levels[level_name]["time_parts"] >= 2:
+#			part_box_3.part_visible = true
 		if global.levels[level_name]["rotation_parts"] >= 1:
 			part_box_4.part_visible = true
 		if global.levels[level_name]["rotation_parts"] >= 2:
@@ -665,14 +665,14 @@ func _on_player_finished(start_rotations):
 			part_box_1.part_new = true
 			part_box_1.part_visible = true
 			global.part_count += 1
-		if !part_box_2.part_visible && time_parts >= 1:
-			part_box_2.part_new = true
-			part_box_2.part_visible = true
-			global.part_count += 1
-		if !part_box_3.part_visible && time_parts >= 2:
-			part_box_3.part_new = true
-			part_box_3.part_visible = true
-			global.part_count += 1
+#		if !part_box_2.part_visible && time_parts >= 1:
+#			part_box_2.part_new = true
+#			part_box_2.part_visible = true
+#			global.part_count += 1
+#		if !part_box_3.part_visible && time_parts >= 2:
+#			part_box_3.part_new = true
+#			part_box_3.part_visible = true
+#			global.part_count += 1
 		if !part_box_4.part_visible && rotation_parts >= 1:
 			part_box_4.part_new = true
 			part_box_4.part_visible = true
@@ -683,7 +683,7 @@ func _on_player_finished(start_rotations):
 			global.part_count += 1
 		
 		global.levels[level_name]["finished_parts"] = 1
-		global.levels[level_name]["time_parts"] = max(global.levels[level_name]["time_parts"], time_parts)
+#		global.levels[level_name]["time_parts"] = max(global.levels[level_name]["time_parts"], time_parts)
 		global.levels[level_name]["rotation_parts"] = max(global.levels[level_name]["rotation_parts"], rotation_parts)
 		
 		#print(level_name + "aaa")
