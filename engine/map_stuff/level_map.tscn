@@ -243,6 +243,7 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ru84r")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -267,7 +268,7 @@ size_flags_stretch_ratio = 3.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("13_4yvx7")
+texture = ExtResource("12_y37fw")
 expand_mode = 1
 stretch_mode = 5
 

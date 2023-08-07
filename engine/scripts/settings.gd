@@ -101,15 +101,17 @@ func reset_progress_press():
 	get_tree().get_root().add_child(confirmation_popup)
 
 func reset_progress():
-	for level_name in global.levels_data:
-		global.levels[level_name] = {
-			"unlocked": 0,
-			"finished_parts": 0,
-			"rotation_parts": 0,
-			"time_parts": 0,
-		}
+#	for level_name in global.levels_data:
+#		global.levels[level_name] = {
+#			"unlocked": 0,
+#			"finished_parts": 0,
+#			"rotation_parts": 0,
+##			"time_parts": 0,
+#		}
 	
-	global.levels["1"]["unlocked"] = 2
+	global.levels = {}
+	
+#	global.levels["1"]["unlocked"] = 2
 	global.current_level = "1"
 	global.part_count = 0
 	global.save()
