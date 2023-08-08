@@ -9,7 +9,7 @@ class_name CameraZoom
 func _ready():
 	zoom = Vector2(global.zoom_factor, global.zoom_factor)
 
-func _process(delta) -> void:
+func _process(delta : float) -> void:
 	zoom_camera()
 
 func _input(event : InputEvent, delta = get_physics_process_delta_time()) -> void:

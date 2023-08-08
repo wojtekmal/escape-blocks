@@ -170,7 +170,7 @@ func _ready():
 	var audio := $AudioStreamPlayer
 	#audio.play()
 
-func _physics_process(delta):
+func _physics_process(delta : float):
 	# We won't be loading frames in the editor.
 	if Engine.is_editor_hint() || game_ended: return
 	
@@ -187,11 +187,11 @@ func _physics_process(delta):
 	if randf_range(0, 2137) <= delta:
 		add_child(backblock.instantiate())
 
-func _process(delta):
+func _process(delta : float):
 	if Engine.is_editor_hint(): return
 	move_camera()
 
-func manage_falling_entities(delta):
+func manage_falling_entities(delta : float):
 	if !rotation_timer.is_stopped():
 		return
 	
@@ -223,7 +223,7 @@ func manage_falling_entities(delta):
 #				entity_below.y_speed = entity.y_speed
 #			column_top_entities[entity.board_cords.x] = entity
 
-func compare_entity_heights(a, b): # Sorts the entities in decreasing order according to their height.
+func compare_entity_heights(a : Object, b : Object): # Sorts the entities in decreasing order according to their height.
 	return a.position.y > b.position.y
 
 func manage_static_block(delta, block):

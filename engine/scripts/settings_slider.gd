@@ -14,9 +14,6 @@ func _ready():
 	if global.settings.has(action):
 		h_slider.value = global.settings[action]
 
-func _process(delta):
-	pass
-
 func on_value_changed(new_value):
 	emit_signal("changed", action, new_value)
 

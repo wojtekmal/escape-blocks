@@ -27,7 +27,7 @@ var offset = 10;
 func getjumptime():
 	return $jumping.time_left
 
-func setjumptime(x := 0.0):
+func setjumptime():
 	$jumping.start()
 
 func _process(delta: float) -> void:
