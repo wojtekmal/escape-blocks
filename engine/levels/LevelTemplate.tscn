@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/blocks/block.png" id="7_oxuh3"]
 [ext_resource type="Texture2D" uid="uid://drv87tnvat6t1" path="res://textures/blocks/static.png" id="8_22un6"]
 [ext_resource type="PackedScene" uid="uid://dl47nov66utcv" path="res://hud_stuff/counter.tscn" id="9_pbxjo"]
-[ext_resource type="Texture2D" uid="uid://r5s75ub5g24x" path="res://textures/Player/Player_Front.png" id="10_4c6ep"]
 [ext_resource type="Texture2D" uid="uid://c1b1kvyaj2575" path="res://textures/blocks/emergency_escape_sign.png" id="10_16j8b"]
+[ext_resource type="Texture2D" uid="uid://r5s75ub5g24x" path="res://textures/Player/Player_Front.png" id="10_l8uof"]
 [ext_resource type="Shader" path="res://shaders/button.gdshader" id="11_psw4b"]
 [ext_resource type="Texture2D" uid="uid://dd7lkv07jf7o1" path="res://textures/overlay.png" id="12_52lji"]
 [ext_resource type="Texture2D" uid="uid://ddo0kuo1nd0xw" path="res://textures/blocks/button.png" id="12_gobi5"]
@@ -133,7 +133,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/3/transpose = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ejgp5"]
-texture = ExtResource("10_4c6ep")
+texture = ExtResource("10_l8uof")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
@@ -516,7 +516,6 @@ script = ExtResource("4_gvo1y")
 board_dimensions = Vector2i(8, 5)
 
 [node name="RotationTimer" type="Timer" parent="."]
-process_callback = 0
 wait_time = 0.3
 one_shot = true
 script = ExtResource("6_lnp4p")
@@ -583,7 +582,6 @@ layer_6/tile_data = PackedInt32Array()
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_q7ff1")
-bus = &"Music"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 3
@@ -621,7 +619,6 @@ gizmo_extents = 1000.0
 [node name="RotationSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_2h2bl")
 volume_db = 7.0
-bus = &"Sound Effects"
 
 [node name="EndPanel" type="CanvasLayer" parent="."]
 visible = false
@@ -667,11 +664,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PartBox2" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
-visible = false
 layout_mode = 2
 
 [node name="PartBox3" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
-visible = false
 layout_mode = 2
 
 [node name="PartBox4" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]

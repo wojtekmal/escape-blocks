@@ -184,7 +184,7 @@ func _physics_process(delta):
 	first_frame = false
 	frame_count += 1
 	
-	if randf_range(0, 2137) <= delta:
+	if randf_range(0, 213.7) <= delta:
 		add_child(backblock.instantiate())
 
 func _process(delta):

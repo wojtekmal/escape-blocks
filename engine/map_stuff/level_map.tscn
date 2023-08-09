@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/level_map.gd" id="1_gliqh"]
 [ext_resource type="PackedScene" uid="uid://ba4y62q3j4hcl" path="res://map_stuff/level_button.tscn" id="1_qu7sv"]
-[ext_resource type="PackedScene" path="res://map_stuff/MEGA_RANDOM_level_button.tscn" id="2_wtusj"]
+[ext_resource type="PackedScene" uid="uid://dt1tg7cvomeo6" path="res://map_stuff/MEGA_RANDOM_level_button.tscn" id="2_wtusj"]
 [ext_resource type="PackedScene" uid="uid://bcvu4b06caw6j" path="res://map_stuff/tutorial_level_button.tscn" id="3_6e3n4"]
 [ext_resource type="Script" path="res://scripts/map_camera.gd" id="3_772qu"]
 [ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="4_y8sme"]
@@ -141,23 +141,19 @@ font_size = 48
 script = ExtResource("1_gliqh")
 
 [node name="MEGA_RANDOM" parent="." instance=ExtResource("2_wtusj")]
-position = Vector2(469, 335)
+position = Vector2(1073, 458)
 
 [node name="Random" parent="." instance=ExtResource("9_4gwoi")]
-position = Vector2(527, 469)
+position = Vector2(1071, 283)
 
 [node name="Tutorial" parent="." instance=ExtResource("3_6e3n4")]
 position = Vector2(1070, 121)
 
-[node name="1" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(1014, 296)
-
-[node name="LevelButton3" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(836, 56)
-
 [node name="MapCamera" type="Camera2D" parent="."]
-position = Vector2(1014, 296)
+position = Vector2(914, 222)
 script = ExtResource("3_772qu")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MapCamera"]
 layer = -10
@@ -241,6 +237,7 @@ offset_right = 1800.0
 offset_bottom = -76.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ru84r")
+metadata/_edit_group_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -268,7 +265,7 @@ size_flags_stretch_ratio = 3.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("12_y37fw")
+texture = ExtResource("13_4yvx7")
 expand_mode = 1
 stretch_mode = 5
 
@@ -307,3 +304,69 @@ label_text = "Next"
 [node name="Skip" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("9_bo5fr")]
 layout_mode = 2
 label_text = "Skip"
+
+[node name="1" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(914, 222)
+
+[node name="2" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(733, 138)
+
+[node name="3" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(656, 302)
+
+[node name="4" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(483, 348)
+
+[node name="5" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(272, 400)
+
+[node name="3a" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(541, 28)
+
+[node name="4a" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(324, 57)
+
+[node name="5a" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(521, 552)
+
+[node name="6a" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(737, 635)
+
+[node name="6" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(65, 323)
+
+[node name="7" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(-151, 415)
+
+[node name="8" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(-184, 602)
+
+[node name="9b" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(-213, 854)
+
+[node name="9a" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(6, 766)
+
+[node name="10a" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(266, 720)
+
+[node name="10" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(-11, 1028)
+
+[node name="11a" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(340, 1089)
+
+[node name="11b" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(65, 1361)
+
+[node name="12b" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(-372, 1391)
+
+[node name="12a" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(686, 1250)
+
+[node name="13" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(768, 1006)
+
+[node name="2137" parent="." instance=ExtResource("1_qu7sv")]
+position = Vector2(430, 1478)
