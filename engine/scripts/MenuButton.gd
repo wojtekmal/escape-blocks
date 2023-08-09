@@ -59,7 +59,12 @@ func continue_game_press():
 		load_new_game()
 		print("global.levels == {}")
 		return
-	
+	print(global.levels_data)
+	print()
+	print()
+	print(global.levels)
+	print()
+	print()
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
 
 func settings_press():
