@@ -123,6 +123,14 @@ func add_levels(path, dirname):
 	
 func init_graph():
 	#print("check")
+	
+	var line2 = Line2D.new()
+	line2.add_point($Tutorial.position)
+	line2.add_point(buttons["1"].position)
+	line2.default_color = Color8(256, 256, 256)
+	line2.z_index = -1
+	add_child(line2)
+	
 	for button_text in buttons:
 		#print(button_text)
 		if not global.levels_data.has(button_text):
@@ -143,7 +151,7 @@ func init_graph():
 			
 			if (global.levels.has(button_text) && global.levels[button_text]["unlocked"] ||
 			global.levels.has(dependency) && global.levels[dependency]["unlocked"]):
-				line.default_color = Color8(0, 0, 0)
+				line.default_color = Color8(256, 256, 256)
 			
 			add_child(line)
 
