@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=66 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://drv87tnvat6t1" path="res://textures/blocks/static.png" id="8_22un6"]
 [ext_resource type="PackedScene" uid="uid://dl47nov66utcv" path="res://hud_stuff/counter.tscn" id="9_pbxjo"]
 [ext_resource type="Texture2D" uid="uid://c1b1kvyaj2575" path="res://textures/blocks/emergency_escape_sign.png" id="10_16j8b"]
+[ext_resource type="Texture2D" uid="uid://r5s75ub5g24x" path="res://textures/Player/Player_Front.png" id="10_l8uof"]
 [ext_resource type="Shader" path="res://shaders/button.gdshader" id="11_psw4b"]
 [ext_resource type="Texture2D" uid="uid://dd7lkv07jf7o1" path="res://textures/overlay.png" id="12_52lji"]
 [ext_resource type="Texture2D" uid="uid://ddo0kuo1nd0xw" path="res://textures/blocks/button.png" id="12_gobi5"]
@@ -132,6 +133,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/3/transpose = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ejgp5"]
+texture = ExtResource("10_l8uof")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 

@@ -16,7 +16,7 @@ func _unhandled_input(event: InputEvent):
 		get_viewport().set_input_as_handled();
 		position += (_previousPosition - event.position) / zoom_factor;
 		_previousPosition = event.position;
-		position.x = max(position.x, -800)
-		position.x = min(position.x, 1500)
-		position.y = max(position.y, -800)
-		position.y = min(position.y, 1000)
+		position.x = max(position.x, -8000)
+		position.x = min(position.x, 15000)
+		position.y = max(position.y, -8000)
+		position.y = min(position.y, 10000)
