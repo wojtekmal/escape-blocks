@@ -692,6 +692,7 @@ func _on_player_finished(start_rotations):
 		
 		for unlocked_level in global.levels_data[level_name]["unlocks"]:
 			print("level unlocked: " + unlocked_level)
+			print(global.levels)
 			global.levels[unlocked_level]["unlocked"] = max(1, global.levels[unlocked_level]["unlocked"])
 			
 			if global.levels_data[unlocked_level]["part_price"] == 0:
@@ -771,6 +772,7 @@ func retry_level():
 	emit_signal("retry_this_level")
 
 func go_to_next_level():
+	print("going to next level")
 	var next_level_name := "NULL"
 	if global.levels_data[level_name]["unlocks"].size():
 		next_level_name = global.levels_data[level_name]["unlocks"][0]

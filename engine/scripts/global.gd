@@ -79,7 +79,102 @@ func save():
 # This dictionary also contains all levels' scenes and dependencies.
 var levels_data := {
 	"1": {
+		"resource": load("res://levels/4QT0R/1.tscn"),
+		"unlocks": ["2"],
+		"part_price": 0,
+	},
+	"2": {
 		"resource": load("res://levels/Herbercik/level_0_1.tscn"),
+		"unlocks": ["3", "3a"],
+		"part_price": 0,
+	},
+	"3": {
+		"resource": load("res://levels/wojtekmal/1.tscn"),
+		"unlocks": ["4"],
+		"part_price": 0,
+	},
+	"3a": {
+		"resource": load("res://levels/roupiq/2.tscn"),
+		"unlocks": ["4"],
+		"part_price": 0,
+	},
+	"4": {
+		"resource": load("res://levels/roupiq/1.tscn"),
+		"unlocks": ["5", "5a"],
+		"part_price": 0,
+	},
+	"4a": {
+		"resource": load("res://levels/wojtekmal/2.tscn"),
+		"unlocks": ["5", "5a"],
+		"part_price": 0,
+	},
+	"5a": {
+		"resource": load("res://levels/4QT0R/3.tscn"),
+		"unlocks": [],
+		"part_price": 0,
+	},
+	"5": {
+		"resource": load("res://levels/tutorial/4.tscn"),
+		"unlocks": ["6"],
+		"part_price": 0,
+	},
+	"6": {
+		"resource": load("res://levels/tutorial/5.tscn"),
+		"unlocks": ["7"],
+		"part_price": 0,
+	},
+	"7": {
+		"resource": load("res://levels/Herbercik/level_1_5.tscn"),
+		"unlocks": ["8"],
+		"part_price": 0,
+	},
+	"8": {
+		"resource": load("res://levels/Herbercik/level_1_1.tscn"),
+		"unlocks": ["9a", "9b"],
+		"part_price": 0,
+	},
+	"9a": {
+		"resource": load("res://levels/roupiq/aaa.tscn"),
+		"unlocks": ["10", "10a"],
+		"part_price": 0,
+	},
+	"9b": {
+		"resource": load("res://levels/wojtekmal/4.tscn"),
+		"unlocks": ["10"],
+		"part_price": 0,
+	},
+	"10a": {
+		"resource": load("res://levels/Herbercik/level_1_3.tscn"),
+		"unlocks": ["11a", "11b"],
+		"part_price": 0,
+	},
+	"11a": {
+		"resource": load("res://levels/Herbercik/level_1_6.tscn"),
+		"unlocks": ["12a"],
+		"part_price": 0,
+	},
+	"11b": {
+		"resource": load("res://levels/Herbercik/level_1_4.tscn"),
+		"unlocks": ["2137", "12b"],
+		"part_price": 0,
+	},
+	"12a": {
+		"resource": load("res://levels/z_other/level_2_v2.tscn"),
+		"unlocks": ["13", "2137"],
+		"part_price": 0,
+	},
+	"12b": {
+		"resource": load("res://levels/Herbercik/level_1_7.tscn"),
+		"unlocks": [],
+		"part_price": 0,
+	},
+	"13": {
+		"resource": load("res://levels/roupiq/bird.tscn"),
+		"unlocks": [],
+		"part_price": 0,
+	},
+	"2137": {
+		"resource": load("res://levels/wojtekmal/5.tscn"),
 		"unlocks": [],
 		"part_price": 0,
 	},
