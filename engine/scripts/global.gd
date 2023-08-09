@@ -95,7 +95,7 @@ var levels_data := {
 	},
 	"3a": {
 		"resource": load("res://levels/roupiq/2.tscn"),
-		"unlocks": ["4"],
+		"unlocks": ["4a"],
 		"part_price": 0,
 	},
 	"4": {
@@ -105,12 +105,12 @@ var levels_data := {
 	},
 	"4a": {
 		"resource": load("res://levels/wojtekmal/2.tscn"),
-		"unlocks": ["5", "5a"],
+		"unlocks": [],
 		"part_price": 0,
 	},
 	"5a": {
 		"resource": load("res://levels/4QT0R/3.tscn"),
-		"unlocks": [],
+		"unlocks": ["6a"],
 		"part_price": 0,
 	},
 	"5": {
@@ -121,6 +121,11 @@ var levels_data := {
 	"6": {
 		"resource": load("res://levels/tutorial/5.tscn"),
 		"unlocks": ["7"],
+		"part_price": 0,
+	},
+	"6a": {
+		"resource": load("res://levels/4QT0R/2.tscn"),
+		"unlocks": [],
 		"part_price": 0,
 	},
 	"7": {
@@ -143,9 +148,14 @@ var levels_data := {
 		"unlocks": ["10"],
 		"part_price": 0,
 	},
+	"10": {
+		"resource": load("res://levels/roupiq/aaaa.tscn"),
+		"unlocks": ["11a", "11b"],
+		"part_price": 0,
+	},
 	"10a": {
 		"resource": load("res://levels/Herbercik/level_1_3.tscn"),
-		"unlocks": ["11a", "11b"],
+		"unlocks": [],
 		"part_price": 0,
 	},
 	"11a": {
