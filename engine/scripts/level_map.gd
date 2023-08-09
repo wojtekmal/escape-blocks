@@ -57,6 +57,8 @@ func _ready():
 	switch_slide(0)
 	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.pressed.connect(next_slide)
 	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Skip.pressed.connect(skip_slides)
+	
+	print(global.levels)
 
 func switch_slide(slide_num):
 	if slide_num >= slide_texts.size():
@@ -97,7 +99,7 @@ func add_levels(path, dirname):
 					"unlocked": 2,
 					"finished_parts": 0,
 					"rotation_parts": 0,
-					"time_parts": 0,
+					#"time_parts": 0,
 				}
 #				global.levels[dirname + file_name]["unlocked"] = true
 #				print(dirname + file_name, " ",  global.levels_data[dirname + file_name])
