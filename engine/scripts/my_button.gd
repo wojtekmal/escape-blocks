@@ -96,7 +96,7 @@ func set_label_text(new_value):
 	#if $LabelBox/Label == null:
 	#	return
 	label_text = new_value
-	print(new_value)
+	#print(new_value)
 	#$LabelBox/Label.text = new_value
 	$LabelBox/Label.clear()
 	$LabelBox/Label.push_paragraph(HORIZONTAL_ALIGNMENT_CENTER)
