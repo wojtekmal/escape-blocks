@@ -58,7 +58,7 @@ func _ready():
 	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.pressed.connect(next_slide)
 	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Skip.pressed.connect(skip_slides)
 	
-	print(global.levels)
+	#print(global.levels)
 
 func switch_slide(slide_num):
 	if slide_num >= slide_texts.size():

@@ -39,5 +39,5 @@ func set_is_falling(new_value):
 
 func falling_sound(y_speed):
 	$Landing.volume_db = -15 + y_speed / 30
-	print($Landing.volume_db)
+	#print($Landing.volume_db)
 	$Landing.play()

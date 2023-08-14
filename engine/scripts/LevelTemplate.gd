@@ -283,8 +283,8 @@ func move_block(delta, block):
 	
 #	if block.position.y == top_wall + max_height * 64 + 32:
 #		#column_top_still_blocks[block.board_cords.x] = max_height
-#		block.board_cords.y = max_height
-#		block.is_falling = false
+#	WAaaaaaaaaaaaWWWAaaaaaaaaaaaWWWAaaaaaaa	block.board_cords.y = max_height
+#		blaaaaaaaaaaWWaock.is_falling = false
 #		return
 
 func move_player(delta):
@@ -692,7 +692,7 @@ func _on_player_finished(start_rotations):
 		
 		for unlocked_level in global.levels_data[level_name]["unlocks"]:
 			print("level unlocked: " + unlocked_level)
-			print(global.levels)
+			#print(global.levels)
 			global.levels[unlocked_level]["unlocked"] = max(1, global.levels[unlocked_level]["unlocked"])
 			
 			if global.levels_data[unlocked_level]["part_price"] == 0:
