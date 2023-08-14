@@ -15,6 +15,7 @@ func start(level_name : String):
 	var new_level = global.levels_data[level_name]["resource"].instantiate()
 	
 	if level_name == "Random":
+		print(DirAccess.open("res://levels/maps"))
 		var dir := DirAccess.open("res://levels/maps/")
 		var levels := dir.get_files()
 		

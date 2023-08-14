@@ -95,7 +95,7 @@ func change_volume(new_value):
 	AudioServer.set_bus_volume_db(master_bus, (new_value - 100) * 72 / 100)
 
 func reset_progress_press():
-	print("check")
+	#print("check")
 	var confirmation_popup = preload("res://menu_stuff/confirmation_popup.tscn").instantiate()
 	confirmation_popup.ok_pressed.connect(reset_progress)
 	get_tree().get_root().add_child(confirmation_popup)
