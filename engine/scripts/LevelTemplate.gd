@@ -634,9 +634,9 @@ func _on_player_finished(start_rotations):
 		#var time_parts = 0
 		var rotation_parts = 0
 		
-		if rotations_number <= rotation_limit_1:
+		if rotations_number <= rotation_limit_2:
 			rotation_parts = 2
-		elif rotations_number <= rotation_limit_2:
+		elif rotations_number <= rotation_limit_1:
 			rotation_parts = 1
 		
 #		if timer._time <= time_limit_1:

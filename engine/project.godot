@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.1")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://textures/logo.png"
 config/icon="res://textures/block.png"
+config/windows_native_icon="res://textures/block.ico"
 
 [autoload]
 
