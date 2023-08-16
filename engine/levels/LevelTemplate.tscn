@@ -664,9 +664,11 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PartBox2" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
+visible = false
 layout_mode = 2
 
 [node name="PartBox3" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
+visible = false
 layout_mode = 2
 
 [node name="PartBox4" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
