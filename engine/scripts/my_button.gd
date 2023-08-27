@@ -1,23 +1,18 @@
 @tool
-extends MarginContainer
-
-signal pressed
+extends TextureButton
 
 @export_multiline var label_text : String = "" : set = set_label_text
-@export var disabled : bool = false : set = set_disabled
 #@export var action : String = ""
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$TextureButton.pressed.connect(emit_pressed)
-	
 	var margin_value = 0
 	var margin_left = get_theme_constant("margin_left")
 	var margin_right = get_theme_constant("margin_right")
 	var margin_top = get_theme_constant("margin_top")
 	var margin_bottom = get_theme_constant("margin_bottom")
 
-	var x_size = size.x - margin_left - margin_right
-	var y_size = size.y - margin_top - margin_bottom
+	var x_size = size.x# - margin_left - margin_right
+	var y_size = size.y# - margin_top - margin_bottom
 	
 	if x_size > y_size:
 		$LabelBox.add_theme_constant_override("margin_left", 5.0 * y_size / 32)
@@ -52,15 +47,22 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if has_focus():
+		modulate = Color(0.6,1,0.6)
+	else:
+		modulate = Color(1,1,1)
+
 	var margin_value = 0
 	var margin_left = get_theme_constant("margin_left")
 	var margin_right = get_theme_constant("margin_right")
 	var margin_top = get_theme_constant("margin_top")
 	var margin_bottom = get_theme_constant("margin_bottom")
 
-	var x_size = size.x - margin_left - margin_right
-	var y_size = size.y - margin_top - margin_bottom
+	var x_size = size.x# - margin_left - margin_right
+	var y_size = size.y# - margin_top - margin_bottom
 	
+	custom_minimum_size.y = $LabelBox/Label.size.y + 10
+
 	if x_size > y_size:
 		$LabelBox.add_theme_constant_override("margin_left", 5.0 * y_size / 32)
 		$LabelBox.add_theme_constant_override("margin_right", 5.0 * y_size / 32)
@@ -104,10 +106,5 @@ func set_label_text(new_value):
 	$LabelBox/Label.push_color(Color(0,0,0,1))
 	$LabelBox/Label.append_text(new_value)
 
-func emit_pressed():
-	ClickPlayer.play()
-	emit_signal("pressed")
-
-func set_disabled(new_value):
-	$TextureButton.disabled = new_value
-	disabled = new_value
+#func grab_focus():
+#	$TextureButton.get_focus()

@@ -1,22 +1,21 @@
 @tool
 class_name LevelButton
-extends Node2D
+extends TextureButton
 
-signal button_pressed
 signal refresh_map
+signal level_button_pressed
 
-@onready var pressable_button := $TextureButton
-@onready var needed_part_display := $TextureButton/VBoxContainer/HBoxContainer
+@onready var needed_part_display := $VBoxContainer/HBoxContainer
 var real_name = "NULL"
 
 func _ready():
-	var label = $TextureButton/VBoxContainer/Label
-	var part_label := $TextureButton/VBoxContainer/HBoxContainer/Label
+	var label = $VBoxContainer/Label
+	var part_label := $VBoxContainer/HBoxContainer/Label
 	
 	set_label_text(name)
 	#print(global.levels[label.text]["unlocked"])
 	#print(name)
-	pressable_button.pressed.connect(on_button_pressed)
+	pressed.connect(on_button_pressed)
 	
 	needed_part_display.modulate = Color8(255,255,255,255)
 	modulate = Color8(255,255,255,255)
@@ -24,9 +23,9 @@ func _ready():
 	if !global.levels.has(label.text):
 		pass
 	elif global.levels[label.text]["unlocked"] == 2:
-		pressable_button.disabled = false
+		disabled = false
 		needed_part_display.modulate = Color8(0,0,0,0)
-		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button.png")
+		texture_normal = load("res://textures/temporary_level_map_button.png")
 		
 		var done_part := $DonePart
 #		var time_part_1 := $TimePart1
@@ -52,8 +51,8 @@ func _ready():
 			rotation_part_2.self_modulate = Color8(255, 255, 255, 255)
 		
 	elif global.levels[label.text]["unlocked"] == 1:
-		pressable_button.disabled = false
-		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
+		disabled = false
+		texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
 		var done_part := $DonePart
 		var time_part_1 := $TimePart1
 		var time_part_2 := $TimePart2
@@ -65,8 +64,8 @@ func _ready():
 		rotation_part_1.visible = false
 		rotation_part_2.visible = false
 	else:
-		pressable_button.disabled = true
-		$TextureButton.texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
+		disabled = true
+		texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
 		modulate = Color8(100,100,100)
 		var done_part := $DonePart
 		var time_part_1 := $TimePart1
@@ -87,17 +86,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if has_focus():
+		self_modulate = Color(0.6,1,0.6)
+	else:
+		self_modulate = Color(1,1,1)
 
 func set_label_text(new_value):
-	var label = $TextureButton/VBoxContainer/Label
+	var label = $VBoxContainer/Label
 	if(global.levels_data.has(new_value)):
 #		print(new_value, " name")
 		real_name = new_value
 		label.text = new_value
 
 func on_button_pressed():
-	var label = $TextureButton/VBoxContainer/Label
+	var label = $VBoxContainer/Label
 	
 	if global.levels[label.text]["unlocked"] == 1:
 		var confirm_buy_level = load("res://map_stuff/confirm_buy_level.tscn").instantiate()
@@ -108,18 +110,18 @@ func on_button_pressed():
 		add_child(confirm_buy_level)
 	else:
 		print("pressed: " +  label.text)
-		emit_signal("button_pressed", label.text)
+		emit_signal("level_button_pressed", label.text)
 
 func _on_renamed():
 	set_label_text(name)
 
 func on_level_bought():
-	var label = $TextureButton/VBoxContainer/Label
+	var label = $VBoxContainer/Label
 	
 	if global.part_count < global.levels_data[label.text]["part_price"]:
 		return
 	
 	global.part_count -= global.levels_data[label.text]["part_price"]
 	global.levels[label.text]["unlocked"] = 2
-	$TextureButton.texture_normal = load("res://textures/temporary_level_map_button.png")
+	texture_normal = load("res://textures/temporary_level_map_button.png")
 	emit_signal("refresh_map")
