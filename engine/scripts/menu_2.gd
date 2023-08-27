@@ -8,6 +8,7 @@ func _ready():
 	var screen_size : Vector2 = $MarginContainer.size
 	var scale = min(screen_size.x, screen_size.y) / 96
 	overlay.scale = Vector2(scale, scale)
+	$MarginContainer/AspectRatioContainer/MarginContainer2/HBoxContainer/VBoxContainer3/Start.grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

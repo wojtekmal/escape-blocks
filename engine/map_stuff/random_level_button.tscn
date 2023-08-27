@@ -8,18 +8,16 @@
 font = ExtResource("3_b5s6h")
 font_color = Color(0, 0, 0, 1)
 
-[node name="RandomLevelButton" type="Node2D"]
-script = ExtResource("1_sc737")
-
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="RandomLevelButton" type="TextureButton"]
 offset_left = -64.0
 offset_top = -64.0
 offset_right = 64.0
 offset_bottom = 64.0
 texture_normal = ExtResource("2_w7n5v")
 stretch_mode = 0
+script = ExtResource("1_sc737")
 
-[node name="Label" type="Label" parent="TextureButton"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
