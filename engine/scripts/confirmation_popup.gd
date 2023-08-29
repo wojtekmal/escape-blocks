@@ -15,7 +15,9 @@ func _ready():
 	cancel_button.pressed.connect(on_cancel_pressed)
 	$IgnoreButton.button_down.connect(queue_free)
 	ok_button.grab_focus()
-	#get_tree().paused = true
+	
+	if !Engine.is_editor_hint():
+		get_tree().paused = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
