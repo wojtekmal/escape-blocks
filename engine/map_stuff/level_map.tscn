@@ -164,6 +164,7 @@ focus_neighbor_left = NodePath("../1")
 focus_neighbor_bottom = NodePath("../Random")
 
 [node name="MapCamera" type="Camera2D" parent="."]
+position = Vector2(914, 222)
 script = ExtResource("3_772qu")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -239,7 +240,6 @@ size_flags_stretch_ratio = 5.0
 mouse_filter = 2
 
 [node name="MyButton" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("9_bo5fr")]
-custom_minimum_size = Vector2(0, 362)
 layout_mode = 2
 size_flags_stretch_ratio = 1.5
 label_text = "Menu (P)"
@@ -279,7 +279,7 @@ size_flags_stretch_ratio = 3.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("11_xvn6e")
+texture = ExtResource("12_y37fw")
 expand_mode = 1
 stretch_mode = 5
 
