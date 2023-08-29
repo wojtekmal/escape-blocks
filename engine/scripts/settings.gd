@@ -17,23 +17,21 @@ func _ready():
 	tab_container.get_child(0).get_child(0).get_child(0).grab_focus()
 	
 	reset_progress.pressed.connect(reset_progress_press)
+	switch_rotation.toggled.connect(call_switch_rotation)
+	volume.value_changed.connect(change_volume)
+	music_volume.value_changed.connect(change_music_volume)
+	sound_effects_volume.value_changed.connect(change_sound_effects_volume)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.                                                                                              
 func _process(delta):
 	var tab_container := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer
 	
-	if Input.is_action_just_pressed("ui_focus_next"):# || Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("ui_focus_prev"):# || Input.is_action_just_pressed("ui_left"):
+		tab_container.current_tab = (tab_container.get_tab_count() + tab_container.current_tab - 1) % tab_container.get_tab_count()
+		tab_container.get_child(tab_container.current_tab).get_child(0).get_child(0).grab_focus()
+	elif Input.is_action_just_pressed("ui_focus_next"):# || Input.is_action_just_pressed("ui_right"):
 		tab_container.current_tab = (tab_container.current_tab + 1) % tab_container.get_tab_count()
 		tab_container.get_child(tab_container.current_tab).get_child(0).get_child(0).grab_focus()
-#		print("check")
-	
-#	if Input.is_action_just_pressed("ui_focus_prev"):# || Input.is_action_just_pressed("ui_left"):
-#		print(tab_container.current_tab)
-#		print(tab_container.get_tab_count() + tab_container.current_tab - 1)
-#		print(tab_container.get_tab_count())
-#		tab_container.current_tab = (tab_container.get_tab_count() + tab_container.current_tab - 1) % tab_container.get_tab_count()
-#		print(tab_container.current_tab)
-#		tab_container.get_child(tab_container.current_tab).get_child(0).get_child(0).grab_focus()
 	
 	var theme = preload("res://themes/main_theme.tres")
 	var tab_count = tab_container.get_child_count()
@@ -68,23 +66,7 @@ func go_to_menu():
 	else:
 		get_tree().change_scene_to_file("res://menu_stuff/menu_2.tscn")
 
-#func manage_changing_settings(action, new_value):
-#	if action == "switch_rotation":
-#		#print("Settings received switch rotation.")
-#		global.settings["switch_rotation"] = new_value
-#		global.save()
-#	elif action == "reset_progress":
-#		reset_progress_press()
-#	elif action == "change_volume":
-#		change_volume(new_value)
-#	elif action == "change_sound_effects_volume":
-#		change_sound_effects_volume(new_value)
-#	elif action == "change_music_volume":
-#		change_music_volume(new_value)
-#	else:
-#		print("This setting's method doesn't exist in settings.gd. ~wojtekmal")
-
-func switch_rotation(new_value):
+func call_switch_rotation(new_value):
 	global.settings["switch_rotation"] = new_value
 	global.save()
 

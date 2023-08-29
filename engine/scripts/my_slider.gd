@@ -1,9 +1,13 @@
 @tool
 extends Control
 
+signal value_changed
+
 @export_multiline var label_text : String = "" : set = set_label_text
 
 func _ready():
+	value_changed.connect(emit_value_changed)
+	
 	var x_size = size.x# - margin_left - margin_right
 	var y_size = size.y# - margin_top - margin_bottom
 	
@@ -103,3 +107,6 @@ func set_label_text(new_value):
 	$MarginContainer/HBoxContainer/RichTextLabel.push_font(load("res://fonts/conthrax/conthrax-sb.otf"), 36)
 	$MarginContainer/HBoxContainer/RichTextLabel.push_color(Color(0,0,0,1))
 	$MarginContainer/HBoxContainer/RichTextLabel.append_text(new_value)
+
+func emit_value_changed(value: float):
+	emit_signal("value_changed", value)
