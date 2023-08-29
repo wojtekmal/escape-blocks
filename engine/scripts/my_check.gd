@@ -1,6 +1,8 @@
 @tool
 extends Control
 
+@export_multiline var label_text : String = "" : set = set_label_text
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -48,3 +50,11 @@ func _process(delta):
 		$HBoxContainer/VBoxContainer3/TextureRect.size_flags_stretch_ratio = 5.0 * x_size / y_size
 		$HBoxContainer/VBoxContainer3/TextureRect2.size_flags_stretch_ratio = 32 - 10.0 * x_size / y_size
 		$HBoxContainer/VBoxContainer3/TextureRect3.size_flags_stretch_ratio = 5.0 * x_size / y_size
+
+func set_label_text(new_value):
+	label_text = new_value
+	$MarginContainer/HBoxContainer/Label.clear()
+	$MarginContainer/HBoxContainer/Label.push_paragraph(HORIZONTAL_ALIGNMENT_CENTER)
+	$MarginContainer/HBoxContainer/Label.push_font(load("res://fonts/conthrax/conthrax-sb.otf"), 36)
+	$MarginContainer/HBoxContainer/Label.push_color(Color(0,0,0,1))
+	$MarginContainer/HBoxContainer/Label.append_text(new_value)
