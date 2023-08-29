@@ -65,6 +65,9 @@ func _ready():
 		get_node(global.current_level).grab_focus()
 
 func _process(delta):
+	if Engine.is_editor_hint():
+		return
+	
 	if Input.is_action_just_pressed("back"):
 		go_to_menu()
 
