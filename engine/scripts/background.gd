@@ -11,4 +11,12 @@ func _process(delta):
 	
 	var scale_float = 8 * max(actual_ratio / default_ratio, default_ratio / actual_ratio)
 	scale = Vector2(scale_float, scale_float)
+
+func _ready():
+	off()
+
+func off():
+	$Stars.queue_free()
+	$Stars2.queue_free()
+	$Stars3.queue_free()
 	

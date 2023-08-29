@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/level_map.gd" id="1_gliqh"]
 [ext_resource type="PackedScene" uid="uid://ba4y62q3j4hcl" path="res://map_stuff/level_button.tscn" id="1_qu7sv"]
-[ext_resource type="PackedScene" path="res://map_stuff/MEGA_RANDOM_level_button.tscn" id="2_wtusj"]
+[ext_resource type="PackedScene" uid="uid://bj1uwb0r2j6po" path="res://map_stuff/MEGA_RANDOM_level_button.tscn" id="2_wtusj"]
 [ext_resource type="PackedScene" uid="uid://bcvu4b06caw6j" path="res://map_stuff/tutorial_level_button.tscn" id="3_6e3n4"]
 [ext_resource type="Script" path="res://scripts/map_camera.gd" id="3_772qu"]
 [ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="4_y8sme"]
@@ -141,16 +141,29 @@ font_size = 48
 script = ExtResource("1_gliqh")
 
 [node name="MEGA_RANDOM" parent="." instance=ExtResource("2_wtusj")]
-position = Vector2(1073, 458)
+offset_left = 1073.0
+offset_top = 458.0
+offset_right = 1201.0
+offset_bottom = 586.0
+focus_neighbor_top = NodePath("../Random")
 
 [node name="Random" parent="." instance=ExtResource("9_4gwoi")]
-position = Vector2(1071, 283)
+offset_left = 1071.0
+offset_top = 283.0
+offset_right = 1199.0
+offset_bottom = 411.0
+focus_neighbor_top = NodePath("../Tutorial")
+focus_neighbor_bottom = NodePath("../MEGA_RANDOM")
 
 [node name="Tutorial" parent="." instance=ExtResource("3_6e3n4")]
-position = Vector2(1070, 121)
+offset_left = 1070.0
+offset_top = 121.0
+offset_right = 1198.0
+offset_bottom = 249.0
+focus_neighbor_left = NodePath("../1")
+focus_neighbor_bottom = NodePath("../Random")
 
 [node name="MapCamera" type="Camera2D" parent="."]
-position = Vector2(914, 222)
 script = ExtResource("3_772qu")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -226,9 +239,10 @@ size_flags_stretch_ratio = 5.0
 mouse_filter = 2
 
 [node name="MyButton" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("9_bo5fr")]
+custom_minimum_size = Vector2(0, 362)
 layout_mode = 2
 size_flags_stretch_ratio = 1.5
-label_text = "Menu"
+label_text = "Menu (P)"
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = -150.0
@@ -265,7 +279,7 @@ size_flags_stretch_ratio = 3.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("12_y37fw")
+texture = ExtResource("11_xvn6e")
 expand_mode = 1
 stretch_mode = 5
 
@@ -306,67 +320,180 @@ layout_mode = 2
 label_text = "Skip"
 
 [node name="1" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(914, 222)
+offset_left = 914.0
+offset_top = 222.0
+offset_right = 978.0
+offset_bottom = 327.0
+focus_neighbor_left = NodePath("../2")
+focus_neighbor_right = NodePath("../Tutorial")
 
 [node name="2" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(733, 138)
+offset_left = 733.0
+offset_top = 138.0
+offset_right = 797.0
+offset_bottom = 243.0
+focus_neighbor_left = NodePath("../3a")
+focus_neighbor_right = NodePath("../1")
+focus_neighbor_bottom = NodePath("../3")
 
 [node name="3" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(656, 302)
+offset_left = 656.0
+offset_top = 302.0
+offset_right = 720.0
+offset_bottom = 407.0
+focus_neighbor_left = NodePath("../4")
+focus_neighbor_top = NodePath("../2")
 
 [node name="4" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(483, 348)
+offset_left = 483.0
+offset_top = 348.0
+offset_right = 547.0
+offset_bottom = 453.0
+focus_neighbor_left = NodePath("../5")
+focus_neighbor_right = NodePath("../3")
+focus_neighbor_bottom = NodePath("../5a")
 
 [node name="5" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(272, 400)
+offset_left = 272.0
+offset_top = 400.0
+offset_right = 336.0
+offset_bottom = 505.0
+focus_neighbor_left = NodePath("../6")
+focus_neighbor_right = NodePath("../4")
 
 [node name="3a" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(541, 28)
+offset_left = 541.0
+offset_top = 28.0
+offset_right = 605.0
+offset_bottom = 133.0
+focus_neighbor_left = NodePath("../4a")
+focus_neighbor_right = NodePath("../2")
 
 [node name="4a" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(324, 57)
+offset_left = 324.0
+offset_top = 57.0
+offset_right = 388.0
+offset_bottom = 162.0
+focus_neighbor_right = NodePath("../3a")
 
 [node name="5a" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(521, 552)
+offset_left = 521.0
+offset_top = 552.0
+offset_right = 585.0
+offset_bottom = 657.0
+focus_neighbor_top = NodePath("../4")
+focus_neighbor_right = NodePath("../6a")
 
 [node name="6a" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(737, 635)
+offset_left = 737.0
+offset_top = 635.0
+offset_right = 801.0
+offset_bottom = 740.0
+focus_neighbor_left = NodePath("../5a")
 
 [node name="6" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(65, 323)
+offset_left = 65.0
+offset_top = 323.0
+offset_right = 129.0
+offset_bottom = 428.0
+focus_neighbor_left = NodePath("../7")
+focus_neighbor_right = NodePath("../5")
 
 [node name="7" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(-151, 415)
+offset_left = -151.0
+offset_top = 415.0
+offset_right = -87.0
+offset_bottom = 520.0
+focus_neighbor_right = NodePath("../6")
+focus_neighbor_bottom = NodePath("../8")
 
 [node name="8" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(-184, 602)
+offset_left = -184.0
+offset_top = 602.0
+offset_right = -120.0
+offset_bottom = 707.0
+focus_neighbor_top = NodePath("../7")
+focus_neighbor_right = NodePath("../9a")
+focus_neighbor_bottom = NodePath("../9b")
 
 [node name="9b" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(-213, 854)
+offset_left = -213.0
+offset_top = 854.0
+offset_right = -149.0
+offset_bottom = 959.0
+focus_neighbor_top = NodePath("../8")
+focus_neighbor_right = NodePath("../10")
 
 [node name="9a" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(6, 766)
+offset_left = 6.0
+offset_top = 766.0
+offset_right = 70.0
+offset_bottom = 871.0
+focus_neighbor_left = NodePath("../8")
+focus_neighbor_right = NodePath("../10a")
+focus_neighbor_bottom = NodePath("../10")
 
 [node name="10a" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(266, 720)
+offset_left = 266.0
+offset_top = 720.0
+offset_right = 330.0
+offset_bottom = 825.0
+focus_neighbor_left = NodePath("../9a")
 
 [node name="10" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(-11, 1028)
+offset_left = -11.0
+offset_top = 1028.0
+offset_right = 53.0
+offset_bottom = 1133.0
+focus_neighbor_left = NodePath("../9b")
+focus_neighbor_top = NodePath("../9a")
+focus_neighbor_right = NodePath("../11a")
+focus_neighbor_bottom = NodePath("../11b")
 
 [node name="11a" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(340, 1089)
+offset_left = 340.0
+offset_top = 1089.0
+offset_right = 404.0
+offset_bottom = 1194.0
+focus_neighbor_left = NodePath("../10")
+focus_neighbor_right = NodePath("../12a")
 
 [node name="11b" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(65, 1361)
+offset_left = 65.0
+offset_top = 1361.0
+offset_right = 129.0
+offset_bottom = 1466.0
+focus_neighbor_left = NodePath("../12b")
+focus_neighbor_top = NodePath("../10")
+focus_neighbor_right = NodePath("../2137")
 
 [node name="12b" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(-372, 1391)
+offset_left = -372.0
+offset_top = 1391.0
+offset_right = -308.0
+offset_bottom = 1496.0
+focus_neighbor_right = NodePath("../11b")
 
 [node name="12a" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(686, 1250)
+offset_left = 686.0
+offset_top = 1250.0
+offset_right = 750.0
+offset_bottom = 1355.0
+focus_neighbor_left = NodePath("../11a")
+focus_neighbor_top = NodePath("../13")
+focus_neighbor_bottom = NodePath("../2137")
 
 [node name="13" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(768, 1006)
+offset_left = 768.0
+offset_top = 1006.0
+offset_right = 832.0
+offset_bottom = 1111.0
+focus_neighbor_bottom = NodePath("../12a")
 
 [node name="2137" parent="." instance=ExtResource("1_qu7sv")]
-position = Vector2(430, 1478)
+offset_left = 430.0
+offset_top = 1478.0
+offset_right = 494.0
+offset_bottom = 1583.0
+focus_neighbor_left = NodePath("../11b")
+focus_neighbor_top = NodePath("../12a")

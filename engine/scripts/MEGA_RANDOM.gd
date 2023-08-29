@@ -1,10 +1,16 @@
 @tool
-extends Node2D
+extends TextureButton
 
-signal button_pressed
+signal level_button_pressed
 
 func _ready():
-	$TextureButton.pressed.connect(on_pressed)
+	pressed.connect(on_pressed)
+
+func _process(delta):
+	if has_focus():
+		self_modulate = Color(0.6,1,0.6)
+	else:
+		self_modulate = Color(1,1,1)
 
 func on_pressed():
-	emit_signal("button_pressed", "MEGA RANDOM")
+	emit_signal("level_button_pressed", "MEGA RANDOM")

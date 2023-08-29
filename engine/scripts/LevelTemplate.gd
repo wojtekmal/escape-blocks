@@ -433,10 +433,10 @@ func manage_changing_gravity():
 		game_started = true
 		rotations += 1
 		#("Adding one 90 degrees rotation.")
-	if(Input.is_action_pressed("gravity_up")):
+	elif(Input.is_action_pressed("gravity_up")):
 		game_started = true
 		rotations += 2
-	if(Input.is_action_pressed("gravity_left") && !global.settings["switch_rotation"] ||
+	elif(Input.is_action_pressed("gravity_left") && !global.settings["switch_rotation"] ||
 	Input.is_action_pressed("gravity_right") && global.settings["switch_rotation"]):
 		game_started = true
 		rotations -= 1
@@ -715,11 +715,12 @@ func _on_player_finished(start_rotations):
 		#next_level_button_text.push_color(Color(0,0,0,1))
 		
 		if next_level_name == "NULL":
-			next_level_button.label_text = "Next"
+			next_level_button.label_text = "Next (Enter)"
 			next_level_button.disabled = true
 			next_level_button.modulate = Color8(255,255,255,100)
 		elif global.levels_data[next_level_name]["part_price"] == 0:
-			next_level_button.label_text = "Next"
+			next_level_button.label_text = "Next (Enter)"
+			next_level_button.grab_focus()
 		else:
 			next_level_button.label_text = "NEXT (" + str(global.levels_data[next_level_name]["part_price"]) + "[img=36x36]res://textures/temporary_part.png[/img])"
 			#next_level_button_text.pop()
@@ -785,6 +786,7 @@ func go_to_next_level():
 	confirmation_popup.label_text = "Open level " + next_level_name +\
 	"\nfor " + str(global.levels_data[next_level_name]["part_price"]) + " parts?"
 	confirmation_popup.ok_pressed.connect(actually_go_to_next_level)
+	confirmation_popup.cancel_pressed.connect(cancel_go_to_next_level)
 	get_tree().get_root().add_child(confirmation_popup)
 
 func actually_go_to_next_level():
@@ -796,6 +798,9 @@ func actually_go_to_next_level():
 	global.part_count -= global.levels_data[next_level_name]["part_price"]
 	global.save()
 	emit_signal("change_to_next_level", level_name)
+
+func cancel_go_to_next_level():
+	$EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer/Next.grab_focus()
 
 func floor_div(a, b):
 	if a >= 0 || a == floori(a) && floori(a) % floori(b) == 0:
