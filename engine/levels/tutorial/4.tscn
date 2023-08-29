@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_i5c5x"]
 [ext_resource type="PackedScene" uid="uid://bh28swydxx22h" path="res://board_stuff/tutorial_float.tscn" id="2_lkauv"]
 
-[node name="LevelTemplate4" instance=ExtResource("1_i5c5x")]
+[node name="LevelTemplate5" instance=ExtResource("1_i5c5x")]
 board_dimensions = Vector2i(3, 3)
 rotation_limit_1 = 4
 rotation_limit_2 = 3

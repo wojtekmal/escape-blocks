@@ -1,16 +1,19 @@
 @tool
-extends Node2D
+extends TextureButton
 
-signal button_pressed
+signal level_button_pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$TextureButton.pressed.connect(on_pressed)
+	pressed.connect(on_pressed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if has_focus():
+		self_modulate = Color(0.6,1,0.6)
+	else:
+		self_modulate = Color(1,1,1)
 
 func on_pressed():
-	emit_signal("button_pressed", "Random")
+	emit_signal("level_button_pressed", "Random")

@@ -95,6 +95,7 @@ func pause(value := true):
 	paused = value
 	get_tree().paused = value
 	pause_screen.visible = paused
+	$CanvasLayer/Control/VBoxContainer/MarginContainer/HBoxContainer/Resume.grab_focus()
 
 func restart_current_level(level_name = current_level):
 	if current_level == "Random":

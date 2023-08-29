@@ -14,18 +14,16 @@ font_color = Color(0, 0, 0, 1)
 font = ExtResource("4_tsx42")
 font_color = Color(0, 0, 0, 1)
 
-[node name="LevelButton" type="Node2D" groups=["level_buttons"]]
-script = ExtResource("1_oaoe2")
-
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="LevelButton" type="TextureButton" groups=["level_buttons"]]
 offset_left = -32.0
 offset_top = -32.0
 offset_right = 32.0
 offset_bottom = 73.0
 disabled = true
 texture_normal = ExtResource("2_yxlcj")
+script = ExtResource("1_oaoe2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureButton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="TextureButton/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 size_flags_stretch_ratio = 1.5
@@ -43,25 +41,25 @@ label_settings = SubResource("LabelSettings_3dvoa")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureButton/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 modulate = Color(0, 0, 0, 0)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="TextureButton/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
 label_settings = SubResource("LabelSettings_4vt8g")
 horizontal_alignment = 2
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="TextureButton/VBoxContainer/HBoxContainer"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="TextureRect" type="TextureRect" parent="TextureButton/VBoxContainer/HBoxContainer/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/AspectRatioContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
@@ -69,7 +67,7 @@ texture = ExtResource("4_gpkad")
 expand_mode = 1
 
 [node name="DonePart" parent="." instance=ExtResource("5_6aplh")]
-position = Vector2(-45, -12)
+position = Vector2(-13, 20)
 
 [node name="TimePart1" parent="." instance=ExtResource("5_6aplh")]
 visible = false
@@ -80,7 +78,7 @@ visible = false
 position = Vector2(0, -45)
 
 [node name="RotationPart1" parent="." instance=ExtResource("5_6aplh")]
-position = Vector2(0, -40)
+position = Vector2(32, -8)
 
 [node name="RotationPart2" parent="." instance=ExtResource("5_6aplh")]
-position = Vector2(45, -12)
+position = Vector2(77, 20)

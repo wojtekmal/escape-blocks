@@ -3,17 +3,16 @@
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="1_5jqbq"]
 [ext_resource type="Script" path="res://scripts/confirmation_popup.gd" id="1_g1w6i"]
 [ext_resource type="Texture2D" uid="uid://d4lbjhayyy8hw" path="res://textures/transparent32x32.png" id="2_mr4qv"]
-[ext_resource type="Texture2D" uid="uid://c8yym53ddmjaq" path="res://textures/end_panel_button.png" id="2_xa2il"]
+[ext_resource type="PackedScene" uid="uid://bfgrl48wnlnlx" path="res://settings_stuff/my_panel.tscn" id="3_pomt0"]
+[ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="5_xgbde"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_inu6j"]
 font = ExtResource("1_5jqbq")
 font_size = 48
-
-[sub_resource type="LabelSettings" id="LabelSettings_jgp2b"]
-font = ExtResource("1_5jqbq")
-font_size = 48
+font_color = Color(0, 0, 0, 1)
 
 [node name="ConfirmationPopup" type="CanvasLayer"]
+process_mode = 3
 layer = 125
 script = ExtResource("1_g1w6i")
 
@@ -31,14 +30,13 @@ theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 300
 theme_override_constants/margin_bottom = 150
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
-layout_mode = 2
-color = Color(0.207843, 0.207843, 0.207843, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="MyPanel" parent="MarginContainer" instance=ExtResource("3_pomt0")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MyPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MyPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 text = "ARE YOU SURE YOU
@@ -48,45 +46,29 @@ CAN'T BE UNDONE."
 label_settings = SubResource("LabelSettings_inu6j")
 horizontal_alignment = 1
 
-[node name="ButtonsBox" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ButtonsBox" type="MarginContainer" parent="MarginContainer/MyPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ButtonsBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MyPanel/VBoxContainer/ButtonsBox"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="OkBox" type="MarginContainer" parent="MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer"]
+[node name="OkBox" type="MarginContainer" parent="MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/OkBox"]
+[node name="MyButton" parent="MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer/OkBox" instance=ExtResource("5_xgbde")]
 layout_mode = 2
-texture_normal = ExtResource("2_xa2il")
-ignore_texture_size = true
-stretch_mode = 0
+label_text = "OK"
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/OkBox"]
-layout_mode = 2
-text = "OK"
-label_settings = SubResource("LabelSettings_jgp2b")
-horizontal_alignment = 1
-
-[node name="CancelBox" type="MarginContainer" parent="MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer"]
+[node name="CancelBox" type="MarginContainer" parent="MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/CancelBox"]
+[node name="MyButton" parent="MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer/CancelBox" instance=ExtResource("5_xgbde")]
 layout_mode = 2
-texture_normal = ExtResource("2_xa2il")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ButtonsBox/HBoxContainer/CancelBox"]
-layout_mode = 2
-text = "CANCEL"
-label_settings = SubResource("LabelSettings_jgp2b")
-horizontal_alignment = 1
+label_text = "Cancel"

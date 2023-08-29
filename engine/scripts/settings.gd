@@ -5,28 +5,37 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var tab_container := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer
 	var back_to_menu_button := $MyPanel/MarginContainer/VBoxContainer/ExternalButtonsBox/HBoxContainer/MyButton
+	var reset_progress := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer/ResetProgress
+	var switch_rotation := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer/SwitchRotation
+	var volume := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/Volume
+	var music_volume := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/MusicVolume
+	var sound_effects_volume := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/SoundEffectsVolume
+	
 	back_to_menu_button.pressed.connect(go_to_menu)
+	tab_container.get_child(0).get_child(0).get_child(0).grab_focus()
 	
-	var settings_list = $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer.get_children()
-	settings_list.append_array($MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer.get_children())
-	settings_list.append_array($MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer.get_children())
-	
-	for setting in settings_list:
-		if !setting.has_signal("changed"):
-			continue
-		
-		setting.changed.connect(manage_changing_settings)
-		
-		if "disabled_in_level" in setting && mode == "in_level":
-			setting.disabled = true
-	
-	#print(preload("res://themes/main_theme.tres").get_stylebox_type_list())
+	reset_progress.pressed.connect(reset_progress_press)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.                                                                                              
 func _process(delta):
-	var theme = preload("res://themes/main_theme.tres")
 	var tab_container := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer
+	
+	if Input.is_action_just_pressed("ui_focus_next"):# || Input.is_action_just_pressed("ui_right"):
+		tab_container.current_tab = (tab_container.current_tab + 1) % tab_container.get_tab_count()
+		tab_container.get_child(tab_container.current_tab).get_child(0).get_child(0).grab_focus()
+#		print("check")
+	
+#	if Input.is_action_just_pressed("ui_focus_prev"):# || Input.is_action_just_pressed("ui_left"):
+#		print(tab_container.current_tab)
+#		print(tab_container.get_tab_count() + tab_container.current_tab - 1)
+#		print(tab_container.get_tab_count())
+#		tab_container.current_tab = (tab_container.get_tab_count() + tab_container.current_tab - 1) % tab_container.get_tab_count()
+#		print(tab_container.current_tab)
+#		tab_container.get_child(tab_container.current_tab).get_child(0).get_child(0).grab_focus()
+	
+	var theme = preload("res://themes/main_theme.tres")
 	var tab_count = tab_container.get_child_count()
 	#print(tab_count)
 	var total_len = 0
@@ -46,13 +55,12 @@ func _process(delta):
 	stylebox.set_content_margin(SIDE_LEFT, (tabbar_len - total_len) * 1.0 / tab_count / 2)
 	stylebox.set_content_margin(SIDE_RIGHT, (tabbar_len - total_len) * 1.0 / tab_count / 2)
 	
-	#print((total_len - tabbar_len) * 1.0 / tab_count / 2)
-	#print(tabbar_len)
-	#print(stylebox.border_width_left)
-	
 	tab_container.add_theme_stylebox_override("tab_selected", stylebox)
 	tab_container.add_theme_stylebox_override("tab_unselected", stylebox)
 	tab_container.add_theme_stylebox_override("tab_hovered", stylebox)
+	
+	if Input.is_action_just_pressed("back"):
+		go_to_menu()
 
 func go_to_menu():
 	if mode == "in_level":
@@ -60,21 +68,25 @@ func go_to_menu():
 	else:
 		get_tree().change_scene_to_file("res://menu_stuff/menu_2.tscn")
 
-func manage_changing_settings(action, new_value):
-	if action == "switch_rotation":
-		#print("Settings received switch rotation.")
-		global.settings["switch_rotation"] = new_value
-		global.save()
-	elif action == "reset_progress":
-		reset_progress_press()
-	elif action == "change_volume":
-		change_volume(new_value)
-	elif action == "change_sound_effects_volume":
-		change_sound_effects_volume(new_value)
-	elif action == "change_music_volume":
-		change_music_volume(new_value)
-	else:
-		print("This setting's method doesn't exist in settings.gd. ~wojtekmal")
+#func manage_changing_settings(action, new_value):
+#	if action == "switch_rotation":
+#		#print("Settings received switch rotation.")
+#		global.settings["switch_rotation"] = new_value
+#		global.save()
+#	elif action == "reset_progress":
+#		reset_progress_press()
+#	elif action == "change_volume":
+#		change_volume(new_value)
+#	elif action == "change_sound_effects_volume":
+#		change_sound_effects_volume(new_value)
+#	elif action == "change_music_volume":
+#		change_music_volume(new_value)
+#	else:
+#		print("This setting's method doesn't exist in settings.gd. ~wojtekmal")
+
+func switch_rotation(new_value):
+	global.settings["switch_rotation"] = new_value
+	global.save()
 
 func change_sound_effects_volume(new_value):
 	global.settings["change_sound_effects_volume"] = new_value
@@ -101,17 +113,8 @@ func reset_progress_press():
 	get_tree().get_root().add_child(confirmation_popup)
 
 func reset_progress():
-#	for level_name in global.levels_data:
-#		global.levels[level_name] = {
-#			"unlocked": 0,
-#			"finished_parts": 0,
-#			"rotation_parts": 0,
-##			"time_parts": 0,
-#		}
-	
 	global.levels = {}
 	
-#	global.levels["1"]["unlocked"] = 2
 	global.current_level = "1"
 	global.part_count = 0
 	global.save()

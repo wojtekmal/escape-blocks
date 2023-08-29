@@ -1,13 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtkhnervfb8g8"]
+[gd_scene load_steps=10 format=3 uid="uid://dtkhnervfb8g8"]
 
 [ext_resource type="Script" path="res://scripts/settings.gd" id="1_1sbxb"]
 [ext_resource type="Theme" uid="uid://b6dnqex7rkm3u" path="res://themes/main_theme.tres" id="1_2esgo"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="1_8r5dt"]
 [ext_resource type="PackedScene" uid="uid://cimdip5w7semr" path="res://menu_stuff/settings_bool.tscn" id="2_or2vx"]
 [ext_resource type="PackedScene" uid="uid://bfgrl48wnlnlx" path="res://settings_stuff/my_panel.tscn" id="3_2u476"]
-[ext_resource type="PackedScene" uid="uid://qltep5mntvfb" path="res://menu_stuff/settings_button.tscn" id="3_b01vd"]
-[ext_resource type="PackedScene" uid="uid://bkuryr5wpwy4h" path="res://menu_stuff/settings_slider.tscn" id="5_fdlcu"]
 [ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="6_1m8wc"]
+[ext_resource type="PackedScene" uid="uid://bdotm30dstbpd" path="res://settings_stuff/my_slider.tscn" id="7_oauus"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7jr6i"]
 font = ExtResource("1_8r5dt")
@@ -23,9 +22,6 @@ border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
 border_color = Color(0.717647, 0.717647, 0.717647, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_0tibx"]
-font_size = 48
 
 [node name="Settings" type="Panel"]
 anchors_preset = 15
@@ -81,10 +77,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ResetProgress" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer" instance=ExtResource("3_b01vd")]
+[node name="ResetProgress" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer" instance=ExtResource("6_1m8wc")]
 layout_mode = 2
-label_text = "RESET PROGRESS"
-action = "reset_progress"
+size_flags_vertical = 1
+label_text = "Reset progress"
 
 [node name="Input" type="ScrollContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer"]
 visible = false
@@ -95,38 +91,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SwitchRotaion" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer" instance=ExtResource("2_or2vx")]
+[node name="SwitchRotation" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer" instance=ExtResource("2_or2vx")]
 layout_mode = 2
 label_text = "SWITCH ROTATION DIRECTION"
 action = "switch_rotation"
 
 [node name="MarginContainer" type="MarginContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer"]
 layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-text = "Action"
-label_settings = SubResource("LabelSettings_0tibx")
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-text = "Control"
-label_settings = SubResource("LabelSettings_0tibx")
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-label_settings = SubResource("LabelSettings_0tibx")
-horizontal_alignment = 1
 
 [node name="Audio" type="ScrollContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer"]
 visible = false
@@ -137,20 +108,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Volume" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer" instance=ExtResource("5_fdlcu")]
+[node name="Volume" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer" instance=ExtResource("7_oauus")]
 layout_mode = 2
-action = "change_volume"
-label_text = "Master Volume"
-
-[node name="MusicVolume" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer" instance=ExtResource("5_fdlcu")]
-layout_mode = 2
-action = "change_music_volume"
-label_text = "Music"
-
-[node name="SoundEffectsVolume" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer" instance=ExtResource("5_fdlcu")]
-layout_mode = 2
-action = "change_sound_effects_volume"
-label_text = "Sound effects"
+label_text = "Volume"
 
 [node name="ExternalButtonsBox" type="MarginContainer" parent="MyPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -165,7 +125,7 @@ size_flags_horizontal = 3
 
 [node name="MyButton" parent="MyPanel/MarginContainer/VBoxContainer/ExternalButtonsBox/HBoxContainer" instance=ExtResource("6_1m8wc")]
 layout_mode = 2
-label_text = "Menu"
+label_text = "Menu (P)"
 
 [node name="Container2" type="Container" parent="MyPanel/MarginContainer/VBoxContainer/ExternalButtonsBox/HBoxContainer"]
 layout_mode = 2

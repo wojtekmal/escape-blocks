@@ -71,6 +71,7 @@ theme_override_constants/separation = 20
 
 [node name="Resume" parent="CanvasLayer/Control/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_cpjcm")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Map")
 label_text = "Resume"
 
 [node name="Restart" parent="CanvasLayer/Control/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_cpjcm")]
@@ -83,6 +84,7 @@ label_text = "Settings"
 
 [node name="Map" parent="CanvasLayer/Control/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_cpjcm")]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Resume")
 label_text = "Map"
 
 [node name="SettingsLayer" type="CanvasLayer" parent="."]

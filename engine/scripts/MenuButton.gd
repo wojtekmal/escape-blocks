@@ -1,28 +1,23 @@
 @tool
-extends Control
+extends TextureButton
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-@export_multiline var buttonText := "" : set = UpdateLabel # (String, MULTILINE)
+@export_multiline var buttonText := "" : set = UpdateLabel
 @export var custom_method : String
-@export var texture : Texture : set = set_texture
-@onready var label := $CenterContainer/ButtonLabel
-@onready var pressable_button = $AspectRatioContainer/TextureButton
-
+@onready var label := $ButtonLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	label.text = buttonText
-	pressable_button.pressed.connect(on_button_press)
+	pressed.connect(on_button_press)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if has_focus():
+		modulate = Color(0.6,1,0.6)
+	else:
+		modulate = Color(1,1,1)
 
 func UpdateLabel(newName):
-	var label = $CenterContainer/ButtonLabel
+	var label = $ButtonLabel
 	if Engine.is_editor_hint():
 		label.text = newName
 	buttonText = newName
@@ -59,12 +54,7 @@ func continue_game_press():
 		load_new_game()
 		print("global.levels == {}")
 		return
-	#print(global.levels_data)
-	#print()
-	#print()
-	#print(global.levels)
-	#print()
-	#print()
+	
 	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
 
 func settings_press():
@@ -72,8 +62,3 @@ func settings_press():
 
 func exit_game_press():
 	get_tree().quit()
-
-func set_texture(new_value):
-	texture = new_value
-	var texture_rect := $AspectRatioContainer/TextureButton
-	texture_rect.texture_normal = new_value

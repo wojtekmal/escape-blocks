@@ -1,0 +1,136 @@
+[gd_scene load_steps=12 format=3 uid="uid://cn1xo40fd1tgx"]
+
+[ext_resource type="Texture2D" uid="uid://kd6u3rrs5wgy" path="res://textures/button/top_left.png" id="1_g5sj1"]
+[ext_resource type="Script" path="res://scripts/my_check.gd" id="1_mem4a"]
+[ext_resource type="Texture2D" uid="uid://bmusv7b2gwq17" path="res://textures/button/left_purple.png" id="3_aun7g"]
+[ext_resource type="Texture2D" uid="uid://dap1vj6rhbbag" path="res://textures/button/bottom_left.png" id="3_m4yf4"]
+[ext_resource type="Texture2D" uid="uid://bj15lohp1xpbb" path="res://textures/button/center.png" id="5_5srfh"]
+[ext_resource type="Texture2D" uid="uid://bkjm1c47g7rcy" path="res://textures/button/top_purple.png" id="5_206ux"]
+[ext_resource type="Texture2D" uid="uid://cyiiydjjec3lv" path="res://textures/button/top_right.png" id="7_5npdq"]
+[ext_resource type="Texture2D" uid="uid://2acy3c446t2t" path="res://textures/button/bottom_purple.png" id="7_ooycw"]
+[ext_resource type="Texture2D" uid="uid://bwn4bgqvit4kf" path="res://textures/button/right_purple.png" id="9_4sipj"]
+[ext_resource type="Texture2D" uid="uid://dnvdruycrvtcg" path="res://textures/button/bottom_right.png" id="9_g7h06"]
+
+[sub_resource type="Theme" id="Theme_ls7pv"]
+
+[node name="MyCheck" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mem4a")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.8125
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+texture = ExtResource("1_g5sj1")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 22.0
+texture = ExtResource("3_aun7g")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+texture = ExtResource("3_m4yf4")
+expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 26.375
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+texture = ExtResource("5_206ux")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 22.0
+texture = ExtResource("5_5srfh")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+texture = ExtResource("7_ooycw")
+expand_mode = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.8125
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+texture = ExtResource("7_5npdq")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 22.0
+texture = ExtResource("9_4sipj")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+texture = ExtResource("9_g7h06")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 112
+theme_override_constants/margin_right = 112
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_ls7pv")
