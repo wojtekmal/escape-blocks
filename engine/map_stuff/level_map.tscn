@@ -239,7 +239,6 @@ size_flags_stretch_ratio = 5.0
 mouse_filter = 2
 
 [node name="MyButton" parent="MapHUD/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("9_bo5fr")]
-custom_minimum_size = Vector2(0, 362)
 layout_mode = 2
 size_flags_stretch_ratio = 1.5
 label_text = "Menu (P)"
@@ -279,7 +278,7 @@ size_flags_stretch_ratio = 3.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("11_xvn6e")
+texture = ExtResource("12_y37fw")
 expand_mode = 1
 stretch_mode = 5
 
@@ -320,6 +319,7 @@ layout_mode = 2
 label_text = "Skip"
 
 [node name="1" parent="." instance=ExtResource("1_qu7sv")]
+self_modulate = Color(0.6, 1, 0.6, 1)
 offset_left = 914.0
 offset_top = 222.0
 offset_right = 978.0
