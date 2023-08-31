@@ -113,9 +113,11 @@ label_text = "Volume"
 
 [node name="MusicVolume" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer" instance=ExtResource("7_oauus")]
 layout_mode = 2
+label_text = "Music Volume"
 
 [node name="SoundEffectsVolume" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer" instance=ExtResource("7_oauus")]
 layout_mode = 2
+label_text = "Sound Effects Volume"
 
 [node name="ExternalButtonsBox" type="MarginContainer" parent="MyPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
