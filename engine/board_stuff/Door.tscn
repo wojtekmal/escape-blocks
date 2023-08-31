@@ -1,19 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo0nthv1x5g0v"]
+[gd_scene load_steps=6 format=3 uid="uid://bo0nthv1x5g0v"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_lj0ds"]
-[ext_resource type="Shader" path="res://shaders/button.gdshader" id="3_6r8xq"]
 [ext_resource type="Texture2D" uid="uid://dwm0i4f3lr28f" path="res://textures/blocks/door.png" id="4_8c54u"]
 [ext_resource type="AudioStream" uid="uid://bfggmq2mq7r4y" path="res://sound/board_door_open.wav" id="4_e0qhx"]
 [ext_resource type="AudioStream" uid="uid://kbnwlfdg78uu" path="res://sound/board_door_close.wav" id="5_vusou"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i0yv4"]
-resource_local_to_scene = true
-shader = ExtResource("3_6r8xq")
-shader_parameter/u_color = Color(1, 0, 0, 1)
-shader_parameter/rgb = false
-shader_parameter/strength = 0.5
-shader_parameter/speed = 0.5
-shader_parameter/angle = 45.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xlvr"]
 size = Vector2(63, 63)
@@ -23,7 +13,6 @@ script = ExtResource("1_lj0ds")
 
 [node name="Shaded" type="Node2D" parent="."]
 z_index = 1
-material = SubResource("ShaderMaterial_i0yv4")
 
 [node name="Door" type="Sprite2D" parent="Shaded"]
 z_index = 1
