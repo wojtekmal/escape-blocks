@@ -112,12 +112,10 @@ layout_mode = 2
 label_text = "Volume"
 
 [node name="MusicVolume" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer" instance=ExtResource("7_oauus")]
-custom_minimum_size = Vector2(0, 538)
 layout_mode = 2
 label_text = "Music Volume"
 
 [node name="SoundEffectsVolume" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer" instance=ExtResource("7_oauus")]
-custom_minimum_size = Vector2(0, 890)
 layout_mode = 2
 label_text = "Sound Effects Volume"
 
