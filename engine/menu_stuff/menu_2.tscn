@@ -86,7 +86,6 @@ focus_mode = 0
 texture_normal = ExtResource("2_ebkg8")
 
 [node name="Start" parent="MarginContainer/AspectRatioContainer/MarginContainer2/HBoxContainer/VBoxContainer3" instance=ExtResource("1")]
-modulate = Color(0.6, 1, 0.6, 1)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Creddits")
 buttonText = "Start"
