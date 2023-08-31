@@ -1,17 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://csxm6djh8uf3g"]
+[gd_scene load_steps=9 format=3 uid="uid://csxm6djh8uf3g"]
 
 [ext_resource type="PackedScene" uid="uid://vntb00nxrmwy" path="res://board_stuff/Button.tscn" id="1_brn8m"]
-[ext_resource type="Shader" path="res://shaders/button.gdshader" id="2_p1dr0"]
 [ext_resource type="Texture2D" uid="uid://cccwvxhkxhkc7" path="res://textures/blocks/antibutton.png" id="3_wiuwf"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r104v"]
-resource_local_to_scene = true
-shader = ExtResource("2_p1dr0")
-shader_parameter/u_color = Color(0, 1, 0, 1)
-shader_parameter/rgb = false
-shader_parameter/strength = 0.461
-shader_parameter/speed = 0.1
-shader_parameter/angle = 45.0
 
 [sub_resource type="Gradient" id="Gradient_y6ae1"]
 offsets = PackedFloat32Array(0, 0.331104, 0.638796, 1)
@@ -58,9 +48,6 @@ color_ramp = SubResource("GradientTexture1D_nr5yp")
 
 [node name="Button" instance=ExtResource("1_brn8m")]
 negative = true
-
-[node name="Shaded" parent="." index="1"]
-material = SubResource("ShaderMaterial_r104v")
 
 [node name="TextureProgressBar" parent="Shaded" index="0"]
 texture_progress = ExtResource("3_wiuwf")

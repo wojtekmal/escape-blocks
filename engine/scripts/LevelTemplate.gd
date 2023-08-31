@@ -199,6 +199,9 @@ func manage_falling_entities(delta):
 	column_top_entities.clear()
 	moving_entities = get_tree().get_nodes_in_group("interacting_entities")
 	moving_entities.sort_custom(compare_entity_heights)
+	print(moving_entities.size(), " ", cnt)
+	cnt = 0
+	
 	
 	for i in range(0, board_dimensions.x):
 		column_top_still_blocks.push_back(board_dimensions.y)
@@ -223,7 +226,10 @@ func manage_falling_entities(delta):
 #				entity_below.y_speed = entity.y_speed
 #			column_top_entities[entity.board_cords.x] = entity
 
+var cnt := 0
+
 func compare_entity_heights(a, b): # Sorts the entities in decreasing order according to their height.
+	cnt += 1
 	return a.position.y > b.position.y
 
 func manage_static_block(delta, block):

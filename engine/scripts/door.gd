@@ -42,12 +42,9 @@ func _physics_process(delta):
 
 func _ready():
 	add_to_group("door " + str(start_rotations))
-	$Shaded.material.set_shader_parameter(
-		"u_color", 
-		colors[start_rotations]
-	)
-	if start_rotations == 0:
-		$Shaded.material.set_shader_parameter("rgb", true)
+	
+	$Shaded.modulate = (colors[start_rotations])
+
 	buttons = get_tree().get_nodes_in_group("button " + str(start_rotations))
 	for button in buttons:
 		button.connect("pressed", Callable(self, "button_pressed"));

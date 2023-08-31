@@ -32,12 +32,7 @@ func set_board_cords(newValue):
 func _ready():
 	add_to_group("wasd")
 	add_to_group("button " + str(start_rotations))
-	$Shaded.material.set_shader_parameter(
-		"u_color", 
-		colors[start_rotations]
-	)
-	if start_rotations == 0:
-		$Shaded.material.set_shader_parameter("rgb", true)
+	$Shaded.modulate = colors[start_rotations]
 
 func on_press():
 	show_particles(true)
