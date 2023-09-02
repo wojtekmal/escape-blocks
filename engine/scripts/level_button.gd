@@ -7,6 +7,8 @@ signal level_button_pressed
 
 @onready var needed_part_display := $VBoxContainer/HBoxContainer
 var real_name = "NULL"
+var normal_texture := preload("res://textures/temporary_level_map_button.png")
+var disabled_texture := preload("res://textures/temporary_level_map_button_disabled.png")
 
 func _ready():
 	var label = $VBoxContainer/Label
@@ -25,7 +27,7 @@ func _ready():
 	elif global.levels[label.text]["unlocked"] == 2:
 		disabled = false
 		needed_part_display.modulate = Color8(0,0,0,0)
-		texture_normal = load("res://textures/temporary_level_map_button.png")
+		texture_normal = normal_texture
 		
 		var done_part := $DonePart
 #		var time_part_1 := $TimePart1
@@ -52,7 +54,7 @@ func _ready():
 		
 	elif global.levels[label.text]["unlocked"] == 1:
 		disabled = false
-		texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
+		texture_normal = disabled_texture
 		var done_part := $DonePart
 		var time_part_1 := $TimePart1
 		var time_part_2 := $TimePart2
@@ -65,7 +67,7 @@ func _ready():
 		rotation_part_2.visible = false
 	else:
 		disabled = true
-		texture_normal = load("res://textures/temporary_level_map_button_disabled.png")
+		texture_normal = disabled_texture
 		modulate = Color8(100,100,100)
 		var done_part := $DonePart
 		var time_part_1 := $TimePart1
@@ -123,5 +125,5 @@ func on_level_bought():
 	
 	global.part_count -= global.levels_data[label.text]["part_price"]
 	global.levels[label.text]["unlocked"] = 2
-	texture_normal = load("res://textures/temporary_level_map_button.png")
+	texture_normal = normal_texture
 	emit_signal("refresh_map")

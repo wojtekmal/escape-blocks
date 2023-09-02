@@ -773,6 +773,8 @@ func retry_level():
 	emit_signal("retry_this_level")
 
 func go_to_next_level():
+	next_level_button.release_focus()
+	next_level_button.modulate = Color(1,1,1)
 	print("going to next level")
 	var next_level_name := "NULL"
 	if global.levels_data[level_name]["unlocks"].size():

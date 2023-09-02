@@ -4,6 +4,7 @@ extends TextureButton
 @export_multiline var buttonText := "" : set = UpdateLabel
 @export var custom_method : String
 @onready var label := $ButtonLabel
+var level_map := preload("res://map_stuff/level_map.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,7 +48,7 @@ func load_new_game():
 	global.save()
 	global.show_cutscene = true
 	
-	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+	get_tree().change_scene_to(level_map)
 
 func continue_game_press():
 	if global.levels == {}:
