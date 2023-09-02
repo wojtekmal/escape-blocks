@@ -24,6 +24,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.                                                                                              
 func _process(delta):
+	if !is_visible_in_tree():
+		return
+	
 	var tab_container := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer
 	
 	if Input.is_action_just_pressed("ui_focus_prev"):# || Input.is_action_just_pressed("ui_left"):

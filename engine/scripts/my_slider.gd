@@ -47,6 +47,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if !is_visible_in_tree():
+		return
+	
 	if has_focus():
 		modulate = Color(0.6,1,0.6)
 	else:
