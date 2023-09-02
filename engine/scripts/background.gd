@@ -13,7 +13,8 @@ func _process(delta):
 	scale = Vector2(scale_float, scale_float)
 
 func _ready():
-	off()
+#	off()
+	pass
 
 func off():
 	$Stars.queue_free()
