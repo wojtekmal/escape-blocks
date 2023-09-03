@@ -19,4 +19,4 @@ position = Vector2(-128, -64)
 layer_0/tile_data = PackedInt32Array(65539, 2, 0, 65538, 7, 131072, 2, 9, 131072, 65536, 6, 0, 3, 4, 131072, 1, 8, 131072, 65537, 1, 0)
 
 [node name="TutorialFloat" parent="." index="13" instance=ExtResource("2_43nwj")]
-pages = PackedStringArray("The button with a shape of X is a reverse button. All doors of a certain color will open when all buttons of that color are pressed and all reverse buttons of that color are NOT pressed.\nPress any key to continue.")
+pages = PackedStringArray("The button with a shape of X is a reverse button. All doors of a certain color will open when all buttons of that color are pressed and all reverse buttons of that color are NOT pressed.")
