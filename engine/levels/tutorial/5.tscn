@@ -11,4 +11,4 @@ rotation_limit_2 = 3
 layer_0/tile_data = PackedInt32Array(65538, 2, 0, 196614, 2, 0, 262150, 2, 0, 131078, 2, 0, 65543, 2, 0, 65539, 2, 0, 65540, 2, 0, 65542, 2, 0, 196612, 2, 0, 262148, 4, 0, 131076, 2, 0, 196610, 2, 0, 196608, 2, 0, 7, 7, 196608, 131075, 7, 196608, 65536, 9, 196608, 131074, 1, 0, 262145, 1, 0, 196609, 6, 0, 262149, 9, 131072, 65541, 9, 196608, 131079, 7, 131072, 262147, 2, 0, 262151, 1, 0)
 
 [node name="TutorialFloat" parent="." index="13" instance=ExtResource("2_he7x6")]
-pages = PackedStringArray("Pressing all the buttons of a certain color at once unlocks all doors of that color. A door will not close when anything is blocking it, meaning that a player or a block is in that door.\nPress any key to continue.")
+pages = PackedStringArray("Pressing all the buttons of a certain color at once unlocks all doors of that color. A door will not close when anything is blocking it, meaning that a player or a block is in that door.")
