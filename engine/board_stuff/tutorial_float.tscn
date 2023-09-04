@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh28swydxx22h"]
+[gd_scene load_steps=7 format=3 uid="uid://bh28swydxx22h"]
 
 [ext_resource type="Script" path="res://scripts/tutorial_float.gd" id="1_426fr"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="2_jgxdu"]
 [ext_resource type="PackedScene" uid="uid://bfgrl48wnlnlx" path="res://settings_stuff/my_panel.tscn" id="2_kcdj4"]
+[ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="4_140dn"]
+[ext_resource type="PackedScene" uid="uid://bl4vcxiu5w3tk" path="res://menu_stuff/my_opaque_button.tscn" id="5_cq85d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ecgtq"]
 font = ExtResource("2_jgxdu")
-font_size = 24
+font_size = 26
 
 [node name="TutorialFloat" type="CanvasLayer"]
 layer = 101
@@ -58,10 +60,19 @@ theme_override_constants/margin_bottom = 3
 [node name="MyPanel" parent="HBoxContainer/VBoxContainer/MarginContainer" instance=ExtResource("2_kcdj4")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer/MyPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer/MyPanel"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
 label_settings = SubResource("LabelSettings_ecgtq")
 autowrap_mode = 3
+
+[node name="TextureButton" parent="HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer" instance=ExtResource("4_140dn")]
+layout_mode = 2
+size_flags_vertical = 1
+label_text = "Close"
 
 [node name="Container2" type="Container" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -70,3 +81,24 @@ size_flags_vertical = 3
 [node name="Container3" type="Container" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="Container" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 7.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MyOpaqueButton" parent="HBoxContainer2/VBoxContainer" instance=ExtResource("5_cq85d")]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+label_text = "abc"
