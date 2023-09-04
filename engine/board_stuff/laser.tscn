@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ikll6b8k6aps"]
+
+[ext_resource type="Script" path="res://scripts/laser.gd" id="1_c024d"]
+[ext_resource type="Texture2D" uid="uid://b5b1kvymkvcr7" path="res://textures/blocks/laser_beam.png" id="2_pm2n2"]
+[ext_resource type="Texture2D" uid="uid://dwbterimkt0jt" path="res://textures/blocks/laser.png" id="2_uyalv"]
+
+[node name="laser" type="Node2D"]
+position = Vector2(32, 20)
+script = ExtResource("1_c024d")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="laserBEAM" type="Line2D" parent="Node2D"]
+points = PackedVector2Array(-30, 0, 1000, 0)
+width = 64.0
+texture = ExtResource("2_pm2n2")
+texture_mode = 1
+
+[node name="Laser" type="Sprite2D" parent="Node2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_uyalv")
+
+[node name="RayCast2D" type="RayCast2D" parent="Node2D"]
+position = Vector2(-31, 0)
+target_position = Vector2(1000, 0)
+collision_mask = 7
+hit_from_inside = true
+collide_with_areas = true
