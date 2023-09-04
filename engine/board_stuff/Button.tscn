@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bf4xsccw5d4i2" path="res://sound/board_button.wav" id="4_0fpri"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(16, 16)
+size = Vector2(36, 36)
 
 [sub_resource type="Gradient" id="Gradient_yv4jc"]
 offsets = PackedFloat32Array(0.5)
