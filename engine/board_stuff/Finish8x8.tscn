@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://2dkql7fm7wva"]
+[gd_scene load_steps=7 format=3 uid="uid://2dkql7fm7wva"]
 
 [ext_resource type="Script" path="res://scripts/Finish8x8.gd" id="1_d6rvf"]
-[ext_resource type="Texture2D" uid="uid://dhx3mdga63otx" path="res://textures/blocks/finish.png" id="2_lrwi6"]
 [ext_resource type="Texture2D" uid="uid://c1b1kvyaj2575" path="res://textures/blocks/emergency_escape_sign.png" id="3_reobm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iblkr"]
@@ -35,10 +34,6 @@ color_ramp = SubResource("GradientTexture1D_h4lti")
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_d6rvf")
-
-[node name="Texture" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_lrwi6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_iblkr")
