@@ -8,7 +8,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_ecgtq"]
 font = ExtResource("2_jgxdu")
-font_size = 26
+font_size = 30
 
 [node name="TutorialFloat" type="CanvasLayer"]
 layer = 101
@@ -99,6 +99,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="MyOpaqueButton" parent="HBoxContainer2/VBoxContainer" instance=ExtResource("5_cq85d")]
+visible = false
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 label_text = "abc"
