@@ -104,6 +104,12 @@ var tile_blocks := {
 		"layer" : 0,
 		"id" : 9
 	},
+	"laser" : { #must be below buttons
+		"resource" : preload("res://board_stuff/laser.tscn"),
+		"adress" : Vector2i(0, 0),
+		"layer" : 0,
+		"id" : 5
+	},
 }
 
 # Letters to blocks.

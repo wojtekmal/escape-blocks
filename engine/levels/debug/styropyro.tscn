@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy0e4u7mii3hc"]
+
+[ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_1qw0p"]
+
+[node name="LevelTemplate4" instance=ExtResource("1_1qw0p")]
+
+[node name="Walls" parent="." index="3"]
+layer_0/tile_data = PackedInt32Array(196610, 6, 0, 262144, 5, 0, 6, 5, 65536, 262146, 1, 0, 262150, 2, 0, 1, 2, 0, 7, 2, 0)
