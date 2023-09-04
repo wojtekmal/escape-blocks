@@ -25,7 +25,7 @@ func _ready():
 	#print(preload("res://levels/level_2.tscn").instantiate())
 	if !Engine.is_editor_hint():
 		$MapHUD.visible = true
-	load_all()
+	#load_all()
 	
 	get_viewport().gui_focus_changed.connect(move_camera_to_button)
 	
@@ -63,10 +63,14 @@ func _ready():
 		$MEGA_RANDOM.grab_focus()
 	else:
 		get_node(global.current_level).grab_focus()
+	
+	print("finished loading")
 
 func _process(delta):
 	if Engine.is_editor_hint():
 		return
+	
+	#get_tree().quit()
 	
 	if Input.is_action_just_pressed("back"):
 		go_to_menu()
@@ -92,6 +96,7 @@ func load_all():
 	add_levels(path, "")
 
 func add_levels(path, dirname):
+	$Panel.visible = true
 	var rows = 6
 	var dir = DirAccess.open(path)
 	if dir:

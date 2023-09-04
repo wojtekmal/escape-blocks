@@ -21,4 +21,4 @@ position = Vector2(-96, -64)
 layer_0/tile_data = PackedInt32Array(65537, 2, 0, 65536, 6, 0, 65538, 4, 0)
 
 [node name="TutorialFloat" parent="." index="11" instance=ExtResource("2_krfh1")]
-pages = PackedStringArray("Welcome to Escape Blocks!\n\nGet to the finish (the square with a green evacuation sign). Press A⁠/⁠D to move left⁠/⁠right and W or Space to jump. Use R to restart the level and Esc to pause it and view some options.\nPress any key to continue.")
+pages = PackedStringArray("Welcome to Escape Blocks!\n\nGet to the finish (the square with a green evacuation sign). Press A⁠/⁠D to move left⁠/⁠right and W or Space to jump. Use R to restart the level and Esc to pause it and view some options.")

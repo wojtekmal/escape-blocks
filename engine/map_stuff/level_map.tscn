@@ -244,6 +244,7 @@ size_flags_stretch_ratio = 1.5
 label_text = "Menu (P)"
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 offset_left = -150.0
 offset_top = -800.0
 offset_right = 1800.0
@@ -319,7 +320,6 @@ layout_mode = 2
 label_text = "Skip"
 
 [node name="1" parent="." instance=ExtResource("1_qu7sv")]
-self_modulate = Color(0.6, 1, 0.6, 1)
 offset_left = 914.0
 offset_top = 222.0
 offset_right = 978.0
