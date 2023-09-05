@@ -280,7 +280,7 @@ size_flags_stretch_ratio = 3.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("12_y37fw")
+texture = ExtResource("11_xvn6e")
 expand_mode = 1
 stretch_mode = 5
 
