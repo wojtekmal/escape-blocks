@@ -145,7 +145,7 @@ var levels_data := {
 	},
 	"9b": {
 		"resource": load("res://levels/wojtekmal/4.tscn"),
-		"unlocks": ["10"],
+		"unlocks": ["10", "10b"],
 		"part_price": 0,
 	},
 	"10": {
@@ -155,6 +155,11 @@ var levels_data := {
 	},
 	"10a": {
 		"resource": load("res://levels/Herbercik/level_1_3.tscn"),
+		"unlocks": [],
+		"part_price": 0,
+	},
+	"10b": {
+		"resource": load("res://levels/frutman/frutlevel1.tscn"),
 		"unlocks": [],
 		"part_price": 0,
 	},
