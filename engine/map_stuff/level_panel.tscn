@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfm2pxcepdnwt"]
+
+[ext_resource type="Script" path="res://scripts/level_panel.gd" id="1_w21cj"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_w21cj")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = -5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.388235, 0.388235, 0.388235, 1)
