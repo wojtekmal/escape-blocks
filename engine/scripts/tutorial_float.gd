@@ -14,9 +14,13 @@ func _ready():
 	
 	$HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/TextureButton.grab_focus()
 	$HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/TextureButton.pressed.connect(close_panel)
+	$HBoxContainer2/VBoxContainer/MyOpaqueButton.pressed.connect(open_panel)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_just_pressed("tutorial"):
+		open_panel()
+	
 	var vbox = $HBoxContainer/VBoxContainer
 	var float_box = $HBoxContainer/VBoxContainer/MarginContainer
 	var label = $HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/Label
@@ -58,3 +62,9 @@ func log_modulus(value):
 
 func close_panel():
 	$HBoxContainer.visible = false
+	$HBoxContainer2.visible = true
+
+func open_panel():
+	$HBoxContainer.visible = true
+	$HBoxContainer2.visible = false
+	$HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/TextureButton.grab_focus()

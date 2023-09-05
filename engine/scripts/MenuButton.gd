@@ -48,7 +48,7 @@ func load_new_game():
 	global.save()
 	global.show_cutscene = true
 	
-	get_tree().change_scene_to(level_map)
+	get_tree().change_scene_to_packed(level_map)
 
 func continue_game_press():
 	if global.levels == {}:
@@ -56,7 +56,7 @@ func continue_game_press():
 		print("global.levels == {}")
 		return
 	
-	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+	get_tree().change_scene_to_packed(level_map)
 
 func settings_press():
 	get_tree().change_scene_to_file("res://menu_stuff/settings.tscn")
