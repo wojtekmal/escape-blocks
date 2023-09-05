@@ -27,7 +27,7 @@ func _process(delta):
 	var x_size = size.x# - margin_left - margin_right
 	var y_size = size.y# - margin_top - margin_bottom
 	
-	custom_minimum_size.y = $LabelBox/Label.size.y + 10
+	custom_minimum_size.y = $LabelBox/Label.size.y + 20
 
 func set_label_text(new_value):
 	#if $LabelBox/Label == null:
@@ -38,6 +38,6 @@ func set_label_text(new_value):
 	$LabelBox/Label.clear()
 	$LabelBox/Label.push_paragraph(HORIZONTAL_ALIGNMENT_CENTER)
 	$LabelBox/Label.push_font(load("res://fonts/conthrax/conthrax-sb.otf"), 36)
-	$LabelBox/Label.push_color(Color(0,0,0,0.5))
+	$LabelBox/Label.push_color(Color(0.8,0.8,0.8,0.5))
 	$LabelBox/Label.append_text(new_value)
 
