@@ -59,6 +59,9 @@ func _ready():
 	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.pressed.connect(next_slide)
 	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Skip.pressed.connect(skip_slides)
 	
+	if !has_node(global.current_level):
+		global.current_level = "1"
+	
 	if (global.current_level == "MEGA RANDOM"):
 		$MEGA_RANDOM.grab_focus()
 	else:
