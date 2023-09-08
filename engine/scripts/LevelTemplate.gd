@@ -253,6 +253,7 @@ func move_block(delta, block):
 		block.y_speed += 1000 * delta
 	else:
 		block.y_speed = 0
+	
 	var delta_height = delta * block.y_speed
 	var new_block_cord_y = floori(block.position.y - top_wall + delta_height - 32 - 1) / 64 + 1
 	# Ceiling division.
@@ -358,7 +359,6 @@ func move_player(delta):
 		else:
 			player.y_speed -= (player.jump_speed) * delta
 		coyote_timer.stop()
-	
 	elif Input.is_action_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0 or player.flying):
 		if(player.y_speed > 0):
 			player.y_speed = 0
@@ -526,7 +526,9 @@ func rotation_ended():
 		
 		entity.y_speed = 0
 	
-	player.is_falling = true
+	for entity in moving_entities:
+		if "is_falling" in entity:
+			entity.is_falling = true
 	
 	for i in range(0, wasd.size()):
 		var w = wasd[i]
