@@ -6,7 +6,7 @@ class_name MovingBlock8x8 extends Area2D
 # var b = "text"
 @export var board_cords: Vector2i : set = set_board_cords
 @export var board_dimensions: Vector2i : set = set_board_dimensions
-@export var is_falling : bool : set = set_is_falling
+@export var is_falling : bool = true : set = set_is_falling
 # How fast the block is falling down.
 @export var y_speed := 0
 @export var start_rotations : int = 0
