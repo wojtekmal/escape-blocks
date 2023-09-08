@@ -5,7 +5,7 @@
 [node name="LevelTemplate4" instance=ExtResource("1_m8gy3")]
 board_dimensions = Vector2i(5, 5)
 rotation_limit_1 = 23
-rotation_limit_2 = 17
+rotation_limit_2 = 16
 
 [node name="Player" parent="." index="0"]
 board_dimensions = Vector2i(5, 5)
