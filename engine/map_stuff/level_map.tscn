@@ -280,7 +280,7 @@ size_flags_stretch_ratio = 3.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("12_y37fw")
+texture = ExtResource("13_4yvx7")
 expand_mode = 1
 stretch_mode = 5
 
@@ -498,7 +498,15 @@ offset_left = 768.0
 offset_top = 1006.0
 offset_right = 832.0
 offset_bottom = 1111.0
+focus_neighbor_top = NodePath("../14")
 focus_neighbor_bottom = NodePath("../12a")
+
+[node name="14" parent="." instance=ExtResource("1_qu7sv")]
+offset_left = 758.0
+offset_top = 782.0
+offset_right = 822.0
+offset_bottom = 887.0
+focus_neighbor_bottom = NodePath("../13")
 
 [node name="2137" parent="." instance=ExtResource("1_qu7sv")]
 offset_left = 641.0
