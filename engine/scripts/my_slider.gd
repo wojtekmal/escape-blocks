@@ -4,9 +4,10 @@ extends Control
 signal value_changed
 
 @export_multiline var label_text : String = "" : set = set_label_text
+var value : float : set = set_value
 
 func _ready():
-	value_changed.connect(emit_value_changed)
+	$MarginContainer/HBoxContainer/HSlider.value_changed.connect(emit_value_changed)
 	
 	var x_size = size.x# - margin_left - margin_right
 	var y_size = size.y# - margin_top - margin_bottom
@@ -62,13 +63,9 @@ func _process(delta):
 		$MarginContainer/HBoxContainer/HSlider.value += 100 * delta
 	
 	var margin_value = 0
-#	var margin_left = get_theme_constant("margin_left")
-#	var margin_right = get_theme_constant("margin_right")
-#	var margin_top = get_theme_constant("margin_top")
-#	var margin_bottom = get_theme_constant("margin_bottom")
 
-	var x_size = size.x# - margin_left - margin_right
-	var y_size = size.y# - margin_top - margin_bottom
+	var x_size = size.x
+	var y_size = size.y
 	
 	custom_minimum_size.y = $MarginContainer/HBoxContainer/RichTextLabel.size.y + 10
 
@@ -113,3 +110,7 @@ func set_label_text(new_value):
 
 func emit_value_changed(value: float):
 	emit_signal("value_changed", value)
+
+func set_value(new_value):
+	value = new_value
+	$MarginContainer/HBoxContainer/HSlider.value = new_value
