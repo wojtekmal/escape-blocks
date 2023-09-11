@@ -18,9 +18,13 @@ func _ready():
 	
 	reset_progress.pressed.connect(reset_progress_press)
 	switch_rotation.toggled.connect(call_switch_rotation)
+	switch_rotation.button_pressed = global.settings["switch_rotation"]
 	volume.value_changed.connect(change_volume)
+	volume.value = global.settings["change_volume"]
 	music_volume.value_changed.connect(change_music_volume)
+	music_volume.value = global.settings["change_music_volume"]
 	sound_effects_volume.value_changed.connect(change_sound_effects_volume)
+	sound_effects_volume.value = global.settings["change_sound_effects_volume"]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.                                                                                              
 func _process(delta):
@@ -71,6 +75,7 @@ func go_to_menu():
 
 func call_switch_rotation(new_value):
 	global.settings["switch_rotation"] = new_value
+	print(global.settings["switch_rotation"])
 	global.save()
 
 func change_sound_effects_volume(new_value):

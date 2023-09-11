@@ -4,6 +4,7 @@ extends Control
 signal toggled
 
 @export_multiline var label_text : String = "" : set = set_label_text
+var button_pressed : bool : set = set_button_pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -73,5 +74,9 @@ func set_label_text(new_value):
 	$MarginContainer/HBoxContainer/Label.push_color(Color(0,0,0,1))
 	$MarginContainer/HBoxContainer/Label.append_text(new_value)
 
-func emit_toggled():
-	emit_signal("toggled")
+func set_button_pressed(new_value):
+	button_pressed = new_value
+	$MarginContainer/HBoxContainer/CheckButton.button_pressed = new_value
+
+func emit_toggled(new_value):
+	emit_signal("toggled", new_value)

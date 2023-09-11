@@ -173,8 +173,10 @@ func _ready():
 	load_blocks_from_tilemap()
 	
 	#overlay.collapse();
-	var audio := $AudioStreamPlayer
-	audio.play()
+#	var audio := $AudioStreamPlayer
+#	audio.play()
+	
+	print(global.settings["switch_rotation"])
 
 func _physics_process(delta):
 	# We won't be loading frames in the editor.
@@ -626,7 +628,7 @@ func _on_player_finished(start_rotations):
 		timer.stop()
 		#get_tree().paused = true
 		print("End game.\nTotal rotations: " + str(rotations_number))
-		$EndPanel/MarginContainer/MyPanel/VBoxContainer/FinishLabelBox/FinishLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
+		$EndPanel/MarginContainer/MyPanel/VBoxContainer/FinishLabelBox/FinishLabel.text = "LEVEL COMPLETE\nTotal rotations: " + str(rotations_number)
 		
 		if !end_screen_disabled:
 			$EndPanel.visible = true

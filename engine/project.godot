@@ -22,6 +22,7 @@ config/windows_native_icon="res://textures/block.ico"
 
 global="*res://scripts/global.gd"
 ClickPlayer="*res://sound/click_player.tscn"
+GlobalMusic="*res://sound/global_music.tscn"
 
 [display]
 
