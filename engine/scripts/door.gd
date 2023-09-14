@@ -6,6 +6,7 @@ extends Node2D
 @export var is_falling := false : set = set_is_falling
 @export var y_speed := 0
 @export var can_close : bool
+var y_size : int = 64
 # Doesn't actually change.
 signal open_door
 

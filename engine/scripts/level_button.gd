@@ -11,7 +11,7 @@ var normal_texture := preload("res://textures/temporary_level_map_button.png")
 var disabled_texture := preload("res://textures/temporary_level_map_button_disabled.png")
 
 func _ready():
-	var label = $VBoxContainer/Label
+	var label = $LabelNode/Label
 	var part_label := $VBoxContainer/HBoxContainer/Label
 	
 	set_label_text(name)
@@ -94,14 +94,17 @@ func _process(delta):
 		self_modulate = Color(1,1,1)
 
 func set_label_text(new_value):
-	var label = $VBoxContainer/Label
+	var label = $LabelNode/Label
 	if(global.levels_data.has(new_value)):
 #		print(new_value, " name")
 		real_name = new_value
 		label.text = new_value
+	
+	label.position.x = -label.size.x / 2 * label.scale.x
+	label.position.y = -label.size.y / 2 * label.scale.y
 
 func on_button_pressed():
-	var label = $VBoxContainer/Label
+	var label = $LabelNode/Label
 	
 	if global.levels[label.text]["unlocked"] == 1:
 		var confirm_buy_level = load("res://map_stuff/confirm_buy_level.tscn").instantiate()
@@ -118,7 +121,7 @@ func _on_renamed():
 	set_label_text(name)
 
 func on_level_bought():
-	var label = $VBoxContainer/Label
+	var label = $LabelNode/Label
 	
 	if global.part_count < global.levels_data[label.text]["part_price"]:
 		return
