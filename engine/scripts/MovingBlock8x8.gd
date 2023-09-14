@@ -10,6 +10,7 @@ class_name MovingBlock8x8 extends Area2D
 # How fast the block is falling down.
 @export var y_speed := 0
 @export var start_rotations : int = 0
+var y_size : int = 64
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
