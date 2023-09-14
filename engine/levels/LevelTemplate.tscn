@@ -495,12 +495,6 @@ sources/3 = SubResource("TileSetAtlasSource_wvol4")
 sources/8 = SubResource("TileSetAtlasSource_ww58g")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pg4o3"]
-shader = ExtResource("11_psw4b")
-shader_parameter/u_color = Color(0, 1, 0, 1)
-shader_parameter/rgb = true
-shader_parameter/strength = 0.5
-shader_parameter/speed = 0.5
-shader_parameter/angle = 45.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_n40f3"]
 font = ExtResource("14_wb3oo")

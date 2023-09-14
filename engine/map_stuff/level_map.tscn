@@ -34,6 +34,8 @@
 [sub_resource type="LabelSettings" id="LabelSettings_lnd47"]
 font = ExtResource("5_iu41y")
 font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ru84r"]
 bg_color = Color(0.807843, 0.807843, 0.807843, 1)
@@ -280,7 +282,7 @@ size_flags_stretch_ratio = 3.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("12_y37fw")
+texture = ExtResource("11_xvn6e")
 expand_mode = 1
 stretch_mode = 5
 
