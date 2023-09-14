@@ -173,8 +173,10 @@ func _ready():
 	load_blocks_from_tilemap()
 	
 	#overlay.collapse();
-	var audio := $AudioStreamPlayer
-	audio.play()
+#	var audio := $AudioStreamPlayer
+#	audio.play()
+	
+	print(global.settings["switch_rotation"])
 
 func _physics_process(delta):
 	# We won't be loading frames in the editor.
@@ -238,14 +240,17 @@ func manage_static_block(delta, block):
 	block.y_speed = 0
 	
 	if (entity_below != counter && (block.y_speed - entity_below.y_speed) * delta >=
-		entity_below.position.y - block.position.y - 32 - get_y_size(entity_below) / 2):
+		entity_below.position.y - block.position.y - 32 - entity_below.y_size / 2):
 		entity_below.y_speed = block.y_speed
 	
 	if (entity_below != counter && entity_below.position.y - block.position.y < 
-	32 + get_y_size(entity_below) / 2):
-		entity_below.position.y = block.position.y + 32 + get_y_size(entity_below) / 2
+	32 + entity_below.y_size / 2):
+		entity_below.position.y = block.position.y + 32 + entity_below.y_size / 2
 	
 	column_top_entities[block.board_cords.x] = block
+	
+	#for i in range(1,2001):
+	#	pass
 
 func move_block(delta, block):
 	block.y_speed *= y_friction
@@ -626,7 +631,7 @@ func _on_player_finished(start_rotations):
 		timer.stop()
 		#get_tree().paused = true
 		print("End game.\nTotal rotations: " + str(rotations_number))
-		$EndPanel/MarginContainer/MyPanel/VBoxContainer/FinishLabelBox/FinishLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
+		$EndPanel/MarginContainer/MyPanel/VBoxContainer/FinishLabelBox/FinishLabel.text = "LEVEL COMPLETE\nTotal rotations: " + str(rotations_number)
 		
 		if !end_screen_disabled:
 			$EndPanel.visible = true

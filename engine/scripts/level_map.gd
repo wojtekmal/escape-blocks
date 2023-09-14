@@ -54,6 +54,7 @@ func _ready():
 	if global.show_cutscene:
 		$CanvasLayer.visible = true
 		global.show_cutscene = false
+		$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.grab_focus()
 	
 	switch_slide(0)
 	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.pressed.connect(next_slide)
