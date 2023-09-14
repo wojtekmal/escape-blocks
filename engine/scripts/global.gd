@@ -185,6 +185,11 @@ var levels_data := {
 	},
 	"13": {
 		"resource": load("res://levels/roupiq/bird.tscn"),
+		"unlocks": ["14"],
+		"part_price": 0,
+	},
+	"14": {
+		"resource": load("res://levels/wojtekmal/6.tscn"),
 		"unlocks": [],
 		"part_price": 0,
 	},

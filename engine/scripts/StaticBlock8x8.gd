@@ -8,6 +8,7 @@ class_name StaticBlock8x8 extends Area2D
 # Doesn't actually change.
 @export var y_speed := 0
 @export var start_rotations : int = 0
+var y_size : int = 64
 
 func set_board_dimensions(newValue):
 	board_dimensions = newValue

@@ -11,6 +11,7 @@ var jump_speed = 5500
 @export var is_falling : bool = true : set = set_is_falling
 @export var start_rotations : int = 0
 var flying := false
+var y_size : int = 50
 
 # Player speed
 @export var y_speed := 0
