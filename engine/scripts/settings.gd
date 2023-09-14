@@ -97,9 +97,11 @@ func change_volume(new_value):
 	AudioServer.set_bus_volume_db(master_bus, (new_value - 100) * 72 / 100)
 
 func reset_progress_press():
-	#print("check")
+	$MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer/ResetProgress.release_focus()
+	$MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer/ResetProgress.modulate = Color(1,1,1)
 	var confirmation_popup = preload("res://menu_stuff/confirmation_popup.tscn").instantiate()
 	confirmation_popup.ok_pressed.connect(reset_progress)
+	confirmation_popup.cancel_pressed.connect(cancel_reset_progress)
 	get_tree().get_root().add_child(confirmation_popup)
 
 func reset_progress():
@@ -108,3 +110,7 @@ func reset_progress():
 	global.current_level = "1"
 	global.part_count = 0
 	global.save()
+	$MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer/ResetProgress.grab_focus()
+
+func cancel_reset_progress():
+	$MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer/ResetProgress.grab_focus()
