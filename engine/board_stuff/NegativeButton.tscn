@@ -33,6 +33,7 @@ negative = true
 texture_progress = ExtResource("3_wiuwf")
 
 [node name="Button" parent="Shaded" index="1"]
+z_index = 1
 texture = ExtResource("3_wiuwf")
 
 [node name="Normal" parent="Shaded" index="2"]
