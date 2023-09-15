@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=71 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -503,6 +503,12 @@ font_size = 48
 [sub_resource type="LabelSettings" id="LabelSettings_yatq1"]
 font = ExtResource("14_wb3oo")
 
+[sub_resource type="LabelSettings" id="LabelSettings_rkpgr"]
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_h1ng0"]
+font_size = 72
+
 [node name="LevelTemplate4" type="Node2D"]
 process_mode = 1
 script = ExtResource("4")
@@ -718,3 +724,21 @@ offset_top = 29.0
 offset_right = 239.0
 offset_bottom = 92.0
 label_settings = SubResource("LabelSettings_yatq1")
+
+[node name="Gravity" type="Label" parent="Timer"]
+offset_top = 99.0
+offset_right = 1362.0
+offset_bottom = 231.0
+label_settings = SubResource("LabelSettings_rkpgr")
+
+[node name="PhoneRotation" type="Label" parent="Timer"]
+offset_top = 247.0
+offset_right = 40.0
+offset_bottom = 326.0
+label_settings = SubResource("LabelSettings_h1ng0")
+
+[node name="PhoneRotationTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.3
+one_shot = true
+autostart = true
