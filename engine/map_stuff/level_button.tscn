@@ -84,9 +84,9 @@ position = Vector2(32, 32)
 
 [node name="Label" type="Label" parent="LabelNode"]
 clip_contents = true
-offset_left = -28.3
+offset_left = -28.35
 offset_top = -10.95
-offset_right = 537.7
+offset_right = 538.65
 offset_bottom = 208.05
 scale = Vector2(0.1, 0.1)
 size_flags_vertical = 6
