@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=70 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -35,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://cdlsn2pxsyddd" path="res://textures/bg/white16x16.png" id="23_shffb"]
 [ext_resource type="AudioStream" uid="uid://hxpxst5ebqfl" path="res://sound/rotation.wav" id="26_2h2bl"]
 [ext_resource type="PackedScene" uid="uid://bfgrl48wnlnlx" path="res://settings_stuff/my_panel.tscn" id="30_bqc0w"]
+[ext_resource type="Script" path="res://scripts/sat.gd" id="36_jvlmr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -494,20 +495,15 @@ sources/7 = SubResource("TileSetAtlasSource_ck7ca")
 sources/3 = SubResource("TileSetAtlasSource_wvol4")
 sources/8 = SubResource("TileSetAtlasSource_ww58g")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pg4o3"]
-shader = ExtResource("11_psw4b")
-shader_parameter/u_color = Color(0, 1, 0, 1)
-shader_parameter/rgb = true
-shader_parameter/strength = 0.5
-shader_parameter/speed = 0.5
-shader_parameter/angle = 45.0
-
 [sub_resource type="LabelSettings" id="LabelSettings_n40f3"]
 font = ExtResource("14_wb3oo")
 font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_yatq1"]
 font = ExtResource("14_wb3oo")
+
+[sub_resource type="LabelSettings" id="LabelSettings_0b6u0"]
+font_size = 32
 
 [node name="LevelTemplate4" type="Node2D"]
 process_mode = 1
@@ -659,7 +655,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="FinishLabel" type="Label" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/FinishLabelBox"]
-material = SubResource("ShaderMaterial_pg4o3")
 layout_mode = 2
 text = "LEVEL FINISHED
 TOTAL ROTATIONS : 7"
@@ -724,3 +719,15 @@ offset_top = 29.0
 offset_right = 239.0
 offset_bottom = 92.0
 label_settings = SubResource("LabelSettings_yatq1")
+
+[node name="Label" type="Label" parent="Timer"]
+visible = false
+offset_left = 3.0
+offset_top = 61.0
+offset_right = 137.0
+offset_bottom = 178.0
+text = "2074"
+label_settings = SubResource("LabelSettings_0b6u0")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("36_jvlmr")

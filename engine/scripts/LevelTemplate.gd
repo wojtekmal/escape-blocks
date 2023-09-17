@@ -53,6 +53,10 @@ var game_ended := false
 var game_started := false : set = set_started
 var column_top_entities = []
 var y_friction = 0.99;
+var tick := 0
+var inputs := []
+
+#przed skokiem
 
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
@@ -154,7 +158,14 @@ var letters_to_blocks := {
 
 var door_blocks := {}
 
+func set_speed(speed : float):
+	Engine.physics_ticks_per_second = 60 * speed
+	Engine.time_scale = speed
+	
 func _ready():
+#	set_speed(1.0)
+#	inputs = ["", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "rw", "rw", "rw", "rw", "w", "w", "w", "w", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lu", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "r", "r", "r", "r", "r", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l",  "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r","r","r","r","r","r","r", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "l", "l", "l", "l", "l", "l", "l", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l","l",[], [], [], [],[],[],[],[], [], "w", "w", "w", "w", "w", "w", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r","r", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "", [], [], [], [], [], [], [], [], [], [], [], [], "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lw","lw", "lw", "lw", "lw", "lw", "lw", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l", ["u"], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", [], [], [], [], [], "l","l","l","l","l","l","l", "l", "l", ["l","w"], "w", "w", "w", "w", "r", "r", "r", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "w", "w", "w", "w", "w", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "l", "l", "l", "l", "wl", "wl", "wl", "wl", "wl", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", ["w", "l"], ["w", "l"], ["w", "l"], "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "r", "r", "r", "r", "rw", "rw", "rw", "w", "w", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [],["w", "l"], ["w", "l"], ["w", "l"], ["w", "l"], ["w", "l"], "l", "l", "l", "l", "l", "l", "l", "l", "l", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [],[], "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", [], "r", "r", "r", "r", "r", "l", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "w", "w", "w", "w", "w", "w", [], [], [], [], [], [], [], [], [], [], "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r","r","r",[],[],"l","l","l","l","l","l","l", "l", "l", "l", "l", "l", "l", ["w", "l"], ["w", "l"], ["w", "l"], ["w", "l"], ["w", "l"], ["w", "l"], ["w", "l"], "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "wr", "wr", "wr", "wr", "wr", "wr", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "lw", "lw", "lw", "lw", "lw", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lw", "l", "lw", "lw", "w", "lw", "l", "l", "l", "l", "l", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "w", "w", "w", "w", "w", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "wr", "wr", "wr", "wr", "wr", "r", "r", "r", "r", "r", "r", "r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "l", "wl", "wl", "wl", "wl", "wl", "l", "wl", "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l","l","l","l","l","l","l","l","l","l","l","l","l","l", "r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "w","w","w","w", "wr", "wr", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "rw", "rw", "rw", "r", "r", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "wl", "lw", "lw", "wl", "w", "w", "w"]
+	
 	add_to_group("level")
 	rotation_timer.timeout.connect(rotation_ended)
 	
@@ -177,6 +188,15 @@ func _ready():
 	audio.play()
 
 func _physics_process(delta):
+	$Timer/Label.text = str(inputs.size() - tick)
+	
+#	if(inputs.size() - tick < 10):
+#		set_speed(0.7)
+#	elif(inputs.size() - tick < 50):
+#		set_speed(0.9)
+#	elif(inputs.size() - tick < 150):
+#		set_speed(1.0)
+	
 	# We won't be loading frames in the editor.
 	if Engine.is_editor_hint() || game_ended: return
 	
@@ -192,6 +212,8 @@ func _physics_process(delta):
 	
 	if randf_range(0, 213.7) <= delta:
 		add_child(backblock.instantiate())
+	
+	tick += 1
 
 func _process(delta):
 	if Engine.is_editor_hint(): return
@@ -220,14 +242,6 @@ func manage_falling_entities(delta):
 			manage_static_block(delta, entity)
 		elif entity.is_in_group("doors") && !entity.open:
 			manage_static_block(delta, entity)
-#			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
-#			var entity_below = column_top_entities[entity.board_cords.x]
-#			entity.y_speed = 0
-#
-#			if (entity_below != counter && (entity.y_speed - entity_below.y_speed) * delta >=
-#				entity_below.position.y - entity.position.y - 32 - get_y_size(entity_below) / 2):
-#				entity_below.y_speed = entity.y_speed
-#			column_top_entities[entity.board_cords.x] = entity
 
 func compare_entity_heights(a, b): # Sorts the entities in decreasing order according to their height.
 	return a.position.y > b.position.y
@@ -287,12 +301,6 @@ func move_block(delta, block):
 	else:
 		block.is_falling = true
 		block.position.y += delta_height
-	
-#	if block.position.y == top_wall + max_height * 64 + 32:
-#		#column_top_still_blocks[block.board_cords.x] = max_height
-#	WAaaaaaaaaaaaWWWAaaaaaaaaaaaWWWAaaaaaaa	block.board_cords.y = max_height
-#		blaaaaaaaaaaWWaock.is_falling = false
-#		return
 
 func move_player(delta):
 	player.y_speed *= y_friction
@@ -303,10 +311,11 @@ func move_player(delta):
 	
 	# First I move the player left/right.
 	
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed("move_left") or sinput('l'):
 		player.x_speed -= player.WALK_SPEED
 		game_started = true
-	if Input.is_action_pressed("move_right"):
+	
+	if Input.is_action_pressed("move_right") or sinput('r'):
 		game_started = true
 		player.x_speed += player.WALK_SPEED
 	
@@ -353,13 +362,14 @@ func move_player(delta):
 	
 	var coyote_timer = $Player/CoyoteTimer
 	
-	if Input.is_action_pressed("jump") and player.getjumptime() > 0:
+	if (Input.is_action_pressed("jump") or sinput('w')) and player.getjumptime() > 0:
 		if player.flying:
 			player.y_speed = lerp(player.y_speed, -431, delta * 10)
 		else:
 			player.y_speed -= (player.jump_speed) * delta
 		coyote_timer.stop()
-	elif Input.is_action_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0 or player.flying):
+	
+	elif (Input.is_action_pressed("jump") or sinput('w')) and (!player.is_falling or coyote_timer.time_left > 0 or player.flying):
 		if(player.y_speed > 0):
 			player.y_speed = 0
 		game_started = true
@@ -428,6 +438,11 @@ func move_player(delta):
 #		coyote_timer.start(coyote_timer.wait_time)
 #		return
 
+func sinput(i) -> bool:
+	if(tick < inputs.size()):
+		return i in inputs[tick]
+	return false
+
 func manage_changing_gravity():
 	# We won't be loading frames in the editor.
 	if Engine.is_editor_hint() || rotation_disabled:
@@ -439,7 +454,7 @@ func manage_changing_gravity():
 		game_started = true
 		rotations += 1
 		#("Adding one 90 degrees rotation.")
-	elif(Input.is_action_pressed("gravity_up")):
+	elif(Input.is_action_pressed("gravity_up")) or sinput('u'):
 		game_started = true
 		rotations += 2
 	elif(Input.is_action_pressed("gravity_left") && !global.settings["switch_rotation"] ||
@@ -793,9 +808,6 @@ func go_to_next_level():
 		return
 	
 	var confirmation_popup = load("res://menu_stuff/confirmation_popup.tscn").instantiate()
-	confirmation_popup.label_text = "Open level " + next_level_name +\
-	"\nfor " + str(global.levels_data[next_level_name]["part_price"]) + " parts?"
-	confirmation_popup.ok_pressed.connect(actually_go_to_next_level)
 	confirmation_popup.cancel_pressed.connect(cancel_go_to_next_level)
 	get_tree().get_root().add_child(confirmation_popup)
 
