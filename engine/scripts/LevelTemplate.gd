@@ -5,6 +5,7 @@ extends Node2D
 
 signal retry_this_level
 signal change_to_next_level
+signal pause
 
 @export var board_dimensions : Vector2i : set = set_board_dimensions
 @export var total_rotations : int = 0
@@ -173,6 +174,8 @@ func _ready():
 		load_blocks_from_walls_source()
 	
 	load_blocks_from_tilemap()
+	
+	$PhoneHUD/Menu.pressed.connect(emit_pause)
 
 func _physics_process(delta):
 	# We won't be loading frames in the editor.
@@ -194,6 +197,8 @@ func _physics_process(delta):
 func _process(delta):
 	if Engine.is_editor_hint(): return
 	move_camera()
+	
+#	$PhoneHUD/VirtualJoystick.disabled = camera.zooming_now
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -451,7 +456,7 @@ func manage_changing_gravity():
 		elif abs(gravity.y) <= abs(gravity.x) && gravity.x < 0:
 			newest_phone_rotation = 3
 		
-		$Timer/PhoneRotation.text = "Phone rotation: " + str(phone_rotation)
+		$Timer/PhoneRotation.text = "15:13"#"Phone rotation: " + str(phone_rotation)
 		
 		if newest_phone_rotation != newer_phone_rotation:
 			$PhoneRotationTimer.start()
@@ -462,6 +467,7 @@ func manage_changing_gravity():
 			#$Timer/PhoneRotation.text = "phone_rot,newer,rotations" + str(phone_rotation) + " " + str(newer_phone_rotation) + " " + str(rotations)
 			
 			phone_rotation = newer_phone_rotation
+			$PhoneHUD/VirtualJoystick.phone_rotation = phone_rotation
 	
 	if(Input.is_action_pressed("gravity_right") && !global.settings["switch_rotation"] ||
 	Input.is_action_pressed("gravity_left") && global.settings["switch_rotation"]):
@@ -673,6 +679,8 @@ func _on_player_finished(start_rotations):
 		if !global.levels.has(level_name):
 			print("This level\'s name is\'nt in global.levels.")
 			return
+		
+		$PhoneHUD/VirtualJoystick.visible = false
 		
 		#var time_parts = 0
 		var rotation_parts = 0
@@ -891,3 +899,6 @@ func _exit_tree():
 		get_window().title = "Enter Blocks"
 	else:
 		get_window().title = "Escape Blocks"
+
+func emit_pause():
+	emit_signal("pause")
