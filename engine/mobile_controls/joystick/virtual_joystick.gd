@@ -40,8 +40,6 @@ enum Visibility_mode {
 @export var action_up := "ui_up"
 @export var action_down := "ui_down"
 
-#@export var disabled : bool = false
-
 # PUBLIC VARIABLES
 
 ## If the joystick is receiving inputs.
@@ -49,9 +47,6 @@ var is_pressed := false
 
 # The joystick output.
 var output := Vector2.ZERO
-
-# The phone rotation.
-var phone_rotation : int = 0
 
 # PRIVATE VARIABLES
 
@@ -128,7 +123,7 @@ func _update_joystick(touch_position: Vector2) -> void:
 		is_pressed = false
 		output = Vector2.ZERO
 	
-	output = output.rotated(phone_rotation * PI / 2)
+	output = output.rotated(global.phone_rotation * PI / 2)
 	
 	if use_input_actions:
 		if output.x > 0:
