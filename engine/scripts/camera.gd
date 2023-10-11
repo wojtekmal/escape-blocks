@@ -31,23 +31,16 @@ func _input(event : InputEvent, delta = get_process_delta_time()) -> void:
 		events[event.index] = event
 		if events.size() == 1:
 			pass
-			#zooming_now = false
-			#get_node("/root/LevelRestart/LevelTemplate4/Camera2D/CanvasLayer/Label").text = "Drag detected."
 		elif events.size() == 2:
 			var drag_distance = events[0].position.distance_to(events[1].position)
+			
 			if abs(drag_distance - last_drag_distance) > zoom_sensitivity:
 				var new_zoom = (1 - ZOOM_SPEED * delta) if drag_distance < last_drag_distance else (1 + ZOOM_SPEED * delta)
-				global.zoom_factor = clamp(global.zoom_factor * new_zoom, ZOOM_MIN, ZOOM_MAX)
-				#zoom = Vector2.ONE * new_zoom
+				global.zoom_factor *= new_zoom
+			
 			last_drag_distance = drag_distance
-			#get_node("/root/LevelRestart/LevelTemplate4/Camera2D/CanvasLayer/Label").text = str(drag_distance)
 			events = {}
-			#zooming_now = true
-
 
 func zoom_camera(delta):
-	global.zoom_factor = min(ZOOM_MAX, global.zoom_factor)
-	global.zoom_factor = max(ZOOM_MIN, global.zoom_factor)
 	zoom.x = lerp(zoom.x, global.zoom_factor, delta * 10)
 	zoom.y = lerp(zoom.y, global.zoom_factor, delta * 10)
-	#$background.scale *= Vector2(global.zoom_factor, global.zoom_factor)

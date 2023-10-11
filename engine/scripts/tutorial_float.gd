@@ -29,8 +29,8 @@ func _process(delta):
 	var default_screen_y = ProjectSettings.get_setting("display/window/size/viewport_height")
 	var default_ratio = 1.0 * default_screen_y / default_screen_x
 	
-	var actual_screen_x = get_viewport().get_visible_rect().size.x
-	var actual_screen_y = get_viewport().get_visible_rect().size.y
+	var actual_screen_x = $HBoxContainer.size.x
+	var actual_screen_y = $HBoxContainer.size.y
 	var actual_ratio = 1.0 * actual_screen_y / actual_screen_x
 	
 	if actual_ratio > 1:
@@ -68,3 +68,7 @@ func open_panel():
 	$HBoxContainer.visible = true
 	$HBoxContainer2.visible = false
 	$HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/TextureButton.grab_focus()
+
+func manage_phone_rotation():
+	global.control_manage_phone_rotation($HBoxContainer)
+	global.control_manage_phone_rotation($HBoxContainer2)
