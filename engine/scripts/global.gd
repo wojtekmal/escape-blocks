@@ -263,8 +263,8 @@ func manage_settings():
 
 
 func manage_phone_rotation():
-#	if OS.get_name() != "Android":
-#		return
+	if OS.get_name() != "Android":
+		return
 	
 	var gravity : Vector3 = Input.get_gravity().snapped(Vector3(0.001,0.001,0.001))
 	var newest_phone_rotation : int

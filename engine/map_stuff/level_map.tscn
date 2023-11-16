@@ -166,6 +166,8 @@ focus_neighbor_left = NodePath("../1")
 focus_neighbor_bottom = NodePath("../Random")
 
 [node name="MapCamera" type="Camera2D" parent="."]
+position = Vector2(914, 222)
+zoom = Vector2(0.7, 0.7)
 script = ExtResource("3_772qu")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true

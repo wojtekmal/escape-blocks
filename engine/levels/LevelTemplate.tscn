@@ -686,6 +686,9 @@ size_flags_stretch_ratio = 2.0
 [node name="HBoxContainer" type="HBoxContainer" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox"]
 layout_mode = 2
 
+[node name="PartBox1" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
+layout_mode = 2
+
 [node name="PartBox2" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/PartsBox/HBoxContainer" instance=ExtResource("17_j8u3w")]
 visible = false
 layout_mode = 2
@@ -722,9 +725,6 @@ layout_mode = 2
 label_text = "Retry"
 
 [node name="Next" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
-layout_mode = 2
-
-[node name="PartBox1" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox" instance=ExtResource("17_j8u3w")]
 layout_mode = 2
 
 [node name="Timer" type="CanvasLayer" parent="."]
