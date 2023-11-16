@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6fpit0iejgxi"]
+
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://mobile_controls/joystick/virtual_joystick.tscn" id="2_awrd8"]
+[ext_resource type="PackedScene" uid="uid://bh28swydxx22h" path="res://board_stuff/tutorial_float.tscn" id="3_1x3ix"]
+[ext_resource type="Texture2D" uid="uid://csyalhich42in" path="res://textures/icon.png" id="3_kr150"]
+[ext_resource type="Texture2D" uid="uid://d3eiv7hl84bac" path="res://textures/slider_grabber.png" id="4_g5blx"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="Virtual Joystick" parent="CanvasLayer2" instance=ExtResource("2_awrd8")]
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer2"]
+offset_right = 256.0
+offset_bottom = 212.0
+texture_normal = ExtResource("3_kr150")
+texture_pressed = ExtResource("4_g5blx")
+
+[node name="TutorialFloat" parent="." instance=ExtResource("3_1x3ix")]

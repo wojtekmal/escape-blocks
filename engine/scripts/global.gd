@@ -6,8 +6,14 @@ var part_count : int = 0
 var zoom_factor : float = 0.7
 var current_random_level : int = 0
 var show_cutscene : bool = false
+var phone_rotation : int = 0
+var newer_phone_rotation : int = 0
 
-#@onready var ui_click_player = AudioStreamPlayer.new()
+@onready var phone_rotation_timer = Timer.new()
+
+var ZOOM_SPEED = PI * 1.5
+var ZOOM_MIN = 0.1
+var ZOOM_MAX = 7.0
  
 # This is a dictionary holding all levels by their numbers.
 # Here all important information about levels is held in this format:
@@ -23,10 +29,21 @@ func _ready():
 	if Engine.is_editor_hint():
 		return
 	
-	name = "global"
+	set_name.call_deferred("global")
 	load_data()
+	
+	phone_rotation_timer.wait_time = 2
+	phone_rotation_timer.one_shot = true
+	add_child(phone_rotation_timer)
 
 var levels := {}
+
+func _process(delta):
+	if Engine.is_editor_hint():
+		return
+	
+	manage_phone_rotation()
+	zoom_camera(delta)
 
 func load_data():
 	var file = FileAccess.open(
@@ -39,7 +56,6 @@ func load_data():
 		save()
 		return
 	var content = file.get_var()
-#	print(content)
 	
 	if content.has("levels"):
 		levels = content["levels"]
@@ -66,15 +82,11 @@ func save():
 		"current_random_level" : current_random_level,
 	}
 	
-#	print(saved_var)
-	#print(saved_var)
 	var file = FileAccess.open(
 		"user://" + name + ".dat", 
 		FileAccess.WRITE,
 	)
 	file.store_var(saved_var)
-	#print(content)
-#	print("saved " + name)
 
 # This dictionary also contains all levels' scenes and dependencies.
 var levels_data := {
@@ -248,41 +260,55 @@ func manage_settings():
 		AudioServer.set_bus_volume_db(master_bus, (settings["change_sound_effects_volume"] - 100) * 72 / 100)
 	if settings.has("change_music_volume"):
 		AudioServer.set_bus_volume_db(master_bus, (settings["change_music_volume"] - 100) * 72 / 100)
+
+
+func manage_phone_rotation():
+	if OS.get_name() != "Android":
+		return
 	
-	#switch_rotation(settings["switch_rotation"])
+	var gravity : Vector3 = Input.get_gravity().snapped(Vector3(0.001,0.001,0.001))
+	var newest_phone_rotation : int
+	# 0 - bottom down, 1 - right down, 2 - top down, 3 - left down
+	
+	if abs(gravity.y) > abs(gravity.x) && gravity.y < 0:
+		newest_phone_rotation = 0
+	elif abs(gravity.y) > abs(gravity.x) && gravity.y >= 0:
+		newest_phone_rotation = 2
+	elif abs(gravity.y) <= abs(gravity.x) && gravity.x >= 0:
+		newest_phone_rotation = 1
+	elif abs(gravity.y) <= abs(gravity.x) && gravity.x < 0:
+		newest_phone_rotation = 3
+	
+	if newest_phone_rotation != newer_phone_rotation:
+		newer_phone_rotation = newest_phone_rotation
+		phone_rotation_timer.start()
+		print(phone_rotation_timer.wait_time)
+	
+	if newer_phone_rotation != phone_rotation && phone_rotation_timer.time_left == 0:
+		phone_rotation = newer_phone_rotation
 
-#func switch_rotation(new_value: bool):
-#	#if settings["switch_rotation_direction"] == new_value:
-#	#	return
-#
-#	settings["switch_rotation"] = new_value
-#	save()
-##	print(settings["switch_rotation"])
-##	var left_key = InputMap.action_get_events("gravity_left")[0]
-##	var right_key = InputMap.action_get_events("gravity_right")[0]
-##	InputMap.action_erase_events("gravity_left")
-##	InputMap.action_erase_events("gravity_right")
-##	InputMap.action_add_event("gravity_left", right_key)
-##	InputMap.action_add_event("gravity_right", left_key)
-#
-#	InputMap.action_erase_events("gravity_left")
-#	InputMap.action_erase_events("gravity_right")
-#
-#	if new_value == false:
-#		var key = InputEventKey.new()
-#		key.physical_keycode = KEY_LEFT
-#		InputMap.action_add_event("gravity_left", key)
-#		var key2 = InputEventKey.new()
-#		key2.physical_keycode = KEY_RIGHT
-#		InputMap.action_add_event("gravity_right", key2)
-#	else:
-#		var key = InputEventKey.new()
-#		key.physical_keycode = KEY_RIGHT
-#		InputMap.action_add_event("gravity_left", key)
-#		var key2 = InputEventKey.new()
-#		key2.physical_keycode = KEY_LEFT
-#		InputMap.action_add_event("gravity_right", key2)
+func control_manage_phone_rotation(control: Control):
+	var viewport_size = get_viewport().get_visible_rect().size
+	
+	if global.phone_rotation == 0:
+		control.pivot_offset = Vector2(0,0)
+		control.rotation = 0
+		control.size = Vector2(viewport_size.x, viewport_size.y)
+	elif global.phone_rotation == 1:
+		control.pivot_offset = Vector2(viewport_size.y / 2, viewport_size.y / 2)
+		control.rotation = 3 * PI / 2
+		control.size = Vector2(viewport_size.y, viewport_size.x)
+	elif global.phone_rotation == 2:
+		control.pivot_offset = Vector2(viewport_size.x / 2, viewport_size.y / 2)
+		control.rotation = PI
+		control.size = Vector2(viewport_size.x, viewport_size.y)
+	elif global.phone_rotation == 3:
+		control.pivot_offset = Vector2(viewport_size.x / 2, viewport_size.x / 2)
+		control.rotation = PI / 2
+		control.size = Vector2(viewport_size.y, viewport_size.x)
 
-#func play_ui_click():
-#	print(ui_click_player.stream)
-#	ui_click_player.play()
+
+func zoom_camera(delta):
+	global.zoom_factor *= 1 + Input.get_action_strength("zoom_in") * delta * ZOOM_SPEED
+	global.zoom_factor *= 1 - Input.get_action_strength("zoom_out") * delta * ZOOM_SPEED
+	global.zoom_factor = clamp(global.zoom_factor, ZOOM_MIN, ZOOM_MAX)

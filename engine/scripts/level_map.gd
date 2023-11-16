@@ -68,7 +68,8 @@ func _ready():
 	else:
 		get_node(global.current_level).grab_focus()
 	
-	print("finished loading")
+	map_camera.zoom.x = global.zoom_factor
+	map_camera.zoom.y = global.zoom_factor
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -78,6 +79,11 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("back"):
 		go_to_menu()
+	
+	manage_phone_rotation()
+	global.control_manage_phone_rotation($MapHUD/MarginContainer)
+	global.control_manage_phone_rotation($CanvasLayer/ColorRect)
+	zoom_camera(delta)
 
 func switch_slide(slide_num):
 	if slide_num >= slide_texts.size():
@@ -211,9 +217,9 @@ func _input(event : InputEvent, delta = get_physics_process_delta_time()) -> voi
 			var current_zoom = map_camera.zoom_factor
 			match event.button_index:
 				MOUSE_BUTTON_WHEEL_DOWN:
-					map_camera.zoom_factor -= ZOOM_SPEED * delta * map_camera.zoom_factor
+					global.zoom_factor -= ZOOM_SPEED * delta * global.zoom_factor
 				MOUSE_BUTTON_WHEEL_UP:
-					map_camera.zoom_factor += ZOOM_SPEED * delta * map_camera.zoom_factor
+					global.zoom_factor += ZOOM_SPEED * delta * global.zoom_factor
 			
 			map_camera.zoom_factor = min(ZOOM_MAX, map_camera.zoom_factor)
 			map_camera.zoom_factor = max(ZOOM_MIN, map_camera.zoom_factor)
@@ -224,26 +230,23 @@ func _input(event : InputEvent, delta = get_physics_process_delta_time()) -> voi
 func move_camera_to_button(button_reference):
 	map_camera.position = button_reference.position
 
-#func _input(event):
-#	if event is InputEventMouse:
-#		if event.is_pressed() and not event.is_echo():
-#			var mouse_position = event.position
-#			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-#				zoom_at_point(ZOOM_SPEED,mouse_position)
-#			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-#				zoom_at_point(1/ZOOM_SPEED,mouse_position)
+func manage_phone_rotation():
+	if OS.get_name() != "Android":
+		return
+	
+	var viewport_size = get_viewport().get_visible_rect().size
+	
+	if global.phone_rotation == 0:
+		rotation = 0
+	elif global.phone_rotation == 1:
+		rotation = 3 * PI / 2
+	elif global.phone_rotation == 2:
+		rotation = PI
+	elif global.phone_rotation == 3:
+		rotation = PI / 2
 
-#func zoom_at_point(zoom_change, point):
-#	var map_camera := $MapCamera
-#	var c0 = global_position # camera position
-#	var v0 = get_viewport().size # vieport size
-#	var c1 # next camera position
-#	var z0 = map_camera.zoom.x # current zoom value
-#	var z1 = z0 * zoom_change # next zoom value
-#
-#	c1 = c0 + (-0.5*v0 + point)*(z0 - z1)
-#
-#	z1 = max(ZOOM_MIN, z1)
-#	z1 = min(ZOOM_MAX, z1)
-#	map_camera.zoom = Vector2(z1, z1)
-#	global_position = c1
+func zoom_camera(delta):
+	var map_camera = $MapCamera
+	map_camera.zoom.x = lerp(map_camera.zoom.x, global.zoom_factor, delta * 10)
+	map_camera.zoom.y = lerp(map_camera.zoom.y, global.zoom_factor, delta * 10)
+	map_camera.zoom_factor = global.zoom_factor

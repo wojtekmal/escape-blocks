@@ -5,6 +5,7 @@ extends Node2D
 
 signal retry_this_level
 signal change_to_next_level
+signal pause
 
 @export var board_dimensions : Vector2i : set = set_board_dimensions
 @export var total_rotations : int = 0
@@ -53,8 +54,9 @@ var game_ended := false
 var game_started := false : set = set_started
 var column_top_entities = []
 var y_friction = 0.99;
-var phone_rotation : int = 0 # 0 - bottom down, 1 - right down, 2 - top down, 3 - left down
-var newer_phone_rotation : int = 0
+var start_phone_rotation : int = 0
+#var phone_rotation : int = 0 # 0 - bottom down, 1 - right down, 2 - top down, 3 - left down
+#var newer_phone_rotation : int = 0
 
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
@@ -173,6 +175,14 @@ func _ready():
 		load_blocks_from_walls_source()
 	
 	load_blocks_from_tilemap()
+	
+	$PhoneHUD/Control/Menu.pressed.connect(emit_pause)
+	
+	if OS.get_name() != "Android":
+		$PhoneHUD.visible = false
+	
+	start_phone_rotation = global.phone_rotation
+	$Camera2D.rotation = PI / 2 * start_phone_rotation
 
 func _physics_process(delta):
 	# We won't be loading frames in the editor.
@@ -194,6 +204,8 @@ func _physics_process(delta):
 func _process(delta):
 	if Engine.is_editor_hint(): return
 	move_camera()
+	
+#	$PhoneHUD/VirtualJoystick.disabled = camera.zooming_now
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -436,32 +448,15 @@ func manage_changing_gravity():
 	
 	var rotations : int = 0
 	
-	if OS.get_name() == "Android":
-		var gravity : Vector3 = Input.get_gravity().snapped(Vector3(0.001,0.001,0.001))
-		$Timer/Gravity.text = var_to_str(gravity)
-		var newest_phone_rotation : int
-		# 0 - bottom down, 1 - right down, 2 - top down, 3 - left down
-		
-		if abs(gravity.y) > abs(gravity.x) && gravity.y < 0:
-			newest_phone_rotation = 0
-		elif abs(gravity.y) > abs(gravity.x) && gravity.y >= 0:
-			newest_phone_rotation = 2
-		elif abs(gravity.y) <= abs(gravity.x) && gravity.x >= 0:
-			newest_phone_rotation = 1
-		elif abs(gravity.y) <= abs(gravity.x) && gravity.x < 0:
-			newest_phone_rotation = 3
-		
-		$Timer/PhoneRotation.text = "Phone rotation: " + str(phone_rotation)
-		
-		if newest_phone_rotation != newer_phone_rotation:
-			$PhoneRotationTimer.start()
-			newer_phone_rotation = newest_phone_rotation
-		
-		if newer_phone_rotation != phone_rotation && $PhoneRotationTimer.time_left == 0 && rotation_timer.is_stopped() && all_not_falling():
-			rotations += (newer_phone_rotation - phone_rotation + 5) % 4 - 1
-			#$Timer/PhoneRotation.text = "phone_rot,newer,rotations" + str(phone_rotation) + " " + str(newer_phone_rotation) + " " + str(rotations)
+	if OS.get_name() == "Android":# || true:
+		if rotation_timer.is_stopped() && all_not_falling():
+			rotations += ((global.phone_rotation - total_rotations - start_phone_rotation) % 4 + 5) % 4 - 1
+			global.control_manage_phone_rotation($EndPanel/MarginContainer)
+			global.control_manage_phone_rotation($PhoneHUD/VirtualJoystick)
+			global.control_manage_phone_rotation($PhoneHUD/Control)
 			
-			phone_rotation = newer_phone_rotation
+			if has_node("TutorialFloat"):
+				$TutorialFloat.manage_phone_rotation()
 	
 	if(Input.is_action_pressed("gravity_right") && !global.settings["switch_rotation"] ||
 	Input.is_action_pressed("gravity_left") && global.settings["switch_rotation"]):
@@ -503,8 +498,8 @@ func manage_changing_gravity():
 	overlay.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	background.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	
-	if OS.get_name() == "Android":
-		camera.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
+	if OS.get_name() == "Android":# || true:
+		camera.rotation = (total_rotations - now_rotations + start_phone_rotation) % 4 * PI / 2 + change_angle
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
@@ -535,7 +530,7 @@ func rotation_ended():
 	tilemap.rotation = 0
 	overlay.rotation = total_rotations * PI / 2
 	background.rotation = total_rotations * PI / 2
-	if OS.get_name() == "Android":
+	if OS.get_name() == "Android":# || true:
 		camera.rotation = total_rotations * PI / 2
 	
 	var wasd := get_tree().get_nodes_in_group("wasd")
@@ -673,6 +668,8 @@ func _on_player_finished(start_rotations):
 		if !global.levels.has(level_name):
 			print("This level\'s name is\'nt in global.levels.")
 			return
+		
+		$PhoneHUD/VirtualJoystick.visible = false
 		
 		#var time_parts = 0
 		var rotation_parts = 0
@@ -891,3 +888,6 @@ func _exit_tree():
 		get_window().title = "Enter Blocks"
 	else:
 		get_window().title = "Escape Blocks"
+
+func emit_pause():
+	emit_signal("pause")
