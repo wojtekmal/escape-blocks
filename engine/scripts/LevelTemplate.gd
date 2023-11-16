@@ -448,9 +448,9 @@ func manage_changing_gravity():
 	
 	var rotations : int = 0
 	
-	if OS.get_name() == "Android" || true:
+	if OS.get_name() == "Android":# || true:
 		if rotation_timer.is_stopped() && all_not_falling():
-			rotations += (global.phone_rotation - total_rotations % 4 + 5) % 4 - 1
+			rotations += ((global.phone_rotation - total_rotations - start_phone_rotation) % 4 + 5) % 4 - 1
 			global.control_manage_phone_rotation($EndPanel/MarginContainer)
 			global.control_manage_phone_rotation($PhoneHUD/VirtualJoystick)
 			global.control_manage_phone_rotation($PhoneHUD/Control)
@@ -498,8 +498,8 @@ func manage_changing_gravity():
 	overlay.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	background.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	
-	if OS.get_name() == "Android" || true:
-		camera.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
+	if OS.get_name() == "Android":# || true:
+		camera.rotation = (total_rotations - now_rotations + start_phone_rotation) % 4 * PI / 2 + change_angle
 	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
@@ -530,7 +530,7 @@ func rotation_ended():
 	tilemap.rotation = 0
 	overlay.rotation = total_rotations * PI / 2
 	background.rotation = total_rotations * PI / 2
-	if OS.get_name() == "Android" || true:
+	if OS.get_name() == "Android":# || true:
 		camera.rotation = total_rotations * PI / 2
 	
 	var wasd := get_tree().get_nodes_in_group("wasd")

@@ -231,8 +231,8 @@ func move_camera_to_button(button_reference):
 	map_camera.position = button_reference.position
 
 func manage_phone_rotation():
-#	if OS.get_name() != "Android":
-#		return
+	if OS.get_name() != "Android":
+		return
 	
 	var viewport_size = get_viewport().get_visible_rect().size
 	

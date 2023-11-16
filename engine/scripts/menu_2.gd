@@ -14,8 +14,8 @@ func _process(delta):
 	manage_phone_rotation()
 
 func manage_phone_rotation():
-#	if OS.get_name() != "Android":
-#		return
+	if OS.get_name() != "Android":
+		return
 	
 	var viewport_size = get_viewport().get_visible_rect().size
 	
