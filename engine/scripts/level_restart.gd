@@ -48,6 +48,7 @@ func start(level_name : String):
 	new_level.level_name = level_name
 	new_level.retry_this_level.connect(restart_current_level)
 	new_level.change_to_next_level.connect(change_to_next_level)
+	new_level.pause.connect(pause)
 	add_child(new_level)
 	await new_level.ready
 

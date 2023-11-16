@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=74 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://rvq1ytbkh1qm" path="res://textures/black.png" id="3"]
@@ -35,6 +35,8 @@
 [ext_resource type="Texture2D" uid="uid://cdlsn2pxsyddd" path="res://textures/bg/white16x16.png" id="23_shffb"]
 [ext_resource type="AudioStream" uid="uid://hxpxst5ebqfl" path="res://sound/rotation.wav" id="26_2h2bl"]
 [ext_resource type="PackedScene" uid="uid://bfgrl48wnlnlx" path="res://settings_stuff/my_panel.tscn" id="30_bqc0w"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://mobile_controls/joystick/virtual_joystick.tscn" id="36_mlrqr"]
+[ext_resource type="Texture2D" uid="uid://bt357nat0lv1n" path="res://textures/white_menu_button.png" id="37_6hofv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ja7cw"]
 texture = ExtResource("3")
@@ -494,6 +496,9 @@ sources/7 = SubResource("TileSetAtlasSource_ck7ca")
 sources/3 = SubResource("TileSetAtlasSource_wvol4")
 sources/8 = SubResource("TileSetAtlasSource_ww58g")
 
+[sub_resource type="LabelSettings" id="LabelSettings_e77io"]
+font_size = 72
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pg4o3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n40f3"]
@@ -613,6 +618,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Container" type="Container" parent="Camera2D/CanvasLayer/CenterContainer"]
 layout_mode = 2
@@ -620,6 +626,12 @@ layout_mode = 2
 [node name="background" parent="Camera2D/CanvasLayer/CenterContainer/Container" instance=ExtResource("22_fxc5x")]
 position = Vector2(-20, -20)
 scale = Vector2(6, 6)
+
+[node name="Label" type="Label" parent="Camera2D/CanvasLayer"]
+offset_top = 349.0
+offset_right = 40.0
+offset_bottom = 460.0
+label_settings = SubResource("LabelSettings_e77io")
 
 [node name="Center" type="Marker2D" parent="." groups=["wasd`"]]
 position = Vector2(0, -19)
@@ -741,4 +753,27 @@ label_settings = SubResource("LabelSettings_h1ng0")
 process_callback = 0
 wait_time = 0.3
 one_shot = true
-autostart = true
+
+[node name="PhoneHUD" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="VirtualJoystick" parent="PhoneHUD" instance=ExtResource("36_mlrqr")]
+visibility_mode = 1
+
+[node name="Control" type="Control" parent="PhoneHUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="TextureButton" parent="PhoneHUD/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_bottom = 256.0
+grow_horizontal = 0
+texture_normal = ExtResource("37_6hofv")
