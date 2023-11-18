@@ -718,14 +718,15 @@ theme_override_constants/separation = 10
 
 [node name="Map" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
 layout_mode = 2
-label_text = "Map"
+label_text = "Map (M)"
 
 [node name="Retry" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
 layout_mode = 2
-label_text = "Retry"
+label_text = "Retry (R)"
 
 [node name="Next" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer" instance=ExtResource("20_q1fjy")]
 layout_mode = 2
+label_text = "Next (N)"
 
 [node name="Timer" type="CanvasLayer" parent="."]
 script = ExtResource("19_nh8s2")
