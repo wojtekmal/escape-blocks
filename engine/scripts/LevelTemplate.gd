@@ -205,7 +205,14 @@ func _process(delta):
 	if Engine.is_editor_hint(): return
 	move_camera()
 	
-#	$PhoneHUD/VirtualJoystick.disabled = camera.zooming_now
+	if game_ended:
+		if Input.is_action_just_pressed("next_level"):
+			actually_go_to_next_level()
+		if Input.is_action_just_pressed("map"):
+			go_to_map()
+		if get_viewport().gui_get_focus_owner() == null || \
+		!get_viewport().gui_get_focus_owner().is_visible_in_tree():
+			next_level_button.grab_focus()
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -742,7 +749,7 @@ func _on_player_finished(start_rotations):
 		
 		level_map_button.pressed.connect(go_to_map)
 		retry_level_button.pressed.connect(retry_level)
-		next_level_button.pressed.connect(go_to_next_level)
+		next_level_button.pressed.connect(actually_go_to_next_level)
 		#next_level_button_text.add_font_override("normal_font", load("res://fonts/conthrax/conthrax-sb.otf"))
 		
 		var next_level_name := "NULL"
@@ -754,16 +761,16 @@ func _on_player_finished(start_rotations):
 		#next_level_button_text.push_font(load("res://fonts/conthrax/conthrax-sb.otf"), 36)
 		#next_level_button_text.push_color(Color(0,0,0,1))
 		
-		if next_level_name == "NULL":
-			next_level_button.label_text = "Next (Enter)"
-			next_level_button.disabled = true
-			next_level_button.modulate = Color8(255,255,255,100)
-		elif global.levels_data[next_level_name]["part_price"] == 0:
-			next_level_button.label_text = "Next (Enter)"
-			next_level_button.grab_focus()
-		else:
-			next_level_button.label_text = "NEXT (" + str(global.levels_data[next_level_name]["part_price"]) + "[img=36x36]res://textures/temporary_part.png[/img])"
-			#next_level_button_text.pop()
+#		if next_level_name == "NULL":
+#			next_level_button.label_text = "Next (Enter)"
+#			next_level_button.disabled = true
+#			next_level_button.modulate = Color8(255,255,255,100)
+#		elif global.levels_data[next_level_name]["part_price"] == 0:
+#			next_level_button.label_text = "Next (Enter)"
+#			next_level_button.grab_focus()
+#		else:
+#			next_level_button.label_text = "NEXT (" + str(global.levels_data[next_level_name]["part_price"]) + "[img=36x36]res://textures/temporary_part.png[/img])"
+#			#next_level_button_text.pop()
 
 func manage_doors():
 	if !rotation_timer.is_stopped():
@@ -815,7 +822,7 @@ func retry_level():
 func go_to_next_level():
 	next_level_button.release_focus()
 	next_level_button.modulate = Color(1,1,1)
-	print("going to next level")
+#	print("going to next level")
 	var next_level_name := "NULL"
 	if global.levels_data[level_name]["unlocks"].size():
 		next_level_name = global.levels_data[level_name]["unlocks"][0]

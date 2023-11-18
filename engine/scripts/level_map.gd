@@ -51,11 +51,6 @@ func _ready():
 	#print("check")
 	init_graph()
 	
-	if global.show_cutscene:
-		$CanvasLayer.visible = true
-		global.show_cutscene = false
-		$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.grab_focus()
-	
 	switch_slide(0)
 	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.pressed.connect(next_slide)
 	$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Skip.pressed.connect(skip_slides)
@@ -70,6 +65,11 @@ func _ready():
 	
 	map_camera.zoom.x = global.zoom_factor
 	map_camera.zoom.y = global.zoom_factor
+	
+	if global.show_cutscene:
+		$CanvasLayer.visible = true
+		global.show_cutscene = false
+		$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.grab_focus()
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -88,6 +88,7 @@ func _process(delta):
 func switch_slide(slide_num):
 	if slide_num >= slide_texts.size():
 		$CanvasLayer.visible = false
+		on_level_button_pressed("Tutorial")
 		return
 	
 	current_slide = slide_num
@@ -99,7 +100,8 @@ func next_slide():
 	switch_slide(current_slide + 1)
 
 func skip_slides():
-	$CanvasLayer.visible = false
+#	$CanvasLayer.visible = false
+	switch_slide(slide_texts.size())
 
 func load_all():
 	var path = "res://levels/"
