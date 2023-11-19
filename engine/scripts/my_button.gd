@@ -1,9 +1,9 @@
-@tool
 extends TextureButton
 
 @export_multiline var label_text : String = "" : set = set_label_text
 #@export var action : String = ""
 # Called when the node enters the scene tree for the first time.
+
 func _ready():
 	var margin_value = 0
 	var margin_left = get_theme_constant("margin_left")
@@ -13,6 +13,9 @@ func _ready():
 
 	var x_size = size.x# - margin_left - margin_right
 	var y_size = size.y# - margin_top - margin_bottom
+
+	$Panel.set_size(Vector2(x_size, y_size))
+	$Panel2.set_size(Vector2(x_size, y_size))
 	
 	if x_size > y_size:
 		$LabelBox.add_theme_constant_override("margin_left", 5.0 * y_size / 32)
@@ -50,10 +53,16 @@ func _process(delta):
 	if !is_visible_in_tree():
 		return
 	
+	$Panel.set_size(size)
+	$Panel2.set_size(size)
+	
+	
 	if has_focus():
-		modulate = Color(0.6,1,0.6)
+		$Panel.visible = true
+		$Panel2.visible = true
 	else:
-		modulate = Color(1,1,1)
+		$Panel.visible = false
+		$Panel2.visible = false
 
 	var margin_value = 0
 	var margin_left = get_theme_constant("margin_left")

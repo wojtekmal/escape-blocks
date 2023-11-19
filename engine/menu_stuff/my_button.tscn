@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b4xosnqq2382v"]
+[gd_scene load_steps=14 format=3 uid="uid://b4xosnqq2382v"]
 
 [ext_resource type="Script" path="res://scripts/my_button.gd" id="1_hhmvv"]
 [ext_resource type="Texture2D" uid="uid://d4lbjhayyy8hw" path="res://textures/transparent32x32.png" id="2_2cgnb"]
@@ -11,6 +11,26 @@
 [ext_resource type="Texture2D" uid="uid://cyiiydjjec3lv" path="res://textures/button/top_right.png" id="8_ug4qo"]
 [ext_resource type="Texture2D" uid="uid://b6hsoyx0dhl2j" path="res://textures/button/right_blue.png" id="9_lu3na"]
 [ext_resource type="Texture2D" uid="uid://dnvdruycrvtcg" path="res://textures/button/bottom_right.png" id="10_s7yol"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uotce"]
+bg_color = Color(1, 1, 1, 0.188235)
+border_width_left = 64
+border_width_top = 64
+border_width_right = 64
+border_width_bottom = 64
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+expand_margin_left = 64.0
+expand_margin_top = 64.0
+expand_margin_right = 64.0
+expand_margin_bottom = 64.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blr0d"]
+bg_color = Color(1, 1, 1, 0.270588)
 
 [node name="TextureButton" type="TextureButton"]
 custom_minimum_size = Vector2(0, 10)
@@ -25,6 +45,15 @@ texture_normal = ExtResource("2_2cgnb")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_hhmvv")
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1279.0
+offset_bottom = 719.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uotce")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -132,3 +161,9 @@ layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 fit_content = true
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_blr0d")
