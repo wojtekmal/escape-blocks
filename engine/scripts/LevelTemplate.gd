@@ -5,6 +5,7 @@ extends Node2D
 
 signal retry_this_level
 signal change_to_next_level
+signal pause
 
 @export var board_dimensions : Vector2i : set = set_board_dimensions
 @export var total_rotations : int = 0
@@ -53,10 +54,9 @@ var game_ended := false
 var game_started := false : set = set_started
 var column_top_entities = []
 var y_friction = 0.99;
-var tick := 0
-var inputs := []
-
-#przed skokiem
+var start_phone_rotation : int = 0
+#var phone_rotation : int = 0 # 0 - bottom down, 1 - right down, 2 - top down, 3 - left down
+#var newer_phone_rotation : int = 0
 
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
@@ -158,14 +158,7 @@ var letters_to_blocks := {
 
 var door_blocks := {}
 
-func set_speed(speed : float):
-	Engine.physics_ticks_per_second = 60 * speed
-	Engine.time_scale = speed
-	
 func _ready():
-#	set_speed(1.0)
-#	inputs = ["", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "","", "", "", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "rw", "rw", "rw", "rw", "w", "w", "w", "w", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lu", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "r", "r", "r", "r", "r", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l",  "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r","r","r","r","r","r","r", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "l", "l", "l", "l", "l", "l", "l", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l","l",[], [], [], [],[],[],[],[], [], "w", "w", "w", "w", "w", "w", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r","r", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "", [], [], [], [], [], [], [], [], [], [], [], [], "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lw","lw", "lw", "lw", "lw", "lw", "lw", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l","l", ["u"], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", [], [], [], [], [], "l","l","l","l","l","l","l", "l", "l", ["l","w"], "w", "w", "w", "w", "r", "r", "r", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "w", "w", "w", "w", "w", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "l", "l", "l", "l", "wl", "wl", "wl", "wl", "wl", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", ["w", "l"], ["w", "l"], ["w", "l"], "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "r", "r", "r", "r", "rw", "rw", "rw", "w", "w", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [],["w", "l"], ["w", "l"], ["w", "l"], ["w", "l"], ["w", "l"], "l", "l", "l", "l", "l", "l", "l", "l", "l", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [],[], "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", [], "r", "r", "r", "r", "r", "l", [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], "w", "w", "w", "w", "w", "w", [], [], [], [], [], [], [], [], [], [], "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r","r","r",[],[],"l","l","l","l","l","l","l", "l", "l", "l", "l", "l", "l", ["w", "l"], ["w", "l"], ["w", "l"], ["w", "l"], ["w", "l"], ["w", "l"], ["w", "l"], "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "wr", "wr", "wr", "wr", "wr", "wr", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "lw", "lw", "lw", "lw", "lw", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "lw", "l", "lw", "lw", "w", "lw", "l", "l", "l", "l", "l", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "w", "w", "w", "w", "w", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "wr", "wr", "wr", "wr", "wr", "r", "r", "r", "r", "r", "r", "r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "rw", "rw", "rw", "rw", "rw", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "l", "wl", "wl", "wl", "wl", "wl", "l", "wl", "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l","l","l","l","l","l","l","l","l","l","l","l","l","l", "r", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "w","w","w","w", "wr", "wr", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "r", "rw", "rw", "rw", "rw", "rw", "r", "r", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "wl", "wl", "wl", "wl", "wl", "wl", "wl", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "l", "wl", "lw", "lw", "wl", "w", "w", "w"]
-	
 	add_to_group("level")
 	rotation_timer.timeout.connect(rotation_ended)
 	
@@ -183,20 +176,15 @@ func _ready():
 	
 	load_blocks_from_tilemap()
 	
-	#overlay.collapse();
-	var audio := $AudioStreamPlayer
-	audio.play()
+	$PhoneHUD/Control/Menu.pressed.connect(emit_pause)
+	
+	if OS.get_name() != "Android":
+		$PhoneHUD.visible = false
+	
+	start_phone_rotation = global.phone_rotation
+	$Camera2D.rotation = PI / 2 * start_phone_rotation
 
 func _physics_process(delta):
-	$Timer/Label.text = str(inputs.size() - tick)
-	
-#	if(inputs.size() - tick < 10):
-#		set_speed(0.7)
-#	elif(inputs.size() - tick < 50):
-#		set_speed(0.9)
-#	elif(inputs.size() - tick < 150):
-#		set_speed(1.0)
-	
 	# We won't be loading frames in the editor.
 	if Engine.is_editor_hint() || game_ended: return
 	
@@ -212,12 +200,19 @@ func _physics_process(delta):
 	
 	if randf_range(0, 213.7) <= delta:
 		add_child(backblock.instantiate())
-	
-	tick += 1
 
 func _process(delta):
 	if Engine.is_editor_hint(): return
 	move_camera()
+	
+	if game_ended:
+		if Input.is_action_just_pressed("next_level"):
+			actually_go_to_next_level()
+		if Input.is_action_just_pressed("map"):
+			go_to_map()
+		if get_viewport().gui_get_focus_owner() == null || \
+		!get_viewport().gui_get_focus_owner().is_visible_in_tree():
+			next_level_button.grab_focus()
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():
@@ -242,6 +237,14 @@ func manage_falling_entities(delta):
 			manage_static_block(delta, entity)
 		elif entity.is_in_group("doors") && !entity.open:
 			manage_static_block(delta, entity)
+#			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
+#			var entity_below = column_top_entities[entity.board_cords.x]
+#			entity.y_speed = 0
+#
+#			if (entity_below != counter && (entity.y_speed - entity_below.y_speed) * delta >=
+#				entity_below.position.y - entity.position.y - 32 - get_y_size(entity_below) / 2):
+#				entity_below.y_speed = entity.y_speed
+#			column_top_entities[entity.board_cords.x] = entity
 
 func compare_entity_heights(a, b): # Sorts the entities in decreasing order according to their height.
 	return a.position.y > b.position.y
@@ -252,14 +255,17 @@ func manage_static_block(delta, block):
 	block.y_speed = 0
 	
 	if (entity_below != counter && (block.y_speed - entity_below.y_speed) * delta >=
-		entity_below.position.y - block.position.y - 32 - get_y_size(entity_below) / 2):
+		entity_below.position.y - block.position.y - 32 - entity_below.y_size / 2):
 		entity_below.y_speed = block.y_speed
 	
 	if (entity_below != counter && entity_below.position.y - block.position.y < 
-	32 + get_y_size(entity_below) / 2):
-		entity_below.position.y = block.position.y + 32 + get_y_size(entity_below) / 2
+	32 + entity_below.y_size / 2):
+		entity_below.position.y = block.position.y + 32 + entity_below.y_size / 2
 	
 	column_top_entities[block.board_cords.x] = block
+	
+	#for i in range(1,2001):
+	#	pass
 
 func move_block(delta, block):
 	block.y_speed *= y_friction
@@ -301,6 +307,12 @@ func move_block(delta, block):
 	else:
 		block.is_falling = true
 		block.position.y += delta_height
+	
+#	if block.position.y == top_wall + max_height * 64 + 32:
+#		#column_top_still_blocks[block.board_cords.x] = max_height
+#	WAaaaaaaaaaaaWWWAaaaaaaaaaaaWWWAaaaaaaa	block.board_cords.y = max_height
+#		blaaaaaaaaaaWWaock.is_falling = false
+#		return
 
 func move_player(delta):
 	player.y_speed *= y_friction
@@ -311,11 +323,10 @@ func move_player(delta):
 	
 	# First I move the player left/right.
 	
-	if Input.is_action_pressed("move_left") or sinput('l'):
+	if Input.is_action_pressed("move_left"):
 		player.x_speed -= player.WALK_SPEED
 		game_started = true
-	
-	if Input.is_action_pressed("move_right") or sinput('r'):
+	if Input.is_action_pressed("move_right"):
 		game_started = true
 		player.x_speed += player.WALK_SPEED
 	
@@ -362,14 +373,13 @@ func move_player(delta):
 	
 	var coyote_timer = $Player/CoyoteTimer
 	
-	if (Input.is_action_pressed("jump") or sinput('w')) and player.getjumptime() > 0:
+	if Input.is_action_pressed("jump") and player.getjumptime() > 0:
 		if player.flying:
 			player.y_speed = lerp(player.y_speed, -431, delta * 10)
 		else:
 			player.y_speed -= (player.jump_speed) * delta
 		coyote_timer.stop()
-	
-	elif (Input.is_action_pressed("jump") or sinput('w')) and (!player.is_falling or coyote_timer.time_left > 0 or player.flying):
+	elif Input.is_action_pressed("jump") and (!player.is_falling or coyote_timer.time_left > 0 or player.flying):
 		if(player.y_speed > 0):
 			player.y_speed = 0
 		game_started = true
@@ -438,23 +448,29 @@ func move_player(delta):
 #		coyote_timer.start(coyote_timer.wait_time)
 #		return
 
-func sinput(i) -> bool:
-	if(tick < inputs.size()):
-		return i in inputs[tick]
-	return false
-
 func manage_changing_gravity():
 	# We won't be loading frames in the editor.
 	if Engine.is_editor_hint() || rotation_disabled:
 		return
 	
-	var rotations = 0
+	var rotations : int = 0
+	
+	if OS.get_name() == "Android":# || true:
+		if rotation_timer.is_stopped() && all_not_falling():
+			rotations += ((global.phone_rotation - total_rotations - start_phone_rotation) % 4 + 5) % 4 - 1
+			global.control_manage_phone_rotation($EndPanel/MarginContainer)
+			global.control_manage_phone_rotation($PhoneHUD/VirtualJoystick)
+			global.control_manage_phone_rotation($PhoneHUD/Control)
+			
+			if has_node("TutorialFloat"):
+				$TutorialFloat.manage_phone_rotation()
+	
 	if(Input.is_action_pressed("gravity_right") && !global.settings["switch_rotation"] ||
 	Input.is_action_pressed("gravity_left") && global.settings["switch_rotation"]):
 		game_started = true
 		rotations += 1
 		#("Adding one 90 degrees rotation.")
-	elif(Input.is_action_pressed("gravity_up")) or sinput('u'):
+	elif(Input.is_action_pressed("gravity_up")):
 		game_started = true
 		rotations += 2
 	elif(Input.is_action_pressed("gravity_left") && !global.settings["switch_rotation"] ||
@@ -489,6 +505,9 @@ func manage_changing_gravity():
 	overlay.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	background.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	
+	if OS.get_name() == "Android":# || true:
+		camera.rotation = (total_rotations - now_rotations + start_phone_rotation) % 4 * PI / 2 + change_angle
+	
 	for i in range(0, moving_entities.size()):
 		var entity = moving_entities[i]
 		var position_before_rotation = positions_before_rotations[i]
@@ -518,6 +537,9 @@ func rotation_ended():
 	tilemap.rotation = 0
 	overlay.rotation = total_rotations * PI / 2
 	background.rotation = total_rotations * PI / 2
+	if OS.get_name() == "Android":# || true:
+		camera.rotation = total_rotations * PI / 2
+	
 	var wasd := get_tree().get_nodes_in_group("wasd")
 	
 	if now_rotations % 2:
@@ -641,7 +663,7 @@ func _on_player_finished(start_rotations):
 		timer.stop()
 		#get_tree().paused = true
 		print("End game.\nTotal rotations: " + str(rotations_number))
-		$EndPanel/MarginContainer/MyPanel/VBoxContainer/FinishLabelBox/FinishLabel.text = "End game.\nTotal rotations: " + str(rotations_number)
+		$EndPanel/MarginContainer/MyPanel/VBoxContainer/FinishLabelBox/FinishLabel.text = "LEVEL COMPLETE\nTotal rotations: " + str(rotations_number)
 		
 		if !end_screen_disabled:
 			$EndPanel.visible = true
@@ -653,6 +675,8 @@ func _on_player_finished(start_rotations):
 		if !global.levels.has(level_name):
 			print("This level\'s name is\'nt in global.levels.")
 			return
+		
+		$PhoneHUD/VirtualJoystick.visible = false
 		
 		#var time_parts = 0
 		var rotation_parts = 0
@@ -725,7 +749,7 @@ func _on_player_finished(start_rotations):
 		
 		level_map_button.pressed.connect(go_to_map)
 		retry_level_button.pressed.connect(retry_level)
-		next_level_button.pressed.connect(go_to_next_level)
+		next_level_button.pressed.connect(actually_go_to_next_level)
 		#next_level_button_text.add_font_override("normal_font", load("res://fonts/conthrax/conthrax-sb.otf"))
 		
 		var next_level_name := "NULL"
@@ -737,16 +761,16 @@ func _on_player_finished(start_rotations):
 		#next_level_button_text.push_font(load("res://fonts/conthrax/conthrax-sb.otf"), 36)
 		#next_level_button_text.push_color(Color(0,0,0,1))
 		
-		if next_level_name == "NULL":
-			next_level_button.label_text = "Next (Enter)"
-			next_level_button.disabled = true
-			next_level_button.modulate = Color8(255,255,255,100)
-		elif global.levels_data[next_level_name]["part_price"] == 0:
-			next_level_button.label_text = "Next (Enter)"
-			next_level_button.grab_focus()
-		else:
-			next_level_button.label_text = "NEXT (" + str(global.levels_data[next_level_name]["part_price"]) + "[img=36x36]res://textures/temporary_part.png[/img])"
-			#next_level_button_text.pop()
+#		if next_level_name == "NULL":
+#			next_level_button.label_text = "Next (Enter)"
+#			next_level_button.disabled = true
+#			next_level_button.modulate = Color8(255,255,255,100)
+#		elif global.levels_data[next_level_name]["part_price"] == 0:
+#			next_level_button.label_text = "Next (Enter)"
+#			next_level_button.grab_focus()
+#		else:
+#			next_level_button.label_text = "NEXT (" + str(global.levels_data[next_level_name]["part_price"]) + "[img=36x36]res://textures/temporary_part.png[/img])"
+#			#next_level_button_text.pop()
 
 func manage_doors():
 	if !rotation_timer.is_stopped():
@@ -798,7 +822,7 @@ func retry_level():
 func go_to_next_level():
 	next_level_button.release_focus()
 	next_level_button.modulate = Color(1,1,1)
-	print("going to next level")
+#	print("going to next level")
 	var next_level_name := "NULL"
 	if global.levels_data[level_name]["unlocks"].size():
 		next_level_name = global.levels_data[level_name]["unlocks"][0]
@@ -808,6 +832,9 @@ func go_to_next_level():
 		return
 	
 	var confirmation_popup = load("res://menu_stuff/confirmation_popup.tscn").instantiate()
+	confirmation_popup.label_text = "Open level " + next_level_name +\
+	"\nfor " + str(global.levels_data[next_level_name]["part_price"]) + " parts?"
+	confirmation_popup.ok_pressed.connect(actually_go_to_next_level)
 	confirmation_popup.cancel_pressed.connect(cancel_go_to_next_level)
 	get_tree().get_root().add_child(confirmation_popup)
 
@@ -868,3 +895,6 @@ func _exit_tree():
 		get_window().title = "Enter Blocks"
 	else:
 		get_window().title = "Escape Blocks"
+
+func emit_pause():
+	emit_signal("pause")
