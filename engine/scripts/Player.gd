@@ -1,3 +1,4 @@
+@tool
 class_name Player
 extends Area2D
 
@@ -10,6 +11,7 @@ var jump_speed = 5500
 @export var is_falling : bool = true : set = set_is_falling
 @export var start_rotations : int = 0
 var flying := false
+var y_size : int = 50
 
 # Player speed
 @export var y_speed := 0
@@ -23,9 +25,6 @@ var offset = 10;
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var StandingHitBox = $StandingHitBox
 
-var inputs := [["w", "d"], ["w"], ["d"]]
-var tick := 0
-
 func getjumptime():
 	return $jumping.time_left
 
@@ -35,9 +34,6 @@ func setjumptime(x := 0.0):
 func _process(delta: float) -> void:
 	animations()
 	walking_sound()
-
-func _physics_process(delta):
-	tick += 1
 	if Engine.is_editor_hint():
 		return
 	if Input.is_action_just_pressed("fly"):
@@ -47,6 +43,15 @@ func _physics_process(delta):
 		else:
 			WALK_SPEED /= 1.0 + PI/10
 
+func get_direction() -> Vector2:
+	if !Engine.is_editor_hint():
+		return Vector2(
+			Input.get_action_strength("move_right") - 
+			Input.get_action_strength("move_left"),
+			-Input.get_action_strength("jump") if can_jump() else 0.0
+	)
+	return Vector2(0,0)
+	
 func can_jump() -> bool:
 	return Input.is_action_pressed("jump")
 
@@ -65,10 +70,10 @@ func animations():
 		# We won't be loading frames in the editor.
 		return
 	
-	elif Input.is_action_pressed("move_right") or get_parent().sinput('r'):
+	elif Input.is_action_pressed("move_right"):
 		_animated_sprite.play("walking")
 		_animated_sprite.flip_h = false
-	elif Input.is_action_pressed("move_left") or get_parent().sinput('l'):
+	elif Input.is_action_pressed("move_left"):
 		_animated_sprite.flip_h = true	
 		_animated_sprite.play("walking")
 	else:
