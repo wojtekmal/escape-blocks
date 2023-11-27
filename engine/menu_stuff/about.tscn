@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://bk6jnxwirxlx4"]
+
+[ext_resource type="Script" path="res://scripts/about.gd" id="1_6okts"]
+[ext_resource type="PackedScene" uid="uid://bfgrl48wnlnlx" path="res://settings_stuff/my_panel.tscn" id="1_dt12j"]
+[ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="2_p3a5s"]
+[ext_resource type="PackedScene" uid="uid://b4xosnqq2382v" path="res://menu_stuff/my_button.tscn" id="3_kgwb7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5mtha"]
+font = ExtResource("2_p3a5s")
+font_size = 72
+
+[node name="About" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6okts")
+
+[node name="MyPanel" parent="." instance=ExtResource("1_dt12j")]
+layout_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MyPanel"]
+layout_mode = 2
+
+[node name="SettingsLabelBox" type="MarginContainer" parent="MyPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MyPanel/VBoxContainer/SettingsLabelBox"]
+layout_mode = 2
+text = "ABOUT"
+label_settings = SubResource("LabelSettings_5mtha")
+horizontal_alignment = 1
+
+[node name="ScrollPanelBox" type="MarginContainer" parent="MyPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="ColorRect" type="ColorRect" parent="MyPanel/VBoxContainer/ScrollPanelBox"]
+layout_mode = 2
+color = Color(0.494118, 0.494118, 0.494118, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MyPanel/VBoxContainer/ScrollPanelBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MyPanel/VBoxContainer/ScrollPanelBox/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font=res://fonts/conthrax/conthrax-sb.otf][font_size=48]Creddits[/font_size]
+[font_size=36]Level creation[/font_size]
+[font_size=24]roupiq (Karol Radek)[/font_size]
+[font_size=24]hbert (Mateusz Tyc)[/font_size]
+[font_size=24]4QT0R (Michał Kaźmierczak)[/font_size]
+[font_size=24]fruitman (Mikołaj Krakowski)[/font_size]
+[font_size=24]Normal Doctor (Wojciech Firczuk)
+[font_size=24]Wojciech Malinowski[/font_size]
+[font_size=36]Programming and design[/font_size]
+[font_size=24]roupiq (Karol Radek)[/font_size]
+[font_size=24]Wojciech Malinowski[/font_size]
+[font_size=36]Graphics[/font_size]
+[font_size=24]hbert (Mateusz Tyc)[/font_size]
+[font_size=24]Normal Doctor (Wojciech Firczuk)[/font_size]
+[font_size=36]Music[/font_size]
+[font_size=24]Anh Stanisławski[/font_size]
+[font_size=48]Compatibility[/font_size][font_size=24]
+Escape Blocks can be played on a gamepad or a keyboard alone (a mouse isn't needed). The game is available to played on Windows, Linux and some websites.
+[/font_size]"
+selection_enabled = true
+
+[node name="ExternalButtonsBox" type="MarginContainer" parent="MyPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MyPanel/VBoxContainer/ExternalButtonsBox"]
+layout_mode = 2
+
+[node name="Container" type="Container" parent="MyPanel/VBoxContainer/ExternalButtonsBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MyButton" parent="MyPanel/VBoxContainer/ExternalButtonsBox/HBoxContainer" instance=ExtResource("3_kgwb7")]
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+label_text = "Back (P)"
+
+[node name="Container2" type="Container" parent="MyPanel/VBoxContainer/ExternalButtonsBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
