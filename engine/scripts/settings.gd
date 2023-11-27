@@ -1,18 +1,18 @@
-@tool
 extends Control
 
 @export var mode : String = ""
 
+@onready var tab_container := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer
+@onready var back_to_menu_button := $MyPanel/MarginContainer/VBoxContainer/ExternalButtonsBox/HBoxContainer/MyButton
+@onready var reset_progress := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer/ResetProgress
+@onready var switch_rotation := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer/SwitchRotation
+@onready var volume := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/Volume
+@onready var music_volume := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/MusicVolume
+@onready var sound_effects_volume := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/SoundEffectsVolume
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var tab_container := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer
-	var back_to_menu_button := $MyPanel/MarginContainer/VBoxContainer/ExternalButtonsBox/HBoxContainer/MyButton
-	var reset_progress := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer/ResetProgress
-	var switch_rotation := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer/SwitchRotation
-	var volume := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/Volume
-	var music_volume := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/MusicVolume
-	var sound_effects_volume := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/SoundEffectsVolume
-	
 	back_to_menu_button.pressed.connect(go_to_menu)
 	tab_container.get_child(0).get_child(0).get_child(0).grab_focus()
 	
@@ -25,6 +25,8 @@ func _ready():
 	music_volume.value = global.settings["change_music_volume"]
 	sound_effects_volume.value_changed.connect(change_sound_effects_volume)
 	sound_effects_volume.value = global.settings["change_sound_effects_volume"]
+	
+	self.visibility_changed.connect(on_visibility_changed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.                                                                                              
 func _process(delta):
@@ -67,6 +69,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("back"):
 		go_to_menu()
 
+func on_visibility_changed():
+	if visible:
+		tab_container.get_child(0).get_child(0).get_child(0).grab_focus()
+
 func go_to_menu():
 	if mode == "in_level":
 		visible = false
@@ -100,11 +106,11 @@ func reset_progress_press():
 	$MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer/ResetProgress.release_focus()
 	$MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer/ResetProgress.modulate = Color(1,1,1)
 	var confirmation_popup = preload("res://menu_stuff/confirmation_popup.tscn").instantiate()
-	confirmation_popup.ok_pressed.connect(reset_progress)
+	confirmation_popup.ok_pressed.connect(actually_reset_progress)
 	confirmation_popup.cancel_pressed.connect(cancel_reset_progress)
 	get_tree().get_root().add_child(confirmation_popup)
 
-func reset_progress():
+func actually_reset_progress():
 	global.levels = {}
 	
 	global.current_level = "1"

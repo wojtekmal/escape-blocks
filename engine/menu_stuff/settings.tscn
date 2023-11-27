@@ -132,7 +132,7 @@ size_flags_horizontal = 3
 
 [node name="MyButton" parent="MyPanel/MarginContainer/VBoxContainer/ExternalButtonsBox/HBoxContainer" instance=ExtResource("6_1m8wc")]
 layout_mode = 2
-label_text = "Menu (P)"
+label_text = "Back (P)"
 
 [node name="Container2" type="Container" parent="MyPanel/MarginContainer/VBoxContainer/ExternalButtonsBox/HBoxContainer"]
 layout_mode = 2

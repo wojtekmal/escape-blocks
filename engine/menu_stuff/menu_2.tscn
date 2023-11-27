@@ -69,7 +69,7 @@ texture_normal = ExtResource("2_ebkg8")
 
 [node name="Settings" parent="MarginContainer/AspectRatioContainer/MarginContainer2/HBoxContainer/VBoxContainer2" instance=ExtResource("1")]
 layout_mode = 2
-focus_neighbor_right = NodePath("../../VBoxContainer3/Creddits")
+focus_neighbor_right = NodePath("../../VBoxContainer3/About")
 buttonText = "Settings"
 custom_method = "settings_press"
 
@@ -86,16 +86,17 @@ texture_normal = ExtResource("2_ebkg8")
 
 [node name="Start" parent="MarginContainer/AspectRatioContainer/MarginContainer2/HBoxContainer/VBoxContainer3" instance=ExtResource("1")]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../Creddits")
+focus_neighbor_bottom = NodePath("../About")
 buttonText = "Start"
 custom_method = "continue_game_press"
 
-[node name="Creddits" parent="MarginContainer/AspectRatioContainer/MarginContainer2/HBoxContainer/VBoxContainer3" instance=ExtResource("1")]
+[node name="About" parent="MarginContainer/AspectRatioContainer/MarginContainer2/HBoxContainer/VBoxContainer3" instance=ExtResource("1")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../VBoxContainer2/Settings")
 focus_neighbor_top = NodePath("../Start")
 focus_neighbor_right = NodePath("../../VBoxContainer4/Exit")
-buttonText = "Creddits"
+buttonText = "About"
+custom_method = "about_press"
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/AspectRatioContainer/MarginContainer2/HBoxContainer"]
 layout_mode = 2
@@ -115,7 +116,7 @@ texture_normal = ExtResource("5_blfk0")
 
 [node name="Exit" parent="MarginContainer/AspectRatioContainer/MarginContainer2/HBoxContainer/VBoxContainer4" instance=ExtResource("1")]
 layout_mode = 2
-focus_neighbor_left = NodePath("../../VBoxContainer3/Creddits")
+focus_neighbor_left = NodePath("../../VBoxContainer3/About")
 buttonText = "Exit"
 custom_method = "exit_game_press"
 
