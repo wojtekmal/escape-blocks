@@ -13,9 +13,6 @@ func _ready():
 
 	var x_size = size.x# - margin_left - margin_right
 	var y_size = size.y# - margin_top - margin_bottom
-
-	$Panel.set_size(Vector2(x_size, y_size))
-	$Panel2.set_size(Vector2(x_size, y_size))
 	
 	if x_size > y_size:
 		$LabelBox.add_theme_constant_override("margin_left", 5.0 * y_size / 32)
@@ -52,10 +49,6 @@ func _ready():
 func _process(delta):
 	if !is_visible_in_tree():
 		return
-	
-	$Panel.set_size(size)
-	$Panel2.set_size(size)
-	
 	
 	if has_focus():
 		$Panel.visible = true
