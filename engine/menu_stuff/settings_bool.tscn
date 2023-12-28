@@ -1,7 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://cimdip5w7semr"]
+[gd_scene load_steps=6 format=3 uid="uid://cimdip5w7semr"]
 
 [ext_resource type="Script" path="res://scripts/settings_bool.gd" id="1_mxq2d"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="1_ykdjr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7bvd"]
+bg_color = Color(1, 0.917647, 0.309804, 0.32549)
+border_width_left = 64
+border_width_top = 64
+border_width_right = 64
+border_width_bottom = 64
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+expand_margin_left = 64.0
+expand_margin_top = 64.0
+expand_margin_right = 64.0
+expand_margin_bottom = 64.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_nekms"]
 font = ExtResource("1_ykdjr")
@@ -17,6 +34,10 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 script = ExtResource("1_mxq2d")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7bvd")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dnvdruycrvtcg" path="res://textures/button/bottom_right.png" id="10_s7yol"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uotce"]
-bg_color = Color(1, 1, 1, 0.188235)
+bg_color = Color(0.176471, 1, 1, 0.188235)
 border_width_left = 64
 border_width_top = 64
 border_width_right = 64
@@ -30,7 +30,7 @@ expand_margin_right = 64.0
 expand_margin_bottom = 64.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blr0d"]
-bg_color = Color(1, 1, 1, 0.270588)
+bg_color = Color(0.517647, 1, 1, 0.270588)
 
 [node name="TextureButton" type="TextureButton"]
 custom_minimum_size = Vector2(0, 10)
@@ -54,6 +54,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_uotce")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -170,4 +171,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_blr0d")
