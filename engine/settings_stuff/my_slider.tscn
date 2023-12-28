@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdotm30dstbpd"]
+[gd_scene load_steps=14 format=3 uid="uid://bdotm30dstbpd"]
 
 [ext_resource type="Texture2D" uid="uid://kd6u3rrs5wgy" path="res://textures/button/top_left.png" id="1_5dlnb"]
 [ext_resource type="Texture2D" uid="uid://d3eiv7hl84bac" path="res://textures/slider_grabber.png" id="1_t3lfo"]
@@ -16,6 +16,23 @@
 HSlider/icons/grabber = ExtResource("1_t3lfo")
 HSlider/icons/grabber_disabled = ExtResource("1_t3lfo")
 HSlider/icons/grabber_highlight = ExtResource("1_t3lfo")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nd8a2"]
+bg_color = Color(1, 0.917647, 0.309804, 0.32549)
+border_width_left = 64
+border_width_top = 64
+border_width_right = 64
+border_width_bottom = 64
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+expand_margin_left = 64.0
+expand_margin_top = 64.0
+expand_margin_right = 64.0
+expand_margin_bottom = 64.0
 
 [node name="MySlider" type="Control"]
 custom_minimum_size = Vector2(0, 10)
@@ -142,3 +159,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = SubResource("Theme_p5dfv")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nd8a2")

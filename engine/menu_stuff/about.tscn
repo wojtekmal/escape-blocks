@@ -56,6 +56,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MyPanel/VBoxContainer/ScrollPanelBox/MarginContainer"]
 layout_mode = 2
+focus_mode = 2
 bbcode_enabled = true
 text = "[font=res://fonts/conthrax/conthrax-sb.otf][font_size=48]Creddits[/font_size]
 [font_size=36]Level creation[/font_size]
@@ -72,9 +73,16 @@ text = "[font=res://fonts/conthrax/conthrax-sb.otf][font_size=48]Creddits[/font_
 [font_size=24]hbert (Mateusz Tyc)[/font_size]
 [font_size=24]Normal Doctor (Wojciech Firczuk)[/font_size]
 [font_size=36]Music[/font_size]
-[font_size=24]Anh Stanisławski[/font_size]
+[font_size=24]Anh Quan Stanisławski[/font_size]
 [font_size=48]Compatibility[/font_size][font_size=24]
 Escape Blocks can be played on a gamepad or a keyboard alone (a mouse isn't needed). The game is available to played on Windows, Linux and some websites.
+Here's a list of gamepad controls:
+- move player left and right or select controls in an interface: left joystick
+- jump: joypad button 0 (XBOX A, Sony Cross)
+- pause level or go back in some interface: joypad button 1 (XBOX B, Sony circle)
+- rotate the board: right joystick or D-pad
+- zoom: left/right trigger
+- move to next page (usefull in settings): right/left shoulder
 [/font_size]"
 selection_enabled = true
 
