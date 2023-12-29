@@ -8,7 +8,7 @@ func _ready():
 
 func _process(delta):
 	if has_focus():
-		self_modulate = Color(0.6,1,0.6)
+		self_modulate = Color8(255,234,84)
 	else:
 		self_modulate = Color(1,1,1)
 

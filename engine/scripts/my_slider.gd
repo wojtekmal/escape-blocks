@@ -1,4 +1,3 @@
-@tool
 extends Control
 
 signal value_changed
@@ -52,9 +51,9 @@ func _process(delta):
 		return
 	
 	if has_focus():
-		modulate = Color(0.6,1,0.6)
+		$Panel.visible = true
 	else:
-		modulate = Color(1,1,1)
+		$Panel.visible = false
 	
 	if has_focus() && Input.is_action_pressed("ui_left"):
 		$MarginContainer/HBoxContainer/HSlider.value -= 100 * delta
