@@ -1,8 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://52tgw8e0ihah"]
+[gd_scene load_steps=6 format=3 uid="uid://52tgw8e0ihah"]
 
 [ext_resource type="Texture2D" uid="uid://co07xqs3hmj10" path="res://textures/blocks/block.png" id="1"]
 [ext_resource type="Script" path="res://scripts/MenuButton.gd" id="3"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="3_ow5cs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4d4uf"]
+bg_color = Color(1, 0.917647, 0.309804, 0.32549)
+border_width_left = 64
+border_width_top = 64
+border_width_right = 64
+border_width_bottom = 64
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+expand_margin_left = 64.0
+expand_margin_top = 64.0
+expand_margin_right = 64.0
+expand_margin_bottom = 64.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_2qcr6"]
 font = ExtResource("3_ow5cs")
@@ -20,6 +37,16 @@ size_flags_vertical = 3
 texture_normal = ExtResource("1")
 stretch_mode = 0
 script = ExtResource("3")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4d4uf")
 
 [node name="ButtonLabel" type="Label" parent="."]
 layout_mode = 1

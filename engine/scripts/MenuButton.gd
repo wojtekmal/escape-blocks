@@ -1,4 +1,3 @@
-@tool
 extends TextureButton
 
 @export_multiline var buttonText := "" : set = UpdateLabel
@@ -13,9 +12,9 @@ func _ready():
 
 func _process(delta):
 	if has_focus():
-		modulate = Color(0.6,1,0.6)
+		$Panel.visible = true
 	else:
-		modulate = Color(1,1,1)
+		$Panel.visible = false
 
 func UpdateLabel(newName):
 	var label = $ButtonLabel

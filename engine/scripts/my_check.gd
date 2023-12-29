@@ -1,4 +1,3 @@
-@tool
 extends Control
 
 signal toggled
@@ -17,9 +16,9 @@ func _process(delta):
 		return
 	
 	if has_focus():
-		modulate = Color(0.6,1,0.6)
+		$Panel.visible = true
 	else:
-		modulate = Color(1,1,1)
+		$Panel.visible = false
 	
 	var check_button := $MarginContainer/HBoxContainer/CheckButton
 	
