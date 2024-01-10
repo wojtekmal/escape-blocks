@@ -14,7 +14,7 @@ config/name="Escape blocks"
 run/main_scene="res://menu_stuff/menu_2.tscn"
 config/features=PackedStringArray("4.1")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://textures/logo.png"
+boot_splash/image="res://textures/thumbnail.png"
 config/icon="res://textures/Player/Player_Front.png"
 config/windows_native_icon="res://textures/icon.ico"
 
@@ -34,6 +34,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
 Updatedupstreamwindow/size/height=128
+
+[editor]
+
+movie_writer/movie_file="/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/recordings/recording.avi"
 
 [global]
 
