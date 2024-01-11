@@ -11,7 +11,7 @@ font = ExtResource("2_jgxdu")
 font_size = 24
 
 [node name="TutorialFloat" type="CanvasLayer"]
-layer = 101
+layer = 105
 script = ExtResource("1_426fr")
 pages = PackedStringArray("")
 

@@ -168,6 +168,7 @@ func _ready():
 	#overlay.board_dimensions = board_dimensions
 	size = $Player/StandingHitBox.shape.size
 	game_ended = false
+	global.reset_phone_rotation()
 	
 	if Engine.is_editor_hint(): return
 	
@@ -458,12 +459,12 @@ func manage_changing_gravity():
 	if OS.get_name() == "Android":# || true:
 		if rotation_timer.is_stopped() && all_not_falling():
 			rotations += ((global.phone_rotation - total_rotations - start_phone_rotation) % 4 + 5) % 4 - 1
-			global.control_manage_phone_rotation($EndPanel/MarginContainer)
-			global.control_manage_phone_rotation($PhoneHUD/VirtualJoystick)
-			global.control_manage_phone_rotation($PhoneHUD/Control)
+			#global.control_manage_phone_rotation($EndPanel/MarginContainer)
+			#global.control_manage_phone_rotation($PhoneHUD/VirtualJoystick)
+			#global.control_manage_phone_rotation($PhoneHUD/Control)
 			
-			if has_node("TutorialFloat"):
-				$TutorialFloat.manage_phone_rotation()
+			#if has_node("TutorialFloat"):
+			#	$TutorialFloat.manage_phone_rotation()
 	
 	if(Input.is_action_pressed("gravity_right") && !global.settings["switch_rotation"] ||
 	Input.is_action_pressed("gravity_left") && global.settings["switch_rotation"]):

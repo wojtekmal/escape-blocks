@@ -32,7 +32,7 @@ func _ready():
 	set_name.call_deferred("global")
 	load_data()
 	
-	phone_rotation_timer.wait_time = 2
+	phone_rotation_timer.wait_time = 0.5
 	phone_rotation_timer.one_shot = true
 	add_child(phone_rotation_timer)
 
@@ -286,6 +286,10 @@ func manage_phone_rotation():
 	
 	if newer_phone_rotation != phone_rotation && phone_rotation_timer.time_left == 0:
 		phone_rotation = newer_phone_rotation
+
+func reset_phone_rotation():
+	newer_phone_rotation = 0
+	phone_rotation = 0
 
 func control_manage_phone_rotation(control: Control):
 	var viewport_size = get_viewport().get_visible_rect().size
