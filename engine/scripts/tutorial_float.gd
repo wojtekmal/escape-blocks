@@ -1,4 +1,3 @@
-@tool
 extends CanvasLayer
 
 @export_multiline var pages : PackedStringArray

@@ -1,4 +1,3 @@
-@tool
 extends Node2D
 
 var buttons := {}
@@ -67,9 +66,10 @@ func _ready():
 	map_camera.zoom.y = global.zoom_factor
 	
 	if global.show_cutscene:
-		$CanvasLayer.visible = true
+		#$CanvasLayer.visible = true
 		global.show_cutscene = false
-		$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.grab_focus()
+		skip_slides()
+		#$CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer/Next.grab_focus()
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -80,9 +80,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("back"):
 		go_to_menu()
 	
-	manage_phone_rotation()
-	global.control_manage_phone_rotation($MapHUD/MarginContainer)
-	global.control_manage_phone_rotation($CanvasLayer/ColorRect)
+	#manage_phone_rotation()
+	#global.control_manage_phone_rotation($MapHUD/MarginContainer)
+	#global.control_manage_phone_rotation($CanvasLayer/ColorRect)
 	zoom_camera(delta)
 
 func switch_slide(slide_num):
