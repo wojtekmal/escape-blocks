@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.godot.game-mergeDebugResources-9:/values-ca/values-ca.xml",
+            "map": [
+                {
+                    "source": "/home/wojtek/.gradle/caches/transforms-3/9bcb1a65f5938aad264f4d73e9a06f28/transformed/core-1.2.0/res/values-ca/values-ca.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "123",
+                        "endColumns": "100",
+                        "endOffsets": "219"
+                    }
+                },
+                {
+                    "source": "/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/res/values-ca/godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "64",
+                        "endOffsets": "175"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "67",
+                        "endOffsets": "118"
+                    }
+                }
+            ]
+        }
+    ]
+}

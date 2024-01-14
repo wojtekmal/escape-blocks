@@ -1,0 +1,125 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="pl.escapeblocks"
+4    android:installLocation="auto"
+5    android:versionCode="4"
+6    android:versionName="0.1" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="24"
+10        android:targetSdkVersion="33" />
+11
+12    <supports-screens
+12-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:9:5-13:40
+13        android:largeScreens="true"
+13-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:12:9-36
+14        android:normalScreens="true"
+14-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:11:9-37
+15        android:smallScreens="true"
+15-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:10:9-36
+16        android:xlargeScreens="true" />
+16-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:13:9-37
+17
+18    <uses-feature
+18-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:15:5-17:35
+19        android:glEsVersion="0x00030000"
+19-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:16:9-41
+20        android:required="true" />
+20-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:17:9-32
+21
+22    <application
+22-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:19:5-52:19
+23        android:allowBackup="false"
+23-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:21:9-36
+24        android:appCategory="game"
+24-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:23:9-35
+25        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+25-->[androidx.core:core:1.2.0] /home/wojtek/.gradle/caches/transforms-3/9bcb1a65f5938aad264f4d73e9a06f28/transformed/core-1.2.0/AndroidManifest.xml:24:18-86
+26        android:extractNativeLibs="false"
+27        android:hasFragileUserData="false"
+27-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:25:9-43
+28        android:icon="@mipmap/icon"
+28-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:22:9-36
+29        android:isGame="true"
+29-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:24:9-30
+30        android:label="@string/godot_project_name_string"
+30-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:20:9-58
+31        android:requestLegacyExternalStorage="false" >
+31-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:26:9-53
+32        <activity
+32-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:34:9-50:20
+33            android:name="com.godot.game.GodotApp"
+33-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:35:13-37
+34            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|density|keyboard|navigation|screenLayout|uiMode"
+34-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:42:13-141
+35            android:excludeFromRecents="false"
+35-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:39:13-47
+36            android:exported="true"
+36-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:40:13-36
+37            android:label="@string/godot_project_name_string"
+37-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:36:13-62
+38            android:launchMode="singleInstance"
+38-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:38:13-48
+39            android:resizeableActivity="true"
+39-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:43:13-47
+40            android:screenOrientation="portrait"
+40-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:41:13-50
+41            android:theme="@style/GodotAppSplashTheme" >
+41-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:37:13-55
+42            <intent-filter>
+42-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:46:13-49:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:47:17-69
+43-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:47:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:48:17-77
+45-->/home/wojtek/GDrive/nasze_gry/escape-blocks/engine/android/build/AndroidManifest.xml:48:27-74
+46            </intent-filter>
+47        </activity>
+48        <!-- Records the version of the Godot editor used for building -->
+49        <meta-data
+50            android:name="org.godotengine.editor.version"
+51            android:value="4.1.1.stable" /> <!-- Records the version of the Godot library -->
+52        <meta-data
+52-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:14:9-16:44
+53            android:name="org.godotengine.library.version"
+53-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:15:13-59
+54            android:value="4.1.1.stable" />
+54-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:16:13-41
+55
+56        <service android:name="org.godotengine.godot.GodotDownloaderService" />
+56-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:18:9-80
+56-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:18:18-77
+57
+58        <activity
+58-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:20:9-24:75
+59            android:name="org.godotengine.godot.utils.ProcessPhoenix"
+59-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:21:13-70
+60            android:exported="false"
+60-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:22:13-37
+61            android:process=":phoenix"
+61-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:23:13-39
+62            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+62-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:24:13-72
+63
+64        <provider
+64-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:26:9-34:20
+65            android:name="androidx.core.content.FileProvider"
+65-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:27:13-62
+66            android:authorities="pl.escapeblocks.fileprovider"
+66-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:28:13-64
+67            android:exported="false"
+67-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:29:13-37
+68            android:grantUriPermissions="true" >
+68-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:30:13-47
+69            <meta-data
+69-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:31:13-33:64
+70                android:name="android.support.FILE_PROVIDER_PATHS"
+70-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:32:17-67
+71                android:resource="@xml/godot_provider_paths" />
+71-->[godot-lib.template_release.aar] /home/wojtek/.gradle/caches/transforms-3/d5a0a7f67db8b9f19d959bd2fbc67b61/transformed/jetified-godot-lib.template_release/AndroidManifest.xml:33:17-61
+72        </provider>
+73    </application>
+74
+75</manifest>
