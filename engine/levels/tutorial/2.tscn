@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bk50fllxbyt1k" path="res://levels/LevelTemplate.tscn" id="1_hacv7"]
 [ext_resource type="PackedScene" uid="uid://bh28swydxx22h" path="res://board_stuff/tutorial_float.tscn" id="2_bfppr"]
 
-[node name="LevelTemplate4" instance=ExtResource("1_hacv7")]
+[node name="LevelTemplate5" instance=ExtResource("1_hacv7")]
 board_dimensions = Vector2i(5, 5)
 end_screen_disabled = true
 
@@ -16,7 +16,7 @@ board_dimensions = Vector2i(5, 5)
 
 [node name="Walls" parent="." index="3"]
 position = Vector2(-160, -160)
-layer_0/tile_data = PackedInt32Array(262146, 6, 0, 196610, 2, 0, 65540, 2, 0, 65537, 2, 0, 131073, 4, 131072, 196609, 2, 0, 196608, 2, 0)
+layer_0/tile_data = PackedInt32Array(262146, 6, 0, 196610, 2, 0, 196609, 2, 0, 196608, 2, 0, 65540, 2, 0, 65537, 2, 0, 131073, 4, 131072)
 
 [node name="Overlay" parent="." index="5"]
 layer_0/z_index = -9
