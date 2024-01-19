@@ -37,6 +37,9 @@ func _ready():
 	$Random.level_button_pressed.connect(on_level_button_pressed)
 	$MEGA_RANDOM.level_button_pressed.connect(on_level_button_pressed)
 	
+	if OS.get_name() == "Web" || OS.get_name() == "Android":
+		$MEGA_RANDOM.visible = true
+	
 	var back_to_menu_button := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/MyButton
 	back_to_menu_button.pressed.connect(go_to_menu)
 	
@@ -160,17 +163,19 @@ func init_graph():
 	line2.z_index = -1
 	add_child(line2)
 	var line3 = Line2D.new()
-	line2.add_point($Tutorial.position + tutorial_line_offset)
-	line2.add_point($Random.position + tutorial_line_offset)
-	line2.default_color = Color8(256, 256, 256)
-	line2.z_index = -1
-	add_child(line2)
-	var line4 = Line2D.new()
-	line2.add_point($Random.position + tutorial_line_offset)
-	line2.add_point($MEGA_RANDOM.position + tutorial_line_offset)
-	line2.default_color = Color8(256, 256, 256)
-	line2.z_index = -1
-	add_child(line2)
+	line3.add_point($Tutorial.position + tutorial_line_offset)
+	line3.add_point($Random.position + tutorial_line_offset)
+	line3.default_color = Color8(256, 256, 256)
+	line3.z_index = -1
+	add_child(line3)
+	
+	if OS.get_name() != "Web" && OS.get_name() != "Android":
+		var line4 = Line2D.new()
+		line4.add_point($Random.position + tutorial_line_offset)
+		line4.add_point($MEGA_RANDOM.position + tutorial_line_offset)
+		line4.default_color = Color8(256, 256, 256)
+		line4.z_index = -1
+		add_child(line4)
 	
 	for button_text in buttons:
 		#print(button_text)
