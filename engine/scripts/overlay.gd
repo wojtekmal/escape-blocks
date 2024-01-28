@@ -64,4 +64,4 @@ func _process(delta):
 		#print(cell)
 		var mask = mask_dict[cell]
 		#print(mask)
-		set_cell(3, cell, 7, Vector2i(collapse(mask & 1) + collapse(mask & 2)*2, collapse(mask & 4) + collapse(mask & 8)*2))
+		set_cell(3, cell, 12, Vector2i(collapse(mask & 1) + collapse(mask & 2)*2, collapse(mask & 4) + collapse(mask & 8)*2))

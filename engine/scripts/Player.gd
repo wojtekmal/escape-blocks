@@ -100,10 +100,12 @@ func set_is_falling(new_value):
 	is_falling = new_value
 
 func falling_sound():
+	pass
 	$Landing.play()
 
 func walking_sound():
 	if !is_falling && !$Walking.playing && abs(x_speed) >= 0.01:
+		pass
 		$Walking.play()
 	elif $Walking.playing && (is_falling || abs(x_speed) < 0.01):
 		$Walking.stop()
