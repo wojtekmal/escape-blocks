@@ -24,9 +24,9 @@ func _process(delta):
 
 func play_new():
 	stream = music_list.pick_random()
-	if OS.get_name() != "Web":
-		play()
-		return
+	#if OS.get_name() != "Web":
+	play()
+	return
 	
 	## top dictionary
 	#var arg = JavaScriptBridge.create_object("Array", 0)
