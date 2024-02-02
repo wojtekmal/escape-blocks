@@ -1,7 +1,7 @@
 @tool
 class_name MyTileMap
 extends TileMap
-@export var board_dimensions : Vector2i : set = set_board_dimensions
+var board_dimensions : Vector2i : set = set_board_dimensions
 
 #var conections := {
 #	Vector2i(0, 0) : [1, 1, 1, 1],
@@ -53,23 +53,16 @@ func get_real_class():
 func set_board_dimensions(newValue):
 #	if !Engine.is_editor_hint():
 #		return
+	for c in get_used_cells(0):
+		erase_cell(0, c)
 	
-	for i in range(-board_dimensions.x * 4 - 1, board_dimensions.x * 4 + 1):
-		set_cell(0, Vector2i(i, board_dimensions.y * 4), -1, Vector2i(0, 0))
-		set_cell(0, Vector2i(i, -board_dimensions.y * 4 - 1), -1, Vector2i(0, 0))
-
-	for i in range(-board_dimensions.y * 4 - 1, board_dimensions.y * 4 + 1):
-		set_cell(0, Vector2i(-board_dimensions.x * 4 - 1, i), -1, Vector2i(0, 0))
-		set_cell(0, Vector2i(board_dimensions.x * 4, i), -1, Vector2i(0, 0))
-
-	for i in range(-newValue.x * 4 - 1, newValue.x * 4 + 1):
-		set_cell(0, Vector2i(i, newValue.y * 4), 0, Vector2i(0, 0))
-		set_cell(0, Vector2i(i, -newValue.y * 4 - 1), 0, Vector2i(0, 0))
-
-	for i in range(-newValue.y * 4 - 1, newValue.y * 4 + 1):
-		set_cell(0, Vector2i(-newValue.x * 4 - 1, i), 0, Vector2i(0, 0))
-		set_cell(0, Vector2i(newValue.x * 4, i), 0, Vector2i(0, 0))
+	var to_add = []
 	
+	for i in range(-newValue.x - 1, newValue.x + 1):
+		for j in range(-newValue.y - 1, newValue.y + 1):
+			to_add.append(Vector2i(i, j))
+	
+	set_cells_terrain_connect(0, to_add, 0, 0)
 	board_dimensions = newValue
 
 func correct(tile: Vector2i, position : Vector2i):

@@ -1,17 +1,17 @@
 extends Control
 
+@onready var tilemap := $MarginContainer/AspectRatioContainer/MarginContainer2/TileMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var overlay := $MarginContainer/AspectRatioContainer/MarginContainer2/TileMap
-	var screen_size : Vector2 = $MarginContainer.size
-	var scale = min(screen_size.x, screen_size.y) / 96
-	overlay.scale = Vector2(scale, scale)
 	$MarginContainer/AspectRatioContainer/MarginContainer2/HBoxContainer/VBoxContainer3/Start.grab_focus()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	var overlay := $MarginContainer/AspectRatioContainer/MarginContainer2/TileMap
+	var screen_size : Vector2 = $MarginContainer.size
+	var scale = min(screen_size.x, screen_size.y) / 96
+	overlay.scale = Vector2(scale, scale)
 	#manage_phone_rotation()
 
 #func manage_phone_rotation():

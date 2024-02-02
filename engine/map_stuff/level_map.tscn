@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cylgj4bcajsr0"]
+[gd_scene load_steps=43 format=3 uid="uid://cylgj4bcajsr0"]
 
 [ext_resource type="Script" path="res://scripts/level_map.gd" id="1_gliqh"]
 [ext_resource type="PackedScene" uid="uid://ba4y62q3j4hcl" path="res://map_stuff/level_button.tscn" id="1_qu7sv"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://016sy1qm5ndw" path="res://textures/cutscene/sucking8.png" id="27_m0kai"]
 [ext_resource type="Texture2D" uid="uid://c37hm01j2i011" path="res://textures/cutscene/sucking9.png" id="28_ids11"]
 [ext_resource type="Texture2D" uid="uid://bxb6brmnkoe62" path="res://textures/cutscene/sucking10.png" id="29_pbgkd"]
+[ext_resource type="Texture2D" uid="uid://ctmq6lw1t2l20" path="res://textures/map_spaceship_tileset.png" id="30_mr1we"]
 [ext_resource type="Texture2D" uid="uid://clbbdvd6lwm12" path="res://textures/cutscene/mechanic.png" id="30_rbljo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lnd47"]
@@ -139,29 +140,363 @@ _data = {
 font = ExtResource("5_iu41y")
 font_size = 48
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dtkr6"]
+texture = ExtResource("30_mr1we")
+texture_region_size = Vector2i(64, 64)
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/top_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/right_side = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/terrains_peering_bit/right_side = 0
+3:0/0/terrains_peering_bit/top_side = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/top_side = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/right_side = 0
+2:1/0/terrains_peering_bit/bottom_side = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/terrains_peering_bit/right_side = 0
+3:1/0/terrains_peering_bit/bottom_side = 0
+3:1/0/terrains_peering_bit/top_side = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/left_side = 0
+1:2/0/terrains_peering_bit/top_side = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/right_side = 0
+2:2/0/terrains_peering_bit/left_side = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrain = 0
+3:2/0/terrains_peering_bit/right_side = 0
+3:2/0/terrains_peering_bit/left_side = 0
+3:2/0/terrains_peering_bit/top_side = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+1:3/0 = 0
+1:3/0/terrain_set = 0
+1:3/0/terrain = 0
+1:3/0/terrains_peering_bit/bottom_side = 0
+1:3/0/terrains_peering_bit/left_side = 0
+1:3/0/terrains_peering_bit/top_side = 0
+2:3/0 = 0
+2:3/0/terrain_set = 0
+2:3/0/terrain = 0
+2:3/0/terrains_peering_bit/right_side = 0
+2:3/0/terrains_peering_bit/bottom_side = 0
+2:3/0/terrains_peering_bit/left_side = 0
+3:3/0 = 0
+3:3/0/terrain_set = 0
+3:3/0/terrain = 0
+3:3/0/terrains_peering_bit/right_side = 0
+3:3/0/terrains_peering_bit/bottom_side = 0
+3:3/0/terrains_peering_bit/left_side = 0
+3:3/0/terrains_peering_bit/top_side = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+15:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+11:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+15:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+10:10/0 = 0
+11:10/0 = 0
+12:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+15:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+10:11/0 = 0
+11:11/0 = 0
+12:11/0 = 0
+13:11/0 = 0
+14:11/0 = 0
+15:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+8:12/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+11:12/0 = 0
+12:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+15:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+11:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+14:13/0 = 0
+15:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+5:14/0 = 0
+6:14/0 = 0
+7:14/0 = 0
+8:14/0 = 0
+9:14/0 = 0
+10:14/0 = 0
+11:14/0 = 0
+12:14/0 = 0
+13:14/0 = 0
+14:14/0 = 0
+15:14/0 = 0
+0:15/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+6:15/0 = 0
+7:15/0 = 0
+8:15/0 = 0
+9:15/0 = 0
+10:15/0 = 0
+11:15/0 = 0
+12:15/0 = 0
+13:15/0 = 0
+14:15/0 = 0
+15:15/0 = 0
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/bottom_side = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/left_side = 0
+0:3/0 = 0
+0:3/0/terrain_set = 0
+0:3/0/terrain = 0
+0:3/0/terrains_peering_bit/bottom_side = 0
+0:3/0/terrains_peering_bit/left_side = 0
+
+[sub_resource type="TileSet" id="TileSet_p4ywj"]
+tile_size = Vector2i(64, 64)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "spaceship"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_dtkr6")
+
 [node name="LevelMap" type="Node2D"]
 script = ExtResource("1_gliqh")
 
 [node name="MEGA_RANDOM" parent="." instance=ExtResource("2_wtusj")]
-offset_left = 1073.0
-offset_top = 458.0
-offset_right = 1201.0
-offset_bottom = 586.0
+z_index = 1
+offset_left = 1153.0
+offset_top = 512.0
+offset_right = 1281.0
+offset_bottom = 640.0
 focus_neighbor_top = NodePath("../Random")
 
 [node name="Random" parent="." instance=ExtResource("9_4gwoi")]
-offset_left = 1071.0
-offset_top = 283.0
-offset_right = 1199.0
-offset_bottom = 411.0
+z_index = 1
+offset_left = 1155.0
+offset_top = 381.0
+offset_right = 1283.0
+offset_bottom = 509.0
 focus_neighbor_top = NodePath("../Tutorial")
 focus_neighbor_bottom = NodePath("../MEGA_RANDOM")
 
 [node name="Tutorial" parent="." instance=ExtResource("3_6e3n4")]
-offset_left = 1070.0
-offset_top = 121.0
-offset_right = 1198.0
-offset_bottom = 249.0
+z_index = 1
+offset_left = 1153.0
+offset_top = 134.0
+offset_right = 1281.0
+offset_bottom = 262.0
 focus_neighbor_left = NodePath("../1")
 focus_neighbor_bottom = NodePath("../Random")
 
@@ -322,199 +657,208 @@ label_text = "Next"
 layout_mode = 2
 label_text = "Skip"
 
+[node name="TileMap" type="TileMap" parent="."]
+z_index = -3
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_p4ywj")
+rendering_quadrant_size = 64
+format = 2
+layer_0/name = "spaceship"
+layer_0/tile_data = PackedInt32Array(2, 131072, 0, 3, 131072, 2, 4, 0, 3, 65540, 196608, 0, 65541, 131072, 3, 65542, 131072, 2, 65543, 131072, 2, 65544, 131072, 2, 65545, 0, 3, 131081, 65536, 1, 196617, 65536, 1, 262153, 65536, 0, 196613, 65536, 2, 196612, 131072, 3, 196611, 131072, 2, 196610, 131072, 2, 196609, 131072, 2, 196608, 131072, 2, 262143, 131072, 2, 262142, 131072, 1, 327678, 65536, 1, 393214, 196608, 1, 393215, 131072, 2, 327680, 131072, 3, 524290, 131072, 2, 524289, 131072, 2, 524288, 196608, 3, 589823, 131072, 2, 589822, 196608, 2, 589821, 131072, 2, 589820, 196608, 0, 524284, 0, 1, 589824, 65536, 1, 655360, 65536, 1, 720896, 196608, 2, 786431, 131072, 2, 786430, 131072, 2, 786429, 131072, 2, 786428, 131072, 0, 524291, 131072, 2, 524292, 131072, 2, 524293, 131072, 3, 524294, 65536, 2, 589829, 65536, 1, 655365, 65536, 1, 720901, 65536, 2, 458758, 65536, 1, 393222, 0, 1, 262150, 0, 2, 262149, 131072, 2, 262148, 196608, 0, 131077, 65536, 1, 393216, 65536, 1, 458752, 65536, 1, 458750, 65536, 1, 524286, 65536, 1, 327681, 131072, 2, 327682, 0, 2, 720897, 131072, 2, 720898, 131072, 2, 720899, 131072, 2, 720900, 131072, 2)
+
 [node name="1" parent="." instance=ExtResource("1_qu7sv")]
 self_modulate = Color(0.6, 1, 0.6, 1)
-offset_left = 914.0
-offset_top = 222.0
-offset_right = 978.0
-offset_bottom = 327.0
+offset_left = 933.0
+offset_top = 158.0
+offset_right = 997.0
+offset_bottom = 263.0
 focus_neighbor_left = NodePath("../2")
 focus_neighbor_right = NodePath("../Tutorial")
 
 [node name="2" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 733.0
-offset_top = 138.0
-offset_right = 797.0
-offset_bottom = 243.0
+offset_left = 668.0
+offset_top = 155.0
+offset_right = 732.0
+offset_bottom = 260.0
 focus_neighbor_left = NodePath("../3a")
 focus_neighbor_right = NodePath("../1")
 focus_neighbor_bottom = NodePath("../3")
 
 [node name="3" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 737.0
-offset_top = 352.0
-offset_right = 801.0
-offset_bottom = 457.0
+offset_left = 671.0
+offset_top = 416.0
+offset_right = 735.0
+offset_bottom = 521.0
 focus_neighbor_left = NodePath("../4")
 focus_neighbor_top = NodePath("../2")
 
 [node name="4" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 483.0
-offset_top = 348.0
-offset_right = 547.0
-offset_bottom = 453.0
+offset_left = 544.0
+offset_top = 419.0
+offset_right = 608.0
+offset_bottom = 524.0
 focus_neighbor_left = NodePath("../5")
 focus_neighbor_right = NodePath("../3")
 focus_neighbor_bottom = NodePath("../5a")
 
 [node name="5" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 272.0
-offset_top = 400.0
-offset_right = 336.0
-offset_bottom = 505.0
+offset_left = 285.0
+offset_top = 417.0
+offset_right = 349.0
+offset_bottom = 522.0
 focus_neighbor_left = NodePath("../6")
 focus_neighbor_right = NodePath("../4")
 
 [node name="3a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 520.0
-offset_top = 128.0
-offset_right = 584.0
-offset_bottom = 233.0
+offset_left = 552.0
+offset_top = 157.0
+offset_right = 616.0
+offset_bottom = 262.0
 focus_neighbor_left = NodePath("../4a")
 focus_neighbor_right = NodePath("../2")
 
 [node name="4a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 324.0
-offset_top = 57.0
-offset_right = 388.0
-offset_bottom = 162.0
+offset_left = 289.0
+offset_top = 33.0
+offset_right = 353.0
+offset_bottom = 138.0
 focus_neighbor_right = NodePath("../3a")
 
 [node name="5a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 521.0
-offset_top = 552.0
-offset_right = 585.0
-offset_bottom = 657.0
+offset_left = 542.0
+offset_top = 544.0
+offset_right = 606.0
+offset_bottom = 649.0
 focus_neighbor_top = NodePath("../4")
 focus_neighbor_right = NodePath("../6a")
 
 [node name="6a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 734.0
-offset_top = 571.0
-offset_right = 798.0
-offset_bottom = 676.0
+offset_left = 800.0
+offset_top = 547.0
+offset_right = 864.0
+offset_bottom = 652.0
 focus_neighbor_left = NodePath("../5a")
 
 [node name="6" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 73.0
-offset_top = 424.0
-offset_right = 137.0
-offset_bottom = 529.0
+offset_left = 29.0
+offset_top = 417.0
+offset_right = 93.0
+offset_bottom = 522.0
 focus_neighbor_left = NodePath("../7")
 focus_neighbor_right = NodePath("../5")
 
 [node name="7" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = -151.0
-offset_top = 415.0
-offset_right = -87.0
-offset_bottom = 520.0
+offset_left = -217.0
+offset_top = 422.0
+offset_right = -153.0
+offset_bottom = 527.0
 focus_neighbor_right = NodePath("../6")
 focus_neighbor_bottom = NodePath("../8")
 
 [node name="8" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = -184.0
-offset_top = 602.0
-offset_right = -120.0
-offset_bottom = 707.0
+offset_left = -222.0
+offset_top = 673.0
+offset_right = -158.0
+offset_bottom = 778.0
 focus_neighbor_top = NodePath("../7")
 focus_neighbor_right = NodePath("../9a")
 focus_neighbor_bottom = NodePath("../9b")
 
 [node name="9b" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = -221.0
-offset_top = 972.0
-offset_right = -157.0
-offset_bottom = 1077.0
+offset_left = -225.0
+offset_top = 1055.0
+offset_right = -161.0
+offset_bottom = 1160.0
 focus_neighbor_left = NodePath("../10b")
 focus_neighbor_top = NodePath("../8")
 focus_neighbor_right = NodePath("../10")
 
 [node name="9a" parent="." instance=ExtResource("1_qu7sv")]
 offset_left = 31.0
-offset_top = 652.0
+offset_top = 675.0
 offset_right = 95.0
-offset_bottom = 757.0
+offset_bottom = 780.0
 focus_neighbor_left = NodePath("../8")
 focus_neighbor_right = NodePath("../10a")
 focus_neighbor_bottom = NodePath("../10")
 
 [node name="10a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 266.0
-offset_top = 720.0
-offset_right = 330.0
-offset_bottom = 825.0
+offset_left = 277.0
+offset_top = 673.0
+offset_right = 341.0
+offset_bottom = 778.0
 focus_neighbor_left = NodePath("../9a")
 
 [node name="10b" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = -439.0
-offset_top = 948.0
-offset_right = -375.0
-offset_bottom = 1053.0
+offset_left = -481.0
+offset_top = 933.0
+offset_right = -417.0
+offset_bottom = 1038.0
 focus_neighbor_left = NodePath("../9a")
 focus_neighbor_right = NodePath("../9b")
 
 [node name="10" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = -11.0
-offset_top = 1028.0
-offset_right = 53.0
-offset_bottom = 1133.0
+offset_left = 29.0
+offset_top = 1060.0
+offset_right = 93.0
+offset_bottom = 1165.0
 focus_neighbor_left = NodePath("../9b")
 focus_neighbor_top = NodePath("../9a")
 focus_neighbor_right = NodePath("../11a")
 focus_neighbor_bottom = NodePath("../11b")
 
 [node name="11a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 340.0
-offset_top = 1089.0
-offset_right = 404.0
-offset_bottom = 1194.0
+offset_left = 283.0
+offset_top = 1059.0
+offset_right = 347.0
+offset_bottom = 1164.0
 focus_neighbor_left = NodePath("../10")
 focus_neighbor_right = NodePath("../12a")
 
 [node name="11b" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = -15.0
-offset_top = 1369.0
-offset_right = 49.0
-offset_bottom = 1474.0
+offset_left = 29.0
+offset_top = 1435.0
+offset_right = 93.0
+offset_bottom = 1540.0
 focus_neighbor_left = NodePath("../12b")
 focus_neighbor_top = NodePath("../10")
 focus_neighbor_right = NodePath("../2137")
 
 [node name="12b" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = -372.0
-offset_top = 1391.0
-offset_right = -308.0
-offset_bottom = 1496.0
+offset_left = -478.0
+offset_top = 1442.0
+offset_right = -414.0
+offset_bottom = 1547.0
 focus_neighbor_right = NodePath("../11b")
 
 [node name="12a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 686.0
-offset_top = 1250.0
-offset_right = 750.0
-offset_bottom = 1355.0
+offset_left = 677.0
+offset_top = 1058.0
+offset_right = 741.0
+offset_bottom = 1163.0
 focus_neighbor_left = NodePath("../11a")
 focus_neighbor_top = NodePath("../13")
 focus_neighbor_bottom = NodePath("../2137")
 
 [node name="13" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 768.0
-offset_top = 1006.0
-offset_right = 832.0
-offset_bottom = 1111.0
+offset_left = 794.0
+offset_top = 1050.0
+offset_right = 858.0
+offset_bottom = 1155.0
 focus_neighbor_top = NodePath("../14")
 focus_neighbor_bottom = NodePath("../12a")
 
 [node name="14" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 758.0
-offset_top = 782.0
-offset_right = 822.0
-offset_bottom = 887.0
+offset_left = 798.0
+offset_top = 800.0
+offset_right = 862.0
+offset_bottom = 905.0
 focus_neighbor_bottom = NodePath("../13")
 
 [node name="2137" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 641.0
-offset_top = 1467.0
-offset_right = 705.0
-offset_bottom = 1572.0
+offset_left = 665.0
+offset_top = 1439.0
+offset_right = 729.0
+offset_bottom = 1544.0
 focus_neighbor_left = NodePath("../11b")
 focus_neighbor_top = NodePath("../12a")
