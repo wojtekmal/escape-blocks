@@ -476,27 +476,27 @@ script = ExtResource("1_gliqh")
 
 [node name="MEGA_RANDOM" parent="." instance=ExtResource("2_wtusj")]
 z_index = 1
-offset_left = 1153.0
-offset_top = 512.0
-offset_right = 1281.0
-offset_bottom = 640.0
+offset_left = 4385.0
+offset_top = 835.0
+offset_right = 4513.0
+offset_bottom = 963.0
 focus_neighbor_top = NodePath("../Random")
 
 [node name="Random" parent="." instance=ExtResource("9_4gwoi")]
 z_index = 1
-offset_left = 1155.0
-offset_top = 381.0
-offset_right = 1283.0
-offset_bottom = 509.0
+offset_left = 4394.0
+offset_top = 377.0
+offset_right = 4522.0
+offset_bottom = 505.0
 focus_neighbor_top = NodePath("../Tutorial")
 focus_neighbor_bottom = NodePath("../MEGA_RANDOM")
 
 [node name="Tutorial" parent="." instance=ExtResource("3_6e3n4")]
 z_index = 1
-offset_left = 1153.0
-offset_top = 134.0
-offset_right = 1281.0
-offset_bottom = 262.0
+offset_left = 4395.0
+offset_top = 595.0
+offset_right = 4523.0
+offset_bottom = 723.0
 focus_neighbor_left = NodePath("../1")
 focus_neighbor_bottom = NodePath("../Random")
 
@@ -668,197 +668,202 @@ layer_0/tile_data = PackedInt32Array(2, 131072, 0, 3, 131072, 2, 4, 0, 3, 65540,
 
 [node name="1" parent="." instance=ExtResource("1_qu7sv")]
 self_modulate = Color(0.6, 1, 0.6, 1)
-offset_left = 933.0
-offset_top = 158.0
-offset_right = 997.0
-offset_bottom = 263.0
+offset_left = 4209.0
+offset_top = 625.0
+offset_right = 4273.0
+offset_bottom = 730.0
 focus_neighbor_left = NodePath("../2")
 focus_neighbor_right = NodePath("../Tutorial")
 
 [node name="2" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 668.0
-offset_top = 155.0
-offset_right = 732.0
-offset_bottom = 260.0
-focus_neighbor_left = NodePath("../3a")
+offset_left = 4008.0
+offset_top = 636.0
+offset_right = 4072.0
+offset_bottom = 741.0
+focus_neighbor_left = NodePath("../3")
+focus_neighbor_top = NodePath("../2a")
 focus_neighbor_right = NodePath("../1")
-focus_neighbor_bottom = NodePath("../3")
+focus_neighbor_bottom = NodePath("../2b")
 
 [node name="3" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 671.0
-offset_top = 416.0
-offset_right = 735.0
-offset_bottom = 521.0
+offset_left = 3793.0
+offset_top = 642.0
+offset_right = 3857.0
+offset_bottom = 747.0
 focus_neighbor_left = NodePath("../4")
-focus_neighbor_top = NodePath("../2")
+focus_neighbor_top = NodePath("../3a")
+focus_neighbor_right = NodePath("../2")
+focus_neighbor_bottom = NodePath("../3b")
 
 [node name="4" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 544.0
-offset_top = 419.0
-offset_right = 608.0
-offset_bottom = 524.0
+offset_left = 3572.0
+offset_top = 654.0
+offset_right = 3636.0
+offset_bottom = 759.0
 focus_neighbor_left = NodePath("../5")
 focus_neighbor_right = NodePath("../3")
-focus_neighbor_bottom = NodePath("../5a")
+focus_neighbor_bottom = NodePath("../2b")
 
 [node name="5" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 285.0
-offset_top = 417.0
-offset_right = 349.0
-offset_bottom = 522.0
+offset_left = 3339.0
+offset_top = 676.0
+offset_right = 3403.0
+offset_bottom = 781.0
 focus_neighbor_left = NodePath("../6")
 focus_neighbor_right = NodePath("../4")
 
+[node name="2a" parent="." instance=ExtResource("1_qu7sv")]
+offset_left = 4013.0
+offset_top = 449.0
+offset_right = 4077.0
+offset_bottom = 554.0
+focus_neighbor_left = NodePath("../3a")
+focus_neighbor_bottom = NodePath("../2")
+
 [node name="3a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 552.0
-offset_top = 157.0
-offset_right = 616.0
-offset_bottom = 262.0
-focus_neighbor_left = NodePath("../4a")
-focus_neighbor_right = NodePath("../2")
+offset_left = 3794.0
+offset_top = 442.0
+offset_right = 3858.0
+offset_bottom = 547.0
+focus_neighbor_right = NodePath("../2a")
+focus_neighbor_bottom = NodePath("../3")
 
-[node name="4a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 289.0
-offset_top = 33.0
-offset_right = 353.0
-offset_bottom = 138.0
-focus_neighbor_right = NodePath("../3a")
+[node name="2b" parent="." instance=ExtResource("1_qu7sv")]
+offset_left = 3993.0
+offset_top = 803.0
+offset_right = 4057.0
+offset_bottom = 908.0
+focus_neighbor_left = NodePath("../3b")
+focus_neighbor_top = NodePath("../2")
 
-[node name="5a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 542.0
-offset_top = 544.0
-offset_right = 606.0
-offset_bottom = 649.0
-focus_neighbor_top = NodePath("../4")
-focus_neighbor_right = NodePath("../6a")
-
-[node name="6a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 800.0
-offset_top = 547.0
-offset_right = 864.0
-offset_bottom = 652.0
-focus_neighbor_left = NodePath("../5a")
+[node name="3b" parent="." instance=ExtResource("1_qu7sv")]
+offset_left = 3804.0
+offset_top = 803.0
+offset_right = 3868.0
+offset_bottom = 908.0
+focus_neighbor_top = NodePath("../3")
+focus_neighbor_right = NodePath("../2b")
 
 [node name="6" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 29.0
-offset_top = 417.0
-offset_right = 93.0
-offset_bottom = 522.0
+offset_left = 3126.0
+offset_top = 664.0
+offset_right = 3190.0
+offset_bottom = 769.0
 focus_neighbor_left = NodePath("../7")
 focus_neighbor_right = NodePath("../5")
 
 [node name="7" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = -217.0
-offset_top = 422.0
-offset_right = -153.0
-offset_bottom = 527.0
+offset_left = 2901.0
+offset_top = 664.0
+offset_right = 2965.0
+offset_bottom = 769.0
 focus_neighbor_right = NodePath("../6")
 focus_neighbor_bottom = NodePath("../8")
 
 [node name="8" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = -222.0
-offset_top = 673.0
-offset_right = -158.0
-offset_bottom = 778.0
+offset_left = 2669.0
+offset_top = 653.0
+offset_right = 2733.0
+offset_bottom = 758.0
 focus_neighbor_top = NodePath("../7")
 focus_neighbor_right = NodePath("../9a")
 focus_neighbor_bottom = NodePath("../9b")
 
 [node name="9b" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = -225.0
-offset_top = 1055.0
-offset_right = -161.0
-offset_bottom = 1160.0
+offset_left = 2478.0
+offset_top = 793.0
+offset_right = 2542.0
+offset_bottom = 898.0
 focus_neighbor_left = NodePath("../10b")
 focus_neighbor_top = NodePath("../8")
 focus_neighbor_right = NodePath("../10")
 
 [node name="9a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 31.0
-offset_top = 675.0
-offset_right = 95.0
-offset_bottom = 780.0
+offset_left = 2675.0
+offset_top = 417.0
+offset_right = 2739.0
+offset_bottom = 522.0
 focus_neighbor_left = NodePath("../8")
 focus_neighbor_right = NodePath("../10a")
 focus_neighbor_bottom = NodePath("../10")
 
 [node name="10a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 277.0
-offset_top = 673.0
-offset_right = 341.0
-offset_bottom = 778.0
+offset_left = 3147.0
+offset_top = 448.0
+offset_right = 3211.0
+offset_bottom = 553.0
 focus_neighbor_left = NodePath("../9a")
 
 [node name="10b" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = -481.0
-offset_top = 933.0
-offset_right = -417.0
-offset_bottom = 1038.0
+offset_left = 3122.0
+offset_top = 856.0
+offset_right = 3186.0
+offset_bottom = 961.0
 focus_neighbor_left = NodePath("../9a")
 focus_neighbor_right = NodePath("../9b")
 
 [node name="10" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 29.0
-offset_top = 1060.0
-offset_right = 93.0
-offset_bottom = 1165.0
+offset_left = 2292.0
+offset_top = 646.0
+offset_right = 2356.0
+offset_bottom = 751.0
 focus_neighbor_left = NodePath("../9b")
 focus_neighbor_top = NodePath("../9a")
 focus_neighbor_right = NodePath("../11a")
 focus_neighbor_bottom = NodePath("../11b")
 
 [node name="11a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 283.0
-offset_top = 1059.0
-offset_right = 347.0
-offset_bottom = 1164.0
+offset_left = 3354.0
+offset_top = 450.0
+offset_right = 3418.0
+offset_bottom = 555.0
 focus_neighbor_left = NodePath("../10")
 focus_neighbor_right = NodePath("../12a")
 
 [node name="11b" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 29.0
-offset_top = 1435.0
-offset_right = 93.0
-offset_bottom = 1540.0
+offset_left = 3345.0
+offset_top = 877.0
+offset_right = 3409.0
+offset_bottom = 982.0
 focus_neighbor_left = NodePath("../12b")
 focus_neighbor_top = NodePath("../10")
 focus_neighbor_right = NodePath("../2137")
 
 [node name="12b" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = -478.0
-offset_top = 1442.0
-offset_right = -414.0
-offset_bottom = 1547.0
+offset_left = 2451.0
+offset_top = 1011.0
+offset_right = 2515.0
+offset_bottom = 1116.0
 focus_neighbor_right = NodePath("../11b")
 
 [node name="12a" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 677.0
-offset_top = 1058.0
-offset_right = 741.0
-offset_bottom = 1163.0
+offset_left = 2285.0
+offset_top = 863.0
+offset_right = 2349.0
+offset_bottom = 968.0
 focus_neighbor_left = NodePath("../11a")
-focus_neighbor_top = NodePath("../13")
+focus_neighbor_right = NodePath("../13")
 focus_neighbor_bottom = NodePath("../2137")
 
 [node name="13" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 794.0
-offset_top = 1050.0
-offset_right = 858.0
-offset_bottom = 1155.0
+offset_left = 2294.0
+offset_top = 404.0
+offset_right = 2358.0
+offset_bottom = 509.0
+focus_neighbor_left = NodePath("../12a")
 focus_neighbor_top = NodePath("../14")
-focus_neighbor_bottom = NodePath("../12a")
 
 [node name="14" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 798.0
-offset_top = 800.0
-offset_right = 862.0
-offset_bottom = 905.0
+offset_left = 2483.0
+offset_top = 279.0
+offset_right = 2547.0
+offset_bottom = 384.0
 focus_neighbor_bottom = NodePath("../13")
 
 [node name="2137" parent="." instance=ExtResource("1_qu7sv")]
-offset_left = 665.0
-offset_top = 1439.0
-offset_right = 729.0
-offset_bottom = 1544.0
+offset_left = 2659.0
+offset_top = 874.0
+offset_right = 2723.0
+offset_bottom = 979.0
 focus_neighbor_left = NodePath("../11b")
 focus_neighbor_top = NodePath("../12a")
