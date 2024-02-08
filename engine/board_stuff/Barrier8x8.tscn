@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://du4kkphuhj0ou"]
+[gd_scene load_steps=5 format=3 uid="uid://du4kkphuhj0ou"]
 
 [ext_resource type="Script" path="res://scripts/StaticBlock8x8.gd" id="1_pt68n"]
 [ext_resource type="Texture2D" uid="uid://i7xh45ciueey" path="res://textures/blocks/barrier.png" id="2_s0bna"]
+[ext_resource type="Script" path="res://scripts/barrier_texture.gd" id="3_xsuw2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eto6a"]
 size = Vector2(64, 64)
@@ -19,3 +20,4 @@ shape = SubResource("RectangleShape2D_eto6a")
 [node name="Barrier" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("2_s0bna")
+script = ExtResource("3_xsuw2")

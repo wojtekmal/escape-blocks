@@ -71,6 +71,9 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("restart"):
 		restart_current_level()
+	
+	if get_viewport().gui_get_focus_owner() == null:
+		$CanvasLayer/Control/VBoxContainer/MarginContainer/HBoxContainer/Resume.grab_focus()
 
 func go_to_map():
 	unpause()
@@ -83,8 +86,9 @@ func start_current_level():
 	start(global.current_level)
 
 func change_to_next_level(level_name: String):
+	print("changing to next level")
 	if global.levels_data[level_name]["unlocks"].is_empty():
-		get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://map_stuff/level_map.tscn")
 		return
 	
 	var level = global.levels_data[level_name]["unlocks"][0]

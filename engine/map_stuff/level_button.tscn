@@ -1,14 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ba4y62q3j4hcl"]
+[gd_scene load_steps=6 format=3 uid="uid://ba4y62q3j4hcl"]
 
 [ext_resource type="Script" path="res://scripts/level_button.gd" id="1_oaoe2"]
 [ext_resource type="Texture2D" uid="uid://bys0t6027yhij" path="res://textures/temporary_level_map_button_disabled.png" id="2_yxlcj"]
-[ext_resource type="Texture2D" uid="uid://utyx86m4t3d6" path="res://textures/temporary_part.png" id="4_gpkad"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="4_tsx42"]
 [ext_resource type="PackedScene" uid="uid://dagh7d1s8ms8u" path="res://map_stuff/level_map_button_part.tscn" id="5_6aplh"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_4vt8g"]
-font = ExtResource("4_tsx42")
-font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3dvoa"]
 font = ExtResource("4_tsx42")
@@ -19,7 +14,7 @@ font_color = Color(0, 0, 0, 1)
 offset_left = -32.0
 offset_top = -32.0
 offset_right = 32.0
-offset_bottom = 73.0
+offset_bottom = 32.0
 disabled = true
 texture_normal = ExtResource("2_yxlcj")
 script = ExtResource("1_oaoe2")
@@ -37,41 +32,8 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-modulate = Color(0, 0, 0, 0)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "0"
-label_settings = SubResource("LabelSettings_4vt8g")
-horizontal_alignment = 2
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/AspectRatioContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-texture = ExtResource("4_gpkad")
-expand_mode = 1
-
 [node name="DonePart" parent="." instance=ExtResource("5_6aplh")]
 position = Vector2(-13, 20)
-
-[node name="TimePart1" parent="." instance=ExtResource("5_6aplh")]
-visible = false
-position = Vector2(-35, -35)
-
-[node name="TimePart2" parent="." instance=ExtResource("5_6aplh")]
-visible = false
-position = Vector2(0, -45)
 
 [node name="RotationPart1" parent="." instance=ExtResource("5_6aplh")]
 position = Vector2(32, -8)

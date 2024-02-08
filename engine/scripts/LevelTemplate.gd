@@ -56,7 +56,6 @@ var column_top_entities = []
 var y_friction = 0.99;
 var start_phone_rotation : int = 0
 #var phone_rotation : int = 0 # 0 - bottom down, 1 - right down, 2 - top down, 3 - left down
-#var newer_phone_rotation : int = 0
 
 # BLOCKS LIBRARY 👍
 var tile_blocks := {
@@ -165,7 +164,6 @@ func _ready():
 	#calls the setter function
 	board_dimensions = board_dimensions
 	tilemap.board_dimensions = board_dimensions
-	#overlay.board_dimensions = board_dimensions
 	size = $Player/StandingHitBox.shape.size
 	game_ended = false
 	global.reset_phone_rotation()
@@ -190,7 +188,11 @@ func _physics_process(delta):
 	if Engine.is_editor_hint() || game_ended: return
 	
 	if Input.is_action_just_pressed("quick_finish"):
+		print("doing quick finishs")
 		_on_player_finished(-total_rotations)
+	
+	if game_ended:
+		return
 	
 	manage_changing_gravity()
 	manage_falling_entities(delta)
@@ -238,14 +240,6 @@ func manage_falling_entities(delta):
 			manage_static_block(delta, entity)
 		elif entity.is_in_group("doors") && !entity.open:
 			manage_static_block(delta, entity)
-#			column_top_still_blocks[entity.board_cords.x] = entity.board_cords.y
-#			var entity_below = column_top_entities[entity.board_cords.x]
-#			entity.y_speed = 0
-#
-#			if (entity_below != counter && (entity.y_speed - entity_below.y_speed) * delta >=
-#				entity_below.position.y - entity.position.y - 32 - get_y_size(entity_below) / 2):
-#				entity_below.y_speed = entity.y_speed
-#			column_top_entities[entity.board_cords.x] = entity
 
 func compare_entity_heights(a, b): # Sorts the entities in decreasing order according to their height.
 	return a.position.y > b.position.y
@@ -264,9 +258,6 @@ func manage_static_block(delta, block):
 		entity_below.position.y = block.position.y + 32 + entity_below.y_size / 2
 	
 	column_top_entities[block.board_cords.x] = block
-	
-	#for i in range(1,2001):
-	#	pass
 
 func move_block(delta, block):
 	block.y_speed *= y_friction
@@ -308,12 +299,6 @@ func move_block(delta, block):
 	else:
 		block.is_falling = true
 		block.position.y += delta_height
-	
-#	if block.position.y == top_wall + max_height * 64 + 32:
-#		#column_top_still_blocks[block.board_cords.x] = max_height
-#	WAaaaaaaaaaaaWWWAaaaaaaaaaaaWWWAaaaaaaa	block.board_cords.y = max_height
-#		blaaaaaaaaaaWWaock.is_falling = false
-#		return
 
 func move_player(delta):
 	player.y_speed *= y_friction
@@ -369,8 +354,6 @@ func move_player(delta):
 	var max_height_1 = column_top_still_blocks[player_left_column] - 1
 	var max_height_2 = column_top_still_blocks[player_right_column] - 1
 	var max_height = min(max_height_1, max_height_2)
-	#print("max_height, new_player_cord_y:")
-	#print(max_height)
 	
 	var coyote_timer = $Player/CoyoteTimer
 	
@@ -390,12 +373,8 @@ func move_player(delta):
 			player.y_speed -= (player.jump_speed) * delta
 		player.setjumptime()
 	
-	
-	
 	var delta_height = delta * player.y_speed
 	var new_player_cord_y = floor_div(player.position.y - top_wall + delta_height - 32 - 1, 64) + 1
-	#print(new_player_cord_y)
-	#print((-1) / 64)
 	
 	var entity_below_left = column_top_entities[player_left_column]
 	var entity_below_right = column_top_entities[player_right_column]
@@ -442,12 +421,6 @@ func move_player(delta):
 	else:
 		player.is_falling = true
 		player.position.y += delta_height
-	
-#	if player.position.y == top_wall + max_height * 64 + 32:
-#		player.board_cords.y = max_height
-#		player.is_falling = false
-#		coyote_timer.start(coyote_timer.wait_time)
-#		return
 
 func manage_changing_gravity():
 	# We won't be loading frames in the editor.
@@ -658,11 +631,9 @@ func load_blocks_from_tilemap():
 	walls.visible = false
 
 func _on_player_finished(start_rotations):
-	#print("finished signal recived")
 	if (total_rotations + start_rotations) % 4 == 0 && !game_ended && !rotation_timer.time_left:
 		game_ended = true
 		timer.stop()
-		#get_tree().paused = true
 		print("End game.\nTotal rotations: " + str(rotations_number))
 		$EndPanel/MarginContainer/MyPanel/VBoxContainer/FinishLabelBox/FinishLabel.text = "LEVEL COMPLETE\nTotal rotations: " + str(rotations_number)
 		
@@ -679,7 +650,6 @@ func _on_player_finished(start_rotations):
 		
 		$PhoneHUD/VirtualJoystick.visible = false
 		
-		#var time_parts = 0
 		var rotation_parts = 0
 		
 		if rotations_number <= rotation_limit_2:
@@ -687,23 +657,12 @@ func _on_player_finished(start_rotations):
 		elif rotations_number <= rotation_limit_1:
 			rotation_parts = 1
 		
-#		if timer._time <= time_limit_1:
-#			time_parts = 2
-#		elif timer._time <= time_limit_2:
-#			time_parts = 1
-		
 		part_box_1.label_text = "FINISHED"
-#		part_box_2.label_text = str(time_limit_1) + "s"
-#		part_box_3.label_text = str(time_limit_2) + "s"
 		part_box_4.label_text = str(rotation_limit_1) + "\nROTATIONS"
 		part_box_5.label_text = str(rotation_limit_2) + "\nROTATIONS"
 		
 		if global.levels[level_name]["finished_parts"] >= 1:
 			part_box_1.part_visible = true
-#		if global.levels[level_name]["time_parts"] >= 1:
-#			part_box_2.part_visible = true
-#		if global.levels[level_name]["time_parts"] >= 2:
-#			part_box_3.part_visible = true
 		if global.levels[level_name]["rotation_parts"] >= 1:
 			part_box_4.part_visible = true
 		if global.levels[level_name]["rotation_parts"] >= 2:
@@ -712,66 +671,41 @@ func _on_player_finished(start_rotations):
 		if !part_box_1.part_visible:
 			part_box_1.part_new = true
 			part_box_1.part_visible = true
-			global.part_count += 1
-#		if !part_box_2.part_visible && time_parts >= 1:
-#			part_box_2.part_new = true
-#			part_box_2.part_visible = true
-#			global.part_count += 1
-#		if !part_box_3.part_visible && time_parts >= 2:
-#			part_box_3.part_new = true
-#			part_box_3.part_visible = true
-#			global.part_count += 1
+			if level_name != "Random":
+				global.part_count += 1
 		if !part_box_4.part_visible && rotation_parts >= 1:
 			part_box_4.part_new = true
 			part_box_4.part_visible = true
-			global.part_count += 1
+			if level_name != "Random":
+				global.part_count += 1
 		if !part_box_5.part_visible && rotation_parts >= 2:
 			part_box_5.part_new = true
 			part_box_5.part_visible = true
-			global.part_count += 1
+			if level_name != "Random":
+				global.part_count += 1
 		
 		global.levels[level_name]["finished_parts"] = 1
-#		global.levels[level_name]["time_parts"] = max(global.levels[level_name]["time_parts"], time_parts)
 		global.levels[level_name]["rotation_parts"] = max(global.levels[level_name]["rotation_parts"], rotation_parts)
-		
-		#print(level_name + "aaa")
-		#print(preload("res://levels/wojtekmal_1.tscn"))
-		#print(global.levels_data.size())
 		
 		for unlocked_level in global.levels_data[level_name]["unlocks"]:
 			print("level unlocked: " + unlocked_level)
-			#print(global.levels)
-			global.levels[unlocked_level]["unlocked"] = max(1, global.levels[unlocked_level]["unlocked"])
-			
-			if global.levels_data[unlocked_level]["part_price"] == 0:
-				global.levels[unlocked_level]["unlocked"] = 2
+			global.levels[unlocked_level]["unlocked"] = 2
 		
 		global.save()
 		
 		level_map_button.pressed.connect(go_to_map)
 		retry_level_button.pressed.connect(retry_level)
 		next_level_button.pressed.connect(actually_go_to_next_level)
-		#next_level_button_text.add_font_override("normal_font", load("res://fonts/conthrax/conthrax-sb.otf"))
 		
 		var next_level_name := "NULL"
 		
 		if global.levels_data[level_name]["unlocks"].size():
 			next_level_name = global.levels_data[level_name]["unlocks"][0]
 		
-		#next_level_button_text.push_paragraph(HORIZONTAL_ALIGNMENT_CENTER)
-		#next_level_button_text.push_font(load("res://fonts/conthrax/conthrax-sb.otf"), 36)
-		#next_level_button_text.push_color(Color(0,0,0,1))
-		
-#		if next_level_name == "NULL":
-#			next_level_button.label_text = "Next (Enter)"
-#			next_level_button.disabled = true
-#			next_level_button.modulate = Color8(255,255,255,100)
-#		elif global.levels_data[next_level_name]["part_price"] == 0:
-#			next_level_button.label_text = "Next (Enter)"
-#			next_level_button.grab_focus()
-#		else:
-#			next_level_button.label_text = "NEXT (" + str(global.levels_data[next_level_name]["part_price"]) + "[img=36x36]res://textures/temporary_part.png[/img])"
-#			#next_level_button_text.pop()
+		if level_name == "Random":
+			part_box_1.visible = false
+			part_box_4.visible = false
+			part_box_5.visible = false
 
 func manage_doors():
 	if !rotation_timer.is_stopped():
@@ -859,8 +793,6 @@ func floor_div(a, b):
 		return floori(a) / floori(b) - 1
 
 func move_camera():
-	#print(camera.position)
-	#print(background.position)
 	global_position = Vector2.ZERO
 	camera.position = lerp(player.position, $Center.position, 0.7)
 	while (camera.position - player.position).length() * camera.zoom.x > 200:

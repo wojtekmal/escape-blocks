@@ -490,6 +490,11 @@ separation = Vector2i(1, 1)
 1:1/0 = 0
 0:1/0 = 0
 5:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t7h7h"]
 texture = ExtResource("16_v8nsv")
@@ -1285,7 +1290,7 @@ layer_0/tile_data = PackedInt32Array(262144, 6, 0, 262146, 2, 0, 262147, 1, 0, 2
 [node name="Counter" parent="." instance=ExtResource("9_pbxjo")]
 
 [node name="Overlay" type="TileMap" parent="."]
-z_index = 2
+z_index = -10
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_7fwbe")
 rendering_quadrant_size = 32
@@ -1313,7 +1318,6 @@ script = ExtResource("27_4h2jw")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_q7ff1")
-parameters/looping = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 3
