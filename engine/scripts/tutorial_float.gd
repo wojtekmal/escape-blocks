@@ -52,6 +52,9 @@ func _process(delta):
 		float_box.size_flags_stretch_ratio = 10
 		
 		label.label_settings.font_size = int(24 * pow(log_modulus(default_ratio / actual_ratio), 0.5))
+	
+	if get_viewport().gui_get_focus_owner() == null || get_viewport().gui_get_focus_owner().is_visible_in_tree() == false:
+		$HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/TextureButton.grab_focus()
 
 func log_modulus(value):
 	if value > 1:

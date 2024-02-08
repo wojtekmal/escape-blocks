@@ -1318,7 +1318,6 @@ script = ExtResource("27_4h2jw")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_q7ff1")
-parameters/looping = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 3

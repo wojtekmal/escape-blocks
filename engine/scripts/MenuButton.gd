@@ -31,8 +31,6 @@ func on_button_press():
 
 func load_new_game():
 	# This is a dictionary holding the default values for global.levels.
-	# When "New game" is pressed, levels is set to this. If "Continue game is chosen, 
-	# the saved version of levels is chosen (TODO).
 	
 	for level_name in global.levels_data:
 		global.levels[level_name] = {
@@ -44,8 +42,8 @@ func load_new_game():
 	
 	global.levels["1"]["unlocked"] = 2
 	global.current_level = "1"
-	global.save()
 	global.show_cutscene = true
+	global.save()
 	
 	get_tree().change_scene_to_packed(level_map)
 
