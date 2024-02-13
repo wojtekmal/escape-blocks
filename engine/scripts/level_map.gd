@@ -32,8 +32,8 @@ func _ready():
 	$Random.level_button_pressed.connect(on_level_button_pressed)
 	$MEGA_RANDOM.level_button_pressed.connect(on_level_button_pressed)
 	
-	if OS.get_name() == "Web" || OS.get_name() == "Android":
-		$MEGA_RANDOM.visible = true
+	if OS.get_name() == "Web" || global.is_mobile():
+		$MEGA_RANDOM.visible = false
 	
 	var back_to_menu_button := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/MyButton
 	back_to_menu_button.pressed.connect(go_to_menu)
@@ -88,7 +88,7 @@ func init_graph():
 	line3.z_index = -1
 	add_child(line3)
 	
-	if OS.get_name() != "Web" && OS.get_name() != "Android":
+	if OS.get_name() != "Web" && !global.is_mobile():
 		var line4 = Line2D.new()
 		line4.add_point($Random.position + tutorial_line_offset)
 		line4.add_point($MEGA_RANDOM.position + tutorial_line_offset)
@@ -153,7 +153,7 @@ func move_camera_to_button(button_reference):
 	map_camera.position = button_reference.position + button_reference.size / 2
 
 func manage_phone_rotation():
-	if OS.get_name() != "Android":
+	if !global.is_mobile():
 		return
 	
 	var viewport_size = get_viewport().get_visible_rect().size

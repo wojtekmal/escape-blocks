@@ -273,10 +273,10 @@ func manage_settings():
 
 
 func manage_phone_rotation():
-	if OS.get_name() != "Android":
+	if !is_mobile():
 		return
 	
-	var gravity : Vector3 = Input.get_gravity().snapped(Vector3(0.001,0.001,0.001))
+	var gravity : Vector3 = Sensors.get_accelerometer().snapped(Vector3(0.001,0.001,0.001))
 	var newest_phone_rotation : int
 	# 0 - bottom down, 1 - right down, 2 - top down, 3 - left down
 	
@@ -326,3 +326,7 @@ func zoom_camera(delta):
 	global.zoom_factor *= 1 + Input.get_action_strength("zoom_in") * delta * ZOOM_SPEED
 	global.zoom_factor *= 1 - Input.get_action_strength("zoom_out") * delta * ZOOM_SPEED
 	global.zoom_factor = clamp(global.zoom_factor, ZOOM_MIN, ZOOM_MAX)
+
+func is_mobile():
+	return OS.has_feature("android") || OS.has_feature("ios") || \
+			OS.has_feature("web_android") || OS.has_feature("web_ios")

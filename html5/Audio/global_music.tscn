@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://75pvd2mgkkfp"]
-
-[ext_resource type="Script" path="res://scripts/global_music.gd" id="1_ibflv"]
-
-[node name="GlobalMusic" type="AudioStreamPlayer"]
-bus = &"Music"
-script = ExtResource("1_ibflv")

@@ -27,7 +27,14 @@ func _ready():
 	sound_effects_volume.value = global.settings["change_sound_effects_volume"]
 	
 	self.visibility_changed.connect(on_visibility_changed)
-
+	
+	if OS.get_name() == "Web":
+		$MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/Label.visible = true
+	else:
+		$MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/Label.visible = false
+	
+	if mode == "in_level":
+		reset_progress.modulate = Color(0.5, 0.5, 0.5)
 # Called every frame. 'delta' is the elapsed time since the previous frame.                                                                                              
 func _process(delta):
 	if !is_visible_in_tree():
@@ -71,6 +78,7 @@ func _process(delta):
 
 func on_visibility_changed():
 	if visible:
+		tab_container.current_tab = 0
 		tab_container.get_child(0).get_child(0).get_child(0).grab_focus()
 
 func go_to_menu():
@@ -103,6 +111,9 @@ func change_volume(new_value):
 	AudioServer.set_bus_volume_db(master_bus, (new_value - 100) * 72 / 100)
 
 func reset_progress_press():
+	if mode == "in_level":
+		return
+	
 	$MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer/ResetProgress.release_focus()
 	$MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer/ResetProgress.modulate = Color(1,1,1)
 	var confirmation_popup = preload("res://menu_stuff/confirmation_popup.tscn").instantiate()
