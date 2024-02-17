@@ -18,5 +18,6 @@ func set_board_cords(newValue):
 	board_cords = newValue
 
 func set_is_falling(new_value):
-	if new_value == true:
-		push_error("You are changing StaticBlock8x8's is_falling, which is always false.")
+	pass
+	#if new_value == true:
+		#push_error("You are changing StaticBlock8x8's is_falling, which is always false.")

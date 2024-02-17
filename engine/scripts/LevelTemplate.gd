@@ -177,7 +177,7 @@ func _ready():
 	
 	$PhoneHUD/Control/Menu.pressed.connect(emit_pause)
 	
-	if OS.get_name() != "Android":
+	if !global.is_mobile():
 		$PhoneHUD.visible = false
 	
 	start_phone_rotation = global.phone_rotation
@@ -429,7 +429,7 @@ func manage_changing_gravity():
 	
 	var rotations : int = 0
 	
-	if OS.get_name() == "Android":# || true:
+	if global.is_mobile():# || true:
 		if rotation_timer.is_stopped() && all_not_falling():
 			rotations += ((global.phone_rotation - total_rotations - start_phone_rotation) % 4 + 5) % 4 - 1
 			#global.control_manage_phone_rotation($EndPanel/MarginContainer)
@@ -479,7 +479,7 @@ func manage_changing_gravity():
 	overlay.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	background.rotation = (total_rotations - now_rotations) % 4 * PI / 2 + change_angle
 	
-	if OS.get_name() == "Android":# || true:
+	if global.is_mobile():# || true:
 		camera.rotation = (total_rotations - now_rotations + start_phone_rotation) % 4 * PI / 2 + change_angle
 	
 	for i in range(0, moving_entities.size()):
@@ -511,7 +511,7 @@ func rotation_ended():
 	tilemap.rotation = 0
 	overlay.rotation = total_rotations * PI / 2
 	background.rotation = total_rotations * PI / 2
-	if OS.get_name() == "Android":# || true:
+	if global.is_mobile():# || true:
 		camera.rotation = total_rotations * PI / 2
 	
 	var wasd := get_tree().get_nodes_in_group("wasd")

@@ -22,8 +22,9 @@ func _physics_process(delta):
 		$Node2D/laserBEAM.add_point(Vector2(1000, 0))
 
 func set_is_falling(new_value):
-	if new_value == true:
-		push_error("You are changing Finish's is_falling, which is always false.")
+	pass
+	#if new_value == true:
+		#push_error("You are changing Finish's is_falling, which is always false.")
 	
 func set_board_dimensions(newValue):
 	board_dimensions = newValue

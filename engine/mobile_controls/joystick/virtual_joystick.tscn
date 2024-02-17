@@ -18,7 +18,7 @@ joystick_mode = 1
 action_left = "move_left"
 action_right = "move_right"
 action_up = "jump"
-action_down = ""
+action_down = "crouch"
 
 [node name="Base" type="TextureRect" parent="."]
 layout_mode = 1
