@@ -216,8 +216,6 @@ func _process(delta):
 		if get_viewport().gui_get_focus_owner() == null || \
 		!get_viewport().gui_get_focus_owner().is_visible_in_tree():
 			next_level_button.grab_focus()
-	
-	$Timer/Gravity.text = str(Sensors.get_accelerometer().snapped(Vector3(0.001,0.001,0.001)))
 
 func manage_falling_entities(delta):
 	if !rotation_timer.is_stopped():

@@ -18,8 +18,7 @@ func _process(delta):
 
 func UpdateLabel(newName):
 	var label = $ButtonLabel
-	if Engine.is_editor_hint():
-		label.text = newName
+	label.text = newName
 	buttonText = newName
 
 func on_button_press():

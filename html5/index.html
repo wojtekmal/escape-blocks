@@ -109,8 +109,8 @@ body {
 	visibility: visible;
 }
 		</style>
-		<link id='-gd-engine-icon' rel='icon' type='image/png' href='eb.icon.png' />
-<link rel='apple-touch-icon' href='eb.apple-touch-icon.png'/>
+		<link id='-gd-engine-icon' rel='icon' type='image/png' href='index.icon.png' />
+<link rel='apple-touch-icon' href='index.apple-touch-icon.png'/>
 
 	</head>
 	<body>
@@ -135,9 +135,10 @@ body {
 			<div id="status-notice" class="godot" style="display: none;"></div>
 		</div>
 
-		<script src="eb.js"></script>
+		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"eb","experimentalVK":false,"fileSizes":{"eb.pck":20987216,"eb.wasm":35649444},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":20987632,"index.wasm":33795109},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_THREADS_ENABLED = true;
 const engine = new Engine(GODOT_CONFIG);
 
 (function () {
@@ -215,7 +216,9 @@ const engine = new Engine(GODOT_CONFIG);
 		initializing = false;
 	}
 
-	const missing = Engine.getMissingFeatures();
+	const missing = Engine.getMissingFeatures({
+		threads: GODOT_THREADS_ENABLED,
+	});
 	if (missing.length !== 0) {
 		const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
 		displayFailureNotice(missingMsg + missing.join('\n'));

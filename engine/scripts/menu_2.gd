@@ -1,10 +1,16 @@
 extends Control
 
 @onready var tilemap := $MarginContainer/AspectRatioContainer/MarginContainer2/TileMap
+@onready var exit := $MarginContainer/AspectRatioContainer/MarginContainer2/HBoxContainer/VBoxContainer4/Exit
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$MarginContainer/AspectRatioContainer/MarginContainer2/HBoxContainer/VBoxContainer3/Start.grab_focus()
+	
+	if OS.get_name() == "Web" || global.is_mobile():
+		exit.disabled = true
+		exit.buttonText = ""
+		exit.focus_mode = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

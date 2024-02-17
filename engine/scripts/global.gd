@@ -292,7 +292,6 @@ func manage_phone_rotation():
 	if newest_phone_rotation != newer_phone_rotation:
 		newer_phone_rotation = newest_phone_rotation
 		phone_rotation_timer.start()
-		print(phone_rotation_timer.wait_time)
 	
 	if newer_phone_rotation != phone_rotation && phone_rotation_timer.time_left == 0:
 		phone_rotation = newer_phone_rotation

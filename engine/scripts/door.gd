@@ -62,5 +62,6 @@ func button_released():
 	pressed_buttons -= 1
 
 func set_is_falling(new_value):
-	if new_value == true:
-		push_error("You are changing StaticBlock8x8's is_falling, which is always false.")
+	pass
+	#if new_value == true:
+		#push_error("You are changing StaticBlock8x8's is_falling, which is always false.")

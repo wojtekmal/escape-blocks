@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ce2ksb07wp8of"]
+[gd_scene load_steps=25 format=3 uid="uid://ce2ksb07wp8of"]
 
 [ext_resource type="PackedScene" uid="uid://52tgw8e0ihah" path="res://menu_stuff/MenuButton.tscn" id="1"]
 [ext_resource type="Script" path="res://scripts/menu_2.gd" id="1_8oo22"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://r5s75ub5g24x" path="res://textures/Player/Player_Front.png" id="5_blfk0"]
 [ext_resource type="PackedScene" uid="uid://klvxuhcfwpx0" path="res://background.tscn" id="5_wjx0y"]
 [ext_resource type="Texture2D" uid="uid://b4bbl76qq7iew" path="res://textures/bg/bg0_darker.png" id="6_kwd3r"]
+[ext_resource type="Texture2D" uid="uid://oayirhc2g4q1" path="res://textures/blocks/static_green.png" id="6_malp8"]
 [ext_resource type="Texture2D" uid="uid://cn2lhu3s7btp7" path="res://textures/bg/bg1_darker.png" id="7_l7ifi"]
 [ext_resource type="Texture2D" uid="uid://cjpc36lbsk1r1" path="res://textures/bg/bg3_darker.png" id="8_yqo8w"]
 [ext_resource type="Script" path="res://scripts/overlay.gd" id="9_1s8rp"]
@@ -256,6 +257,7 @@ texture_normal = ExtResource("5_blfk0")
 [node name="Exit" parent="MarginContainer/AspectRatioContainer/MarginContainer2/HBoxContainer/VBoxContainer4" instance=ExtResource("1")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../VBoxContainer3/About")
+texture_disabled = ExtResource("6_malp8")
 buttonText = "Exit"
 custom_method = "exit_game_press"
 
