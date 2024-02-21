@@ -13,5 +13,5 @@ func _physics_process(delta):
 	var sec = roundf(_time)
 #	$RichTextLabel.text =  str(sec) + ":" + str(ms)
 	
-	$RichTextLabel.text =  "%d.%02d s" % [sec, ms]
-	$RichTextLabel.text += "\n" + str(Engine.get_frames_per_second())  + "fps"
+	$Control/RichTextLabel.text =  "\n%d.%02d s" % [sec, ms]
+	$Control/RichTextLabel.text += "\n" + str(Engine.get_frames_per_second())  + "fps"

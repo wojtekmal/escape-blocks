@@ -4,6 +4,7 @@ extends Node2D
 
 var paused = false
 @export var current_level : String
+var current_level_node_name : String
 
 func start(level_name : String):
 	pause(false)
@@ -13,6 +14,7 @@ func start(level_name : String):
 		level.hide()
 		await level.tree_exited
 	var new_level = global.levels_data[level_name]["resource"].instantiate()
+	current_level_node_name = new_level.name
 	
 	if level_name == "Random":
 		print(DirAccess.open("res://levels/maps"))
@@ -51,6 +53,8 @@ func start(level_name : String):
 	new_level.pause.connect(pause)
 	global.current_level = level_name
 	add_child(new_level)
+	new_level.manage_phone_rotation()
+	print("managing phone rotation")
 	await new_level.ready
 
 func _ready():
@@ -66,6 +70,9 @@ func _ready():
 	start(current_level)
 
 func _process(delta):
+	global.control_manage_phone_rotation($CanvasLayer/Control)
+	global.control_manage_phone_rotation($SettingsLayer/Settings)
+	
 	if Input.is_action_just_pressed("pause"):
 		pause(not paused)
 	

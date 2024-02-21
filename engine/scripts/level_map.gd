@@ -21,6 +21,7 @@ func _ready():
 	if !Engine.is_editor_hint():
 		$MapHUD.visible = true
 	
+	manage_phone_rotation()
 	get_viewport().gui_focus_changed.connect(move_camera_to_button)
 	
 	for button_reference in get_tree().get_nodes_in_group("level_buttons"):
@@ -70,6 +71,7 @@ func _process(delta):
 		go_to_menu()
 	
 	zoom_camera(delta)
+	manage_phone_rotation()
 
 func init_graph():
 	var line_offset = Vector2(32, 32)
@@ -156,16 +158,8 @@ func manage_phone_rotation():
 	if !global.is_mobile():
 		return
 	
-	var viewport_size = get_viewport().get_visible_rect().size
-	
-	if global.phone_rotation == 0:
-		rotation = 0
-	elif global.phone_rotation == 1:
-		rotation = 3 * PI / 2
-	elif global.phone_rotation == 2:
-		rotation = PI
-	elif global.phone_rotation == 3:
-		rotation = PI / 2
+	global.control_manage_phone_rotation($MapHUD/MarginContainer)
+	map_camera.rotation = global.phone_rotation * PI / 2
 
 func zoom_camera(delta):
 	var map_camera = $MapCamera

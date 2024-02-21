@@ -29,6 +29,7 @@ func _ready():
 	if Engine.is_editor_hint():
 		return
 	
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_name.call_deferred("global")
 	load_data()
 	

@@ -64,7 +64,7 @@ with open(key_path, 'wb') as key_file:
     ))
 
 # Create the server with the in-memory certificate
-#server_address = ('192.168.22.65', 4443)
+#server_address = ('192.168.68.110', 4443)
 server_address = ('192.168.171.126', 4443)
 #server_address = ('localhost', 4443)
 httpd = http.server.HTTPServer(server_address, MyRequestHandler)

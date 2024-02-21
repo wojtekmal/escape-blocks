@@ -3,8 +3,6 @@ extends Node
 var JavaScript = JavaScriptBridge
 
 func _ready():
-	print("in ready function")
-	
 	if !OS.has_feature('web'): pass
 	JavaScript.eval("""
 		var acceleration = { x: 0, y: 0, z: 0 }

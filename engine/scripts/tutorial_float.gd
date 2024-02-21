@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @export_multiline var pages : PackedStringArray
 var current_page : int = 0
+@onready var close_button = $HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/TextureButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,6 +53,11 @@ func _process(delta):
 		float_box.size_flags_stretch_ratio = 10
 		
 		label.label_settings.font_size = int(24 * pow(log_modulus(default_ratio / actual_ratio), 0.5))
+		
+		if global.is_mobile():
+			print("adjusting size because mobile")
+			label.label_settings.font_size *= 1.5
+			print(label.label_settings.font_size)
 	
 	if get_viewport().gui_get_focus_owner() == null || get_viewport().gui_get_focus_owner().is_visible_in_tree() == false:
 		$HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/TextureButton.grab_focus()

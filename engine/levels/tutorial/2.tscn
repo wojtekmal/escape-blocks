@@ -28,4 +28,4 @@ layer_5/z_index = -4
 layer_6/z_index = -3
 
 [node name="TutorialFloat" parent="." index="11" instance=ExtResource("2_bfppr")]
-pages = PackedStringArray("Use the arrow keys to rotate the board 90° counterclockwise or upside down or clockwise. To finish, the player must be rotated in the same way as the finish. The left and right rotation controls can be swapped in the settings. It is impossible to rotate midair or to press two rotation keys at the same time.")
+pages = PackedStringArray("Use the arrow keys to rotate the board 90° counterclockwise or upside down or clockwise. To finish, the player must be rotated in the same way as the finish. The left and right rotation controls can be swapped in the settings. It is impossible to rotate midair. If you press two rotation keys at once, the game will pick one direction of rotation.")

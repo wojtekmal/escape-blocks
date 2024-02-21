@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://bk50fllxbyt1k"]
+[gd_scene load_steps=82 format=3 uid="uid://bk50fllxbyt1k"]
 
 [ext_resource type="PackedScene" uid="uid://ow2x5epfg1v2" path="res://board_stuff/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://bfkcsebg4p0qv" path="res://textures/level_border.png" id="3_qb17p"]
@@ -1251,9 +1251,6 @@ font = ExtResource("14_wb3oo")
 [sub_resource type="LabelSettings" id="LabelSettings_rkpgr"]
 font_size = 72
 
-[sub_resource type="LabelSettings" id="LabelSettings_h1ng0"]
-font_size = 72
-
 [node name="LevelTemplate4" type="Node2D"]
 process_mode = 1
 script = ExtResource("4")
@@ -1450,11 +1447,26 @@ label_text = "Next (N)"
 [node name="Timer" type="CanvasLayer" parent="."]
 script = ExtResource("19_nh8s2")
 
-[node name="RichTextLabel" type="Label" parent="Timer"]
+[node name="Control" type="Control" parent="Timer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="Label" parent="Timer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 6.0
-offset_top = 29.0
-offset_right = 239.0
-offset_bottom = 92.0
+offset_top = 6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
 label_settings = SubResource("LabelSettings_yatq1")
 
 [node name="Gravity" type="Label" parent="Timer"]
@@ -1462,12 +1474,6 @@ offset_top = 99.0
 offset_right = 1362.0
 offset_bottom = 231.0
 label_settings = SubResource("LabelSettings_rkpgr")
-
-[node name="PhoneRotation" type="Label" parent="Timer"]
-offset_top = 247.0
-offset_right = 40.0
-offset_bottom = 326.0
-label_settings = SubResource("LabelSettings_h1ng0")
 
 [node name="PhoneRotationTimer" type="Timer" parent="."]
 process_callback = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl47nov66utcv"]
+[gd_scene load_steps=5 format=3 uid="uid://dl47nov66utcv"]
 
 [ext_resource type="Script" path="res://scripts/counter.gd" id="1_fmk3p"]
 [ext_resource type="FontFile" uid="uid://curjj8j0yb7o0" path="res://fonts/conthrax/conthrax-sb.otf" id="2_lucek"]
@@ -6,21 +6,45 @@
 [sub_resource type="LabelSettings" id="LabelSettings_1bljj"]
 font = ExtResource("2_lucek")
 
-[node name="Counter" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_mps6b"]
+font = ExtResource("2_lucek")
+
+[node name="Counter" type="CanvasLayer"]
+script = ExtResource("1_fmk3p")
+
+[node name="Counter" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fmk3p")
+mouse_filter = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="RichTextLabel" type="Label" parent="CanvasLayer"]
+[node name="RichTextLabel" type="Label" parent="Counter"]
+layout_mode = 0
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 186.0
 offset_bottom = 46.0
 text = "0 rotations"
 label_settings = SubResource("LabelSettings_1bljj")
+
+[node name="RichTextLabel2" type="Label" parent="Counter"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -228.0
+offset_top = -112.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "controls:
+wasd - move player   
+arrows - rotate board
+r - reset
+p - pause
+"
+label_settings = SubResource("LabelSettings_mps6b")

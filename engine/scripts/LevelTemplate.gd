@@ -166,7 +166,7 @@ func _ready():
 	tilemap.board_dimensions = board_dimensions
 	size = $Player/StandingHitBox.shape.size
 	game_ended = false
-	global.reset_phone_rotation()
+	#global.reset_phone_rotation()
 	
 	if Engine.is_editor_hint(): return
 	
@@ -207,6 +207,7 @@ func _physics_process(delta):
 func _process(delta):
 	if Engine.is_editor_hint(): return
 	move_camera()
+	manage_phone_rotation()
 	
 	if game_ended:
 		if Input.is_action_just_pressed("next_level"):
@@ -512,7 +513,7 @@ func rotation_ended():
 	overlay.rotation = total_rotations * PI / 2
 	background.rotation = total_rotations * PI / 2
 	if global.is_mobile():# || true:
-		camera.rotation = total_rotations * PI / 2
+		camera.rotation = (total_rotations + start_phone_rotation) * PI / 2
 	
 	var wasd := get_tree().get_nodes_in_group("wasd")
 	
@@ -831,3 +832,16 @@ func _exit_tree():
 
 func emit_pause():
 	emit_signal("pause")
+
+func manage_phone_rotation():
+	if !global.is_mobile():
+		return
+	
+	global.control_manage_phone_rotation($PhoneHUD/VirtualJoystick)
+	global.control_manage_phone_rotation($PhoneHUD/Control)
+	global.control_manage_phone_rotation($EndPanel/MarginContainer)
+	counter.manage_phone_rotation()
+	global.control_manage_phone_rotation($Timer/Control)
+	
+	if has_node("TutorialFloat"):
+		$TutorialFloat.manage_phone_rotation()

@@ -20,7 +20,7 @@ func _unhandled_input(event: InputEvent, delta = get_process_delta_time()):
 			_moveCamera = false;
 	elif event is InputEventMouseMotion && _moveCamera:
 		get_viewport().set_input_as_handled();
-		position += (_previousPosition - event.position) / zoom_factor;
+		position += (_previousPosition - event.position).rotated(global.phone_rotation * PI / 2) / zoom_factor;
 		_previousPosition = event.position;
 		position.x = max(position.x, -8000)
 		position.x = min(position.x, 15000)

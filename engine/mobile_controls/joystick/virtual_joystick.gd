@@ -69,12 +69,9 @@ func _ready() -> void:
 		hide()
 
 func _input(event: InputEvent) -> void:
-#	if disabled:
-#		return
-	
 	if event is InputEventScreenTouch:
 		if event.pressed:
-			if _is_point_inside_joystick_area(event.position) and _touch_index == -1:
+			if _touch_index == -1:
 				if joystick_mode == Joystick_mode.DYNAMIC or (joystick_mode == Joystick_mode.FIXED and _is_point_inside_base(event.position)):
 					if joystick_mode == Joystick_mode.DYNAMIC:
 						_move_base(event.position)
@@ -91,10 +88,10 @@ func _input(event: InputEvent) -> void:
 			#get_viewport().set_input_as_handled()
 
 func _move_base(new_position: Vector2) -> void:
-	_base.global_position = new_position - _base.pivot_offset * get_global_transform_with_canvas().get_scale()
+	_base.global_position = new_position - _base.pivot_offset.rotated(-global.phone_rotation * PI / 2)# * get_global_transform_with_canvas().get_scale()
 
 func _move_tip(new_position: Vector2) -> void:
-	_tip.global_position = new_position - _tip.pivot_offset * _base.get_global_transform_with_canvas().get_scale()
+	_tip.global_position = new_position - _tip.pivot_offset.rotated(-global.phone_rotation * PI / 2)# * _base.get_global_transform_with_canvas().get_scale()
 
 func _is_point_inside_joystick_area(point: Vector2) -> bool:
 	var x: bool = point.x >= global_position.x and point.x <= global_position.x + (size.x * get_global_transform_with_canvas().get_scale().x)
@@ -110,7 +107,7 @@ func _is_point_inside_base(point: Vector2) -> bool:
 		return false
 
 func _update_joystick(touch_position: Vector2) -> void:
-	var center : Vector2 = _base.global_position + _base_radius
+	var center : Vector2 = _base.global_position + _base_radius.rotated(-global.phone_rotation * PI / 2)
 	var vector : Vector2 = touch_position - center
 	vector = vector.limit_length(clampzone_size)
 	

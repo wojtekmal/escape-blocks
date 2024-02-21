@@ -16,9 +16,9 @@ func _ready():
 func _process(delta):
 	var overlay := $MarginContainer/AspectRatioContainer/MarginContainer2/TileMap
 	var screen_size : Vector2 = $MarginContainer.size
-	var scale = min(screen_size.x, screen_size.y) / 96
-	overlay.scale = Vector2(scale, scale)
-	#manage_phone_rotation()
+	var scale_factor = min(screen_size.x, screen_size.y) / 96
+	overlay.scale = Vector2(scale_factor, scale_factor)
+	global.control_manage_phone_rotation(self)
 
 #func manage_phone_rotation():
 #	if OS.get_name() != "Android":

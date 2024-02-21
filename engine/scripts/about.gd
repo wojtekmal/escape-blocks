@@ -11,6 +11,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	global.control_manage_phone_rotation(self)
+	
 	if Input.is_action_just_pressed("back"):
 		go_to_menu()
 	if Input.is_action_pressed("ui_up"):

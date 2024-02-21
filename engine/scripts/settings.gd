@@ -40,6 +40,8 @@ func _process(delta):
 	if !is_visible_in_tree():
 		return
 	
+	global.control_manage_phone_rotation(self)
+	
 	var tab_container := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer
 	
 	if Input.is_action_just_pressed("ui_focus_prev"):# || Input.is_action_just_pressed("ui_left"):
