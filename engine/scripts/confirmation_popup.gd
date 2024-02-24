@@ -1,4 +1,3 @@
-@tool
 extends CanvasLayer
 
 signal ok_pressed
@@ -22,8 +21,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("restart"):
-		queue_free()
+	global.control_manage_phone_rotation($IgnoreButton)
+	global.control_manage_phone_rotation($MarginContainer)
 
 func set_label_text(new_value):
 	label_text = new_value

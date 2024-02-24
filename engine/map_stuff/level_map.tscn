@@ -652,11 +652,9 @@ theme_override_constants/separation = 30
 
 [node name="Next" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("9_bo5fr")]
 layout_mode = 2
-label_text = "Next"
 
 [node name="Skip" parent="CanvasLayer/ColorRect/VBoxContainer/MarginContainer2/HBoxContainer" instance=ExtResource("9_bo5fr")]
 layout_mode = 2
-label_text = "Skip"
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -3

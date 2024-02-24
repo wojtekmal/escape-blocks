@@ -9,6 +9,9 @@ var level_map := preload("res://map_stuff/level_map.tscn")
 func _ready():
 	label.text = buttonText
 	pressed.connect(on_button_press)
+	
+	if global.is_mobile():
+		label.label_settings.font_size = 30
 
 func _process(delta):
 	if has_focus():

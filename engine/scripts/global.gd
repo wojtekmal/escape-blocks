@@ -258,6 +258,7 @@ var settings := {
 	"change_volume": 0,
 	"change_sound_effects_volume": 0,
 	"change_music_volume": 0,
+	"show_hint": true
 }
 
 func manage_settings():
@@ -271,6 +272,9 @@ func manage_settings():
 		AudioServer.set_bus_volume_db(master_bus, (settings["change_sound_effects_volume"] - 100) * 72 / 100)
 	if settings.has("change_music_volume"):
 		AudioServer.set_bus_volume_db(master_bus, (settings["change_music_volume"] - 100) * 72 / 100)
+	
+	if !settings.has("show_hint"):
+		settings["show_hint"] = true
 
 
 func manage_phone_rotation():

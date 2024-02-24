@@ -8,12 +8,9 @@ extends MarginContainer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	part_visible = false
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	
+	if global.is_mobile():
+		$VBoxContainer/LabelBox/Label.label_settings.font_size = 48
 
 func set_label_text(new_value):
 	label_text = new_value

@@ -9,6 +9,7 @@ extends Control
 @onready var volume := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/Volume
 @onready var music_volume := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/MusicVolume
 @onready var sound_effects_volume := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Audio/VBoxContainer/SoundEffectsVolume
+@onready var show_hint := $MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer/ShowHint
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,6 +26,12 @@ func _ready():
 	music_volume.value = global.settings["change_music_volume"]
 	sound_effects_volume.value_changed.connect(change_sound_effects_volume)
 	sound_effects_volume.value = global.settings["change_sound_effects_volume"]
+	show_hint.button_pressed = global.settings["show_hint"]
+	show_hint.toggled.connect(call_show_hint)
+	
+	if global.is_mobile():
+		show_hint.visible = false
+		switch_rotation.visible = false
 	
 	self.visibility_changed.connect(on_visibility_changed)
 	
@@ -133,3 +140,7 @@ func actually_reset_progress():
 
 func cancel_reset_progress():
 	$MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Gameplay/VBoxContainer/ResetProgress.grab_focus()
+
+func call_show_hint(new_value : bool):
+	global.settings["show_hint"] = new_value
+	global.save()

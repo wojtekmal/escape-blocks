@@ -10,6 +10,7 @@ font = ExtResource("2_lucek")
 font = ExtResource("2_lucek")
 
 [node name="Counter" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_fmk3p")
 
 [node name="Counter" type="Control" parent="."]
@@ -41,10 +42,11 @@ offset_left = -228.0
 offset_top = -112.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "controls:
-wasd - move player   
-arrows - rotate board
-r - reset
-p - pause
-"
+text = "Controls:
+WASD - move player   
+Arrows - rotate board
+R - reset
+P - pause
+This hint can be disabled
+in settings."
 label_settings = SubResource("LabelSettings_mps6b")

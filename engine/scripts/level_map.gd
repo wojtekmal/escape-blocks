@@ -21,7 +21,8 @@ func _ready():
 	if !Engine.is_editor_hint():
 		$MapHUD.visible = true
 	
-	manage_phone_rotation()
+	if global.is_mobile():
+		$MapHUD/MarginContainer/VBoxContainer/HBoxContainer/PartsBox/HBoxContainer/Label.label_settings.font_size = 96
 	get_viewport().gui_focus_changed.connect(move_camera_to_button)
 	
 	for button_reference in get_tree().get_nodes_in_group("level_buttons"):
@@ -160,6 +161,7 @@ func manage_phone_rotation():
 	
 	global.control_manage_phone_rotation($MapHUD/MarginContainer)
 	map_camera.rotation = global.phone_rotation * PI / 2
+	$MapCamera/CanvasLayer/CenterContainer/Container/background.rotation = -map_camera.rotation
 
 func zoom_camera(delta):
 	var map_camera = $MapCamera

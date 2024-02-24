@@ -95,6 +95,10 @@ size_flags_vertical = 3
 layout_mode = 2
 label_text = "Switch rotation direction"
 
+[node name="ShowHint" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer" instance=ExtResource("6_5dlfd")]
+layout_mode = 2
+label_text = "Show controls hint"
+
 [node name="MarginContainer" type="MarginContainer" parent="MyPanel/MarginContainer/VBoxContainer/ScrollPanelBox/TabContainer/Input/VBoxContainer"]
 layout_mode = 2
 

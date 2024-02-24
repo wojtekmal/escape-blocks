@@ -22,5 +22,15 @@ layer_0/tile_data = PackedInt32Array(2, 4, 196608, 65538, 9, 65536, 131074, 1, 0
 [node name="Overlay" parent="." index="5"]
 layer_0/tile_data = PackedInt32Array(-131075, 196617, 3, -65539, 196617, 3, -3, 196617, 3, 65533, 196617, 3, 131069, 196617, 3, 196605, 196617, 3, -131074, 196617, 3, -65538, 196617, 3, -2, 196617, 3, 65534, 196617, 3, 131070, 196617, 3, 196606, 196617, 3, -131073, 196617, 3, -65537, 196617, 3, -1, 196617, 3, 65535, 196617, 3, 131071, 196617, 3, 196607, 196617, 3, -196608, 196617, 3, -131072, 196617, 3, -65536, 196617, 3, 0, 196617, 3, 65536, 196617, 3, 131072, 196617, 3, -196607, 196617, 3, -131071, 196617, 3, -65535, 196617, 3, 1, 196617, 3, 65537, 196617, 3, 131073, 196617, 3, -196606, 196617, 3, -131070, 196617, 3, -65534, 196617, 3, 2, 196617, 3, 65538, 196617, 3, 131074, 196617, 3)
 
+[node name="Map" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer" index="0"]
+label_text = ""
+
+[node name="Retry" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer" index="1"]
+label_text = ""
+
+[node name="Next" parent="EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer" index="2"]
+label_text = ""
+
 [node name="TutorialFloat" parent="." index="15" instance=ExtResource("2_lkauv")]
-pages = PackedStringArray("Press the button (the red circle) to unlock the door (the red block). Buttons can be pressed by both the player and a falling block. They have to be pressed for a short period of time to activate.")
+text = "Press the button (the red circle) to unlock the door (the red block). Buttons can be pressed by both the player and a falling block. They have to be pressed for a short period of time to activate."
+text_mobile = "Press the button (the red circle) to unlock the door (the red block). Buttons can be pressed by both the player and a falling block. They have to be pressed for a short period of time to activate."

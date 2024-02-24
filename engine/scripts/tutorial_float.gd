@@ -1,20 +1,26 @@
 extends CanvasLayer
 
-@export_multiline var pages : PackedStringArray
+@export_multiline var text : String
+@export_multiline var text_mobile : String
 var current_page : int = 0
 @onready var close_button = $HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/TextureButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if pages.size() == 0:
-		print("The tutorial float doesn't have any text.")
-	
 	var label = $HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/Label
-	label.text = pages[0]
+	
+	if global.is_mobile():
+		label.text = text_mobile
+	else:
+		label.text = text
 	
 	$HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/TextureButton.grab_focus()
 	$HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/TextureButton.pressed.connect(close_panel)
-	$HBoxContainer2/VBoxContainer/MyOpaqueButton.pressed.connect(open_panel)
+	$Control/MyOpaqueButton.pressed.connect(open_panel)
+	
+	if global.is_mobile():
+		$Control/MyOpaqueButton.position = Vector2($Control.size.x - 512, 0)
+		$Control/MyOpaqueButton.size = Vector2(256, 256)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -56,7 +62,7 @@ func _process(delta):
 		
 		if global.is_mobile():
 			print("adjusting size because mobile")
-			label.label_settings.font_size *= 1.5
+			label.label_settings.font_size *= 1.7
 			print(label.label_settings.font_size)
 	
 	if get_viewport().gui_get_focus_owner() == null || get_viewport().gui_get_focus_owner().is_visible_in_tree() == false:
@@ -70,13 +76,13 @@ func log_modulus(value):
 
 func close_panel():
 	$HBoxContainer.visible = false
-	$HBoxContainer2.visible = true
+	$Control.visible = true
 
 func open_panel():
 	$HBoxContainer.visible = true
-	$HBoxContainer2.visible = false
+	$Control.visible = false
 	$HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/TextureButton.grab_focus()
 
 func manage_phone_rotation():
 	global.control_manage_phone_rotation($HBoxContainer)
-	global.control_manage_phone_rotation($HBoxContainer2)
+	global.control_manage_phone_rotation($Control)

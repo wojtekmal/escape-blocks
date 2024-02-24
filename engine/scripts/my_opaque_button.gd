@@ -1,4 +1,3 @@
-@tool
 extends Button
 
 @export_multiline var label_text : String = "" : set = set_label_text

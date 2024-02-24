@@ -22,5 +22,15 @@ layer_0/tile_data = PackedInt32Array(65538, 4, 0, 65537, 2, 0, 65536, 6, 0)
 [node name="Overlay" parent="." index="5"]
 layer_0/tile_data = PackedInt32Array(-65539, 196617, 3, -3, 196617, 3, 65533, 196617, 3, 131069, 196617, 3, -65538, 196617, 3, -2, 196617, 3, 65534, 196617, 3, 131070, 196617, 3, -65537, 196617, 3, -1, 196617, 3, 65535, 196617, 3, 131071, 196617, 3, -131072, 196617, 3, -65536, 196617, 3, 0, 196617, 3, 65536, 196617, 3, -131071, 196617, 3, -65535, 196617, 3, 1, 196617, 3, 65537, 196617, 3, -131070, 196617, 3, -65534, 196617, 3, 2, 196617, 3, 65538, 196617, 3)
 
+[node name="AudioStreamPlayer" parent="." index="6"]
+parameters/looping = null
+
 [node name="TutorialFloat" parent="." index="11" instance=ExtResource("2_krfh1")]
-pages = PackedStringArray("Welcome to Escape Blocks!\n\nGet to the finish (the square with a green evacuation sign). Press A⁠/⁠D to move left⁠/⁠right and W or Space to jump. Use R to restart the level and P  to pause it and view some options.\nYou can zoom in/out with +/-.")
+text = "Welcome to Escape Blocks!
+
+Get to the finish (the square with a green evacuation sign). Press A/D to move left/right and W or Space to jump. Use R to restart the level and P to pause it and view some options.
+You can zoom in/out with +/-."
+text_mobile = "Welcome to Escape Blocks!
+Get to the finish (the square with a green evacuation sign). Use the joystick to move by pressing somewhere and dragging your finger in the direction you want to move. You can press the menu button to pause and view some options such as restarting the level or going back to the map.
+You can zoom by pinching the screen with two fingers. 
+We recommend playing with autorotate turned off."

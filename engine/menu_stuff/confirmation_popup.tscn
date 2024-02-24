@@ -17,13 +17,13 @@ layer = 125
 script = ExtResource("1_g1w6i")
 
 [node name="IgnoreButton" type="TextureButton" parent="."]
-offset_right = 1280.0
-offset_bottom = 720.0
+offset_right = 2500.0
+offset_bottom = 1536.0
 texture_normal = ExtResource("2_mr4qv")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 1280.0
-offset_bottom = 720.0
+offset_right = 2500.0
+offset_bottom = 1536.0
 mouse_filter = 2
 theme_override_constants/margin_left = 300
 theme_override_constants/margin_top = 150

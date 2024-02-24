@@ -3,6 +3,10 @@ extends CanvasLayer
 var _time := 0.0
 var timer_on := false
 
+func _ready():
+	if global.is_mobile():
+		$Control/RichTextLabel.label_settings.font_size = 60
+
 func stop(value := true):
 	timer_on = not value
 

@@ -166,7 +166,6 @@ func _ready():
 	tilemap.board_dimensions = board_dimensions
 	size = $Player/StandingHitBox.shape.size
 	game_ended = false
-	#global.reset_phone_rotation()
 	
 	if Engine.is_editor_hint(): return
 	
@@ -213,6 +212,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("next_level"):
 			actually_go_to_next_level()
 		if Input.is_action_just_pressed("map"):
+			print("go to map")
 			go_to_map()
 		if get_viewport().gui_get_focus_owner() == null || \
 		!get_viewport().gui_get_focus_owner().is_visible_in_tree():
@@ -431,31 +431,21 @@ func manage_changing_gravity():
 	var rotations : int = 0
 	
 	if global.is_mobile():# || true:
-		if rotation_timer.is_stopped() && all_not_falling():
-			rotations += ((global.phone_rotation - total_rotations - start_phone_rotation) % 4 + 5) % 4 - 1
-			#global.control_manage_phone_rotation($EndPanel/MarginContainer)
-			#global.control_manage_phone_rotation($PhoneHUD/VirtualJoystick)
-			#global.control_manage_phone_rotation($PhoneHUD/Control)
-			
-			#if has_node("TutorialFloat"):
-			#	$TutorialFloat.manage_phone_rotation()
+		rotations += ((global.phone_rotation - total_rotations - start_phone_rotation) % 4 + 5) % 4 - 1
 	
 	if(Input.is_action_pressed("gravity_right") && !global.settings["switch_rotation"] ||
 	Input.is_action_pressed("gravity_left") && global.settings["switch_rotation"]):
-		game_started = true
 		rotations += 1
-		#("Adding one 90 degrees rotation.")
 	elif(Input.is_action_pressed("gravity_up")):
-		game_started = true
 		rotations += 2
 	elif(Input.is_action_pressed("gravity_left") && !global.settings["switch_rotation"] ||
 	Input.is_action_pressed("gravity_right") && global.settings["switch_rotation"]):
-		game_started = true
 		rotations -= 1
 	
 	var wasd := get_tree().get_nodes_in_group("wasd")
 		
 	if all_not_falling() and rotation_timer.is_stopped() and rotations != 0:
+		game_started = true
 		$RotationSound.play()
 		rotations_number += 1
 		counter.update(rotations_number)
@@ -750,7 +740,7 @@ func get_y_size(entity):
 		return 64
 
 func go_to_map():
-	get_tree().change_scene_to_file("res://map_stuff/level_map.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://map_stuff/level_map.tscn")
 
 func retry_level():
 	emit_signal("retry_this_level")

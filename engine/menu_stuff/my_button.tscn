@@ -113,6 +113,18 @@ size_flags_stretch_ratio = 22.0
 texture = ExtResource("6_xgsen")
 expand_mode = 1
 
+[node name="Label" type="RichTextLabel" parent="HBoxContainer/VBoxContainer2/TextureRect2"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+mouse_filter = 2
+fit_content = true
+
 [node name="TextureRect3" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -146,23 +158,6 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
 texture = ExtResource("10_s7yol")
 expand_mode = 1
-
-[node name="LabelBox" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 112
-theme_override_constants/margin_right = 112
-
-[node name="Label" type="RichTextLabel" parent="LabelBox"]
-layout_mode = 2
-size_flags_vertical = 4
-mouse_filter = 2
-fit_content = true
 
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 1

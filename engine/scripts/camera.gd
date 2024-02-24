@@ -35,7 +35,7 @@ func _input(event : InputEvent, delta = get_process_delta_time()) -> void:
 			var drag_distance = events[0].position.distance_to(events[1].position)
 			
 			if abs(drag_distance - last_drag_distance) > zoom_sensitivity:
-				var new_zoom = (1 - ZOOM_SPEED * delta) if drag_distance < last_drag_distance else (1 + ZOOM_SPEED * delta)
+				var new_zoom = (1 - ZOOM_SPEED / 2 * delta) if drag_distance < last_drag_distance else (1 + ZOOM_SPEED / 2 * delta)
 				global.zoom_factor *= new_zoom
 			
 			last_drag_distance = drag_distance
