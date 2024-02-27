@@ -17,7 +17,6 @@ func start(level_name : String):
 	current_level_node_name = new_level.name
 	
 	if level_name == "Random":
-		print(DirAccess.open("res://levels/maps"))
 		var dir := DirAccess.open("res://levels/maps/")
 		var levels := dir.get_files()
 		
@@ -35,10 +34,12 @@ func start(level_name : String):
 		var size = str(randi() % 3 + 5)
 		
 		var output = []
-		var exit_code = OS.execute("board_generator/MEGA_RANDOM.exe", [size, seed], output, false, true)
+		print("file exists:")
+		print(FileAccess.file_exists("res://board_generator/MEGA_RANDOM.exe"))
+		var exit_code = OS.execute("res://board_generator/MEGA_RANDOM.exe", [size, seed], output, false, true)
 		if exit_code != 0:
 			print("error while generating level: ", exit_code)
-		print(output[0])
+		#print(output[0])
 		
 		new_level.walls_source = output[0]
 
@@ -54,7 +55,6 @@ func start(level_name : String):
 	global.current_level = level_name
 	add_child(new_level)
 	new_level.manage_phone_rotation()
-	print("managing phone rotation")
 	await new_level.ready
 
 func _ready():
@@ -93,7 +93,6 @@ func start_current_level():
 	start(global.current_level)
 
 func change_to_next_level(level_name: String):
-	print("changing to next level")
 	if global.levels_data[level_name]["unlocks"].is_empty():
 		get_tree().call_deferred("change_scene_to_file", "res://map_stuff/level_map.tscn")
 		return

@@ -53,7 +53,7 @@ func load_data():
 	)
 	
 	if file == null:
-		print("Saved game not found, creating new game.")
+		#("Saved game not found, creating new game.")
 		save()
 		return
 	var content = file.get_var()

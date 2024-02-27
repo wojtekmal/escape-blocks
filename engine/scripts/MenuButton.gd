@@ -26,7 +26,6 @@ func UpdateLabel(newName):
 
 func on_button_press():
 	if !has_method(custom_method):
-		print("The method this button calls doesn't exist.")
 		return
 	
 	call(custom_method)
@@ -52,7 +51,7 @@ func load_new_game():
 func continue_game_press():
 	if global.levels == {}:
 		load_new_game()
-		print("global.levels == {}")
+		#print("global.levels == {}")
 		return
 	
 	get_tree().change_scene_to_packed(level_map)

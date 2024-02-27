@@ -16,12 +16,8 @@ func _process(delta):
 		return
 	
 	var mask_dict = {}
-	var delta_x = [-1, 1, 1, -1]
-	var delta_y = [-1, -1, 1, 1]
 	
 	for cell in get_used_cells(1):
-		var alternitive_tile = get_cell_alternative_tile(1, cell)
-		var atlas_cords = get_cell_atlas_coords(1, cell)
 		var source_id = get_cell_source_id(1, cell)
 		#var mask = [atlas_cords.x % 2, atlas_cords.x / 2, atlas_cords.y % 2, atlas_cords.y / 2]
 		var mask = [0, 0, 0, 0]

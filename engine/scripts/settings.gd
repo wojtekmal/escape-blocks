@@ -98,7 +98,6 @@ func go_to_menu():
 
 func call_switch_rotation(new_value):
 	global.settings["switch_rotation"] = new_value
-	print(global.settings["switch_rotation"])
 	global.save()
 
 func change_sound_effects_volume(new_value):

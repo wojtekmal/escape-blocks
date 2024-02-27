@@ -149,6 +149,5 @@ func _reset():
 	
 	if use_input_actions:
 		for action in [action_left, action_right, action_down, action_up]:
-			print(action)
 			if Input.is_action_pressed(action) or Input.is_action_just_pressed(action):
 				Input.action_release(action)

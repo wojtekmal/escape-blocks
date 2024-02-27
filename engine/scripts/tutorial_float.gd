@@ -61,9 +61,7 @@ func _process(delta):
 		label.label_settings.font_size = int(24 * pow(log_modulus(default_ratio / actual_ratio), 0.5))
 		
 		if global.is_mobile():
-			print("adjusting size because mobile")
 			label.label_settings.font_size *= 1.7
-			print(label.label_settings.font_size)
 	
 	if get_viewport().gui_get_focus_owner() == null || get_viewport().gui_get_focus_owner().is_visible_in_tree() == false:
 		$HBoxContainer/VBoxContainer/MarginContainer/MyPanel/VBoxContainer/TextureButton.grab_focus()

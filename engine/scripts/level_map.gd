@@ -34,8 +34,8 @@ func _ready():
 	$Random.level_button_pressed.connect(on_level_button_pressed)
 	$MEGA_RANDOM.level_button_pressed.connect(on_level_button_pressed)
 	
-	if OS.get_name() == "Web" || global.is_mobile():
-		$MEGA_RANDOM.visible = false
+	#if OS.get_name() == "Web" || global.is_mobile():
+	$MEGA_RANDOM.visible = false
 	
 	var back_to_menu_button := $MapHUD/MarginContainer/VBoxContainer/HBoxContainer/MyButton
 	back_to_menu_button.pressed.connect(go_to_menu)
@@ -91,7 +91,8 @@ func init_graph():
 	line3.z_index = -1
 	add_child(line3)
 	
-	if OS.get_name() != "Web" && !global.is_mobile():
+	#if OS.get_name() != "Web" && !global.is_mobile():
+	if false:
 		var line4 = Line2D.new()
 		line4.add_point($Random.position + tutorial_line_offset)
 		line4.add_point($MEGA_RANDOM.position + tutorial_line_offset)
@@ -101,7 +102,6 @@ func init_graph():
 	
 	for button_text in buttons:
 		if not global.levels_data.has(button_text):
-			print("nonexistent level: " + button_text)
 			button_text = "NULL"
 			continue
 		

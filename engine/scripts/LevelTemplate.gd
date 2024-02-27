@@ -187,7 +187,6 @@ func _physics_process(delta):
 	if Engine.is_editor_hint() || game_ended: return
 	
 	if Input.is_action_just_pressed("quick_finish"):
-		print("doing quick finishs")
 		_on_player_finished(-total_rotations)
 	
 	if game_ended:
@@ -212,7 +211,6 @@ func _process(delta):
 		if Input.is_action_just_pressed("next_level"):
 			actually_go_to_next_level()
 		if Input.is_action_just_pressed("map"):
-			print("go to map")
 			go_to_map()
 		if get_viewport().gui_get_focus_owner() == null || \
 		!get_viewport().gui_get_focus_owner().is_visible_in_tree():
@@ -386,7 +384,6 @@ func move_player(delta):
 	
 	if (entity_below_right != counter && (player.y_speed - entity_below_right.y_speed) * delta >
 		entity_below_right.position.y - player.position.y - size.y / 2 - get_y_size(entity_below_right) / 2):
-		#print("right_detected")
 		entity_below_right.y_speed = player.y_speed
 	
 	column_top_entities[player_left_column] = player
@@ -625,7 +622,7 @@ func _on_player_finished(start_rotations):
 	if (total_rotations + start_rotations) % 4 == 0 && !game_ended && !rotation_timer.time_left:
 		game_ended = true
 		timer.stop()
-		print("End game.\nTotal rotations: " + str(rotations_number))
+		#print("End game.\nTotal rotations: " + str(rotations_number))
 		$EndPanel/MarginContainer/MyPanel/VBoxContainer/FinishLabelBox/FinishLabel.text = "LEVEL COMPLETE\nTotal rotations: " + str(rotations_number)
 		
 		if !end_screen_disabled:
@@ -636,7 +633,7 @@ func _on_player_finished(start_rotations):
 			return
 		
 		if !global.levels.has(level_name):
-			print("This level\'s name is\'nt in global.levels.")
+			#print("This level\'s name is\'nt in global.levels.")
 			return
 		
 		$PhoneHUD/VirtualJoystick.visible = false
@@ -679,7 +676,7 @@ func _on_player_finished(start_rotations):
 		global.levels[level_name]["rotation_parts"] = max(global.levels[level_name]["rotation_parts"], rotation_parts)
 		
 		for unlocked_level in global.levels_data[level_name]["unlocks"]:
-			print("level unlocked: " + unlocked_level)
+			#print("level unlocked: " + unlocked_level)
 			global.levels[unlocked_level]["unlocked"] = 2
 		
 		global.save()
@@ -745,25 +742,6 @@ func go_to_map():
 func retry_level():
 	emit_signal("retry_this_level")
 
-func go_to_next_level():
-	next_level_button.release_focus()
-	next_level_button.modulate = Color(1,1,1)
-#	print("going to next level")
-	var next_level_name := "NULL"
-	if global.levels_data[level_name]["unlocks"].size():
-		next_level_name = global.levels_data[level_name]["unlocks"][0]
-	
-	if global.levels_data[next_level_name]["part_price"] > global.part_count:
-		print("Not enough parts.")
-		return
-	
-	var confirmation_popup = load("res://menu_stuff/confirmation_popup.tscn").instantiate()
-	confirmation_popup.label_text = "Open level " + next_level_name +\
-	"\nfor " + str(global.levels_data[next_level_name]["part_price"]) + " parts?"
-	confirmation_popup.ok_pressed.connect(actually_go_to_next_level)
-	confirmation_popup.cancel_pressed.connect(cancel_go_to_next_level)
-	get_tree().get_root().add_child(confirmation_popup)
-
 func actually_go_to_next_level():
 	var next_level_name := "NULL"
 	if global.levels_data[level_name]["unlocks"].size():
@@ -773,9 +751,6 @@ func actually_go_to_next_level():
 	global.part_count -= global.levels_data[next_level_name]["part_price"]
 	global.save()
 	emit_signal("change_to_next_level", level_name)
-
-func cancel_go_to_next_level():
-	$EndPanel/MarginContainer/MyPanel/VBoxContainer/ButtonsBox/HBoxContainer/Next.grab_focus()
 
 func floor_div(a, b):
 	if a >= 0 || a == floori(a) && floori(a) % floori(b) == 0:
