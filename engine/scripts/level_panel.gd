@@ -44,10 +44,9 @@ func add_levels(path, dirname):
 #				print(dirname + file_name, " ",  global.levels_data[dirname + file_name])
 				
 				var new_button = level_button.instantiate()
-				new_button.position = Vector2i(last_pos % rows * 300 + 100, last_pos / rows * 78 + 800) + Vector2i.UP * 700
+				new_button.position = Vector2i(last_pos % rows * 300 + 50, last_pos / rows * 78 + 800) + Vector2i.UP * 700
 				if (last_pos/rows) % 2 == 0: 
 					new_button.position.x += 150
-				new_button.on_level_bought()
 				last_pos += 1
 				
 				new_button.name = dirname + "/" + file_name
